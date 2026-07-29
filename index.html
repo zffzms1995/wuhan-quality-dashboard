@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>武汉中心仓质量数据看板 - 2026年5月</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
+.header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.header h1 { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+.header .meta { font-size: 13px; opacity: 0.75; }
+.header .live-dot { display: inline-block; width: 8px; height: 8px; background: #4ade80; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.container { max-width: 1440px; margin: 0 auto; padding: 24px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.kpi-card { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 16px; transition: transform 0.15s; }
+.kpi-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.kpi-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.kpi-icon.blue { background: #dbeafe; color: #2563eb; }
+.kpi-icon.red { background: #fee2e2; color: #dc2626; }
+.kpi-icon.green { background: #dcfce7; color: #16a34a; }
+.kpi-icon.amber { background: #fef3c7; color: #d97706; }
+.kpi-icon.purple { background: #f3e8ff; color: #7c3aed; }
+.kpi-info .kpi-value { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.kpi-info .kpi-label { font-size: 13px; color: #6b7280; margin-top: 2px; }
+.kpi-info .kpi-sub { font-size: 12px; color: #9ca3af; }
+.section-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #1a1a2e; display: flex; align-items: center; gap: 8px; }
+.section-title::before { content: ''; width: 4px; height: 18px; background: #2563eb; border-radius: 2px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+.card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.card-header h3 { font-size: 15px; font-weight: 600; }
+.card-full { margin-bottom: 24px; }
+.badge { font-size: 11px; padding: 3px 8px; border-radius: 10px; font-weight: 500; }
+.badge-good { background: #dcfce7; color: #16a34a; }
+.badge-warn { background: #fef3c7; color: #d97706; }
+.badge-bad { background: #fee2e2; color: #dc2626; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: #f8fafc; color: #475569; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; }
+tr:hover td { background: #f8fafc; }
+.rate-bar { display: inline-block; height: 6px; border-radius: 3px; background: #e2e8f0; min-width: 60px; vertical-align: middle; margin-left: 6px; }
+.rate-bar-fill { height: 100%; border-radius: 3px; }
+.rate-bar-fill.low { background: #16a34a; }
+.rate-bar-fill.mid { background: #d97706; }
+.rate-bar-fill.high { background: #dc2626; }
+.tabs { display: flex; gap: 4px; margin-bottom: 16px; background: #f1f5f9; border-radius: 8px; padding: 3px; flex-wrap: wrap; }
+.tab { padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; color: #64748b; border: none; background: none; transition: all 0.15s; white-space: nowrap; }
+.tab.active { background: #fff; color: #1a1a2e; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.tab:hover:not(.active) { color: #1a1a2e; }
+.followup-item { padding: 12px; border-left: 3px solid #e2e8f0; margin-bottom: 8px; background: #f8fafc; border-radius: 0 8px 8px 0; font-size: 13px; }
+.followup-item.warn { border-left-color: #dc2626; background: #fef2f2; }
+.followup-item .person { font-weight: 600; color: #1a1a2e; }
+.followup-item .type-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; margin-left: 6px; }
+.type-tag.miss { background: #fee2e2; color: #dc2626; }
+.type-tag.misjudge { background: #fef3c7; color: #d97706; }
+.empty-state { text-align: center; padding: 32px; color: #9ca3af; font-size: 13px; }
+.footer { text-align: center; padding: 16px; color: #9ca3af; font-size: 12px; border-top: 1px solid #e2e8f0; margin-top: 24px; }
+.scroll-x { overflow-x: auto; }
+.highlight { font-weight: 600; }
+.text-red { color: #dc2626; }
+.text-green { color: #16a34a; }
+.text-amber { color: #d97706; }
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .header { padding: 16px; }
+  .header h1 { font-size: 18px; }
+  .container { padding: 12px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>武汉中心仓质量数据看板</h1>
+    <div style="margin-top:4px;font-size:14px;opacity:0.9">2026年5月 · 1+4品类质量达成情况</div>
+  </div>
+  <div class="meta">
+    <span class="live-dot"></span>数据更新时间：2026-05-24<br>
+    <span style="font-size:11px">数据源：26年5月武汉中心仓质量数据.xlsx</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- KPI Cards -->
+<div class="kpi-grid" id="kpiCards"></div>
+
+<!-- Daily Trend: Phone -->
+<div class="card card-full">
+  <div class="card-header"><h3>手机品类每日抽检趋势（5月）</h3><span class="badge badge-good">31天数据</span></div>
+  <canvas id="phoneTrendChart" style="max-height:280px"></canvas>
+</div>
+
+<!-- Category Charts -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>品类抽检量与差异量</h3></div>
+    <canvas id="categoryChart"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>各品类执行差异率</h3></div>
+    <canvas id="errorRateChart"></canvas>
+  </div>
+</div>
+
+<!-- Four Category Daily Trend -->
+<div class="card card-full">
+  <div class="card-header"><h3>四品类（笔记本/手表/耳机/平板）每日抽检趋势</h3></div>
+  <canvas id="fourCatTrendChart" style="max-height:280px"></canvas>
+</div>
+
+<!-- Personnel Table -->
+<div class="card card-full">
+  <div class="card-header">
+    <h3>人员质量达成情况（QA抽检）</h3>
+    <div class="tabs" id="categoryTabs"></div>
+  </div>
+  <div class="scroll-x">
+    <table id="personnelTable">
+      <thead><tr><th>品类</th><th>小组</th><th>质检人</th><th>抽检量</th><th>执行差异量</th><th>个人执行差异率</th><th>评级</th><th>组内排名</th><th>质检失误量</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Error Followup + MB Audit -->
+<div class="grid-3">
+  <div class="card">
+    <div class="card-header"><h3>质检失误原因跟进（氢弹期间）</h3><span class="badge badge-bad">8条记录</span></div>
+    <div id="followupList"></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>主板审核差异统计</h3></div>
+    <canvas id="mbAuditChart" style="max-height:240px"></canvas>
+    <div id="mbAuditSummary" style="margin-top:12px;font-size:13px"></div>
+  </div>
+</div>
+
+<!-- Motherboard Audit Table -->
+<div class="card card-full">
+  <div class="card-header"><h3>主板审核差异明细</h3><span class="badge badge-bad" id="mbPenaltyCount"></span></div>
+  <div class="scroll-x">
+    <table id="mbAuditTable">
+      <thead><tr><th>触发罚款</th><th>日期</th><th>质检码</th><th>品牌</th><th>机型</th><th>质检人员</th><th>复核QA</th><th>是否有差异</th><th>QA勾选项</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">武汉中心仓质量数据看板 · 自动生成于 2026-07-29 · 数据来源：26年5月武汉中心仓质量数据.xlsx</div>
+
+</div>
+
+<script>
+// ====== EMBEDDED DATA ======
+const DATA = (function() {
+  // Excel serial to date
+  function edate(s) { var d = new Date(1899,11,30); d.setDate(d.getDate() + parseInt(s)); return (d.getMonth()+1)+'/'+d.getDate(); }
+
+  return {
+    qaData: [
+      {cat:"📱",grp:"【手机】后验一段",inspector:"闵杰",samples:557,errors:2,rate:0.00359,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"【手机】后验一段",inspector:"张辰",samples:425,errors:2,rate:0.00471,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"【手机】后验一段",inspector:"李波",samples:414,errors:2,rate:0.00483,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"【手机】后验一段",inspector:"岳文",samples:398,errors:4,rate:0.01005,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"【手机】后验二段",inspector:"王彪",samples:535,errors:4,rate:0.00748,ranking:"2",qaMiss:4},
+      {cat:"📱",grp:"【手机】后验二段",inspector:"苏杰",samples:647,errors:5,rate:0.00773,ranking:"3",qaMiss:5},
+      {cat:"📱",grp:"【手机】后验二段",inspector:"黄宇",samples:446,errors:3,rate:0.00673,ranking:"1",qaMiss:1},
+      {cat:"📱",grp:"【手机】后验二段",inspector:"陈金伟",samples:345,errors:5,rate:0.01449,ranking:"4",qaMiss:1},
+      {cat:"📱",grp:"【手机】入仓全检",inspector:"蔡浩",samples:498,errors:2,rate:0.00402,ranking:"",qaMiss:3},
+      {cat:"💻",grp:"笔记本质检",inspector:"尹泽伦",samples:58,errors:2,rate:0.03448,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"常凌云",samples:86,errors:2,rate:0.02326,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"邱锦涛",samples:83,errors:1,rate:0.01205,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"卢鹏程",samples:47,errors:1,rate:0.02128,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"杨宇",samples:61,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"熊帅",samples:60,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"熊文星",samples:53,errors:1,rate:0.01887,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"熊国梁",samples:57,errors:2,rate:0.03509,ranking:"",qaMiss:0},
+      {cat:"💻",grp:"笔记本质检",inspector:"刘秉义",samples:65,errors:1,rate:0.01538,ranking:"",qaMiss:0},
+      {cat:"⌚️",grp:"手表质检",inspector:"熊文星",samples:26,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"⌚️",grp:"手表质检",inspector:"刘秉义",samples:2,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"🎧",grp:"耳机质检",inspector:"熊文星",samples:8,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"🎧",grp:"耳机质检",inspector:"刘秉义",samples:22,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"闵杰",samples:31,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"蔡浩",samples:37,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"苏杰",samples:24,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"李波",samples:29,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"陈金伟",samples:20,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"岳文",samples:36,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"张辰",samples:32,errors:1,rate:0.03125,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"王彪",samples:27,errors:0,rate:0,ranking:"",qaMiss:0},
+      {cat:"📱",grp:"平板电脑",inspector:"黄宇",samples:18,errors:1,rate:0.05556,ranking:"",qaMiss:0}
+    ],
+
+    phoneTrend: [
+      {date:"05/01",samples:76,diffs:3},{date:"05/02",samples:82,diffs:2},{date:"05/03",samples:80,diffs:4},
+      {date:"05/04",samples:77,diffs:7},{date:"05/05",samples:71,diffs:5},{date:"05/06",samples:82,diffs:5},
+      {date:"05/07",samples:83,diffs:4},{date:"05/08",samples:82,diffs:3},{date:"05/09",samples:79,diffs:8},
+      {date:"05/10",samples:82,diffs:4},{date:"05/11",samples:78,diffs:5},{date:"05/12",samples:88,diffs:5},
+      {date:"05/13",samples:85,diffs:5},{date:"05/14",samples:75,diffs:3},{date:"05/15",samples:84,diffs:5},
+      {date:"05/16",samples:79,diffs:6},{date:"05/17",samples:80,diffs:7},{date:"05/18",samples:84,diffs:3},
+      {date:"05/19",samples:83,diffs:5},{date:"05/20",samples:121,diffs:6},{date:"05/21",samples:111,diffs:5},
+      {date:"05/22",samples:140,diffs:11},{date:"05/23",samples:166,diffs:10},{date:"05/24",samples:189,diffs:8},
+      {date:"05/25",samples:181,diffs:8},{date:"05/26",samples:192,diffs:4},{date:"05/27",samples:196,diffs:15},
+      {date:"05/28",samples:224,diffs:9},{date:"05/29",samples:226,diffs:13},{date:"05/30",samples:208,diffs:7},
+      {date:"05/31",samples:182,diffs:7}
+    ],
+
+    fourCatTrend: {
+      "笔记本": [
+        {date:"05/01",samples:4,diffs:1},{date:"05/02",samples:7,diffs:1},{date:"05/03",samples:6,diffs:0},
+        {date:"05/04",samples:6,diffs:0},{date:"05/06",samples:2,diffs:0},{date:"05/07",samples:6,diffs:0},
+        {date:"05/08",samples:13,diffs:0},{date:"05/09",samples:23,diffs:8},{date:"05/10",samples:31,diffs:5},
+        {date:"05/11",samples:32,diffs:9},{date:"05/12",samples:33,diffs:5},{date:"05/13",samples:27,diffs:6},
+        {date:"05/14",samples:30,diffs:4},{date:"05/15",samples:26,diffs:6},{date:"05/16",samples:31,diffs:6},
+        {date:"05/17",samples:32,diffs:7},{date:"05/18",samples:31,diffs:5},{date:"05/19",samples:31,diffs:6},
+        {date:"05/20",samples:34,diffs:6},{date:"05/21",samples:36,diffs:8},{date:"05/22",samples:37,diffs:9},
+        {date:"05/23",samples:47,diffs:9},{date:"05/24",samples:46,diffs:8}
+      ],
+      "平板电脑": [
+        {date:"05/01",samples:17,diffs:1},{date:"05/02",samples:18,diffs:0},{date:"05/03",samples:18,diffs:0},
+        {date:"05/04",samples:19,diffs:0},{date:"05/06",samples:19,diffs:0},{date:"05/07",samples:20,diffs:0},
+        {date:"05/08",samples:2,diffs:0},{date:"05/09",samples:17,diffs:0},{date:"05/10",samples:2,diffs:0},
+        {date:"05/12",samples:18,diffs:0},{date:"05/13",samples:18,diffs:0},{date:"05/15",samples:17,diffs:1},
+        {date:"05/16",samples:20,diffs:1},{date:"05/17",samples:8,diffs:0},{date:"05/18",samples:8,diffs:0},
+        {date:"05/20",samples:6,diffs:0},{date:"05/21",samples:4,diffs:0},{date:"05/23",samples:7,diffs:0},
+        {date:"05/24",samples:7,diffs:0}
+      ],
+      "智能手表": [
+        {date:"05/02",samples:4,diffs:0},{date:"05/04",samples:9,diffs:0},{date:"05/06",samples:13,diffs:2},{date:"05/10",samples:2,diffs:0}
+      ],
+      "耳机/耳麦": [
+        {date:"05/01",samples:1,diffs:0},{date:"05/03",samples:7,diffs:0},{date:"05/07",samples:8,diffs:0},{date:"05/09",samples:9,diffs:2},{date:"05/12",samples:3,diffs:0},{date:"05/20",samples:2,diffs:0}
+      ]
+    },
+
+    errorFollowup: [
+      {person:"王彪",code:"988258787",item:"外壳外观-脱胶缝隙 ≥0.3mm",errorType:"【漏选】",reason:"无法定位根因，暂进行口头提醒"},
+      {person:"闵杰",code:"986160927",item:"屏幕显示-坏点-直径 ≤0.5mm且数量＞6",errorType:"【误判】",reason:"特殊现象导致误判"},
+      {person:"王彪",code:"988065596",item:"外屏-紫光灯照射边缘内屏异常",errorType:"【漏选】",reason:"跳步，已沟通稽核组进行为期一周的专项稽核，再复现即抄写标准10遍"},
+      {person:"黄宇",code:"987147939",item:"后壳-后盖与镜头保护罩连接处有胶水溢出",errorType:"【漏选】",reason:"判定经验不足导致漏判"},
+      {person:"李波",code:"988716395",item:"摄像头功能-拍照坏点",errorType:"【漏选】",reason:"质检过快，暂进行口头提醒"},
+      {person:"陈金伟",code:"988398816",item:"外壳外观-脱胶缝隙 ≥0.3mm",errorType:"【漏选】",reason:"无法定位根因，暂进行口头提醒"},
+      {person:"黄宇",code:"986700786",item:"维修浸液-屏幕有胶水溢出",errorType:"【误判】",reason:"实际应判定中框溢胶，Mate60系列屏幕溢胶应判定为中框溢胶"},
+      {person:"黄宇",code:"988016744",item:"电池健康值不符",errorType:"【漏选】",reason:"勾选顺序错误。当发现商户电池健康值不符时不用去修改电池次数"}
+    ],
+
+    motherboardAudit: [
+      {penalty:"是",date:edate("46144"),code:"999885906",brand:"华为",model:"华为 nova 6 (5G)",inspector:"王彪",qa:"王缘圆",hasDiff:"是",qaCheck:"主板图不符"},
+      {penalty:"是",date:edate("46145"),code:"1001614287",brand:"苹果",model:"iPhone 16 Pro Max",inspector:"蔡浩",qa:"袁培耀",hasDiff:"是",qaCheck:"后壳-壳内二维码缺失/排线翘起褶皱缺失"},
+      {penalty:"是",date:edate("46145"),code:"1001381622",brand:"苹果",model:"iPhone 16 Pro",inspector:"苏杰",qa:"涂启超",hasDiff:"是",qaCheck:"主板图不规范"},
+      {penalty:"是",date:edate("46146"),code:"1000780093",brand:"华为",model:"华为 Mate 60 Pro",inspector:"苏杰",qa:"王缘圆",hasDiff:"是",qaCheck:"主板图不规范"},
+      {penalty:"是",date:edate("46146"),code:"1001088036",brand:"华为",model:"华为 P70 Pro",inspector:"苏杰",qa:"涂启超",hasDiff:"是",qaCheck:"主板图不符"},
+      {penalty:"是",date:edate("46147"),code:"1001689846",brand:"苹果",model:"iPhone 15 Pro",inspector:"王彪",qa:"王缘圆",hasDiff:"是",qaCheck:"主板图不规范"},
+      {penalty:"是",date:edate("46148"),code:"1002052225",brand:"苹果",model:"iPhone 16",inspector:"蔡浩",qa:"袁培耀",hasDiff:"是",qaCheck:"主板图不符"},
+      {penalty:"是",date:edate("46149"),code:"1000259708",brand:"苹果",model:"iPhone 14 Pro",inspector:"苏杰",qa:"涂启超",hasDiff:"是",qaCheck:"主板图不符"},
+      {penalty:"是",date:edate("46150"),code:"1001492526",brand:"华为",model:"华为 P70",inspector:"王彪",qa:"王缘圆",hasDiff:"是",qaCheck:"主板图不规范"},
+      {penalty:"是",date:edate("46151"),code:"1000965511",brand:"华为",model:"华为 Mate 60",inspector:"苏杰",qa:"涂启超",hasDiff:"是",qaCheck:"主板图不规范"},
+      {penalty:"是",date:edate("46152"),code:"1001902837",brand:"苹果",model:"iPhone 16 Pro",inspector:"王彪",qa:"王缘圆",hasDiff:"是",qaCheck:"主板图不符"},
+      {penalty:"是",date:edate("46153"),code:"1000813560",brand:"苹果",model:"iPhone 15 Pro Max",inspector:"蔡浩",qa:"袁培耀",hasDiff:"是",qaCheck:"主板图不规范"},
+      {penalty:"是",date:edate("46154"),code:"1000375556",brand:"华为",model:"华为 P70 Pro+",inspector:"苏杰",qa:"王缘圆",hasDiff:"是",qaCheck:"主板图不符"},
+      {penalty:"否",date:edate("46155"),code:"1000351676",brand:"华为",model:"华为 Mate 60 Pro+",inspector:"黄宇",qa:"袁培耀",hasDiff:"否",qaCheck:""},
+      {penalty:"否",date:edate("46156"),code:"999800814",brand:"苹果",model:"iPhone 14",inspector:"陈金伟",qa:"涂启超",hasDiff:"否",qaCheck:""}
+    ]
+  };
+})();
+
+// ====== KPI CARDS ======
+(function() {
+  var d = DATA.qaData;
+  var totalSamples = d.reduce(function(s,r){return s+r.samples},0);
+  var totalErrors = d.reduce(function(s,r){return s+r.errors},0);
+  var rate = (totalErrors/totalSamples*100).toFixed(2);
+  var zero = d.filter(function(r){return r.errors===0&&r.samples>0}).length;
+  var total = d.filter(function(r){return r.samples>0}).length;
+  var qaMiss = d.reduce(function(s,r){return s+r.qaMiss},0);
+  var cats = new Set(d.map(function(r){return r.cat})).size;
+
+  var cards = [
+    {cls:'blue',emoji:'📋',val:totalSamples.toLocaleString(),label:'总抽检量',sub:'31条记录'},
+    {cls:'red',emoji:'⚠️',val:totalErrors,label:'执行差异量',sub:'差异率 '+rate+'%'},
+    {cls:'green',emoji:'✅',val:zero+'/'+total,label:'零差异人员',sub:Math.round(zero/total*100)+'% 零差异率'},
+    {cls:'amber',emoji:'🔍',val:qaMiss,label:'质检失误量',sub:'主板审核差异'},
+    {cls:'purple',emoji:'📱',val:cats,label:'覆盖品类数',sub:'手机/笔记本/手表/耳机/平板'}
+  ];
+
+  document.getElementById('kpiCards').innerHTML = cards.map(function(c){
+    return '<div class="kpi-card"><div class="kpi-icon '+c.cls+'">'+c.emoji+'</div><div class="kpi-info"><div class="kpi-value">'+c.val+'</div><div class="kpi-label">'+c.label+'</div><div class="kpi-sub">'+c.sub+'</div></div></div>';
+  }).join('');
+})();
+
+// ====== PHONE DAILY TREND ======
+(function() {
+  var t = DATA.phoneTrend;
+  new Chart(document.getElementById('phoneTrendChart'), {
+    type: 'line',
+    data: {
+      labels: t.map(function(d){return d.date}),
+      datasets: [
+        { label:'抽检量', data:t.map(function(d){return d.samples}), borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,0.08)', fill:true, tension:0.3, pointRadius:2, borderWidth:2, yAxisID:'y' },
+        { label:'总差异量', data:t.map(function(d){return d.diffs}), borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,0.05)', fill:true, tension:0.3, pointRadius:2, borderWidth:2, yAxisID:'y1' }
+      ]
+    },
+    options: {
+      responsive:true,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:16,font:{size:11}}}},
+      scales:{
+        y:{type:'linear',position:'left',title:{display:true,text:'抽检量',font:{size:11}},grid:{color:'#f1f5f9'}},
+        y1:{type:'linear',position:'right',title:{display:true,text:'差异量',font:{size:11}},grid:{display:false},min:0},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+})();
+
+// ====== CATEGORY BAR CHARTS ======
+(function() {
+  var map = {};
+  DATA.qaData.forEach(function(d){
+    if(!map[d.cat]) map[d.cat]={samples:0,errors:0};
+    map[d.cat].samples+=d.samples;
+    map[d.cat].errors+=d.errors;
+  });
+  var labels = Object.keys(map);
+  var samples = labels.map(function(k){return map[k].samples});
+  var errors = labels.map(function(k){return map[k].errors});
+  var rates = labels.map(function(k){return map[k].samples>0?(map[k].errors/map[k].samples*100).toFixed(2):0});
+
+  new Chart(document.getElementById('categoryChart'), {
+    type:'bar',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'抽检量',data:samples,backgroundColor:'#93c5fd',borderRadius:4},
+        {label:'执行差异量',data:errors,backgroundColor:'#fca5a5',borderRadius:4}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:16,font:{size:11}}}},
+      scales:{y:{beginAtZero:true,grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}
+    }
+  });
+
+  var bg = rates.map(function(r){return r>2?'#fca5a5':r>1?'#fde68a':'#86efac'});
+  new Chart(document.getElementById('errorRateChart'), {
+    type:'bar',
+    data:{labels:labels,datasets:[{label:'执行差异率 (%)',data:rates.map(Number),backgroundColor:bg,borderRadius:4}]},
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{y:{beginAtZero:true,ticks:{callback:function(v){return v+'%'}},grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}
+    }
+  });
+})();
+
+// ====== FOUR CATEGORY TREND ======
+(function() {
+  var colors = {'笔记本':'#3b82f6','平板电脑':'#8b5cf6','智能手表':'#f59e0b','耳机/耳麦':'#10b981'};
+  var datasets = [];
+  Object.keys(DATA.fourCatTrend).forEach(function(cat){
+    var d = DATA.fourCatTrend[cat];
+    datasets.push({
+      label:cat+' 抽检量',
+      data:d.map(function(v){return v.samples}),
+      labels:d.map(function(v){return v.date}),
+      borderColor:colors[cat],
+      backgroundColor:'transparent',
+      tension:0.3,
+      pointRadius:2,
+      borderWidth:2,
+      spanGaps:true
+    });
+  });
+
+  // Build unified date labels
+  var allDates = new Set();
+  Object.values(DATA.fourCatTrend).forEach(function(arr){arr.forEach(function(v){allDates.add(v.date)})});
+  var sortedDates = Array.from(allDates).sort();
+
+  // Align data to unified date axis
+  datasets.forEach(function(ds){
+    var map = {};
+    ds.labels.forEach(function(l,i){map[l]=ds.data[i]});
+    ds.data = sortedDates.map(function(d){return map[d]!==undefined ? map[d] : null});
+    delete ds.labels;
+  });
+
+  new Chart(document.getElementById('fourCatTrendChart'), {
+    type:'line',
+    data:{labels:sortedDates,datasets:datasets},
+    options:{
+      responsive:true,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11},usePointStyle:true}}},
+      scales:{y:{beginAtZero:true,title:{display:true,text:'抽检量',font:{size:11}},grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}
+    }
+  });
+})();
+
+// ====== PERSONNEL TABLE ======
+(function() {
+  var cats = ['全部'].concat(Array.from(new Set(DATA.qaData.map(function(d){return d.cat}))));
+  document.getElementById('categoryTabs').innerHTML = cats.map(function(c,i){
+    return '<button class="tab'+(i===0?' active':'')+'" onclick="filterTable(\''+c+'\',event)">'+(c==='全部'?'全部品类':c)+'</button>';
+  }).join('');
+
+  window.filterTable = function(cat,ev) {
+    var tabs = document.querySelectorAll('#categoryTabs .tab');
+    tabs.forEach(function(t){t.classList.remove('active')});
+    if(ev&&ev.target) ev.target.classList.add('active');
+    renderTable(cat==='全部'?null:cat);
+  };
+
+  function renderTable(filterCat) {
+    var data = filterCat ? DATA.qaData.filter(function(d){return d.cat===filterCat}) : DATA.qaData;
+    var tbody = document.querySelector('#personnelTable tbody');
+    tbody.innerHTML = data.map(function(d){
+      var pct = d.rate*100;
+      var cls = pct===0?'low':pct<1?'low':pct<2?'mid':'high';
+      var w = Math.min(pct*25,100);
+      var badgeCls = pct===0?'badge-good':pct<1?'badge-good':pct<2?'badge-warn':'badge-bad';
+      var badgeTxt = pct===0?'零差异':pct<1?'优秀':pct<2?'一般':'关注';
+      return '<tr><td>'+d.cat+'</td><td>'+d.grp+'</td><td class="highlight">'+d.inspector+'</td><td>'+d.samples.toLocaleString()+'</td><td>'+(d.errors>0?'<span class="text-red">'+d.errors+'</span>':d.errors)+'</td><td>'+pct.toFixed(2)+'% <span class="rate-bar"><span class="rate-bar-fill '+cls+'" style="width:'+w+'%"></span></span></td><td><span class="badge '+badgeCls+'">'+badgeTxt+'</span></td><td>'+(d.ranking||'-')+'</td><td>'+(d.qaMiss||0)+'</td></tr>';
+    }).join('');
+  }
+  renderTable(null);
+})();
+
+// ====== ERROR FOLLOWUP ======
+(function() {
+  document.getElementById('followupList').innerHTML = DATA.errorFollowup.map(function(d){
+    return '<div class="followup-item warn"><div><span class="person">'+d.person+'</span><span class="type-tag '+(d.errorType.indexOf('漏选')>-1?'miss':'misjudge')+'">'+d.errorType+'</span></div><div style="color:#475569;margin-top:4px">'+d.item+'</div><div style="color:#94a3b8;font-size:12px;margin-top:2px">质检码: '+d.code+'</div><div style="color:#64748b;font-size:12px;margin-top:4px">'+d.reason+'</div></div>';
+  }).join('');
+})();
+
+// ====== MOTHERBOARD AUDIT ======
+(function() {
+  var data = DATA.motherboardAudit;
+  var penaltyCount = data.filter(function(d){return d.penalty==='是'}).length;
+  document.getElementById('mbPenaltyCount').textContent = '触发罚款: '+penaltyCount+'/'+data.length;
+
+  var map = {};
+  data.forEach(function(d){
+    if(!map[d.inspector]) map[d.inspector]={total:0,diff:0,penalty:0};
+    map[d.inspector].total++;
+    if(d.hasDiff==='是') map[d.inspector].diff++;
+    if(d.penalty==='是') map[d.inspector].penalty++;
+  });
+
+  var labels = Object.keys(map);
+  new Chart(document.getElementById('mbAuditChart'), {
+    type:'bar',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'审核总量',data:labels.map(function(k){return map[k].total}),backgroundColor:'#93c5fd',borderRadius:4},
+        {label:'差异量',data:labels.map(function(k){return map[k].diff}),backgroundColor:'#fca5a5',borderRadius:4},
+        {label:'触发罚款',data:labels.map(function(k){return map[k].penalty}),backgroundColor:'#dc2626',borderRadius:4}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12,font:{size:11}}}},
+      scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}
+    }
+  });
+
+  document.getElementById('mbAuditSummary').innerHTML = labels.map(function(k){
+    return '<div style="margin-bottom:4px"><strong>'+k+'</strong>: '+map[k].total+'条审核, '+map[k].diff+'条差异, '+map[k].penalty+'条罚款</div>';
+  }).join('');
+
+  document.querySelector('#mbAuditTable tbody').innerHTML = data.map(function(d){
+    return '<tr><td><span class="badge '+(d.penalty==='是'?'badge-bad':'badge-good')+'">'+d.penalty+'</span></td><td>'+d.date+'</td><td>'+d.code+'</td><td>'+d.brand+'</td><td>'+d.model+'</td><td class="highlight">'+d.inspector+'</td><td>'+d.qa+'</td><td><span class="badge '+(d.hasDiff==='是'?'badge-bad':'badge-good')+'">'+d.hasDiff+'</span></td><td>'+(d.qaCheck||'-')+'</td></tr>';
+  }).join('');
+})();
+</script>
+
+</body>
+</html>
