@@ -90,6 +90,7 @@ tr:hover td{background:#f8fafc}
 .cuoti-item-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
 .cuoti-item-content{font-size:12px;color:#475569;line-height:1.6;white-space:pre-wrap}
 .cuoti-item-foot{font-size:12px;margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.cuoti-img{width:150px;height:auto;border-radius:8px;border:1px solid #e5e7eb;cursor:zoom-in}
 .footer{text-align:center;padding:16px;color:#9ca3af;font-size:11px;border-top:1px solid#e2e8f0;margin-top:20px}
 @media(max-width:768px){.grid-2,.grid-2-1{grid-template-columns:1fr}.header{padding:16px}.filters{flex-direction:column;align-items:stretch}}
 </style>
@@ -372,11 +373,18 @@ function renderCuotiDetail() {
   document.getElementById('cuotiCountBadge').textContent = rows.length + ' 条';
   if (!rows.length) { list.innerHTML = '<div class="empty">没有匹配的错题</div>'; return; }
   list.innerHTML = rows.map(function(r){
+    var title = esc(r.kp).replace(/'/g, "\\'");
+    var imgsHtml = (r.imgs && r.imgs.length)
+      ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">' + r.imgs.map(function(f){
+          return '<img src="images/'+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+title+'\')">';
+        }).join('') + '</div>'
+      : '';
     return '<div class="cuoti-item">'
       + '<div class="cuoti-item-head"><span class="badge bg-info">'+esc(r.cat)+'</span>'
       + '<strong style="font-size:13px">'+esc(r.kp)+'</strong>'
       + '<span style="margin-left:auto;color:#94a3b8;font-size:11px">'+r.date+'</span></div>'
       + '<div class="cuoti-item-content">'+esc(r.content)+'</div>'
+      + imgsHtml
       + '<div class="cuoti-item-foot">'
       + '<span style="color:#dc2626">答错: '+r.persons.map(esc).join('、')+'</span>'
       + (r.answer ? '<span style="color:#059669">'+esc(r.answer)+'</span>' : '')

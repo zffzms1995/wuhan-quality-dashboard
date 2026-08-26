@@ -535,8 +535,8 @@ def parse_transit(ws):
     return archives, weekly_rates
 
 
-def parse_cuoti(xlsx_bytes):
-    """解析「错题集」表格（独立文档），返回错题记录与聚合统计"""
+def parse_cuoti(xlsx_bytes, images_dir):
+    """解析「错题集」表格（独立文档），返回错题记录与聚合统计，并提取单元格内截图"""
     import openpyxl
     import re
     tmp = os.path.join(REPO, "_tmp_cuoti.xlsx")
@@ -552,12 +552,28 @@ def parse_cuoti(xlsx_bytes):
     c = {n: col_of(ws, hdr, n) for n in
          ["日期", "站点", "品类", "错题知识点", "错题内容", "质检人员", "正确答案/解析"]}
 
+    img_by_row = {}
+    for img in ws._images:
+        a = img.anchor
+        row = (a._from.row if hasattr(a, "_from") else a.from_.row) + 1
+        col = a._from.col if hasattr(a, "_from") else a.from_.col
+        img_by_row.setdefault(row, []).append((col, img))
+
+    img_count = 0
     records = []
     for r in range(hdr + 1, ws.max_row + 1):
         dt = ws.cell(row=r, column=c["日期"]).value
         if not dt:
             continue
         persons = [p for p in re.split(r"[,，、;；]", sval(ws.cell(row=r, column=c["质检人员"]).value)) if p]
+        imgs = []
+        for col, img in sorted(img_by_row.get(r, [])):
+            if col < 7:
+                continue
+            fname = f"cuoti_{r}_{len(imgs) + 1}.jpg"
+            _write_optimized_image(img._data(), os.path.join(images_dir, fname))
+            imgs.append(fname)
+            img_count += 1
         records.append({
             "date": sval(dt),
             "station": sval(ws.cell(row=r, column=c["站点"]).value),
@@ -566,7 +582,10 @@ def parse_cuoti(xlsx_bytes):
             "content": sval(ws.cell(row=r, column=c["错题内容"]).value),
             "persons": persons,
             "answer": sval(ws.cell(row=r, column=c["正确答案/解析"]).value),
+            "imgs": imgs,
         })
+    if img_count:
+        print(f"    错题集截图 {img_count} 张已提取压缩")
     if not records:
         return {}
 
@@ -748,7 +767,7 @@ def main():
     print("⑨ 获取错题集 ...")
     try:
         cuoti_bytes = fetch_xlsx(CUOTI_FILE_TOKEN)
-        dashboard["cuoti"] = parse_cuoti(cuoti_bytes)
+        dashboard["cuoti"] = parse_cuoti(cuoti_bytes, images_dir)
         cm = dashboard["cuoti"].get("meta")
         if cm:
             print(f"    错题 {cm['count']} 条 / 知识点 {cm['kpCount']} 个 / "
