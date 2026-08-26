@@ -25,6 +25,7 @@ BASE = "https://open.feishu.cn"
 REPO = os.path.dirname(os.path.abspath(__file__))
 CLAUDE_JSON = os.path.expanduser("~/.claude.json")
 DEFAULT_FILE_TOKEN = "CzCEs7FJ9hozKKtjRRJcC4ilnne"
+CUOTI_FILE_TOKEN = "XJn6sd0WFhY5SPtDYoLcZcXenyf"
 
 
 # ---------- 飞书 API ----------
@@ -534,6 +535,86 @@ def parse_transit(ws):
     return archives, weekly_rates
 
 
+def parse_cuoti(xlsx_bytes):
+    """解析「错题集」表格（独立文档），返回错题记录与聚合统计"""
+    import openpyxl
+    import re
+    tmp = os.path.join(REPO, "_tmp_cuoti.xlsx")
+    with open(tmp, "wb") as f:
+        f.write(xlsx_bytes)
+    try:
+        wb = openpyxl.load_workbook(tmp, data_only=True)
+    finally:
+        os.remove(tmp)
+
+    ws = find_sheet(wb, "错题")
+    hdr = find_header_row(ws, ["错题知识点", "错题内容"])
+    c = {n: col_of(ws, hdr, n) for n in
+         ["日期", "站点", "品类", "错题知识点", "错题内容", "质检人员", "正确答案/解析"]}
+
+    records = []
+    for r in range(hdr + 1, ws.max_row + 1):
+        dt = ws.cell(row=r, column=c["日期"]).value
+        if not dt:
+            continue
+        persons = [p for p in re.split(r"[,，、;；]", sval(ws.cell(row=r, column=c["质检人员"]).value)) if p]
+        records.append({
+            "date": sval(dt),
+            "station": sval(ws.cell(row=r, column=c["站点"]).value),
+            "cat": sval(ws.cell(row=r, column=c["品类"]).value),
+            "kp": sval(ws.cell(row=r, column=c["错题知识点"]).value),
+            "content": sval(ws.cell(row=r, column=c["错题内容"]).value),
+            "persons": persons,
+            "answer": sval(ws.cell(row=r, column=c["正确答案/解析"]).value),
+        })
+    if not records:
+        return {}
+
+    records.sort(key=lambda x: x["date"])
+    kp_map, person_map, daily_map, cat_map = {}, {}, {}, {}
+    for rec in records:
+        for p in rec["persons"]:
+            person_map.setdefault(p, {"count": 0, "kps": {}})
+            person_map[p]["count"] += 1
+            person_map[p]["kps"][rec["kp"]] = person_map[p]["kps"].get(rec["kp"], 0) + 1
+        kp_map.setdefault(rec["kp"], {"count": 0, "persons": set(), "cats": set(), "lastDate": ""})
+        kp_map[rec["kp"]]["count"] += 1
+        kp_map[rec["kp"]]["persons"].update(rec["persons"])
+        kp_map[rec["kp"]]["cats"].add(rec["cat"])
+        kp_map[rec["kp"]]["lastDate"] = max(kp_map[rec["kp"]]["lastDate"], rec["date"])
+        daily_map[rec["date"]] = daily_map.get(rec["date"], 0) + 1
+        if rec["cat"]:
+            cat_map[rec["cat"]] = cat_map.get(rec["cat"], 0) + 1
+
+    kp_stats = sorted(
+        ({"kp": k, "count": v["count"], "persons": len(v["persons"]),
+          "cats": "/".join(sorted(v["cats"])), "lastDate": v["lastDate"]}
+         for k, v in kp_map.items()),
+        key=lambda x: (-x["count"], -x["persons"], x["kp"]))
+    person_stats = sorted(
+        ({"person": k, "count": v["count"],
+          "kps": sorted(v["kps"].items(), key=lambda t: (-t[1], t[0]))[:10]}
+         for k, v in person_map.items()),
+        key=lambda x: (-x["count"], x["person"]))
+    dates = [r["date"] for r in records]
+    return {
+        "meta": {
+            "count": len(records),
+            "kpCount": len(kp_map),
+            "personCount": len(person_map),
+            "catCount": len(cat_map),
+            "dateMin": min(dates),
+            "dateMax": max(dates),
+        },
+        "records": records,
+        "kpStats": kp_stats,
+        "personStats": person_stats,
+        "daily": [{"date": d, "count": daily_map[d]} for d in sorted(daily_map)],
+        "catStats": [{"cat": k, "count": cat_map[k]}
+                     for k in sorted(cat_map, key=lambda c: -cat_map[c])],
+    }
+
+
 # ---------- 主流程 ----------
 
 def build_data(xlsx_bytes, images_dir):
@@ -663,6 +744,20 @@ def main():
         xlsx_bytes = fetch_xlsx(args.token)
 
     dashboard, trend, mb_img = build_data(xlsx_bytes, images_dir)
+
+    print("⑨ 获取错题集 ...")
+    try:
+        cuoti_bytes = fetch_xlsx(CUOTI_FILE_TOKEN)
+        dashboard["cuoti"] = parse_cuoti(cuoti_bytes)
+        cm = dashboard["cuoti"].get("meta")
+        if cm:
+            print(f"    错题 {cm['count']} 条 / 知识点 {cm['kpCount']} 个 / "
+                  f"涉及 {cm['personCount']} 人（{cm['dateMin']} ~ {cm['dateMax']}）")
+        else:
+            print("    提示: 错题集暂为空")
+    except SystemExit as e:
+        print(f"    警告: 错题集获取失败（{e}），本次跳过错题数据")
+        dashboard["cuoti"] = {}
 
     with open(os.path.join(REPO, "dashboard_data.json"), "w", encoding="utf-8") as f:
         json.dump(dashboard, f, ensure_ascii=False, indent=2)

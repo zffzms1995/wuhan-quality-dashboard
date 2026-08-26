@@ -78,6 +78,18 @@ tr:hover td{background:#f8fafc}
 .problem-card .count{font-size:20px;font-weight:700}
 .summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .empty{text-align:center;padding:40px;color:#9ca3af;font-size:14px}
+.cuoti-kp{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:.15s}
+.cuoti-kp:hover{background:#f1f5f9}
+.cuoti-kp.active{background:#fef3c7}
+.cuoti-rank{width:22px;height:22px;border-radius:6px;background:#1a1a2e;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cuoti-kp-main{flex:1;min-width:0}
+.cuoti-kp-name{font-weight:600;font-size:13px}
+.cuoti-kp-sub{font-size:11px;color:#94a3b8;margin-top:2px}
+.cuoti-kp-count{font-weight:700;color:#d97706;font-size:14px;flex-shrink:0}
+.cuoti-item{border:1px solid #eef2f7;border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.cuoti-item-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.cuoti-item-content{font-size:12px;color:#475569;line-height:1.6;white-space:pre-wrap}
+.cuoti-item-foot{font-size:12px;margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
 .footer{text-align:center;padding:16px;color:#9ca3af;font-size:11px;border-top:1px solid#e2e8f0;margin-top:20px}
 @media(max-width:768px){.grid-2,.grid-2-1{grid-template-columns:1fr}.header{padding:16px}.filters{flex-direction:column;align-items:stretch}}
 </style>
@@ -111,6 +123,7 @@ tr:hover td{background:#f8fafc}
   <button class="tab-btn" onclick="switchTab('qa',this)">QA抽检差异</button>
   <button class="tab-btn" onclick="switchTab('motherboard',this)">主板审核</button>
   <button class="tab-btn" onclick="switchTab('summary',this)">问题汇总</button>
+  <button class="tab-btn" onclick="switchTab('cuoti',this)">错题分析</button>
 </div>
 
 <!-- TAB: 概览 -->
@@ -159,6 +172,36 @@ tr:hover td{background:#f8fafc}
   <div class="card"><h3>人员差异量排行</h3><canvas id="personRankChart" style="max-height:300px"></canvas></div>
 </div>
 
+<!-- TAB: 错题分析 -->
+<div class="tab-content" id="tab-cuoti">
+  <div class="kpi-grid" id="cuotiKpi"></div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>高频错题 TOP10</h3>
+      <div id="cuotiTopList"></div>
+      <div style="font-size:11px;color:#9ca3af;margin-top:8px">点击错题知识点可在下方查看对应明细</div>
+    </div>
+    <div class="card"><h3>每日错题趋势</h3><canvas id="cuotiDailyChart" style="max-height:260px"></canvas></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><h3>人员错题排行</h3><canvas id="cuotiPersonChart" style="max-height:300px"></canvas></div>
+    <div class="card"><h3>品类错题分布</h3><canvas id="cuotiCatChart" style="max-height:300px"></canvas></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <h3 style="margin:0">错题明细</h3>
+      <span class="badge bg-info" id="cuotiCountBadge"></span>
+      <button class="filter-btn reset" onclick="resetCuotiFilter()" style="margin-left:auto">清除筛选</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <input class="search-box" style="flex:1;min-width:200px" placeholder="搜索知识点/题目内容/解析..." oninput="renderCuotiDetail()" id="cuotiSearchBox">
+      <select class="search-box" style="width:130px" id="cuotiPersonSel" onchange="renderCuotiDetail()"></select>
+      <select class="search-box" style="width:110px" id="cuotiCatSel" onchange="renderCuotiDetail()"></select>
+    </div>
+    <div id="cuotiDetailList" style="max-height:620px;overflow-y:auto"></div>
+  </div>
+</div>
+
 <div class="footer" id="footerText">武汉中心仓质量数据看板 V2</div>
 </div>
 
@@ -167,7 +210,7 @@ tr:hover td{background:#f8fafc}
 
 <script>
 // ====== DATA (运行时 fetch 加载) ======
-var MB = [], DIFFS = [], FOURCAT_DIFFS = [];
+var MB = [], DIFFS = [], FOURCAT_DIFFS = [], CUOTI = {};
 var META = { monthLabel: '', dateMin: '', dateMax: '', updatedAt: '' };
 var TREND = { phone: [], fourCat: {}, fourCatAgg: [] };
 
@@ -187,6 +230,7 @@ function loadData() {
     DIFFS = DATA.diffs || [];
     FOURCAT_DIFFS = DATA.fourcatDiffs || [];
     qaData = DATA.qaData || [];
+    CUOTI = DATA.cuoti || {};
     bootApp();
   }).catch(function(err){
     document.getElementById('kpiCards').innerHTML = '<div class="empty" style="grid-column:1/-1">'+failMsg+'<br>（'+err.message+'）</div>';
@@ -228,6 +272,140 @@ function bootApp() {
   buildPersonnelTable();
   buildMBTable();
   buildProblemSummary();
+  buildCuoti();
+}
+
+// ====== 错题分析 ======
+var cuotiFilter = { kp: '' };
+
+function cuotiReady() {
+  return CUOTI && CUOTI.meta && CUOTI.meta.count > 0;
+}
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function buildCuoti() {
+  if (!cuotiReady()) {
+    document.getElementById('cuotiKpi').innerHTML = '<div class="empty" style="grid-column:1/-1">暂无错题集数据（更新脚本未取到错题集表格）</div>';
+    document.getElementById('cuotiTopList').innerHTML = '<div class="empty">暂无数据</div>';
+    document.getElementById('cuotiDetailList').innerHTML = '<div class="empty">暂无数据</div>';
+    return;
+  }
+  var m = CUOTI.meta;
+  var kpis = [
+    {val:m.count,label:'错题总数',sub:m.dateMin+' ~ '+m.dateMax},
+    {val:m.kpCount,label:'知识点数',sub:'涉及知识点'},
+    {val:m.personCount,label:'错题人数',sub:'出现过错题的人员'},
+    {val:m.catCount,label:'品类数',sub:(CUOTI.catStats||[]).map(function(c){return c.cat+' '+c.count}).join(' · ')}
+  ];
+  document.getElementById('cuotiKpi').innerHTML = kpis.map(function(c){
+    return '<div class="kpi-card"><div class="kpi-val" style="color:#059669">'+c.val+'</div><div class="kpi-label">'+c.label+'</div><div class="kpi-sub">'+esc(c.sub)+'</div></div>';
+  }).join('');
+
+  var sel = document.getElementById('cuotiPersonSel');
+  var cur = sel.value;
+  sel.innerHTML = '<option value="">全部人员</option>' + CUOTI.personStats.map(function(p){
+    return '<option value="'+esc(p.person)+'">'+esc(p.person)+'（'+p.count+'）</option>';
+  }).join('');
+  sel.value = cur;
+
+  var selc = document.getElementById('cuotiCatSel');
+  var curc = selc.value;
+  selc.innerHTML = '<option value="">全部品类</option>' + CUOTI.catStats.map(function(c){
+    return '<option value="'+esc(c.cat)+'">'+esc(c.cat)+'（'+c.count+'）</option>';
+  }).join('');
+  selc.value = curc;
+
+  renderCuotiTop();
+  renderCuotiDetail();
+}
+
+function renderCuotiTop() {
+  if (!cuotiReady()) return;
+  var top = CUOTI.kpStats.slice(0, 10);
+  document.getElementById('cuotiTopList').innerHTML = top.map(function(k, i){
+    var active = cuotiFilter.kp === k.kp ? ' active' : '';
+    return '<div class="cuoti-kp'+active+'" onclick="filterCuotiKp(\''+esc(k.kp).replace(/'/g, "\\'")+'\')">'
+      + '<span class="cuoti-rank">'+(i+1)+'</span>'
+      + '<div class="cuoti-kp-main"><div class="cuoti-kp-name">'+esc(k.kp)+'</div>'
+      + '<div class="cuoti-kp-sub">'+esc(k.cats)+' · '+k.persons+'人答错 · 最近 '+k.lastDate.slice(5)+'</div></div>'
+      + '<span class="cuoti-kp-count">'+k.count+'次</span></div>';
+  }).join('') || '<div class="empty">暂无数据</div>';
+}
+
+function filterCuotiKp(kp) {
+  cuotiFilter.kp = cuotiFilter.kp === kp ? '' : kp;
+  renderCuotiTop();
+  renderCuotiDetail();
+  document.getElementById('cuotiDetailList').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function resetCuotiFilter() {
+  cuotiFilter.kp = '';
+  document.getElementById('cuotiSearchBox').value = '';
+  document.getElementById('cuotiPersonSel').value = '';
+  document.getElementById('cuotiCatSel').value = '';
+  renderCuotiTop();
+  renderCuotiDetail();
+}
+
+function renderCuotiDetail() {
+  var list = document.getElementById('cuotiDetailList');
+  if (!cuotiReady()) { list.innerHTML = '<div class="empty">暂无数据</div>'; return; }
+  var q = (document.getElementById('cuotiSearchBox').value || '').trim().toLowerCase();
+  var person = document.getElementById('cuotiPersonSel').value;
+  var cat = document.getElementById('cuotiCatSel').value;
+  var kp = cuotiFilter.kp;
+  var rows = CUOTI.records.filter(function(r){
+    if (kp && r.kp !== kp) return false;
+    if (person && r.persons.indexOf(person) < 0) return false;
+    if (cat && r.cat !== cat) return false;
+    if (q) {
+      var hay = (r.kp + ' ' + r.content + ' ' + r.answer + ' ' + r.persons.join(' ')).toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  });
+  document.getElementById('cuotiCountBadge').textContent = rows.length + ' 条';
+  if (!rows.length) { list.innerHTML = '<div class="empty">没有匹配的错题</div>'; return; }
+  list.innerHTML = rows.map(function(r){
+    return '<div class="cuoti-item">'
+      + '<div class="cuoti-item-head"><span class="badge bg-info">'+esc(r.cat)+'</span>'
+      + '<strong style="font-size:13px">'+esc(r.kp)+'</strong>'
+      + '<span style="margin-left:auto;color:#94a3b8;font-size:11px">'+r.date+'</span></div>'
+      + '<div class="cuoti-item-content">'+esc(r.content)+'</div>'
+      + '<div class="cuoti-item-foot">'
+      + '<span style="color:#dc2626">答错: '+r.persons.map(esc).join('、')+'</span>'
+      + (r.answer ? '<span style="color:#059669">'+esc(r.answer)+'</span>' : '')
+      + '</div></div>';
+  }).join('');
+}
+
+function buildCuotiCharts() {
+  if (!cuotiReady()) return;
+  destroyChart('cuotiDaily'); destroyChart('cuotiPerson'); destroyChart('cuotiCat');
+  var ctx1 = document.getElementById('cuotiDailyChart');
+  if (ctx1) chartInstances['cuotiDaily'] = new Chart(ctx1, {type:'bar',
+    data:{labels:CUOTI.daily.map(function(d){return d.date.slice(5)}),
+      datasets:[{label:'错题数',data:CUOTI.daily.map(function(d){return d.count}),backgroundColor:'#f59e0b',borderRadius:4}]},
+    options:{responsive:true,plugins:{legend:{display:false}},
+      scales:{y:{beginAtZero:true,ticks:{precision:0}},x:{grid:{display:false}}}}});
+  var ps = CUOTI.personStats.slice(0, 12).reverse();
+  var ctx2 = document.getElementById('cuotiPersonChart');
+  if (ctx2) chartInstances['cuotiPerson'] = new Chart(ctx2, {type:'bar',
+    data:{labels:ps.map(function(p){return p.person}),
+      datasets:[{label:'错题数',data:ps.map(function(p){return p.count}),backgroundColor:'#ef4444',borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
+      scales:{x:{beginAtZero:true,ticks:{precision:0}}}}});
+  var ctx3 = document.getElementById('cuotiCatChart');
+  if (ctx3) chartInstances['cuotiCat'] = new Chart(ctx3, {type:'doughnut',
+    data:{labels:CUOTI.catStats.map(function(c){return c.cat}),
+      datasets:[{data:CUOTI.catStats.map(function(c){return c.count}),
+        backgroundColor:['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6']}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}}}});
 }
 
 loadData();
@@ -241,6 +419,7 @@ function switchTab(tab, btn) {
   if(tab==='overview') buildCharts();
   if(tab==='motherboard') buildMBChart();
   if(tab==='summary') buildPersonRankChart();
+  if(tab==='cuoti') buildCuotiCharts();
 }
 
 // ====== FILTERS ======
@@ -266,6 +445,7 @@ function refreshAll() {
   if(currentTab==='qa') { buildPersonnelTable(); renderDiffList(); }
   if(currentTab==='motherboard') { buildMBTable(); buildMBChart(); }
   if(currentTab==='summary') { buildProblemSummary(); buildPersonRankChart(); }
+  if(currentTab==='cuoti') { buildCuoti(); buildCuotiCharts(); }
 }
 
 function isInFilter(d) {
@@ -299,6 +479,9 @@ function buildKPIs() {
     {val:mbPenalty,label:'主板审核罚款',sub:'共'+filteredMB.length+'条审核',cls:'color:#d97706',onclick:'switchTab("motherboard",document.querySelectorAll(".tab-btn")[2])'},
     {val:problemTypes,label:'问题类型数',sub:'一级分类',cls:'color:#7c3aed',onclick:'switchTab("summary",document.querySelectorAll(".tab-btn")[3])'}
   ];
+  if(cuotiReady()){
+    cards.push({val:CUOTI.meta.count,label:'错题总数',sub:'培训错题集 · '+CUOTI.meta.kpCount+'个知识点',cls:'color:#059669',onclick:'switchTab("cuoti",document.querySelectorAll(".tab-btn")[4])'});
+  }
 
   document.getElementById('kpiCards').innerHTML = cards.map(function(c,i){
     return '<div class="kpi-card" onclick="'+c.onclick+'" style="cursor:'+(c.onclick?'pointer':'default')+'"><div class="kpi-val" style="'+c.cls+'">'+c.val+'</div><div class="kpi-label">'+c.label+'</div><div class="kpi-sub">'+c.sub+'</div></div>';
