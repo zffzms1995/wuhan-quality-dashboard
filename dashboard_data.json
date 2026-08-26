@@ -142,7 +142,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "济南-丁浩（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "苏杰",
       "origInspector": "苏杰",
       "newInspector": "luli（鲁力）"
     },
@@ -160,7 +160,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "济南-刘化奇（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "luli（鲁力）"
     },
@@ -178,7 +178,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "济南-丁浩（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "王彪",
       "origInspector": "王彪",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -214,7 +214,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "李波",
       "origInspector": "李波",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -232,7 +232,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "济南-董其泽（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "张辰",
       "origInspector": "张辰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -268,7 +268,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "张辰",
       "origInspector": "张辰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -340,7 +340,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "陈金伟",
       "origInspector": "陈金伟",
       "newInspector": "liwen02（李文）"
     },
@@ -448,7 +448,7 @@
       "severity": "",
       "stage": "后验",
       "merchant": "孝感-孙锐（自质检2.0）",
-      "errorPerson": "",
+      "errorPerson": "张辰",
       "origInspector": "张辰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -556,7 +556,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "王彪",
       "origInspector": "王彪",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -628,7 +628,7 @@
       "severity": "错判",
       "stage": "入仓",
       "merchant": "null",
-      "errorPerson": "",
+      "errorPerson": "王彪",
       "origInspector": "王彪",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -682,7 +682,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "陈金伟",
       "origInspector": "陈金伟",
       "newInspector": "liwen02（李文）"
     },
@@ -754,7 +754,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "王彪",
       "origInspector": "王彪",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -772,7 +772,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "钟仔琛",
       "origInspector": "钟仔琛",
       "newInspector": "liwen02（李文）"
     },
@@ -826,7 +826,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "张辰",
       "origInspector": "张辰",
       "newInspector": "liwen02（李文）"
     },
@@ -844,7 +844,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-黄先生（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "李波",
       "origInspector": "李波",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -862,7 +862,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-兆富仓（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -898,7 +898,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "孝感-李珍清",
-      "errorPerson": "",
+      "errorPerson": "王彪",
       "origInspector": "王彪",
       "newInspector": "liwen02（李文）"
     },
@@ -916,7 +916,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "苏杰",
       "origInspector": "苏杰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -934,7 +934,7 @@
       "severity": "-",
       "stage": "入仓",
       "merchant": "null",
-      "errorPerson": "",
+      "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "liwen02（李文）"
     },
@@ -952,7 +952,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "成都-枫叶优品（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "苏杰",
       "origInspector": "苏杰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -970,7 +970,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "成都-吴忌（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "苏杰",
       "origInspector": "苏杰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -988,7 +988,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "成都-嘉诚（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "张辰",
       "origInspector": "张辰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -1006,7 +1006,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-瓜瓜仓（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "苏杰",
       "origInspector": "苏杰",
       "newInspector": "liwen02（李文）"
     },
@@ -1024,7 +1024,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-兆富仓（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "张辰",
       "origInspector": "张辰",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -1078,7 +1078,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-瓜瓜仓（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "苏杰",
       "origInspector": "苏杰",
       "newInspector": "liwen02（李文）"
     },
@@ -1096,7 +1096,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "钟仔琛",
       "origInspector": "钟仔琛",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -1132,7 +1132,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-纪希望（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "liwen02（李文）"
     },
@@ -1186,7 +1186,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "武汉-罗克政",
-      "errorPerson": "",
+      "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "liwen02（李文）"
     },
@@ -1204,7 +1204,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "石家庄-赵柳薇（采货侠）",
-      "errorPerson": "",
+      "errorPerson": "李波",
       "origInspector": "李波",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -1258,7 +1258,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "孝感-李珍清",
-      "errorPerson": "",
+      "errorPerson": "王彪",
       "origInspector": "王彪",
       "newInspector": "liwen02（李文）"
     },
@@ -1276,7 +1276,7 @@
       "severity": "-",
       "stage": "后验",
       "merchant": "马鞍山-鲁蓉蓉（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "陈金伟",
       "origInspector": "陈金伟",
       "newInspector": "zhangyu34（张宇）"
     },
@@ -1294,7 +1294,7 @@
       "severity": "错判",
       "stage": "后验",
       "merchant": "武汉-李荣（已验机2.0）",
-      "errorPerson": "",
+      "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "liwen02（李文）"
     }
@@ -1461,8 +1461,8 @@
       "model": "小米 Book Air 13",
       "inspector": "熊国梁",
       "resultAction": "不拦截",
-      "isExecError": "",
-      "errorPerson": "",
+      "isExecError": "执行问题",
+      "errorPerson": "熊国梁",
       "level1": "维修浸液",
       "level2": "部件更换",
       "detail": "外壳有更换痕迹",
@@ -1529,8 +1529,8 @@
       "model": "联想 拯救者 Y7000P 2022",
       "inspector": "刘秉义",
       "resultAction": "拦截",
-      "isExecError": "",
-      "errorPerson": "",
+      "isExecError": "执行问题",
+      "errorPerson": "刘秉义",
       "level1": "维修浸液",
       "level2": "部件更换",
       "detail": "更换品牌内存",
@@ -1614,8 +1614,8 @@
       "model": "苹果 23年 16寸 MacBook Pro (M2)",
       "inspector": "熊帅",
       "resultAction": "不拦截",
-      "isExecError": "",
-      "errorPerson": "",
+      "isExecError": "执行问题",
+      "errorPerson": "熊帅",
       "level1": "维修浸液",
       "level2": "部件维修",
       "detail": "屏幕维修痕迹",
@@ -1767,8 +1767,8 @@
       "model": "雷神 911 Air 2021",
       "inspector": "熊文星",
       "resultAction": "不拦截",
-      "isExecError": "",
-      "errorPerson": "",
+      "isExecError": "执行问题",
+      "errorPerson": "熊文星",
       "level1": "维修浸液",
       "level2": "部件更换",
       "detail": "内存扩容/加装",
@@ -1784,8 +1784,8 @@
       "model": "联想 拯救者 Y7000P 2020",
       "inspector": "邱锦涛",
       "resultAction": "不拦截",
-      "isExecError": "",
-      "errorPerson": "",
+      "isExecError": "执行问题",
+      "errorPerson": "邱锦涛",
       "level1": "其它状况",
       "level2": "系统情况",
       "detail": "",
@@ -1852,6 +1852,7 @@
       "inspector": "闵杰",
       "samples": 608,
       "errors": 0,
+      "totalErrors": 1,
       "rate": 0.0,
       "ranking": "1",
       "qaMiss": 0
@@ -1861,9 +1862,10 @@
       "grp": "【手机】后验一段",
       "inspector": "张辰",
       "samples": 559,
-      "errors": 0,
-      "rate": 0.0,
-      "ranking": "1",
+      "errors": 6,
+      "totalErrors": 7,
+      "rate": 0.010733,
+      "ranking": "5",
       "qaMiss": 0
     },
     {
@@ -1871,9 +1873,10 @@
       "grp": "【手机】后验一段",
       "inspector": "钟仔琛",
       "samples": 427,
-      "errors": 0,
-      "rate": 0.0,
-      "ranking": "1",
+      "errors": 2,
+      "totalErrors": 4,
+      "rate": 0.004684,
+      "ranking": "3",
       "qaMiss": 0
     },
     {
@@ -1881,9 +1884,10 @@
       "grp": "【手机】后验一段",
       "inspector": "李波",
       "samples": 467,
-      "errors": 0,
-      "rate": 0.0,
-      "ranking": "1",
+      "errors": 3,
+      "totalErrors": 7,
+      "rate": 0.006424,
+      "ranking": "4",
       "qaMiss": 0
     },
     {
@@ -1892,6 +1896,7 @@
       "inspector": "岳文",
       "samples": 0,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0,
       "ranking": "1",
       "qaMiss": 0
@@ -1901,9 +1906,10 @@
       "grp": "【手机】后验二段",
       "inspector": "王彪",
       "samples": 605,
-      "errors": 0,
-      "rate": 0.0,
-      "ranking": "1",
+      "errors": 6,
+      "totalErrors": 11,
+      "rate": 0.009917,
+      "ranking": "3",
       "qaMiss": 0
     },
     {
@@ -1911,9 +1917,10 @@
       "grp": "【手机】后验二段",
       "inspector": "苏杰",
       "samples": 856,
-      "errors": 0,
-      "rate": 0.0,
-      "ranking": "1",
+      "errors": 6,
+      "totalErrors": 18,
+      "rate": 0.007009,
+      "ranking": "2",
       "qaMiss": 0
     },
     {
@@ -1921,9 +1928,10 @@
       "grp": "【手机】后验二段",
       "inspector": "黄宇",
       "samples": 491,
-      "errors": 0,
-      "rate": 0.0,
-      "ranking": "1",
+      "errors": 6,
+      "totalErrors": 7,
+      "rate": 0.01222,
+      "ranking": "4",
       "qaMiss": 0
     },
     {
@@ -1931,8 +1939,9 @@
       "grp": "【手机】后验二段",
       "inspector": "陈金伟",
       "samples": 604,
-      "errors": 0,
-      "rate": 0.0,
+      "errors": 3,
+      "totalErrors": 10,
+      "rate": 0.004967,
       "ranking": "1",
       "qaMiss": 0
     },
@@ -1942,6 +1951,7 @@
       "inspector": "常凌云",
       "samples": 99,
       "errors": 0,
+      "totalErrors": 1,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -1951,8 +1961,9 @@
       "grp": "笔记本质检",
       "inspector": "邱锦涛",
       "samples": 112,
-      "errors": 0,
-      "rate": 0.0,
+      "errors": 1,
+      "totalErrors": 2,
+      "rate": 0.008929,
       "ranking": "",
       "qaMiss": 0
     },
@@ -1962,6 +1973,7 @@
       "inspector": "卢鹏程",
       "samples": 26,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -1972,6 +1984,7 @@
       "inspector": "杨宇",
       "samples": 163,
       "errors": 0,
+      "totalErrors": 7,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -1981,8 +1994,9 @@
       "grp": "笔记本质检",
       "inspector": "熊帅",
       "samples": 100,
-      "errors": 0,
-      "rate": 0.0,
+      "errors": 1,
+      "totalErrors": 3,
+      "rate": 0.01,
       "ranking": "",
       "qaMiss": 0
     },
@@ -1991,8 +2005,9 @@
       "grp": "笔记本质检",
       "inspector": "熊文星",
       "samples": 88,
-      "errors": 0,
-      "rate": 0.0,
+      "errors": 1,
+      "totalErrors": 7,
+      "rate": 0.011364,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2001,8 +2016,9 @@
       "grp": "笔记本质检",
       "inspector": "熊国梁",
       "samples": 149,
-      "errors": 0,
-      "rate": 0.0,
+      "errors": 1,
+      "totalErrors": 4,
+      "rate": 0.006711,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2011,8 +2027,9 @@
       "grp": "笔记本质检",
       "inspector": "刘秉义",
       "samples": 195,
-      "errors": 0,
-      "rate": 0.0,
+      "errors": 1,
+      "totalErrors": 4,
+      "rate": 0.005128,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2022,6 +2039,7 @@
       "inspector": "闵杰",
       "samples": 53,
       "errors": 0,
+      "totalErrors": 1,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -2032,6 +2050,7 @@
       "inspector": "蔡浩",
       "samples": 0,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0,
       "ranking": "",
       "qaMiss": 0
@@ -2042,6 +2061,7 @@
       "inspector": "苏杰",
       "samples": 10,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -2052,6 +2072,7 @@
       "inspector": "李波",
       "samples": 44,
       "errors": 0,
+      "totalErrors": 3,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -2062,6 +2083,7 @@
       "inspector": "陈金伟",
       "samples": 6,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -2072,6 +2094,7 @@
       "inspector": "钟仔琛",
       "samples": 0,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0,
       "ranking": "",
       "qaMiss": 0
@@ -2082,6 +2105,7 @@
       "inspector": "张辰",
       "samples": 38,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -2092,6 +2116,7 @@
       "inspector": "王彪",
       "samples": 7,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
@@ -2102,6 +2127,7 @@
       "inspector": "黄宇",
       "samples": 8,
       "errors": 0,
+      "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
       "qaMiss": 0
