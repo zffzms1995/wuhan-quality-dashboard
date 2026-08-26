@@ -82,10 +82,10 @@ def fetch_xlsx(token):
     ticket = r["data"]["ticket"]
 
     print("③ 等待导出完成 ...", end="", flush=True)
-    for _ in range(60):
+    for _ in range(100):
         time.sleep(3)
         print(".", end="", flush=True)
-        rr = _http_json(f"{BASE}/open-apis/drive/v1/export_tasks/{ticket}", headers=h)
+        rr = _http_json(f"{BASE}/open-apis/drive/v1/export_tasks/{ticket}?token={token}", headers=h)
         if rr.get("code") != 0:
             raise SystemExit(f"查询导出任务失败: {rr.get('msg', rr)}")
         res = rr["data"]["result"]
@@ -97,9 +97,9 @@ def fetch_xlsx(token):
                 data = resp.read()
             print(f"④ 下载完成（{res.get('file_name', '')}，{len(data) // 1024} KB）")
             return data
-        if res["job_status"] == 2:
-            raise SystemExit(f"飞书导出失败: {res.get('job_error_msg', '未知错误')}")
-    raise SystemExit("导出超时（超过3分钟），请稍后重试")
+        if res["job_status"] >= 3:
+            raise SystemExit(f"飞书导出失败（状态码 {res['job_status']}）: {res.get('job_error_msg', '未知错误')}")
+    raise SystemExit("导出超时（超过5分钟），请稍后重试")
 
 
 # ---------- 解析工具 ----------
@@ -161,6 +161,24 @@ def find_sheet(wb, keyword, required=True):
 
 # ---------- 各工作表解析 ----------
 
+def _write_optimized_image(data, out_path):
+    """原图转 JPEG 并限制最长边 1600，加快国内访问 GitHub Pages 的速度；sips 失败时保留原图"""
+    tmp = out_path + ".tmp"
+    with open(tmp, "wb") as f:
+        f.write(data)
+    try:
+        r = subprocess.run(
+            ["sips", "-s", "format", "jpeg", "-s", "formatOptions", "80",
+             "-Z", "1600", tmp, "--out", out_path],
+            capture_output=True)
+        if r.returncode == 0:
+            os.remove(tmp)
+        else:
+            os.replace(tmp, out_path)
+    except OSError:
+        os.replace(tmp, out_path)
+
+
 def parse_mb(ws, images_dir):
     hdr = find_header_row(ws, ["是否触发罚款", "质检码", "审核人"])
     if hdr is None:
@@ -206,12 +224,9 @@ def parse_mb(ws, images_dir):
         img = img_by_row.get(rec["_row"])
         rec["imageFile"] = ""
         if img is not None:
-            ext = (img.format or "png").lower()
-            ext = "jpg" if ext == "jpeg" else ext
-            fn = f"mb_{rec['_row']}.{ext}"
+            fn = f"mb_{rec['_row']}.jpg"
             data = img._data() if callable(img._data) else img._data
-            with open(os.path.join(images_dir, fn), "wb") as f:
-                f.write(data)
+            _write_optimized_image(data, os.path.join(images_dir, fn))
             rec["imageFile"] = fn
             written += 1
     rows.sort(key=lambda d: (d["date"], d["code"]))
@@ -232,7 +247,10 @@ def parse_phone(ws):
         "二级项名称", "原三级项名称", "新三级项名称", "原操作人名称", "新操作人名称",
         "主客观问题分类", "问题类型", "抽检判定的问题类型", "判轻判重分类",
         "后验&入仓", "商户站点"]}
+    # 左侧统计表与右侧记录表都有「站点名称」列，记录表取日期列之后的那个
+    c["记录表站点名称"] = col_of_after(ws, hdr, "站点名称", c["日期"])
     trend, person_sum, diffs = [], {}, []
+    code_seen = {}
     for r in range(hdr + 1, ws.max_row + 1):
         # 仓维度（每日一行）
         d1 = ws.cell(row=r, column=c["抽检日期"]).value
@@ -251,25 +269,38 @@ def parse_phone(ws):
         # 大盘记录表（差异明细）
         d40 = ws.cell(row=r, column=c["日期"]).value
         if isinstance(d40, datetime):
+            code = sval(ws.cell(row=r, column=c["质检码"]).value)
+            classify = sval(ws.cell(row=r, column=c["主客观问题分类"]).value)
+            judgment = sval(ws.cell(row=r, column=c["抽检判定的问题类型"]).value)
+            orig = sval(ws.cell(row=r, column=c["原操作人名称"]).value)
+            # 复现飞书「执行问题失误人」公式：
+            # =IF(AND(COUNTIF(AO$3:AO3,AO3)=1,BL3="客观问题",BN3="执行问题",AR3="武汉库"),BI3,"")
+            code_seen[code] = code_seen.get(code, 0) + 1
+            first_occur = code_seen[code] == 1
+            site = sval(ws.cell(row=r, column=c["记录表站点名称"]).value)
+            if first_occur and classify == "客观问题" and judgment == "执行问题" and site == "武汉库":
+                error_person = orig
+            else:
+                error_person = ""
             l2 = sval(ws.cell(row=r, column=c["新三级项名称"]).value) or \
                  sval(ws.cell(row=r, column=c["原三级项名称"]).value) or \
                  sval(ws.cell(row=r, column=c["二级项名称"]).value)
             diffs.append({
                 "date": d40.strftime("%Y-%m-%d"),
-                "code": sval(ws.cell(row=r, column=c["质检码"]).value),
+                "code": code,
                 "cat": "手机",
                 "brand": sval(ws.cell(row=r, column=c["品牌名称"]).value),
                 "model": sval(ws.cell(row=r, column=c["型号名称"]).value),
                 "level1": sval(ws.cell(row=r, column=c["一级项名称"]).value),
                 "level2": l2,
-                "classify": sval(ws.cell(row=r, column=c["主客观问题分类"]).value),
+                "classify": classify,
                 "problemType": sval(ws.cell(row=r, column=c["问题类型"]).value),
-                "qaJudgment": sval(ws.cell(row=r, column=c["抽检判定的问题类型"]).value),
+                "qaJudgment": judgment,
                 "severity": sval(ws.cell(row=r, column=c["判轻判重分类"]).value),
                 "stage": sval(ws.cell(row=r, column=c["后验&入仓"]).value),
                 "merchant": sval(ws.cell(row=r, column=c["商户站点"]).value),
-                "errorPerson": sval(ws.cell(row=r, column=c["执行问题失误人"]).value),
-                "origInspector": sval(ws.cell(row=r, column=c["原操作人名称"]).value),
+                "errorPerson": error_person,
+                "origInspector": orig,
                 "newInspector": sval(ws.cell(row=r, column=c["新操作人名称"]).value),
             })
     error_count = {}
@@ -291,11 +322,14 @@ def parse_fourcat(ws):
     c["问题类型"] = c["问题分类"] + 1
     c["抽检判定"] = c["问题分类"] + 2
     c["记录表日期"] = col_of_after(ws, hdr, "日期", c["执行问题失误人"])
-    # 记录表与左侧统计表存在同名列（品类），记录表锚点须在记录表日期之后查找
+    # 记录表与左侧统计表存在同名列（品类/站点/角色），记录表锚点须在记录表日期之后查找
     c["记录表品类"] = col_of_after(ws, hdr, "品类", c["记录表日期"])
+    c["记录表站点"] = col_of_after(ws, hdr, "站点", c["记录表日期"])
     c["记录表品牌"] = c["记录表品类"] + 1
     c["记录表型号"] = col_of_after(ws, hdr, "型号", c["记录表日期"])
     c["记录表质检人"] = col_of_after(ws, hdr, "质检人", c["记录表日期"])
+    # 「角色」列在表头无标签（空表头），按与质检人列的相对位置定位
+    c["记录表角色"] = c["记录表质检人"] + 1
     c["记录表判定方式"] = c["记录表型号"] + 1
     c["记录表结果"] = c["记录表型号"] + 2
     c["记录表一级项"] = c["记录表质检人"] + 3
@@ -303,6 +337,7 @@ def parse_fourcat(ws):
     c["记录表明细"] = c["记录表质检人"] + 6
 
     daily, daily_cat, person_cat, records = {}, {}, {}, []
+    code_seen = {}
     for r in range(hdr + 1, ws.max_row + 1):
         d1 = ws.cell(row=r, column=c["日期"]).value
         if isinstance(d1, datetime):
@@ -323,31 +358,45 @@ def parse_fourcat(ws):
                 person_cat[(op, cat)] += samples
         d17 = ws.cell(row=r, column=c["记录表日期"]).value
         if isinstance(d17, datetime):
-            error_person = sval(ws.cell(row=r, column=c["执行问题失误人"]).value)
+            code = sval(ws.cell(row=r, column=c["质检码"]).value)
+            classify = sval(ws.cell(row=r, column=c["问题分类"]).value)
+            qa_type = sval(ws.cell(row=r, column=c["抽检判定"]).value)
+            inspector = sval(ws.cell(row=r, column=c["记录表质检人"]).value)
+            # 复现飞书「执行问题失误人」公式：
+            # =IF(AND(COUNTIF(R$3:R7,R7)=1,AF7="客观问题",AH7="执行问题",Z7="质检",S7="武汉库"),Y7,"")
+            code_seen[code] = code_seen.get(code, 0) + 1
+            first_occur = code_seen[code] == 1
+            role = sval(ws.cell(row=r, column=c["记录表角色"]).value)
+            site = sval(ws.cell(row=r, column=c["记录表站点"]).value)
+            if first_occur and classify == "客观问题" and qa_type == "执行问题" \
+                    and role == "质检" and site == "武汉库":
+                error_person = inspector
+            else:
+                error_person = ""
             result_action = sval(ws.cell(row=r, column=c["记录表结果"]).value) or \
                             sval(ws.cell(row=r, column=c["记录表判定方式"]).value)
             records.append({
                 "date": d17.strftime("%Y-%m-%d"),
-                "code": sval(ws.cell(row=r, column=c["质检码"]).value),
+                "code": code,
                 "cat": sval(ws.cell(row=r, column=c["记录表品类"]).value),
                 "brand": sval(ws.cell(row=r, column=c["记录表品牌"]).value),
                 "model": sval(ws.cell(row=r, column=c["记录表型号"]).value),
-                "inspector": sval(ws.cell(row=r, column=c["记录表质检人"]).value),
+                "inspector": inspector,
                 "resultAction": result_action,
                 "isExecError": "执行问题" if error_person else "",
                 "errorPerson": error_person,
                 "level1": sval(ws.cell(row=r, column=c["记录表一级项"]).value),
                 "level2": sval(ws.cell(row=r, column=c["记录表二级项"]).value),
                 "detail": sval(ws.cell(row=r, column=c["记录表明细"]).value),
-                "classify": sval(ws.cell(row=r, column=c["问题分类"]).value),
+                "classify": classify,
                 "problemType": sval(ws.cell(row=r, column=c["问题类型"]).value),
-                "qaType": sval(ws.cell(row=r, column=c["抽检判定"]).value),
+                "qaType": qa_type,
             })
     records.sort(key=lambda d: (d["date"], d["code"]))
     return daily, daily_cat, person_cat, records
 
 
-def parse_qa(ws, phone_person_sum, phone_error_count, mb_records, person_cat, fourcat_records):
+def parse_qa(ws, phone_person_sum, phone_error_count, phone_diffs, mb_records, person_cat, fourcat_records):
     hdr = find_header_row(ws, ["质检人", "抽检量", "品类"])
     if hdr is None:
         raise SystemExit(f"「{ws.title}」表头未识别，请检查工作表结构")
@@ -374,10 +423,18 @@ def parse_qa(ws, phone_person_sum, phone_error_count, mb_records, person_cat, fo
             mb_penalty[rec["inspector"]] = mb_penalty.get(rec["inspector"], 0) + 1
 
     fourcat_err = {}
+    fourcat_total = {}
     for rec in fourcat_records:
         if rec["errorPerson"]:
             fourcat_err.setdefault((rec["errorPerson"], rec["cat"]), 0)
             fourcat_err[(rec["errorPerson"], rec["cat"])] += 1
+        if rec["inspector"]:
+            fourcat_total.setdefault((rec["inspector"], rec["cat"]), 0)
+            fourcat_total[(rec["inspector"], rec["cat"])] += 1
+    phone_total = {}
+    for d in phone_diffs:
+        if d["origInspector"]:
+            phone_total[d["origInspector"]] = phone_total.get(d["origInspector"], 0) + 1
 
     out = []
     for p in people:
@@ -385,14 +442,16 @@ def parse_qa(ws, phone_person_sum, phone_error_count, mb_records, person_cat, fo
         if grp.startswith("【手机】"):
             samples = int(phone_person_sum.get(name, 0))
             errors = phone_error_count.get(name, 0)
+            total = phone_total.get(name, 0)
             qa_miss = mb_penalty.get(name, 0)
         else:
             fc = four_cat_map.get(grp, "")
             samples = int(person_cat.get((name, fc), 0))
             errors = fourcat_err.get((name, fc), 0)
+            total = fourcat_total.get((name, fc), 0)
             qa_miss = 0
         rate = round(errors / samples, 6) if samples else 0
-        out.append({**p, "samples": samples, "errors": errors,
+        out.append({**p, "samples": samples, "errors": errors, "totalErrors": total,
                     "rate": rate, "ranking": "", "qaMiss": qa_miss})
 
     # 复现看板 RANK 公式（升序，差异率最低 = 第1名）
@@ -502,7 +561,7 @@ def build_data(xlsx_bytes, images_dir):
     print("⑦ 解析四品类 ...")
     four_daily, four_daily_cat, four_person_cat, four_records = parse_fourcat(ws_four)
     print("⑧ 计算人员质量达成（复现表格公式） ...")
-    qa = parse_qa(ws_qa, phone_person_sum, phone_error_count, mb,
+    qa = parse_qa(ws_qa, phone_person_sum, phone_error_count, diffs, mb,
                   four_person_cat, four_records)
 
     error_items, high_freq = ([], [])
@@ -623,8 +682,7 @@ def main():
     if args.no_commit:
         return
     print("\n提交 git ...")
-    r = subprocess.run(["git", "-C", REPO, "add", "dashboard_data.json",
-                        "trend_data.json", "images"], capture_output=True, text=True)
+    r = subprocess.run(["git", "-C", REPO, "add", "-A"], capture_output=True, text=True)
     if r.returncode != 0:
         print(f"提示: git add 失败（{r.stderr.strip()}），该目录可能还不是 git 仓库，跳过提交")
         return

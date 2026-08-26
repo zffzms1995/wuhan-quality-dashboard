@@ -108,8 +108,7 @@ tr:hover td{background:#f8fafc}
 
 <div class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('overview',this)">概览</button>
-  <button class="tab-btn" onclick="switchTab('qa',this)">QA抽检详情</button>
-  <button class="tab-btn" onclick="switchTab('diffs',this)">差异明细</button>
+  <button class="tab-btn" onclick="switchTab('qa',this)">QA抽检差异</button>
   <button class="tab-btn" onclick="switchTab('motherboard',this)">主板审核</button>
   <button class="tab-btn" onclick="switchTab('summary',this)">问题汇总</button>
 </div>
@@ -124,7 +123,7 @@ tr:hover td{background:#f8fafc}
   <div class="card"><h3>品类抽检量分布</h3><canvas id="catDistChart" style="max-height:260px"></canvas></div>
 </div>
 
-<!-- TAB: QA抽检详情 -->
+<!-- TAB: QA抽检差异（人员质量达成 + 差异明细） -->
 <div class="tab-content" id="tab-qa">
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px">
@@ -132,20 +131,16 @@ tr:hover td{background:#f8fafc}
       <div style="display:flex;gap:4px;flex-wrap:wrap" id="catQuickFilter"></div>
     </div>
     <input class="search-box" placeholder="搜索质检人姓名..." oninput="filterPersonnelTable(this.value)">
-    <div class="scroll-x"><table id="personnelTable"><thead><tr><th>品类</th><th>小组</th><th>质检人</th><th>抽检量</th><th>差异量</th><th>差异率</th><th>评级</th><th>组内排名</th><th>质检失误</th></tr></thead><tbody></tbody></table></div>
-    <div style="font-size:11px;color:#9ca3af;margin-top:8px">点击行查看该人员的差异明细</div>
+    <div class="scroll-x"><table id="personnelTable"><thead><tr><th>品类</th><th>小组</th><th>质检人</th><th>抽检量</th><th>执行差异量</th><th>总差异</th><th>差异率</th><th>评级</th><th>组内排名</th><th>质检失误</th></tr></thead><tbody></tbody></table></div>
+    <div style="font-size:11px;color:#9ca3af;margin-top:8px">差异量=飞书看板同口径的执行差异（客观问题+执行问题）；总差异=该人员所有差异记录。点击行在下方查看该人员的差异明细</div>
   </div>
-</div>
-
-<!-- TAB: 差异明细 -->
-<div class="tab-content" id="tab-diffs">
   <div class="card">
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
       <h3 style="margin:0">抽检差异明细记录</h3>
       <span class="badge bg-info" id="diffCountBadge"></span>
       <button class="filter-btn" onclick="toggleErrorOnly()" id="btnErrorOnly" style="margin-left:auto">仅显示执行问题</button>
     </div>
-    <input class="search-box" placeholder="搜索型号/品牌/质检人/问题..." oninput="filterDiffTable(this.value)" id="diffSearchBox">
+    <input class="search-box" placeholder="搜索型号/品牌/质检人/问题..." oninput="renderDiffList()" id="diffSearchBox">
     <div id="diffDetailList" style="max-height:600px;overflow-y:auto"></div>
   </div>
 </div>
@@ -166,9 +161,6 @@ tr:hover td{background:#f8fafc}
 
 <div class="footer" id="footerText">武汉中心仓质量数据看板 V2</div>
 </div>
-
-<!-- Drill-down Modal -->
-<div class="modal-overlay" id="drillModal"><div class="modal"><div class="modal-header"><h3 id="modalTitle">差异明细</h3><button class="modal-close" onclick="closeModal()">&times;</button></div><div class="modal-body" id="modalBody"></div></div></div>
 
 <!-- Image Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src=""></div>
@@ -271,8 +263,7 @@ function resetFilters() {
 function refreshAll() {
   buildKPIs();
   if(currentTab==='overview') buildCharts();
-  if(currentTab==='qa') buildPersonnelTable();
-  if(currentTab==='diffs') { renderDiffList(); updateDiffBadge(); }
+  if(currentTab==='qa') { buildPersonnelTable(); renderDiffList(); }
   if(currentTab==='motherboard') { buildMBTable(); buildMBChart(); }
   if(currentTab==='summary') { buildProblemSummary(); buildPersonRankChart(); }
 }
@@ -302,11 +293,11 @@ function buildKPIs() {
   var problemTypes = new Set(filteredDiffs.map(function(d){return d.level1}).filter(Boolean)).size;
 
   var cards = [
-    {val:totalDiffs,label:'总差异记录',sub:'手机 + 四品类',cls:'',onclick:'switchTab("diffs",document.querySelectorAll(".tab-btn")[2])'},
+    {val:totalDiffs,label:'总差异记录',sub:'手机 + 四品类',cls:'',onclick:'switchTab("qa",document.querySelectorAll(".tab-btn")[1])'},
     {val:execErrors,label:'执行问题',sub:'主观差异',cls:'color:#dc2626',onclick:'filterExecErrors()'},
     {val:objErrors,label:'客观问题',sub:'隐性问题+工艺问题',cls:'color:#2563eb',onclick:''},
-    {val:mbPenalty,label:'主板审核罚款',sub:'共'+filteredMB.length+'条审核',cls:'color:#d97706',onclick:'switchTab("motherboard",document.querySelectorAll(".tab-btn")[3])'},
-    {val:problemTypes,label:'问题类型数',sub:'一级分类',cls:'color:#7c3aed',onclick:'switchTab("summary",document.querySelectorAll(".tab-btn")[4])'}
+    {val:mbPenalty,label:'主板审核罚款',sub:'共'+filteredMB.length+'条审核',cls:'color:#d97706',onclick:'switchTab("motherboard",document.querySelectorAll(".tab-btn")[2])'},
+    {val:problemTypes,label:'问题类型数',sub:'一级分类',cls:'color:#7c3aed',onclick:'switchTab("summary",document.querySelectorAll(".tab-btn")[3])'}
   ];
 
   document.getElementById('kpiCards').innerHTML = cards.map(function(c,i){
@@ -320,7 +311,7 @@ function buildKPIs() {
 function filterExecErrors() {
   activeFilters.errorOnly = true;
   document.getElementById('btnErrorOnly').textContent = '显示全部';
-  switchTab('diffs', document.querySelectorAll('.tab-btn')[2]);
+  switchTab('qa', document.querySelectorAll('.tab-btn')[1]);
   renderDiffList();
 }
 
@@ -402,88 +393,39 @@ function buildPersonnelTable() {
     var pct = d.rate*100;
     var cls = pct===0?'low':pct<1?'low':pct<2?'mid':'high';
     var bc = pct===0?'bg-good':pct<1?'bg-good':pct<2?'bg-warn':'bg-bad';
-    return '<tr class="clickable-row" onclick="drillPerson(\''+d.inspector+'\')"><td>'+d.cat+'</td><td>'+d.grp+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.samples.toLocaleString()+'</td><td>'+(d.errors>0?'<span style="color:#dc2626">'+d.errors+'</span>':d.errors)+'</td><td>'+pct.toFixed(2)+'% <span class="rate-bar"><span class="rate-fill '+cls+'" style="width:'+Math.min(pct*25,100)+'%"></span></span></td><td><span class="badge '+bc+'">'+ (pct===0?'零差异':pct<1?'优秀':pct<2?'一般':'关注')+'</span></td><td>'+(d.ranking||'-')+'</td><td>'+(d.qaMiss||0)+'</td></tr>';
+    var errCell = d.errors>0 ? '<strong style="color:#dc2626">'+d.errors+'</strong>' : '0';
+    var totalCell = d.totalErrors>0 ? d.totalErrors : '-';
+    return '<tr class="clickable-row" onclick="showPersonDiffs(\''+d.inspector+'\')"><td>'+d.cat+'</td><td>'+d.grp+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.samples.toLocaleString()+'</td><td>'+errCell+'</td><td>'+totalCell+'</td><td>'+pct.toFixed(2)+'% <span class="rate-bar"><span class="rate-fill '+cls+'" style="width:'+Math.min(pct*25,100)+'%"></span></span></td><td><span class="badge '+bc+'">'+ (pct===0?'零差异':pct<1?'优秀':pct<2?'一般':'关注')+'</span></td><td>'+(d.ranking||'-')+'</td><td>'+(d.qaMiss||0)+'</td></tr>';
   }).join('');
 }
 
 // ====== DRILL DOWN: Person Detail ======
-function drillPerson(name) {
-  // Find all diffs involving this person
-  var phonePersonDiffs = DIFFS.filter(function(d){return d.errorPerson===name || d.origInspector===name});
-  var fourcatPersonDiffs = FOURCAT_DIFFS.filter(function(d){return d.errorPerson===name || d.inspector===name});
-  var mbPersonDiffs = MB.filter(function(d){return d.inspector===name});
-
-  var qaRow = qaData.find(function(d){return d.inspector===name});
-
-  var html = '';
-  if(qaRow) {
-    html += '<div style="margin-bottom:16px;padding:12px;background:#f8fafc;border-radius:8px">';
-    html += '<strong>'+qaRow.inspector+'</strong> | '+qaRow.grp+' | 抽检量: '+qaRow.samples.toLocaleString()+' | 差异率: '+(qaRow.rate*100).toFixed(2)+'% | 组内排名: '+(qaRow.ranking||'-')+' | QA失误: '+qaRow.qaMiss;
-    html += '</div>';
-  }
-
-  if(phonePersonDiffs.length > 0) {
-    html += '<h4 style="margin-bottom:8px">手机品类差异 ('+phonePersonDiffs.length+'条)</h4>';
-    phonePersonDiffs.forEach(function(d){
-      var cls = d.qaJudgment==='执行问题' ? 'exec-error' : 'obj-error';
-      html += '<div class="diff-item '+cls+'"><div class="row"><span>'+d.date+' | '+d.brand+' '+d.model+'</span><span class="badge '+(d.qaJudgment==='执行问题'?'bg-bad':'bg-info')+'">'+d.qaJudgment+'</span></div><div>'+d.level1+(d.level2?' → '+d.level2:'')+'</div><div style="color:#94a3b8;font-size:11px">质检码: '+d.code+' | '+d.stage+' | '+(d.merchant||'')+' | 原质检人: '+(d.origInspector||'-')+' → 新质检人: '+(d.newInspector||'-')+'</div></div>';
-    });
-  }
-
-  if(fourcatPersonDiffs.length > 0) {
-    html += '<h4 style="margin-bottom:8px;margin-top:12px">四品类差异 ('+fourcatPersonDiffs.length+'条)</h4>';
-    fourcatPersonDiffs.forEach(function(d){
-      var cls = d.isExecError ? 'exec-error' : 'obj-error';
-      html += '<div class="diff-item '+cls+'"><div class="row"><span>'+d.date+' | '+d.cat+' '+d.brand+' '+d.model+'</span>'+(d.isExecError?'<span class="badge bg-bad">执行问题</span>':'')+'</div><div>'+(d.detail||d.level1||'')+'</div><div style="color:#94a3b8;font-size:11px">质检码: '+d.code+' | '+(d.resultAction||'')+' | QA: '+(d.classify||'')+' '+(d.problemType||'')+'</div></div>';
-    });
-  }
-
-  if(mbPersonDiffs.length > 0) {
-    html += '<h4 style="margin-bottom:8px;margin-top:12px">主板审核差异 ('+mbPersonDiffs.length+'条)</h4>';
-    mbPersonDiffs.forEach(function(d){
-      html += '<div class="diff-item exec-error"><div class="row"><span>'+d.date+' | '+d.brand+' '+d.model+'</span><span class="badge bg-bad">触发罚款</span></div><div>'+d.qaFinding+'</div><div style="color:#94a3b8;font-size:11px">复核QA: '+d.qaReviewer+' | 商户: '+(d.merchant||'')+'</div></div>';
-    });
-  }
-
-  if(html === '') html = '<div class="empty">该人员暂无差异记录</div>';
-
-  openModal(name+' - 差异明细下钻', html);
+function showPersonDiffs(name) {
+  document.getElementById('diffSearchBox').value = name;
+  renderDiffList();
+  document.getElementById('diffDetailList').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-// ====== DIFF LIST (Diffs Tab) ======
+// ====== DIFF LIST (QA Tab) ======
 function renderDiffList() {
+  var q = (document.getElementById('diffSearchBox').value || '').toLowerCase();
   var all = DIFFS.filter(isInFilter).concat(FOURCAT_DIFFS.filter(isInFilter));
   if(activeFilters.errorOnly) all = all.filter(function(d){return d.qaJudgment==='执行问题' || d.isExecError});
+  if(q) all = all.filter(function(d){
+    return (d.model||'').toLowerCase().indexOf(q)>-1 || (d.brand||'').toLowerCase().indexOf(q)>-1 || (d.level2||'').toLowerCase().indexOf(q)>-1 || (d.detail||'').toLowerCase().indexOf(q)>-1 || (d.errorPerson||'').toLowerCase().indexOf(q)>-1 || (d.inspector||'').toLowerCase().indexOf(q)>-1 || (d.origInspector||'').toLowerCase().indexOf(q)>-1 || (d.level1||'').toLowerCase().indexOf(q)>-1 || (d.code||'').toLowerCase().indexOf(q)>-1;
+  });
 
   document.getElementById('diffDetailList').innerHTML = all.map(function(d){
     var isExec = d.qaJudgment==='执行问题' || d.isExecError;
     var cls = isExec ? 'exec-error' : 'obj-error';
     var cat = d.cat || '手机';
-    var name = d.errorPerson || d.inspector || d.origInspector || '';
+    var nameLabel = isExec ? '失误人' : '原质检人';
+    var name = isExec ? (d.errorPerson || d.inspector || d.origInspector || '') : (d.origInspector || d.inspector || '');
     var detail = d.level2 || d.detail || d.level1 || '';
-    return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model+' <span class="badge '+(isExec?'bg-bad':'bg-info')+'">'+(isExec?(d.qaJudgment||'执行问题'):(d.qaJudgment||'客观问题'))+'</span></div><div>'+detail+'</div><div style="color:#94a3b8;font-size:11px">质检码: '+d.code+' | 责任人: '+name+(d.severity?' | '+d.severity:'')+(d.stage?' | '+d.stage:'')+'</div></div>';
+    return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model+' <span class="badge '+(isExec?'bg-bad':'bg-info')+'">'+(isExec?(d.qaJudgment||'执行问题'):(d.qaJudgment||'客观问题'))+'</span></div><div>'+detail+'</div><div style="color:#94a3b8;font-size:11px">质检码: '+d.code+' | '+nameLabel+': '+(name||'-')+(d.severity?' | '+d.severity:'')+(d.stage?' | '+d.stage:'')+'</div></div>';
   }).join('') || '<div class="empty">筛选范围内无差异记录</div>';
 
   updateDiffBadge();
-}
-
-function filterDiffTable(text) {
-  if(!text) { renderDiffList(); return; }
-  var q = text.toLowerCase();
-  var all = DIFFS.filter(isInFilter).concat(FOURCAT_DIFFS.filter(isInFilter));
-  if(activeFilters.errorOnly) all = all.filter(function(d){return d.qaJudgment==='执行问题' || d.isExecError});
-  all = all.filter(function(d){
-    return (d.model||'').toLowerCase().indexOf(q)>-1 || (d.brand||'').toLowerCase().indexOf(q)>-1 || (d.level2||'').toLowerCase().indexOf(q)>-1 || (d.errorPerson||'').toLowerCase().indexOf(q)>-1 || (d.inspector||'').toLowerCase().indexOf(q)>-1 || (d.level1||'').toLowerCase().indexOf(q)>-1;
-  });
-  document.getElementById('diffDetailList').innerHTML = all.map(function(d){
-    var isExec = d.qaJudgment==='执行问题' || d.isExecError;
-    var cls = isExec ? 'exec-error' : 'obj-error';
-    var cat = d.cat || '手机';
-    var name = d.errorPerson || d.inspector || d.origInspector || '';
-    return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model+' <span class="badge '+(isExec?'bg-bad':'bg-info')+'">'+(isExec?(d.qaJudgment||'执行问题'):(d.qaJudgment||'客观问题'))+'</span></div><div>'+(d.level2||d.detail||d.level1||'')+'</div><div style="color:#94a3b8;font-size:11px">'+d.code+' | '+name+'</div></div>';
-  }).join('') || '<div class="empty">无匹配记录</div>';
-
-  document.getElementById('diffCountBadge').textContent = all.length + ' 条';
 }
 
 // ====== MOTHERBOARD AUDIT ======
@@ -543,10 +485,10 @@ function buildProblemSummary() {
 }
 
 function filterByProblem(type) {
-  switchTab('diffs', document.querySelectorAll('.tab-btn')[2]);
+  switchTab('qa', document.querySelectorAll('.tab-btn')[1]);
   setTimeout(function(){
     document.getElementById('diffSearchBox').value = type;
-    filterDiffTable(type);
+    renderDiffList();
   }, 100);
 }
 
@@ -571,25 +513,9 @@ function buildPersonRankChart() {
   }
 }
 
-// ====== MODAL ======
-function openModal(title, body) {
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalBody').innerHTML = body;
-  document.getElementById('drillModal').classList.add('show');
-}
-
-function closeModal() {
-  document.getElementById('drillModal').classList.remove('show');
-}
-
-// Close modal on overlay click
-document.getElementById('drillModal').addEventListener('click', function(e) {
-  if(e.target === this) closeModal();
-});
-
 // Keyboard shortcut
 document.addEventListener('keydown', function(e) {
-  if(e.key === 'Escape') { closeModal(); closeLightbox(); }
+  if(e.key === 'Escape') { closeLightbox(); }
 });
 </script>
 </body>
