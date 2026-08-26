@@ -23,7 +23,7 @@
       "hasDiff": "是",
       "qaFinding": "外屏-黑纸破损或断裂≥10mm",
       "notes": "",
-      "imageFile": "mb_4.png",
+      "imageFile": "mb_4.jpg",
       "id": 1
     },
     {
@@ -43,7 +43,7 @@
       "hasDiff": "是",
       "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
       "notes": "",
-      "imageFile": "mb_3.png",
+      "imageFile": "mb_3.jpg",
       "id": 2
     },
     {
@@ -63,7 +63,7 @@
       "hasDiff": "是",
       "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
       "notes": "",
-      "imageFile": "mb_5.png",
+      "imageFile": "mb_5.jpg",
       "id": 3
     },
     {
@@ -83,7 +83,7 @@
       "hasDiff": "是",
       "qaFinding": "部分零件维修更换",
       "notes": "",
-      "imageFile": "mb_6.png",
+      "imageFile": "mb_6.jpg",
       "id": 4
     },
     {
@@ -103,7 +103,7 @@
       "hasDiff": "是",
       "qaFinding": "部分零件维修更换",
       "notes": "",
-      "imageFile": "mb_7.png",
+      "imageFile": "mb_7.jpg",
       "id": 5
     }
   ],
@@ -1735,6 +1735,40 @@
       "classify": "客观问题",
       "problemType": "其他状况",
       "qaType": "sop问题"
+    },
+    {
+      "date": "2026-08-25",
+      "code": "1216752881",
+      "cat": "笔记本",
+      "brand": "华为",
+      "model": "华为 MateBook X Pro 2018",
+      "inspector": "杨宇",
+      "resultAction": "不拦截",
+      "isExecError": "",
+      "errorPerson": "",
+      "level1": "其它状况",
+      "level2": "充电器",
+      "detail": "",
+      "classify": "充电器损坏",
+      "problemType": "客观问题",
+      "qaType": "功能问题"
+    },
+    {
+      "date": "2026-08-25",
+      "code": "1219585780",
+      "cat": "笔记本",
+      "brand": "机械革命",
+      "model": "机械革命 蛟龙 5 2021",
+      "inspector": "熊国梁",
+      "resultAction": "不拦截",
+      "isExecError": "",
+      "errorPerson": "",
+      "level1": "维修浸液",
+      "level2": "是否拆机质检",
+      "detail": "已拆",
+      "classify": "未拆",
+      "problemType": "客观问题",
+      "qaType": "拆修问题"
     }
   ],
   "qaData": [
@@ -1832,7 +1866,7 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "常凌云",
-      "samples": 93,
+      "samples": 99,
       "errors": 0,
       "rate": 0.0,
       "ranking": "",
@@ -1862,7 +1896,7 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "杨宇",
-      "samples": 155,
+      "samples": 163,
       "errors": 0,
       "rate": 0.0,
       "ranking": "",
@@ -1882,7 +1916,7 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "熊文星",
-      "samples": 81,
+      "samples": 88,
       "errors": 0,
       "rate": 0.0,
       "ranking": "",
@@ -1892,7 +1926,7 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "熊国梁",
-      "samples": 136,
+      "samples": 149,
       "errors": 0,
       "rate": 0.0,
       "ranking": "",
@@ -1902,7 +1936,7 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "刘秉义",
-      "samples": 171,
+      "samples": 195,
       "errors": 0,
       "rate": 0.0,
       "ranking": "",
@@ -1912,7 +1946,7 @@
       "cat": "📱",
       "grp": "平板电脑",
       "inspector": "闵杰",
-      "samples": 44,
+      "samples": 53,
       "errors": 0,
       "rate": 0.0,
       "ranking": "",
@@ -2204,10 +2238,10 @@
       },
       {
         "category": "💻",
-        "samples": 0,
+        "samples": 47,
         "objDiffs": 0,
         "execDiffs": 0,
-        "execRate": 0
+        "execRate": 0.0
       }
     ],
     "weeklyRates": [

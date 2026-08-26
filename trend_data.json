@@ -231,6 +231,11 @@
         "date": "08/24",
         "samples": 8,
         "diffs": 0
+      },
+      {
+        "date": "08/25",
+        "samples": 9,
+        "diffs": 0
       }
     ],
     "笔记本": [
@@ -328,6 +333,11 @@
         "date": "08/24",
         "samples": 46,
         "diffs": 2
+      },
+      {
+        "date": "08/25",
+        "samples": 47,
+        "diffs": 1
       }
     ]
   },
@@ -446,6 +456,11 @@
       "date": "08/24",
       "samples": 54,
       "diffs": 2
+    },
+    {
+      "date": "08/25",
+      "samples": 56,
+      "diffs": 1
     }
   ]
 }
