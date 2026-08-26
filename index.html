@@ -91,6 +91,8 @@ tr:hover td{background:#f8fafc}
 .cuoti-item-content{font-size:12px;color:#475569;line-height:1.6;white-space:pre-wrap}
 .cuoti-item-foot{font-size:12px;margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
 .cuoti-img{width:150px;height:auto;border-radius:8px;border:1px solid #e5e7eb;cursor:zoom-in}
+.edit-btn{flex:0 0 auto;padding:10px 16px;border:none;border-radius:8px;background:#059669;color:#fff;cursor:pointer;font-size:13px;font-weight:600;transition:.15s}
+.edit-btn:hover{background:#047857}
 .footer{text-align:center;padding:16px;color:#9ca3af;font-size:11px;border-top:1px solid#e2e8f0;margin-top:20px}
 @media(max-width:768px){.grid-2,.grid-2-1{grid-template-columns:1fr}.header{padding:16px}.filters{flex-direction:column;align-items:stretch}}
 </style>
@@ -125,6 +127,7 @@ tr:hover td{background:#f8fafc}
   <button class="tab-btn" onclick="switchTab('motherboard',this)">主板审核</button>
   <button class="tab-btn" onclick="switchTab('summary',this)">问题汇总</button>
   <button class="tab-btn" onclick="switchTab('cuoti',this)">错题分析</button>
+  <button class="edit-btn" onclick="openFeishuEdit()" title="在飞书表格中修改数据，改完重新运行更新命令即可">✎ 去飞书改</button>
 </div>
 
 <!-- TAB: 概览 -->
@@ -274,6 +277,16 @@ function bootApp() {
   buildMBTable();
   buildProblemSummary();
   buildCuoti();
+}
+
+// ====== 飞书修改入口 ======
+var FEISHU_LINKS = {
+  quality: 'https://zhuanspirit.feishu.cn/sheets/CzCEs7FJ9hozKKtjRRJcC4ilnne',
+  cuoti: 'https://zhuanspirit.feishu.cn/sheets/XJn6sd0WFhY5SPtDYoLcZcXenyf?sheet=76431e'
+};
+function openFeishuEdit() {
+  var url = currentTab === 'cuoti' ? FEISHU_LINKS.cuoti : FEISHU_LINKS.quality;
+  window.open(url, '_blank');
 }
 
 // ====== 错题分析 ======
