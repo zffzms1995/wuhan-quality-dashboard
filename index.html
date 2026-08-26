@@ -93,6 +93,7 @@ tr:hover td{background:#f8fafc}
 .cuoti-img{width:150px;height:auto;border-radius:8px;border:1px solid #e5e7eb;cursor:zoom-in}
 .edit-btn{flex:0 0 auto;padding:10px 16px;border:none;border-radius:8px;background:#059669;color:#fff;cursor:pointer;font-size:13px;font-weight:600;transition:.15s}
 .edit-btn:hover{background:#047857}
+.bg-code{background:#f1f5f9;color:#475569;font-family:monospace}
 .footer{text-align:center;padding:16px;color:#9ca3af;font-size:11px;border-top:1px solid#e2e8f0;margin-top:20px}
 @media(max-width:768px){.grid-2,.grid-2-1{grid-template-columns:1fr}.header{padding:16px}.filters{flex-direction:column;align-items:stretch}}
 </style>
@@ -165,7 +166,7 @@ tr:hover td{background:#f8fafc}
 <!-- TAB: 主板审核 -->
 <div class="tab-content" id="tab-motherboard">
   <div class="grid-2-1">
-    <div class="card"><h3>主板审核差异明细</h3><div class="scroll-x"><table id="mbTable"><thead><tr><th>图片</th><th>罚款</th><th>日期</th><th>品牌</th><th>机型</th><th>质检人</th><th>复核QA</th><th>差异项</th><th>质检勾选</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="card"><h3>主板审核差异明细</h3><div class="scroll-x"><table id="mbTable"><thead><tr><th>图片</th><th>罚款</th><th>质检码</th><th>日期</th><th>品牌</th><th>机型</th><th>质检人</th><th>复核QA</th><th>差异项</th><th>质检勾选</th></tr></thead><tbody></tbody></table></div></div>
     <div class="card"><h3>主板审核人员统计</h3><canvas id="mbStatsChart" style="max-height:240px"></canvas><div id="mbSummary" style="margin-top:12px;font-size:12px"></div></div>
   </div>
 </div>
@@ -626,7 +627,18 @@ function renderDiffList() {
     var nameLabel = isExec ? '失误人' : '原质检人';
     var name = isExec ? (d.errorPerson || d.inspector || d.origInspector || '') : (d.origInspector || d.inspector || '');
     var detail = d.level2 || d.detail || d.level1 || '';
-    return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model+' <span class="badge '+(isExec?'bg-bad':'bg-info')+'">'+(isExec?(d.qaJudgment||'执行问题'):(d.qaJudgment||'客观问题'))+'</span></div><div>'+detail+'</div><div style="color:#94a3b8;font-size:11px">质检码: '+d.code+' | '+nameLabel+': '+(name||'-')+(d.severity?' | '+d.severity:'')+(d.stage?' | '+d.stage:'')+'</div></div>';
+    var detailTitle = esc(detail).replace(/'/g, "\\'");
+    var imgsHtml = (d.imgs && d.imgs.length)
+      ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">' + d.imgs.map(function(f){
+          return '<img src="images/'+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+detailTitle+'\')">';
+        }).join('') + '</div>'
+      : '';
+    return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model
+      + ' <span class="badge bg-code">质检码: '+esc(d.code||'-')+'</span>'
+      + ' <span class="badge '+(isExec?'bg-bad':'bg-info')+'">'+(isExec?(d.qaJudgment||'执行问题'):(d.qaJudgment||'客观问题'))+'</span></div>'
+      + '<div>'+esc(detail)+'</div>'
+      + imgsHtml
+      + '<div style="color:#94a3b8;font-size:11px">'+nameLabel+': '+(name||'-')+(d.severity?' | '+d.severity:'')+(d.stage?' | '+d.stage:'')+'</div></div>';
   }).join('') || '<div class="empty">筛选范围内无差异记录</div>';
 
   updateDiffBadge();
@@ -636,7 +648,7 @@ function renderDiffList() {
 function buildMBTable() {
   var data = MB.filter(isInFilter);
   document.querySelector('#mbTable tbody').innerHTML = data.map(function(d){
-    return '<tr class="clickable-row" onclick="viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+' - '+d.qaFinding+'\')"><td>'+(d.imageFile?'<img src="images/'+d.imageFile+'" class="img-thumb" loading="lazy" onclick="event.stopPropagation();viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+'\')">':'无图')+'</td><td><span class="badge '+(d.penalty==='是'?'bg-bad':'bg-good')+'">'+d.penalty+'</span></td><td>'+d.date+'</td><td>'+d.brand+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.model+'">'+d.model+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.qaReviewer+'</td><td style="color:#dc2626">'+d.qaFinding+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.qaCheck+'">'+(d.qaCheck||'-')+'</td></tr>';
+    return '<tr class="clickable-row" onclick="viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+' - '+d.qaFinding+'\')"><td>'+(d.imageFile?'<img src="images/'+d.imageFile+'" class="img-thumb" loading="lazy" onclick="event.stopPropagation();viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+'\')">':'无图')+'</td><td><span class="badge '+(d.penalty==='是'?'bg-bad':'bg-good')+'">'+d.penalty+'</span></td><td style="font-family:monospace;font-size:11px">'+esc(d.code||'-')+'</td><td>'+d.date+'</td><td>'+d.brand+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.model+'">'+d.model+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.qaReviewer+'</td><td style="color:#dc2626">'+d.qaFinding+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.qaCheck+'">'+(d.qaCheck||'-')+'</td></tr>';
   }).join('');
 }
 

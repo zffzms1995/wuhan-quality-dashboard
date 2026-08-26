@@ -237,7 +237,7 @@ def parse_mb(ws, images_dir):
     return rows, written
 
 
-def parse_phone(ws):
+def parse_phone(ws, images_dir):
     hdr = find_header_row(ws, ["抽检日期", "质检码", "执行问题失误人"])
     if hdr is None:
         raise SystemExit(f"「{ws.title}」表头未识别，请检查工作表结构")
@@ -250,6 +250,15 @@ def parse_phone(ws):
         "后验&入仓", "商户站点"]}
     # 左侧统计表与右侧记录表都有「站点名称」列，记录表取日期列之后的那个
     c["记录表站点名称"] = col_of_after(ws, hdr, "站点名称", c["日期"])
+    img_by_row = {}
+    for img in getattr(ws, "_images", []):
+        try:
+            a = img.anchor
+            row = (a._from.row if hasattr(a, "_from") else a.from_.row) + 1
+            col = a._from.col if hasattr(a, "_from") else a.from_.col
+            img_by_row.setdefault(row, []).append((col, img))
+        except Exception:
+            continue
     trend, person_sum, diffs = [], {}, []
     code_seen = {}
     for r in range(hdr + 1, ws.max_row + 1):
@@ -286,9 +295,15 @@ def parse_phone(ws):
             l2 = sval(ws.cell(row=r, column=c["新三级项名称"]).value) or \
                  sval(ws.cell(row=r, column=c["原三级项名称"]).value) or \
                  sval(ws.cell(row=r, column=c["二级项名称"]).value)
+            imgs = []
+            for _col, img in sorted(img_by_row.get(r, [])):
+                fname = f"phone_{r}_{len(imgs) + 1}.jpg"
+                _write_optimized_image(img._data(), os.path.join(images_dir, fname))
+                imgs.append(fname)
             diffs.append({
                 "date": d40.strftime("%Y-%m-%d"),
                 "code": code,
+                "imgs": imgs,
                 "cat": "手机",
                 "brand": sval(ws.cell(row=r, column=c["品牌名称"]).value),
                 "model": sval(ws.cell(row=r, column=c["型号名称"]).value),
@@ -312,13 +327,22 @@ def parse_phone(ws):
     return trend, person_sum, error_count, diffs
 
 
-def parse_fourcat(ws):
+def parse_fourcat(ws, images_dir):
     hdr = find_header_row(ws, ["抽检总量", "执行问题失误人", "质检人"])
     if hdr is None:
         raise SystemExit(f"「{ws.title}」表头未识别，请检查工作表结构")
     c = {n: col_of(ws, hdr, n) for n in [
         "日期", "品类", "原操作人", "抽检总量", "差异数量", "客观差异数量",
         "执行问题失误人", "质检码", "站点", "型号", "质检人", "问题分类"]}
+    img_by_row = {}
+    for img in getattr(ws, "_images", []):
+        try:
+            a = img.anchor
+            row = (a._from.row if hasattr(a, "_from") else a.from_.row) + 1
+            col = a._from.col if hasattr(a, "_from") else a.from_.col
+            img_by_row.setdefault(row, []).append((col, img))
+        except Exception:
+            continue
     # 无表头列按与锚定列的相对位置定位（与历史模板一致）
     c["问题类型"] = c["问题分类"] + 1
     c["抽检判定"] = c["问题分类"] + 2
@@ -376,9 +400,15 @@ def parse_fourcat(ws):
                 error_person = ""
             result_action = sval(ws.cell(row=r, column=c["记录表结果"]).value) or \
                             sval(ws.cell(row=r, column=c["记录表判定方式"]).value)
+            imgs = []
+            for _col, img in sorted(img_by_row.get(r, [])):
+                fname = f"four_{r}_{len(imgs) + 1}.jpg"
+                _write_optimized_image(img._data(), os.path.join(images_dir, fname))
+                imgs.append(fname)
             records.append({
                 "date": d17.strftime("%Y-%m-%d"),
                 "code": code,
+                "imgs": imgs,
                 "cat": sval(ws.cell(row=r, column=c["记录表品类"]).value),
                 "brand": sval(ws.cell(row=r, column=c["记录表品牌"]).value),
                 "model": sval(ws.cell(row=r, column=c["记录表型号"]).value),
@@ -657,9 +687,9 @@ def build_data(xlsx_bytes, images_dir):
     print("⑤ 解析主板审核 ...")
     mb, mb_img = parse_mb(ws_mb, images_dir)
     print("⑥ 解析手机品类 ...")
-    phone_trend, phone_person_sum, phone_error_count, diffs = parse_phone(ws_phone)
+    phone_trend, phone_person_sum, phone_error_count, diffs = parse_phone(ws_phone, images_dir)
     print("⑦ 解析四品类 ...")
-    four_daily, four_daily_cat, four_person_cat, four_records = parse_fourcat(ws_four)
+    four_daily, four_daily_cat, four_person_cat, four_records = parse_fourcat(ws_four, images_dir)
     print("⑧ 计算人员质量达成（复现表格公式） ...")
     qa = parse_qa(ws_qa, phone_person_sum, phone_error_count, diffs, mb,
                   four_person_cat, four_records)
