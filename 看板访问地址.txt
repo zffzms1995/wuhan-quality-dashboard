@@ -1,9 +1,11 @@
 武汉中心仓质量数据看板 - 访问地址
 ====================================
 
-在线地址:
-  地址1 (推荐): https://2504fa0861323f2b-121-15-165-34.serveousercontent.com
-  地址2 (备用): https://cool-mirrors-wonder.loca.lt
+在线地址 (永久):
+  https://zffzms1995.github.io/wuhan-quality-dashboard/
+
+GitHub 仓库:
+  https://github.com/zffzms1995/wuhan-quality-dashboard
 
 本地预览:
   cd "/Users/a/Desktop/仓内看板" && python3 -m http.server 8765
@@ -11,17 +13,11 @@
 
 ====================================
 
-如需永久固定域名:
-1. 打开 https://serveo.net 注册（免费）
-2. 注册 SSH 公钥: ~/.ssh/id_rsa_serveo.pub
-3. 注册后可获得永久子域名如 wuhan-quality.serveo.net
-
-如需 GitHub Pages 永久部署:
-1. 在 https://github.com 注册账号
-2. 创建新仓库
-3. 推送本目录中的代码
-4. Settings → Pages → 选择 main 分支 → Save
+更新看板:
+  cd ~/Desktop/仓内看板 && python3 update_dashboard.py
+  (脚本自动从飞书导出数据、生成文件、推送到 GitHub,
+   页面 1-2 分钟后自动更新)
 
 ====================================
-生成日期: 2026-07-29
-数据来源: 📊26年5月武汉中心仓质量数据.xlsx
+更新日期: 2026-08-26
+部署方式: GitHub Pages (永久免费, 不再依赖 serveo 隧道)
