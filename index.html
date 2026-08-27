@@ -190,7 +190,12 @@ tr:hover td{background:#f8fafc}
   </div>
   <div class="grid-2">
     <div class="card"><h3>人员错题排行</h3><canvas id="cuotiPersonChart" style="max-height:300px"></canvas></div>
-    <div class="card"><h3>品类错题分布</h3><canvas id="cuotiCatChart" style="max-height:300px"></canvas></div>
+    <div class="card"><h3>品类 / 考试类型分布</h3>
+      <div style="display:flex;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px"><canvas id="cuotiCatChart" style="max-height:280px"></canvas></div>
+        <div style="flex:1;min-width:220px"><canvas id="cuotiExamChart" style="max-height:280px"></canvas></div>
+      </div>
+    </div>
   </div>
   <div class="card">
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
@@ -202,6 +207,7 @@ tr:hover td{background:#f8fafc}
       <input class="search-box" style="flex:1;min-width:200px" placeholder="搜索知识点/题目内容/解析..." oninput="renderCuotiDetail()" id="cuotiSearchBox">
       <select class="search-box" style="width:130px" id="cuotiPersonSel" onchange="renderCuotiDetail()"></select>
       <select class="search-box" style="width:110px" id="cuotiCatSel" onchange="renderCuotiDetail()"></select>
+      <select class="search-box" style="width:110px" id="cuotiExamSel" onchange="renderCuotiDetail()"></select>
     </div>
     <div id="cuotiDetailList" style="max-height:620px;overflow-y:auto"></div>
   </div>
@@ -314,7 +320,8 @@ function buildCuoti() {
     {val:m.count,label:'错题总数',sub:m.dateMin+' ~ '+m.dateMax},
     {val:m.kpCount,label:'知识点数',sub:'涉及知识点'},
     {val:m.personCount,label:'错题人数',sub:'出现过错题的人员'},
-    {val:m.catCount,label:'品类数',sub:(CUOTI.catStats||[]).map(function(c){return c.cat+' '+c.count}).join(' · ')}
+    {val:m.catCount,label:'品类数',sub:(CUOTI.catStats||[]).map(function(c){return c.cat+' '+c.count}).join(' · ')},
+    {val:(CUOTI.examStats||[]).length,label:'考试类型',sub:(CUOTI.examStats||[]).map(function(e){return e.exam+' '+e.count}).join(' · ')}
   ];
   document.getElementById('cuotiKpi').innerHTML = kpis.map(function(c){
     return '<div class="kpi-card"><div class="kpi-val" style="color:#059669">'+c.val+'</div><div class="kpi-label">'+c.label+'</div><div class="kpi-sub">'+esc(c.sub)+'</div></div>';
@@ -333,6 +340,13 @@ function buildCuoti() {
     return '<option value="'+esc(c.cat)+'">'+esc(c.cat)+'（'+c.count+'）</option>';
   }).join('');
   selc.value = curc;
+
+  var sele = document.getElementById('cuotiExamSel');
+  var cure = sele.value;
+  sele.innerHTML = '<option value="">全部考试类型</option>' + (CUOTI.examStats||[]).map(function(e){
+    return '<option value="'+esc(e.exam)+'">'+esc(e.exam)+'（'+e.count+'）</option>';
+  }).join('');
+  sele.value = cure;
 
   renderCuotiTop();
   renderCuotiDetail();
@@ -363,6 +377,7 @@ function resetCuotiFilter() {
   document.getElementById('cuotiSearchBox').value = '';
   document.getElementById('cuotiPersonSel').value = '';
   document.getElementById('cuotiCatSel').value = '';
+  document.getElementById('cuotiExamSel').value = '';
   renderCuotiTop();
   renderCuotiDetail();
 }
@@ -373,13 +388,15 @@ function renderCuotiDetail() {
   var q = (document.getElementById('cuotiSearchBox').value || '').trim().toLowerCase();
   var person = document.getElementById('cuotiPersonSel').value;
   var cat = document.getElementById('cuotiCatSel').value;
+  var exam = document.getElementById('cuotiExamSel').value;
   var kp = cuotiFilter.kp;
   var rows = CUOTI.records.filter(function(r){
     if (kp && r.kp !== kp) return false;
     if (person && r.persons.indexOf(person) < 0) return false;
     if (cat && r.cat !== cat) return false;
+    if (exam && r.examType !== exam) return false;
     if (q) {
-      var hay = (r.kp + ' ' + r.content + ' ' + r.answer + ' ' + r.persons.join(' ')).toLowerCase();
+      var hay = (r.kp + ' ' + r.content + ' ' + r.answer + ' ' + r.examType + ' ' + r.persons.join(' ')).toLowerCase();
       if (hay.indexOf(q) < 0) return false;
     }
     return true;
@@ -395,6 +412,7 @@ function renderCuotiDetail() {
       : '';
     return '<div class="cuoti-item">'
       + '<div class="cuoti-item-head"><span class="badge bg-info">'+esc(r.cat)+'</span>'
+      + (r.examType ? '<span class="badge bg-warn">'+esc(r.examType)+'</span>' : '')
       + '<strong style="font-size:13px">'+esc(r.kp)+'</strong>'
       + '<span style="margin-left:auto;color:#94a3b8;font-size:11px">'+r.date+'</span></div>'
       + '<div class="cuoti-item-content">'+esc(r.content)+'</div>'
@@ -408,7 +426,7 @@ function renderCuotiDetail() {
 
 function buildCuotiCharts() {
   if (!cuotiReady()) return;
-  destroyChart('cuotiDaily'); destroyChart('cuotiPerson'); destroyChart('cuotiCat');
+  destroyChart('cuotiDaily'); destroyChart('cuotiPerson'); destroyChart('cuotiCat'); destroyChart('cuotiExam');
   var ctx1 = document.getElementById('cuotiDailyChart');
   if (ctx1) chartInstances['cuotiDaily'] = new Chart(ctx1, {type:'bar',
     data:{labels:CUOTI.daily.map(function(d){return d.date.slice(5)}),
@@ -427,6 +445,12 @@ function buildCuotiCharts() {
     data:{labels:CUOTI.catStats.map(function(c){return c.cat}),
       datasets:[{data:CUOTI.catStats.map(function(c){return c.count}),
         backgroundColor:['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6']}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}}}});
+  var ctx4 = document.getElementById('cuotiExamChart');
+  if (ctx4) chartInstances['cuotiExam'] = new Chart(ctx4, {type:'doughnut',
+    data:{labels:(CUOTI.examStats||[]).map(function(e){return e.exam}),
+      datasets:[{data:(CUOTI.examStats||[]).map(function(e){return e.count}),
+        backgroundColor:['#8b5cf6','#0ea5e9','#f59e0b','#10b981']}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}}}});
 }
 

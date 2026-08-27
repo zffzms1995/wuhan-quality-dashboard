@@ -149,6 +149,12 @@
       "samples": 152,
       "diffs": 9,
       "objDiff": 3
+    },
+    {
+      "date": "08/26",
+      "samples": 138,
+      "diffs": 16,
+      "objDiff": 1
     }
   ],
   "fourCat": {
@@ -241,6 +247,11 @@
       {
         "date": "08/25",
         "samples": 9,
+        "diffs": 0
+      },
+      {
+        "date": "08/26",
+        "samples": 11,
         "diffs": 0
       }
     ],
@@ -343,6 +354,11 @@
       {
         "date": "08/25",
         "samples": 47,
+        "diffs": 1
+      },
+      {
+        "date": "08/26",
+        "samples": 48,
         "diffs": 1
       }
     ]
@@ -466,6 +482,11 @@
     {
       "date": "08/25",
       "samples": 56,
+      "diffs": 1
+    },
+    {
+      "date": "08/26",
+      "samples": 59,
       "diffs": 1
     }
   ]

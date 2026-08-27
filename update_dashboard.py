@@ -580,7 +580,7 @@ def parse_cuoti(xlsx_bytes, images_dir):
     ws = find_sheet(wb, "错题")
     hdr = find_header_row(ws, ["错题知识点", "错题内容"])
     c = {n: col_of(ws, hdr, n) for n in
-         ["日期", "站点", "品类", "错题知识点", "错题内容", "质检人员", "正确答案/解析"]}
+         ["日期", "站点", "考试类型", "品类", "错题知识点", "错题内容", "质检人员", "正确答案/解析"]}
 
     img_by_row = {}
     for img in ws._images:
@@ -607,6 +607,7 @@ def parse_cuoti(xlsx_bytes, images_dir):
         records.append({
             "date": sval(dt),
             "station": sval(ws.cell(row=r, column=c["站点"]).value),
+            "examType": sval(ws.cell(row=r, column=c["考试类型"]).value),
             "cat": sval(ws.cell(row=r, column=c["品类"]).value),
             "kp": sval(ws.cell(row=r, column=c["错题知识点"]).value),
             "content": sval(ws.cell(row=r, column=c["错题内容"]).value),
@@ -620,7 +621,7 @@ def parse_cuoti(xlsx_bytes, images_dir):
         return {}
 
     records.sort(key=lambda x: x["date"])
-    kp_map, person_map, daily_map, cat_map = {}, {}, {}, {}
+    kp_map, person_map, daily_map, cat_map, exam_map = {}, {}, {}, {}, {}
     for rec in records:
         for p in rec["persons"]:
             person_map.setdefault(p, {"count": 0, "kps": {}})
@@ -634,6 +635,8 @@ def parse_cuoti(xlsx_bytes, images_dir):
         daily_map[rec["date"]] = daily_map.get(rec["date"], 0) + 1
         if rec["cat"]:
             cat_map[rec["cat"]] = cat_map.get(rec["cat"], 0) + 1
+        if rec["examType"]:
+            exam_map[rec["examType"]] = exam_map.get(rec["examType"], 0) + 1
 
     kp_stats = sorted(
         ({"kp": k, "count": v["count"], "persons": len(v["persons"]),
@@ -661,6 +664,8 @@ def parse_cuoti(xlsx_bytes, images_dir):
         "daily": [{"date": d, "count": daily_map[d]} for d in sorted(daily_map)],
         "catStats": [{"cat": k, "count": cat_map[k]}
                      for k in sorted(cat_map, key=lambda c: -cat_map[c])],
+        "examStats": [{"exam": k, "count": exam_map[k]}
+                      for k in sorted(exam_map, key=lambda e: -exam_map[e])],
     }
 
 
