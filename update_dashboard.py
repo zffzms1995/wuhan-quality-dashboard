@@ -1137,9 +1137,23 @@ def main():
     r = subprocess.run(["git", "-C", REPO, "remote", "get-url", "origin"],
                        capture_output=True, text=True)
     if r.returncode == 0:
-        p = subprocess.run(["git", "-C", REPO, "push"], capture_output=True, text=True)
-        if p.returncode != 0:
-            raise SystemExit(f"git push 失败: {p.stderr.strip()}")
+        pushed = False
+        for attempt in range(1, 4):
+            p = subprocess.run(["git", "-C", REPO, "push"], capture_output=True, text=True)
+            if p.returncode == 0:
+                pushed = True
+                break
+            print(f"    push 失败（第{attempt}次）: {p.stderr.strip()[:80]}")
+            time.sleep(5)
+            p = subprocess.run(["git", "-C", REPO, "-c", "http.version=HTTP/1.1", "push"],
+                               capture_output=True, text=True)
+            if p.returncode == 0:
+                pushed = True
+                break
+            print(f"    push 失败（HTTP/1.1）: {p.stderr.strip()[:80]}")
+            time.sleep(5)
+        if not pushed:
+            raise SystemExit("git push 多次失败（GitHub 连接不稳定），请稍后手动执行 git push")
         print("已推送到 GitHub Pages ✓")
         print("发送飞书消息 ...")
         send_feishu_message(build_summary_message(dashboard))
