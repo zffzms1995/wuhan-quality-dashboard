@@ -95,6 +95,12 @@ tr:hover td{background:#f8fafc}
 .edit-btn:hover{background:#047857}
 .bg-code{background:#f1f5f9;color:#475569;font-family:monospace}
 .footer{text-align:center;padding:16px;color:#9ca3af;font-size:11px;border-top:1px solid#e2e8f0;margin-top:20px}
+.date-bar-card{padding:12px 16px}
+.date-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-bar label{font-size:12px;color:#475569;font-weight:600}
+.date-bar input{padding:6px 10px;border-radius:6px;border:1px solid#e2e8f0;font-size:12px;outline:none;background:#fff;color:#1a1a2e}
+.date-bar input:focus{border-color:#2563eb}
+.date-bar-hint{font-size:11px;color:#9ca3af;margin-left:auto}
 @media(max-width:768px){.grid-2,.grid-2-1{grid-template-columns:1fr}.header{padding:16px}.filters{flex-direction:column;align-items:stretch}}
 </style>
 </head>
@@ -115,6 +121,7 @@ tr:hover td{background:#f8fafc}
       <select id="filterPerson" onchange="applyFilters()">
         <option value="">全部人员</option>
       </select>
+      <button class="filter-btn" onclick="applyFilters()">确定</button>
       <button class="filter-btn reset" onclick="resetFilters()">清除筛选</button>
     </div>
   </div>
@@ -180,6 +187,17 @@ tr:hover td{background:#f8fafc}
 
 <!-- TAB: 错题分析 -->
 <div class="tab-content" id="tab-cuoti">
+  <div class="card date-bar-card">
+    <div class="date-bar">
+      <label>错题日期范围</label>
+      <input type="date" id="cuotiDateFrom" onchange="applyCuotiDates()">
+      <span>—</span>
+      <input type="date" id="cuotiDateTo" onchange="applyCuotiDates()">
+      <button class="filter-btn" onclick="applyCuotiDates()">确定</button>
+      <button class="filter-btn reset" onclick="resetCuotiDates()">重置日期</button>
+      <span class="date-bar-hint" id="cuotiDateHint"></span>
+    </div>
+  </div>
   <div class="kpi-grid" id="cuotiKpi"></div>
   <div class="grid-2">
     <div class="card">
@@ -269,6 +287,21 @@ function bootApp() {
   document.getElementById('filterDateTo').min = META.dateMin;
   document.getElementById('filterDateTo').max = META.dateMax;
   document.getElementById('headerSub').textContent = META.monthLabel + ' · 1+4品类质量数据 · 支持下钻与筛选';
+
+  // 错题页签独立的日期筛选（错题集数据范围与质量表不同）
+  if (cuotiReady()) {
+    cuotiDates.from = CUOTI.meta.dateMin;
+    cuotiDates.to = CUOTI.meta.dateMax;
+    var cf = document.getElementById('cuotiDateFrom');
+    var ct = document.getElementById('cuotiDateTo');
+    cf.value = CUOTI.meta.dateMin;
+    ct.value = CUOTI.meta.dateMax;
+    cf.min = CUOTI.meta.dateMin;
+    cf.max = CUOTI.meta.dateMax;
+    ct.min = CUOTI.meta.dateMin;
+    ct.max = CUOTI.meta.dateMax;
+    document.getElementById('cuotiDateHint').textContent = '数据范围 ' + CUOTI.meta.dateMin + ' ~ ' + CUOTI.meta.dateMax;
+  }
   document.getElementById('footerText').textContent = '武汉中心仓质量数据看板 V2 · 数据来源: 飞书云表格「' + META.monthLabel + '武汉中心仓质量数据」 · 更新于 ' + META.updatedAt;
 
   // Populate person filter
@@ -304,12 +337,35 @@ function openFeishuEdit() {
 // ====== 错题分析 ======
 var cuotiFilter = { kp: '' };
 var cuotiView = null;
+var cuotiDates = { from: '', to: '' };
 
-// 错题数据按全局日期筛选后重新聚合（KPI/TOP10/图表/明细共用）
+function applyCuotiDates() {
+  if (!cuotiReady()) return;
+  var elF = document.getElementById('cuotiDateFrom');
+  var elT = document.getElementById('cuotiDateTo');
+  var f = elF.value, t = elT.value;
+  if (f && t && f > t) { var tmp = f; f = t; t = tmp; elF.value = f; elT.value = t; }
+  cuotiDates.from = f || CUOTI.meta.dateMin;
+  cuotiDates.to = t || CUOTI.meta.dateMax;
+  buildCuoti();
+  buildCuotiCharts();
+}
+
+function resetCuotiDates() {
+  if (!cuotiReady()) return;
+  cuotiDates.from = CUOTI.meta.dateMin;
+  cuotiDates.to = CUOTI.meta.dateMax;
+  document.getElementById('cuotiDateFrom').value = CUOTI.meta.dateMin;
+  document.getElementById('cuotiDateTo').value = CUOTI.meta.dateMax;
+  buildCuoti();
+  buildCuotiCharts();
+}
+
+// 错题数据按错题页签自己的日期范围筛选后重新聚合（KPI/TOP10/图表/明细共用）
 function computeCuotiView() {
   if (!cuotiReady()) { cuotiView = null; return null; }
   var records = CUOTI.records.filter(function(r){
-    return r.date >= activeFilters.dateFrom && r.date <= activeFilters.dateTo;
+    return r.date >= cuotiDates.from && r.date <= cuotiDates.to;
   });
   var kpMap = {}, personMap = {}, dailyMap = {}, catMap = {}, examMap = {};
   records.forEach(function(r){
