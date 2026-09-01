@@ -7567,9 +7567,7 @@
           "passLine": 90,
           "total": 8,
           "passed": 8,
-          "failNames": [
-            "全合格"
-          ],
+          "failNames": [],
           "rePush": 0,
           "banned": 0,
           "freqKp": ""
@@ -7581,9 +7579,7 @@
           "passLine": 90,
           "total": 8,
           "passed": 8,
-          "failNames": [
-            "全合格"
-          ],
+          "failNames": [],
           "rePush": 0,
           "banned": 0,
           "freqKp": ""
@@ -7665,9 +7661,7 @@
           "passLine": 90,
           "total": 7,
           "passed": 7,
-          "failNames": [
-            "全合格"
-          ],
+          "failNames": [],
           "rePush": 0,
           "banned": 0,
           "freqKp": ""
@@ -7693,9 +7687,7 @@
           "passLine": 90,
           "total": 8,
           "passed": 8,
-          "failNames": [
-            "全合格"
-          ],
+          "failNames": [],
           "rePush": 0,
           "banned": 0,
           "freqKp": ""
@@ -7707,9 +7699,7 @@
           "passLine": 90,
           "total": 4,
           "passed": 4,
-          "failNames": [
-            "全合格"
-          ],
+          "failNames": [],
           "rePush": 0,
           "banned": 0,
           "freqKp": ""
@@ -7762,27 +7752,16 @@
           "cat": "笔记本",
           "total": 64,
           "passed": 56,
-          "fails": 8
+          "fails": 5
         },
         {
           "cat": "平板",
           "total": 39,
           "passed": 26,
-          "fails": 6
+          "fails": 4
         }
       ],
       "fails": [
-        {
-          "person": "全合格",
-          "count": 5,
-          "dates": [
-            "2026-08-11",
-            "2026-08-12",
-            "2026-08-13",
-            "2026-08-16",
-            "2026-08-24"
-          ]
-        },
         {
           "person": "熊文星",
           "count": 2,
@@ -8478,13 +8457,6 @@
           "最近分数80"
         ],
         "lastDate": "2026-08-27"
-      },
-      {
-        "person": "全合格",
-        "reasons": [
-          "推题未达标5次"
-        ],
-        "lastDate": "2026-08-24"
       },
       {
         "person": "王彪",

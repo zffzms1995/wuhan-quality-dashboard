@@ -679,8 +679,11 @@ def parse_training(wb):
     并汇总待辅导预警名单（推题未达标 + 模拟考不合格 + 最近分数低于90）"""
     import re
 
+    _NOT_PERSON = {"全合格", "无", "无不合格", "全部合格", "全员合格", "合格", "无人员"}
+
     def names(v):
-        return [p for p in re.split(r"[,，、;；]", sval(v)) if p]
+        return [p for p in re.split(r"[,，、;；]", sval(v))
+                if p and p not in _NOT_PERSON]
 
     out = {}
 
