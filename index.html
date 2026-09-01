@@ -167,6 +167,15 @@ tr:hover td{background:#f8fafc}
       <span class="badge bg-info" id="diffCountBadge"></span>
       <button class="filter-btn" onclick="toggleErrorOnly()" id="btnErrorOnly" style="margin-left:auto">仅显示执行问题</button>
     </div>
+    <div class="date-bar" style="margin-bottom:10px">
+      <label>日期范围</label>
+      <input type="date" id="qaDateFrom" onchange="applyQaDates()">
+      <span>—</span>
+      <input type="date" id="qaDateTo" onchange="applyQaDates()">
+      <button class="filter-btn" onclick="applyQaDates()">确定</button>
+      <button class="filter-btn reset" onclick="resetQaDates()">重置日期</button>
+      <span class="date-bar-hint">与顶部日期筛选同步</span>
+    </div>
     <input class="search-box" placeholder="搜索型号/品牌/质检人/问题..." oninput="renderDiffList()" id="diffSearchBox">
     <div id="diffDetailList" style="max-height:600px;overflow-y:auto"></div>
   </div>
@@ -316,6 +325,11 @@ function bootApp() {
   document.getElementById('filterDateFrom').max = META.dateMax;
   document.getElementById('filterDateTo').min = META.dateMin;
   document.getElementById('filterDateTo').max = META.dateMax;
+  var qf = document.getElementById('qaDateFrom');
+  var qt = document.getElementById('qaDateTo');
+  qf.value = META.dateMin; qt.value = META.dateMax;
+  qf.min = META.dateMin; qf.max = META.dateMax;
+  qt.min = META.dateMin; qt.max = META.dateMax;
   document.getElementById('headerSub').textContent = META.monthLabel + ' · 1+4品类质量数据 · 支持下钻与筛选';
 
   // 错题页签独立的日期筛选（错题集数据范围与质量表不同）
@@ -760,6 +774,7 @@ function applyFilters() {
   activeFilters.dateFrom = document.getElementById('filterDateFrom').value || META.dateMin;
   activeFilters.dateTo = document.getElementById('filterDateTo').value || META.dateMax;
   activeFilters.person = document.getElementById('filterPerson').value;
+  syncQaDateInputs();
   refreshAll();
 }
 
@@ -769,7 +784,34 @@ function resetFilters() {
   document.getElementById('filterPerson').value = '';
   activeFilters = { dateFrom: META.dateMin, dateTo: META.dateMax, person: '', errorOnly: false };
   document.getElementById('btnErrorOnly').textContent = '仅显示执行问题';
+  syncQaDateInputs();
   refreshAll();
+}
+
+// QA 差异明细卡片内的日期栏：与顶部日期筛选双向同步
+function syncQaDateInputs() {
+  document.getElementById('qaDateFrom').value = activeFilters.dateFrom;
+  document.getElementById('qaDateTo').value = activeFilters.dateTo;
+}
+
+function applyQaDates() {
+  var elF = document.getElementById('qaDateFrom');
+  var elT = document.getElementById('qaDateTo');
+  var f = elF.value || META.dateMin;
+  var t = elT.value || META.dateMax;
+  if (f > t) { var tmp = f; f = t; t = tmp; }
+  elF.value = f; elT.value = t;
+  activeFilters.dateFrom = f;
+  activeFilters.dateTo = t;
+  document.getElementById('filterDateFrom').value = f;
+  document.getElementById('filterDateTo').value = t;
+  refreshAll();
+}
+
+function resetQaDates() {
+  document.getElementById('qaDateFrom').value = META.dateMin;
+  document.getElementById('qaDateTo').value = META.dateMax;
+  applyQaDates();
 }
 
 function refreshAll() {
