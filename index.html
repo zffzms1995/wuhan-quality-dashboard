@@ -135,6 +135,7 @@ tr:hover td{background:#f8fafc}
   <button class="tab-btn" onclick="switchTab('motherboard',this)">主板审核</button>
   <button class="tab-btn" onclick="switchTab('summary',this)">问题汇总</button>
   <button class="tab-btn" onclick="switchTab('cuoti',this)">错题分析</button>
+  <button class="tab-btn" onclick="switchTab('training',this)">培训动作</button>
   <button class="edit-btn" onclick="openFeishuEdit()" title="在飞书表格中修改数据，改完重新运行更新命令即可">✎ 去飞书改</button>
 </div>
 
@@ -232,6 +233,34 @@ tr:hover td{background:#f8fafc}
   </div>
 </div>
 
+<!-- TAB: 培训动作 -->
+<div class="tab-content" id="tab-training">
+  <div class="card" style="border-left:4px solid#dc2626">
+    <h3>待辅导人员预警 <span class="badge bg-bad" id="alertCountBadge"></span></h3>
+    <div id="alertList"></div>
+  </div>
+  <div class="kpi-grid" id="trainingKpi"></div>
+  <div class="grid-2">
+    <div class="card"><h3>每日推题达标情况</h3><canvas id="tuiliDailyChart" style="max-height:260px"></canvas></div>
+    <div class="card"><h3>模拟考试合格率</h3><canvas id="examRateChart" style="max-height:260px"></canvas></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><h3>一对一辅导统计</h3><canvas id="coachChart" style="max-height:300px"></canvas></div>
+    <div class="card"><h3>人员分数趋势</h3>
+      <select class="search-box" id="scorePersonSel" onchange="buildScoreTrendChart()" style="margin-bottom:10px"></select>
+      <canvas id="scoreTrendChart" style="max-height:250px"></canvas>
+      <div id="scoreTrendNote" style="font-size:11px;color:#9ca3af;margin-top:8px"></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><h3>晨会记录</h3><div id="meetingList" style="max-height:320px;overflow-y:auto"></div></div>
+    <div class="card"><h3>一对一辅导记录</h3><div id="coachList" style="max-height:320px;overflow-y:auto"></div></div>
+  </div>
+  <div class="card"><h3>每日推题记录</h3>
+    <div class="scroll-x"><table id="tuiliTable"><thead><tr><th>日期</th><th>品类</th><th>阶段</th><th>达标线</th><th>达标/参考</th><th>达标率</th><th>不合格人员</th><th>补推</th><th>当日高频错题</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</div>
+
 <div class="footer" id="footerText">武汉中心仓质量数据看板 V2</div>
 </div>
 
@@ -240,7 +269,7 @@ tr:hover td{background:#f8fafc}
 
 <script>
 // ====== DATA (运行时 fetch 加载) ======
-var MB = [], DIFFS = [], FOURCAT_DIFFS = [], CUOTI = {};
+var MB = [], DIFFS = [], FOURCAT_DIFFS = [], CUOTI = {}, TRAINING = {};
 var META = { monthLabel: '', dateMin: '', dateMax: '', updatedAt: '' };
 var TREND = { phone: [], fourCat: {}, fourCatAgg: [] };
 
@@ -261,6 +290,7 @@ function loadData() {
     FOURCAT_DIFFS = DATA.fourcatDiffs || [];
     qaData = DATA.qaData || [];
     CUOTI = DATA.cuoti || {};
+    TRAINING = DATA.training || {};
     bootApp();
   }).catch(function(err){
     document.getElementById('kpiCards').innerHTML = '<div class="empty" style="grid-column:1/-1">'+failMsg+'<br>（'+err.message+'）</div>';
@@ -330,7 +360,7 @@ var FEISHU_LINKS = {
   cuoti: 'https://zhuanspirit.feishu.cn/sheets/XJn6sd0WFhY5SPtDYoLcZcXenyf?sheet=76431e'
 };
 function openFeishuEdit() {
-  var url = currentTab === 'cuoti' ? FEISHU_LINKS.cuoti : FEISHU_LINKS.quality;
+  var url = (currentTab === 'cuoti' || currentTab === 'training') ? FEISHU_LINKS.cuoti : FEISHU_LINKS.quality;
   window.open(url, '_blank');
 }
 
@@ -564,6 +594,156 @@ function buildCuotiCharts() {
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}}}});
 }
 
+// ====== 培训动作 ======
+function trainingReady() {
+  return TRAINING && Object.keys(TRAINING).length > 0;
+}
+
+function buildTraining() {
+  if (!trainingReady()) {
+    document.getElementById('trainingKpi').innerHTML = '<div class="empty" style="grid-column:1/-1">暂无培训数据（留底表未获取到，重新运行更新命令即可）</div>';
+    document.getElementById('alertList').innerHTML = '<div class="empty">暂无</div>';
+    return;
+  }
+  var tu = TRAINING.tuili || {records: [], daily: []};
+  var coach = TRAINING.coach || {records: [], personStats: []};
+  var meeting = TRAINING.meeting || {records: []};
+  var exam = TRAINING.exam || {records: []};
+  var scores = TRAINING.scores || {records: [], people: []};
+  var alerts = TRAINING.alerts || [];
+
+  var tuTotal = 0, tuPassed = 0;
+  tu.records.forEach(function(r){ tuTotal += r.total; tuPassed += r.passed; });
+  var tuRate = tuTotal ? (tuPassed / tuTotal * 100).toFixed(1) : '';
+  var coachMinutes = coach.records.reduce(function(s, r){ return s + (r.minutes || 0); }, 0);
+  var examAvg = exam.records.length
+    ? (exam.records.reduce(function(s, r){ return s + (r.rate || 0); }, 0) / exam.records.length).toFixed(1)
+    : '';
+
+  document.getElementById('trainingKpi').innerHTML = [
+    {val: tuRate !== '' ? tuRate + '%' : '-', label: '推题达标率', sub: '参考' + tuTotal + '人 / 达标' + tuPassed + '人', cls: 'color:#059669'},
+    {val: coach.records.length, label: '辅导次数', sub: '累计 ' + coachMinutes + ' 分钟', cls: 'color:#2563eb'},
+    {val: meeting.records.length, label: '晨会次数', sub: '主题讲解', cls: 'color:#7c3aed'},
+    {val: exam.records.length, label: '模拟考场次', sub: examAvg ? '平均合格率 ' + examAvg + '%' : '', cls: 'color:#d97706'},
+    {val: alerts.length, label: '待辅导预警', sub: '推题/模拟考/分数汇总', cls: 'color:#dc2626'}
+  ].map(function(c){
+    return '<div class="kpi-card"><div class="kpi-val" style="' + c.cls + '">' + c.val + '</div><div class="kpi-label">' + c.label + '</div><div class="kpi-sub">' + esc(c.sub) + '</div></div>';
+  }).join('');
+
+  // 待辅导预警名单
+  document.getElementById('alertCountBadge').textContent = alerts.length + ' 人';
+  document.getElementById('alertList').innerHTML = alerts.length ? alerts.map(function(a){
+    return '<div class="diff-item exec-error" style="cursor:pointer" onclick="focusCuotiPerson(\'' + esc(a.person).replace(/'/g, "\\'") + '\')">'
+      + '<div class="row"><strong>' + esc(a.person) + '</strong><span style="color:#94a3b8;font-size:11px">最近 ' + (a.lastDate ? a.lastDate.slice(5) : '-') + '</span></div>'
+      + '<div style="color:#475569">' + esc(a.reasons.join('；')) + '</div>'
+      + '<div style="font-size:11px;color:#2563eb">点击查看该人员错题 →</div></div>';
+  }).join('') : '<div class="empty" style="padding:16px">本月暂无待辅导人员</div>';
+
+  // 推题记录表
+  document.querySelector('#tuiliTable tbody').innerHTML = tu.records.map(function(r){
+    var rate = r.total ? Math.round(r.passed / r.total * 100) + '%' : '-';
+    var cls = r.total && r.passed >= r.total ? 'bg-good' : 'bg-bad';
+    return '<tr><td>' + r.date + '</td><td>' + esc(r.cat) + '</td><td>' + esc(r.stage) + '</td><td>' + r.passLine + '</td>'
+      + '<td>' + r.passed + '/' + r.total + '</td><td><span class="badge ' + cls + '">' + rate + '</span></td>'
+      + '<td style="color:#dc2626">' + esc(r.failNames.join('、')) + '</td><td>' + r.rePush + '</td>'
+      + '<td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + esc(r.freqKp) + '">' + esc(r.freqKp) + '</td></tr>';
+  }).join('') || '<tr><td colspan="9" class="empty">暂无推题记录</td></tr>';
+
+  // 晨会记录
+  document.getElementById('meetingList').innerHTML = meeting.records.length ? meeting.records.map(function(r){
+    return '<div class="diff-item obj-error"><div class="row"><strong>' + r.date + '</strong> ' + esc(r.topic) + ' <span class="badge bg-info">' + esc(r.cat) + '</span></div>'
+      + (r.points ? '<div>' + esc(r.points) + '</div>' : '')
+      + '<div style="color:#94a3b8;font-size:11px">参会: ' + esc(r.attendees) + '</div></div>';
+  }).join('') : '<div class="empty">暂无晨会记录</div>';
+
+  // 辅导记录
+  document.getElementById('coachList').innerHTML = coach.records.length ? coach.records.map(function(r){
+    return '<div class="diff-item"><div class="row"><strong>' + esc(r.person) + '</strong> ' + esc(r.cat) + ' <span style="color:#94a3b8;font-size:11px">' + r.date + ' · ' + r.minutes + '分钟 · ' + esc(r.mode) + '</span></div>'
+      + '<div>' + esc(r.content) + '</div>'
+      + (r.effect ? '<div style="font-size:11px;color:#059669">效果评估: ' + esc(r.effect) + '</div>' : '')
+      + '</div>';
+  }).join('') : '<div class="empty">暂无辅导记录</div>';
+
+  // 分数趋势人员下拉
+  var sel = document.getElementById('scorePersonSel');
+  var cur = sel.value;
+  sel.innerHTML = scores.people.map(function(p){
+    return '<option value="' + esc(p.person) + '">' + esc(p.person) + '（最近 ' + p.last + ' 分）</option>';
+  }).join('');
+  if (!cur && scores.people.length) cur = scores.people[0].person;
+  sel.value = cur;
+}
+
+// 从预警名单跳转到该人员的错题明细
+function focusCuotiPerson(p) {
+  switchTab('cuoti', document.querySelectorAll('.tab-btn')[4]);
+  document.getElementById('cuotiPersonSel').value = p;
+  renderCuotiDetail();
+}
+
+function buildTrainingCharts() {
+  if (!trainingReady()) return;
+  destroyChart('tuiliDaily'); destroyChart('examRate'); destroyChart('coach'); destroyChart('scoreTrend');
+  var tu = TRAINING.tuili || {daily: []};
+  var ctx1 = document.getElementById('tuiliDailyChart');
+  if (ctx1) chartInstances['tuiliDaily'] = new Chart(ctx1, {type:'bar',
+    data:{labels:tu.daily.map(function(d){return d.date.slice(5)}),
+      datasets:[
+        {label:'参考人数',data:tu.daily.map(function(d){return d.total}),backgroundColor:'#93c5fd',borderRadius:4},
+        {label:'达标人数',data:tu.daily.map(function(d){return d.passed}),backgroundColor:'#86efac',borderRadius:4}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}},
+      scales:{y:{beginAtZero:true,ticks:{precision:0},grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}}});
+  var exam = TRAINING.exam || {records: []};
+  var ctx2 = document.getElementById('examRateChart');
+  if (ctx2) chartInstances['examRate'] = new Chart(ctx2, {type:'bar',
+    data:{labels:exam.records.map(function(r){return r.date.slice(5) + ' ' + r.cat}),
+      datasets:[{label:'合格率 %',data:exam.records.map(function(r){return r.rate}),
+        backgroundColor:exam.records.map(function(r){return r.rate >= 90 ? '#86efac' : (r.rate >= 70 ? '#fde68a' : '#fca5a5')}),borderRadius:4}]},
+    options:{responsive:true,plugins:{legend:{display:false}},
+      scales:{y:{beginAtZero:true,max:100,ticks:{callback:function(v){return v + '%'}},grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}}});
+  var coach = TRAINING.coach || {personStats: []};
+  var ps = coach.personStats.slice(0, 15).reverse();
+  var ctx3 = document.getElementById('coachChart');
+  if (ctx3) chartInstances['coach'] = new Chart(ctx3, {type:'bar',
+    data:{labels:ps.map(function(p){return p.person}),
+      datasets:[
+        {label:'辅导次数',data:ps.map(function(p){return p.count}),backgroundColor:'#60a5fa',borderRadius:4},
+        {label:'辅导时长(分钟)',data:ps.map(function(p){return p.minutes}),backgroundColor:'#c4b5fd',borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}},
+      scales:{x:{beginAtZero:true,ticks:{precision:0},grid:{color:'#f1f5f9'}},y:{grid:{display:false}}}}});
+  buildScoreTrendChart();
+}
+
+function buildScoreTrendChart() {
+  if (!trainingReady()) return;
+  destroyChart('scoreTrend');
+  var scores = TRAINING.scores || {people: []};
+  var sel = document.getElementById('scorePersonSel');
+  var p = scores.people.filter(function(x){ return x.person === sel.value; })[0] || scores.people[0];
+  var note = document.getElementById('scoreTrendNote');
+  if (!p) { note.textContent = ''; return; }
+  var dates = [];
+  p.all.forEach(function(x){ if (dates[dates.length - 1] !== x.date) dates.push(x.date); });
+  var colors = {'周考':'#3b82f6','月考':'#ef4444'};
+  var datasets = [];
+  [['week','周考'],['month','月考']].forEach(function(pair){
+    var arr = p[pair[0]];
+    if (!arr.length) return;
+    var byDate = {};
+    arr.forEach(function(x){ byDate[x.date] = x.score; });
+    datasets.push({label:pair[1],data:dates.map(function(d){return byDate.hasOwnProperty(d) ? byDate[d] : null;}),
+      borderColor:colors[pair[1]],backgroundColor:colors[pair[1]],fill:false,tension:.3,pointRadius:3});
+  });
+  if (!datasets.length) { note.textContent = '该人员暂无考试记录'; return; }
+  var ctx = document.getElementById('scoreTrendChart');
+  chartInstances['scoreTrend'] = new Chart(ctx, {type:'line',
+    data:{labels:dates.map(function(d){return d.slice(5)}),datasets:datasets},
+    options:{responsive:true,interaction:{intersect:false,mode:'index'},plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}},
+      scales:{y:{suggestedMin:0,suggestedMax:100,grid:{color:'#f1f5f9'}},x:{grid:{display:false}}}}});
+  var t = p.trend;
+  note.textContent = p.first + ' → ' + p.last + ' 分，' + (t > 0 ? '进步 +' + t + '%' : (t < 0 ? '退步 ' + t + '%' : '持平')) + '（按首末次对比）';
+}
+
 loadData();
 // ====== TAB SWITCHING ======
 function switchTab(tab, btn) {
@@ -599,6 +779,7 @@ function refreshAll() {
   if(currentTab==='motherboard') { buildMBTable(); buildMBChart(); }
   if(currentTab==='summary') { buildProblemSummary(); buildPersonRankChart(); }
   if(currentTab==='cuoti') { buildCuoti(); buildCuotiCharts(); }
+  if(currentTab==='training') { buildTraining(); buildTrainingCharts(); }
 }
 
 function isInFilter(d) {
@@ -638,6 +819,9 @@ function buildKPIs() {
   if(cuotiReady()){
     var cv = computeCuotiView();
     cards.push({val:cv.meta.count,label:'错题总数',sub:'培训错题集 · '+cv.meta.kpCount+'个知识点',cls:'color:#059669',onclick:'switchTab("cuoti",document.querySelectorAll(".tab-btn")[4])'});
+  }
+  if(trainingReady() && (TRAINING.alerts||[]).length){
+    cards.push({val:TRAINING.alerts.length,label:'待辅导预警',sub:'推题/模拟考/分数未达标',cls:'color:#dc2626',onclick:'switchTab("training",document.querySelectorAll(".tab-btn")[5])'});
   }
 
   document.getElementById('kpiCards').innerHTML = cards.map(function(c,i){

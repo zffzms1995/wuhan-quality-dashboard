@@ -568,7 +568,6 @@ def parse_transit(ws):
 def parse_cuoti(xlsx_bytes, images_dir):
     """解析「错题集」表格（独立文档），返回错题记录与聚合统计，并提取单元格内截图"""
     import openpyxl
-    import re
     tmp = os.path.join(REPO, "_tmp_cuoti.xlsx")
     with open(tmp, "wb") as f:
         f.write(xlsx_bytes)
@@ -576,7 +575,11 @@ def parse_cuoti(xlsx_bytes, images_dir):
         wb = openpyxl.load_workbook(tmp, data_only=True)
     finally:
         os.remove(tmp)
+    return _parse_cuoti_wb(wb, images_dir)
 
+
+def _parse_cuoti_wb(wb, images_dir):
+    import re
     ws = find_sheet(wb, "错题")
     hdr = find_header_row(ws, ["错题知识点", "错题内容"])
     c = {n: col_of(ws, hdr, n) for n in
@@ -667,6 +670,280 @@ def parse_cuoti(xlsx_bytes, images_dir):
         "examStats": [{"exam": k, "count": exam_map[k]}
                       for k in sorted(exam_map, key=lambda e: -exam_map[e])],
     }
+
+
+# ---------- 培训动作（留底表除错题集外的 5 个工作表） ----------
+
+def parse_training(wb):
+    """解析留底表：每日推题/一对一辅导/晨会/周考模拟考/周考月考分数，
+    并汇总待辅导预警名单（推题未达标 + 模拟考不合格 + 最近分数低于90）"""
+    import re
+
+    def names(v):
+        return [p for p in re.split(r"[,，、;；]", sval(v)) if p]
+
+    out = {}
+
+    # 每日推题记录
+    ws = find_sheet(wb, "推题", required=False)
+    if ws:
+        hdr = find_header_row(ws, ["参考人数", "达标人数"])
+        if hdr:
+            c = {n: col_of(ws, hdr, n) for n in
+                 ["日期", "品类", "考试阶段", "达标线", "参考人数", "达标人数",
+                  "不合格人员", "补推错题人数", "账号禁用人数", "当日高频错题"]}
+            records, daily, cat_map = [], {}, {}
+            for r in range(hdr + 1, ws.max_row + 1):
+                if not sval(ws.cell(row=r, column=c["日期"]).value):
+                    continue
+                d = sval(ws.cell(row=r, column=c["日期"]).value)[:10]
+                cat = sval(ws.cell(row=r, column=c["品类"]).value)
+                total = num(ws.cell(row=r, column=c["参考人数"]).value)
+                passed = num(ws.cell(row=r, column=c["达标人数"]).value)
+                fails = names(ws.cell(row=r, column=c["不合格人员"]).value)
+                records.append({
+                    "date": d, "cat": cat,
+                    "stage": sval(ws.cell(row=r, column=c["考试阶段"]).value),
+                    "passLine": num(ws.cell(row=r, column=c["达标线"]).value),
+                    "total": total, "passed": passed, "failNames": fails,
+                    "rePush": num(ws.cell(row=r, column=c["补推错题人数"]).value),
+                    "banned": num(ws.cell(row=r, column=c["账号禁用人数"]).value),
+                    "freqKp": sval(ws.cell(row=r, column=c["当日高频错题"]).value),
+                })
+                daily.setdefault(d, [0, 0])
+                daily[d][0] += total
+                daily[d][1] += passed
+                cat_map.setdefault(cat, [0, 0, 0])
+                cat_map[cat][0] += total
+                cat_map[cat][1] += passed
+                cat_map[cat][2] += len(fails)
+            fail_map = {}
+            for rec in records:
+                for p in rec["failNames"]:
+                    fail_map.setdefault(p, {"count": 0, "dates": []})
+                    fail_map[p]["count"] += 1
+                    if rec["date"] not in fail_map[p]["dates"]:
+                        fail_map[p]["dates"].append(rec["date"])
+            out["tuili"] = {
+                "records": records,
+                "daily": [{"date": d, "total": v[0], "passed": v[1]}
+                          for d, v in sorted(daily.items())],
+                "catStats": [{"cat": k, "total": v[0], "passed": v[1], "fails": v[2]}
+                             for k, v in sorted(cat_map.items(), key=lambda t: -t[1][0])],
+                "fails": sorted(({"person": p, "count": v["count"], "dates": sorted(v["dates"])}
+                                 for p, v in fail_map.items()),
+                                key=lambda x: (-x["count"], x["person"])),
+            }
+
+    # 一对一辅导记录
+    ws = find_sheet(wb, "辅导", required=False)
+    if ws:
+        hdr = find_header_row(ws, ["被辅导人", "辅导内容"])
+        if hdr:
+            c = {n: col_of(ws, hdr, n) for n in
+                 ["辅导日期", "被辅导人", "辅导品类", "辅导内容", "辅导时长(分钟)", "辅导方式(现场/线上)", "效果评估"]}
+            records, person_map = [], {}
+            for r in range(hdr + 1, ws.max_row + 1):
+                if not sval(ws.cell(row=r, column=c["辅导日期"]).value):
+                    continue
+                p = sval(ws.cell(row=r, column=c["被辅导人"]).value)
+                if not p:
+                    continue
+                minutes = num(ws.cell(row=r, column=c["辅导时长(分钟)"]).value)
+                records.append({
+                    "date": sval(ws.cell(row=r, column=c["辅导日期"]).value)[:10],
+                    "person": p,
+                    "cat": sval(ws.cell(row=r, column=c["辅导品类"]).value),
+                    "content": sval(ws.cell(row=r, column=c["辅导内容"]).value),
+                    "minutes": minutes,
+                    "mode": sval(ws.cell(row=r, column=c["辅导方式(现场/线上)"]).value),
+                    "effect": sval(ws.cell(row=r, column=c["效果评估"]).value),
+                })
+                person_map.setdefault(p, {"count": 0, "minutes": 0})
+                person_map[p]["count"] += 1
+                person_map[p]["minutes"] += minutes
+            out["coach"] = {
+                "records": records,
+                "personStats": sorted(({"person": p, "count": v["count"], "minutes": v["minutes"]}
+                                       for p, v in person_map.items()),
+                                      key=lambda x: (-x["count"], x["person"])),
+            }
+
+    # 晨会讲解记录
+    ws = find_sheet(wb, "晨会", required=False)
+    if ws:
+        hdr = find_header_row(ws, ["讲解主题", "参会人员"])
+        if hdr:
+            c = {n: col_of(ws, hdr, n) for n in ["日期", "讲解主题", "涉及品类", "讲解要点", "参会人员"]}
+            records = []
+            for r in range(hdr + 1, ws.max_row + 1):
+                if not sval(ws.cell(row=r, column=c["日期"]).value):
+                    continue
+                records.append({
+                    "date": sval(ws.cell(row=r, column=c["日期"]).value)[:10],
+                    "topic": sval(ws.cell(row=r, column=c["讲解主题"]).value),
+                    "cat": sval(ws.cell(row=r, column=c["涉及品类"]).value),
+                    "points": sval(ws.cell(row=r, column=c["讲解要点"]).value),
+                    "attendees": sval(ws.cell(row=r, column=c["参会人员"]).value),
+                })
+            out["meeting"] = {"records": records}
+
+    # 周考模拟考试记录
+    ws = find_sheet(wb, "模拟考试", required=False)
+    if ws:
+        hdr = find_header_row(ws, ["参考人数", "合格人数"])
+        if hdr:
+            c = {n: col_of(ws, hdr, n) for n in
+                 ["考试日期", "品类", "考试阶段", "参考人数", "合格人数", "合格率", "最高分", "最低分", "不合格人员"]}
+            records = []
+            for r in range(hdr + 1, ws.max_row + 1):
+                if not sval(ws.cell(row=r, column=c["考试日期"]).value):
+                    continue
+                total = num(ws.cell(row=r, column=c["参考人数"]).value)
+                passed = num(ws.cell(row=r, column=c["合格人数"]).value)
+                rate = num(ws.cell(row=r, column=c["合格率"]).value)
+                rate = round(rate * 100, 1) if 0 < rate <= 1 \
+                    else round(passed / total * 100, 1) if total else 0
+                records.append({
+                    "date": sval(ws.cell(row=r, column=c["考试日期"]).value)[:10],
+                    "cat": sval(ws.cell(row=r, column=c["品类"]).value),
+                    "stage": sval(ws.cell(row=r, column=c["考试阶段"]).value),
+                    "total": total, "passed": passed, "rate": rate,
+                    "maxScore": sval(ws.cell(row=r, column=c["最高分"]).value),
+                    "minScore": sval(ws.cell(row=r, column=c["最低分"]).value),
+                    "failNames": names(ws.cell(row=r, column=c["不合格人员"]).value),
+                })
+            fail_map = {}
+            for rec in records:
+                for p in rec["failNames"]:
+                    fail_map.setdefault(p, {"count": 0, "dates": []})
+                    fail_map[p]["count"] += 1
+                    if rec["date"] not in fail_map[p]["dates"]:
+                        fail_map[p]["dates"].append(rec["date"])
+            out["exam"] = {
+                "records": records,
+                "fails": sorted(({"person": p, "count": v["count"], "dates": sorted(v["dates"])}
+                                 for p, v in fail_map.items()),
+                                key=lambda x: (-x["count"], x["person"])),
+            }
+
+    # 周考月考分数统计
+    ws = find_sheet(wb, "分数统计", required=False)
+    if ws:
+        hdr = find_header_row(ws, ["质检人员", "分数"])
+        if hdr:
+            c = {n: col_of(ws, hdr, n) for n in ["时间", "质检人员", "周考/月考", "品类", "分数"]}
+            records, person_map = [], {}
+            for r in range(hdr + 1, ws.max_row + 1):
+                if not sval(ws.cell(row=r, column=c["时间"]).value):
+                    continue
+                p = sval(ws.cell(row=r, column=c["质检人员"]).value)
+                if not p:
+                    continue
+                rec = {
+                    "date": sval(ws.cell(row=r, column=c["时间"]).value)[:10],
+                    "person": p,
+                    "examType": sval(ws.cell(row=r, column=c["周考/月考"]).value),
+                    "cat": sval(ws.cell(row=r, column=c["品类"]).value),
+                    "score": num(ws.cell(row=r, column=c["分数"]).value),
+                }
+                records.append(rec)
+                person_map.setdefault(p, {"week": [], "month": []})
+                key = "month" if "月" in rec["examType"] else "week"
+                person_map[p][key].append({"date": rec["date"], "score": rec["score"]})
+            people = []
+            for p, v in person_map.items():
+                for k in ("week", "month"):
+                    v[k].sort(key=lambda x: x["date"])
+                all_sorted = sorted(v["week"] + v["month"], key=lambda x: x["date"])
+                first = all_sorted[0]["score"] if all_sorted else 0
+                last = all_sorted[-1]["score"] if all_sorted else 0
+                people.append({
+                    "person": p,
+                    "week": v["week"], "month": v["month"], "all": all_sorted,
+                    "last": all_sorted[-1]["score"] if all_sorted else None,
+                    "first": first,
+                    "trend": round((last - first) / first * 100, 1) if first else 0,
+                })
+            out["scores"] = {
+                "records": records,
+                "people": sorted(people, key=lambda x: x["person"]),
+            }
+
+    # 待辅导预警汇总
+    alert_map = {}
+
+    def add_alert(person, reason, d):
+        if not person:
+            return
+        a = alert_map.setdefault(person, {"reasons": [], "lastDate": ""})
+        if reason not in a["reasons"]:
+            a["reasons"].append(reason)
+        if d > a["lastDate"]:
+            a["lastDate"] = d
+
+    for f in out.get("tuili", {}).get("fails", []):
+        add_alert(f["person"], f"推题未达标{f['count']}次", f["dates"][-1] if f["dates"] else "")
+    for f in out.get("exam", {}).get("fails", []):
+        add_alert(f["person"], f"模拟考不合格{f['count']}次", f["dates"][-1] if f["dates"] else "")
+    for p in out.get("scores", {}).get("people", []):
+        if p["last"] is not None and p["last"] < 90 and p["all"]:
+            add_alert(p["person"], f"最近分数{p['last']}", p["all"][-1]["date"])
+    alerts = [{"person": p, "reasons": v["reasons"], "lastDate": v["lastDate"]}
+              for p, v in alert_map.items()]
+    alerts.sort(key=lambda x: x["person"])
+    alerts.sort(key=lambda x: x["lastDate"] or "", reverse=True)
+    out["alerts"] = alerts
+    return out
+
+
+# ---------- 飞书消息 ----------
+
+FEISHU_OPEN_ID = "ou_d80917787fd37a300ccf1ef12ef58c40"
+
+
+def send_feishu_message(text):
+    """通过飞书 IM 给宗飞飞发送看板更新摘要（应用身份 + open_id）"""
+    app_id, app_secret = get_app_credentials()
+    r = _http_json(f"{BASE}/open-apis/auth/v3/tenant_access_token/internal", "POST",
+                   body={"app_id": app_id, "app_secret": app_secret})
+    if r.get("code") != 0:
+        print(f"    警告: 获取 token 失败，跳过飞书消息（{r.get('msg')}）")
+        return
+    r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type=open_id", "POST",
+                   headers={"Authorization": f"Bearer {r['tenant_access_token']}"},
+                   body={"receive_id": FEISHU_OPEN_ID, "msg_type": "text",
+                         "content": json.dumps({"text": text})})
+    if r.get("code") == 0:
+        print("    已发送飞书消息 ✓")
+    else:
+        print(f"    警告: 飞书消息发送失败（{r.get('msg')}）")
+
+
+def build_summary_message(d):
+    m = d["meta"]
+    lines = [f"【质量看板已更新】{m['monthLabel']}（数据至 {m['dateMax']}）"]
+    lines.append(f"手机差异 {len(d['diffs'])} 条 | 四品类 {len(d['fourcatDiffs'])} 条 | 主板 {len(d['mb'])} 条")
+    exec_map = {}
+    for x in d["diffs"]:
+        if x.get("qaJudgment") == "执行问题" and x.get("errorPerson"):
+            exec_map[x["errorPerson"]] = exec_map.get(x["errorPerson"], 0) + 1
+    for x in d["fourcatDiffs"]:
+        if x.get("isExecError") and x.get("errorPerson"):
+            exec_map[x["errorPerson"]] = exec_map.get(x["errorPerson"], 0) + 1
+    top = sorted(exec_map.items(), key=lambda t: -t[1])[:3]
+    if top:
+        lines.append("执行问题TOP: " + "、".join(f"{p}{n}次" for p, n in top))
+    cm = (d.get("cuoti") or {}).get("meta") or {}
+    if cm.get("count"):
+        top_kp = (d.get("cuoti").get("kpStats") or [{}])[0]
+        lines.append(f"错题 {cm['count']} 条 · 高频知识点: {top_kp.get('kp', '')} {top_kp.get('count', 0)}次")
+    alerts = (d.get("training") or {}).get("alerts") or []
+    if alerts:
+        shown = "、".join(f"{a['person']}({a['lastDate'][5:]})" for a in alerts[:5])
+        lines.append(f"待辅导预警 {len(alerts)} 人: {shown}")
+    lines.append("看板: https://zffzms1995.github.io/wuhan-quality-dashboard/")
+    return "\n".join(lines)
 
 
 # ---------- 主流程 ----------
@@ -799,19 +1076,31 @@ def main():
 
     dashboard, trend, mb_img = build_data(xlsx_bytes, images_dir)
 
-    print("⑨ 获取错题集 ...")
+    print("⑨ 获取错题集与培训留底 ...")
     try:
         cuoti_bytes = fetch_xlsx(CUOTI_FILE_TOKEN)
-        dashboard["cuoti"] = parse_cuoti(cuoti_bytes, images_dir)
+        import io as _io
+        import openpyxl as _xl
+        wb_c = _xl.load_workbook(_io.BytesIO(cuoti_bytes), data_only=True)
+        dashboard["cuoti"] = _parse_cuoti_wb(wb_c, images_dir)
+        dashboard["training"] = parse_training(wb_c)
         cm = dashboard["cuoti"].get("meta")
         if cm:
             print(f"    错题 {cm['count']} 条 / 知识点 {cm['kpCount']} 个 / "
                   f"涉及 {cm['personCount']} 人（{cm['dateMin']} ~ {cm['dateMax']}）")
         else:
             print("    提示: 错题集暂为空")
+        tr = dashboard["training"]
+        print(f"    培训动作: 推题 {len(tr.get('tuili', {}).get('records', []))} 条 / "
+              f"辅导 {len(tr.get('coach', {}).get('records', []))} 次 / "
+              f"晨会 {len(tr.get('meeting', {}).get('records', []))} 次 / "
+              f"模拟考 {len(tr.get('exam', {}).get('records', []))} 场 / "
+              f"分数 {len(tr.get('scores', {}).get('records', []))} 条 / "
+              f"待辅导预警 {len(tr.get('alerts', []))} 人")
     except SystemExit as e:
-        print(f"    警告: 错题集获取失败（{e}），本次跳过错题数据")
+        print(f"    警告: 留底表获取失败（{e}），本次跳过错题与培训数据")
         dashboard["cuoti"] = {}
+        dashboard["training"] = {}
 
     with open(os.path.join(REPO, "dashboard_data.json"), "w", encoding="utf-8") as f:
         json.dump(dashboard, f, ensure_ascii=False, indent=2)
@@ -849,6 +1138,8 @@ def main():
         if p.returncode != 0:
             raise SystemExit(f"git push 失败: {p.stderr.strip()}")
         print("已推送到 GitHub Pages ✓")
+        print("发送飞书消息 ...")
+        send_feishu_message(build_summary_message(dashboard))
     else:
         print("提示: 尚未配置远程仓库（origin），本地已提交。配置后执行 git push 即可发布。")
 

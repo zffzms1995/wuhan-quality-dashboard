@@ -7514,5 +7514,1035 @@
         "count": 13
       }
     ]
+  },
+  "training": {
+    "tuili": {
+      "records": [
+        {
+          "date": "2026-08-10",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 7,
+          "failNames": [
+            "熊文星"
+          ],
+          "rePush": 1,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-10",
+          "cat": "平板",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 7,
+          "passed": 2,
+          "failNames": [
+            "黄宇"
+          ],
+          "rePush": 5,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-11",
+          "cat": "平板",
+          "stage": "补考",
+          "passLine": 70,
+          "total": 7,
+          "passed": 6,
+          "failNames": [
+            "张辰"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-11",
+          "cat": "笔记本",
+          "stage": "补考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 8,
+          "failNames": [
+            "全合格"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-12",
+          "cat": "笔记本",
+          "stage": "补考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 8,
+          "failNames": [
+            "全合格"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-12",
+          "cat": "平板",
+          "stage": "补考",
+          "passLine": 60,
+          "total": 7,
+          "passed": 5,
+          "failNames": [
+            "李波"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-13",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 7,
+          "failNames": [
+            "邱锦涛"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-14",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 5,
+          "failNames": [
+            "熊国梁"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-15",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 7,
+          "failNames": [
+            "杨宇"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-16",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 6,
+          "failNames": [
+            "熊文星"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-13",
+          "cat": "平板",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 7,
+          "passed": 7,
+          "failNames": [
+            "全合格"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-14",
+          "cat": "平板",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 7,
+          "passed": 2,
+          "failNames": [
+            "黄宇"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-16",
+          "cat": "笔记本",
+          "stage": "2026新题考试",
+          "passLine": 90,
+          "total": 8,
+          "passed": 8,
+          "failNames": [
+            "全合格"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-08-24",
+          "cat": "平板",
+          "stage": "补考",
+          "passLine": 90,
+          "total": 4,
+          "passed": 4,
+          "failNames": [
+            "全合格"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-08-10",
+          "total": 15,
+          "passed": 9
+        },
+        {
+          "date": "2026-08-11",
+          "total": 15,
+          "passed": 14
+        },
+        {
+          "date": "2026-08-12",
+          "total": 15,
+          "passed": 13
+        },
+        {
+          "date": "2026-08-13",
+          "total": 15,
+          "passed": 14
+        },
+        {
+          "date": "2026-08-14",
+          "total": 15,
+          "passed": 7
+        },
+        {
+          "date": "2026-08-15",
+          "total": 8,
+          "passed": 7
+        },
+        {
+          "date": "2026-08-16",
+          "total": 16,
+          "passed": 14
+        },
+        {
+          "date": "2026-08-24",
+          "total": 4,
+          "passed": 4
+        }
+      ],
+      "catStats": [
+        {
+          "cat": "笔记本",
+          "total": 64,
+          "passed": 56,
+          "fails": 8
+        },
+        {
+          "cat": "平板",
+          "total": 39,
+          "passed": 26,
+          "fails": 6
+        }
+      ],
+      "fails": [
+        {
+          "person": "全合格",
+          "count": 5,
+          "dates": [
+            "2026-08-11",
+            "2026-08-12",
+            "2026-08-13",
+            "2026-08-16",
+            "2026-08-24"
+          ]
+        },
+        {
+          "person": "熊文星",
+          "count": 2,
+          "dates": [
+            "2026-08-10",
+            "2026-08-16"
+          ]
+        },
+        {
+          "person": "黄宇",
+          "count": 2,
+          "dates": [
+            "2026-08-10",
+            "2026-08-14"
+          ]
+        },
+        {
+          "person": "张辰",
+          "count": 1,
+          "dates": [
+            "2026-08-11"
+          ]
+        },
+        {
+          "person": "李波",
+          "count": 1,
+          "dates": [
+            "2026-08-12"
+          ]
+        },
+        {
+          "person": "杨宇",
+          "count": 1,
+          "dates": [
+            "2026-08-15"
+          ]
+        },
+        {
+          "person": "熊国梁",
+          "count": 1,
+          "dates": [
+            "2026-08-14"
+          ]
+        },
+        {
+          "person": "邱锦涛",
+          "count": 1,
+          "dates": [
+            "2026-08-13"
+          ]
+        }
+      ]
+    },
+    "coach": {
+      "records": [
+        {
+          "date": "2026-08-20",
+          "person": "李波",
+          "cat": "平板",
+          "content": "平板错题讲解",
+          "minutes": 20,
+          "mode": "线下",
+          "effect": "70"
+        }
+      ],
+      "personStats": [
+        {
+          "person": "李波",
+          "count": 1,
+          "minutes": 20
+        }
+      ]
+    },
+    "meeting": {
+      "records": [
+        {
+          "date": "2026-08-11",
+          "topic": "部分质检、异常质检",
+          "cat": "平板",
+          "points": "",
+          "attendees": "全部人员"
+        },
+        {
+          "date": "2026-08-12",
+          "topic": "质检分类",
+          "cat": "平板",
+          "points": "",
+          "attendees": "全部人员"
+        },
+        {
+          "date": "2026-08-13",
+          "topic": "来源问题",
+          "cat": "平板",
+          "points": "",
+          "attendees": "全部人员"
+        }
+      ]
+    },
+    "exam": {
+      "records": [
+        {
+          "date": "2026-08-18",
+          "cat": "笔记本",
+          "stage": "",
+          "total": 8,
+          "passed": 8,
+          "rate": 100,
+          "maxScore": "1",
+          "minScore": "0.74",
+          "failNames": []
+        },
+        {
+          "date": "2026-08-18",
+          "cat": "平板",
+          "stage": "",
+          "total": 7,
+          "passed": 6,
+          "rate": 85.0,
+          "maxScore": "0.93",
+          "minScore": "0.6",
+          "failNames": [
+            "闵杰"
+          ]
+        },
+        {
+          "date": "2026-08-21",
+          "cat": "平板",
+          "stage": "",
+          "total": 7,
+          "passed": 6,
+          "rate": 85.0,
+          "maxScore": "0.93",
+          "minScore": "0.67",
+          "failNames": [
+            "王彪"
+          ]
+        },
+        {
+          "date": "2026-08-21",
+          "cat": "笔记本",
+          "stage": "",
+          "total": 8,
+          "passed": 8,
+          "rate": 100,
+          "maxScore": "1",
+          "minScore": "0.86",
+          "failNames": [
+            "邱锦涛"
+          ]
+        },
+        {
+          "date": "2026-08-24",
+          "cat": "平板",
+          "stage": "",
+          "total": 4,
+          "passed": 4,
+          "rate": 100.0,
+          "maxScore": "100",
+          "minScore": "",
+          "failNames": []
+        }
+      ],
+      "fails": [
+        {
+          "person": "王彪",
+          "count": 1,
+          "dates": [
+            "2026-08-21"
+          ]
+        },
+        {
+          "person": "邱锦涛",
+          "count": 1,
+          "dates": [
+            "2026-08-21"
+          ]
+        },
+        {
+          "person": "闵杰",
+          "count": 1,
+          "dates": [
+            "2026-08-18"
+          ]
+        }
+      ]
+    },
+    "scores": {
+      "records": [
+        {
+          "date": "2026-08-27",
+          "person": "张辰",
+          "examType": "月考",
+          "cat": "手机一段",
+          "score": 96
+        },
+        {
+          "date": "2026-08-27",
+          "person": "李波",
+          "examType": "月考",
+          "cat": "手机一段",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "闵杰",
+          "examType": "月考",
+          "cat": "手机一段",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "钟仔琛",
+          "examType": "月考",
+          "cat": "手机一段",
+          "score": 93
+        },
+        {
+          "date": "2026-08-27",
+          "person": "陈金伟",
+          "examType": "月考",
+          "cat": "手机二段",
+          "score": 73
+        },
+        {
+          "date": "2026-08-27",
+          "person": "王彪",
+          "examType": "月考",
+          "cat": "手机二段",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "苏杰",
+          "examType": "月考",
+          "cat": "手机二段",
+          "score": 93
+        },
+        {
+          "date": "2026-08-27",
+          "person": "黄宇",
+          "examType": "月考",
+          "cat": "手机二段",
+          "score": 93
+        },
+        {
+          "date": "2026-08-27",
+          "person": "张辰",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 96
+        },
+        {
+          "date": "2026-08-27",
+          "person": "黄宇",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "陈金伟",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 93
+        },
+        {
+          "date": "2026-08-27",
+          "person": "李波",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "王彪",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 93
+        },
+        {
+          "date": "2026-08-27",
+          "person": "闵杰",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "苏杰",
+          "examType": "月考",
+          "cat": "平板电脑",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "熊帅",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "邱锦涛",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 93
+        },
+        {
+          "date": "2026-08-27",
+          "person": "常凌云",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "杨宇",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "熊文星",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 100
+        },
+        {
+          "date": "2026-08-27",
+          "person": "刘秉义",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 96
+        },
+        {
+          "date": "2026-08-27",
+          "person": "熊国梁",
+          "examType": "月考",
+          "cat": "笔记本",
+          "score": 80
+        }
+      ],
+      "people": [
+        {
+          "person": "刘秉义",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 96
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 96
+            }
+          ],
+          "last": 96,
+          "first": 96,
+          "trend": 0.0
+        },
+        {
+          "person": "常凌云",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 100,
+          "trend": 0.0
+        },
+        {
+          "person": "张辰",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 96
+            },
+            {
+              "date": "2026-08-27",
+              "score": 96
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 96
+            },
+            {
+              "date": "2026-08-27",
+              "score": 96
+            }
+          ],
+          "last": 96,
+          "first": 96,
+          "trend": 0.0
+        },
+        {
+          "person": "李波",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 100,
+          "trend": 0.0
+        },
+        {
+          "person": "杨宇",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 100,
+          "trend": 0.0
+        },
+        {
+          "person": "熊国梁",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 80
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 80
+            }
+          ],
+          "last": 80,
+          "first": 80,
+          "trend": 0.0
+        },
+        {
+          "person": "熊帅",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 100,
+          "trend": 0.0
+        },
+        {
+          "person": "熊文星",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 100,
+          "trend": 0.0
+        },
+        {
+          "person": "王彪",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            },
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            },
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "last": 93,
+          "first": 100,
+          "trend": -7.0
+        },
+        {
+          "person": "苏杰",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 93,
+          "trend": 7.5
+        },
+        {
+          "person": "邱锦涛",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "last": 93,
+          "first": 93,
+          "trend": 0.0
+        },
+        {
+          "person": "钟仔琛",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "last": 93,
+          "first": 93,
+          "trend": 0.0
+        },
+        {
+          "person": "闵杰",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 100
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 100,
+          "trend": 0.0
+        },
+        {
+          "person": "陈金伟",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 73
+            },
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 73
+            },
+            {
+              "date": "2026-08-27",
+              "score": 93
+            }
+          ],
+          "last": 93,
+          "first": 73,
+          "trend": 27.4
+        },
+        {
+          "person": "黄宇",
+          "week": [],
+          "month": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "all": [
+            {
+              "date": "2026-08-27",
+              "score": 93
+            },
+            {
+              "date": "2026-08-27",
+              "score": 100
+            }
+          ],
+          "last": 100,
+          "first": 93,
+          "trend": 7.5
+        }
+      ]
+    },
+    "alerts": [
+      {
+        "person": "熊国梁",
+        "reasons": [
+          "推题未达标1次",
+          "最近分数80"
+        ],
+        "lastDate": "2026-08-27"
+      },
+      {
+        "person": "全合格",
+        "reasons": [
+          "推题未达标5次"
+        ],
+        "lastDate": "2026-08-24"
+      },
+      {
+        "person": "王彪",
+        "reasons": [
+          "模拟考不合格1次"
+        ],
+        "lastDate": "2026-08-21"
+      },
+      {
+        "person": "邱锦涛",
+        "reasons": [
+          "推题未达标1次",
+          "模拟考不合格1次"
+        ],
+        "lastDate": "2026-08-21"
+      },
+      {
+        "person": "闵杰",
+        "reasons": [
+          "模拟考不合格1次"
+        ],
+        "lastDate": "2026-08-18"
+      },
+      {
+        "person": "熊文星",
+        "reasons": [
+          "推题未达标2次"
+        ],
+        "lastDate": "2026-08-16"
+      },
+      {
+        "person": "杨宇",
+        "reasons": [
+          "推题未达标1次"
+        ],
+        "lastDate": "2026-08-15"
+      },
+      {
+        "person": "黄宇",
+        "reasons": [
+          "推题未达标2次"
+        ],
+        "lastDate": "2026-08-14"
+      },
+      {
+        "person": "李波",
+        "reasons": [
+          "推题未达标1次"
+        ],
+        "lastDate": "2026-08-12"
+      },
+      {
+        "person": "张辰",
+        "reasons": [
+          "推题未达标1次"
+        ],
+        "lastDate": "2026-08-11"
+      }
+    ]
   }
 }
