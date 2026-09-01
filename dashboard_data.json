@@ -1867,6 +1867,26 @@
       "qaType": "系统问题"
     },
     {
+      "date": "2026-08-10",
+      "code": "1216747958",
+      "imgs": [
+        "four_42_1.jpg"
+      ],
+      "cat": "笔记本",
+      "brand": "联想",
+      "model": "联想 拯救者 Y7000P 2019",
+      "inspector": "熊国梁",
+      "resultAction": "不拦截",
+      "isExecError": "执行问题",
+      "errorPerson": "熊国梁",
+      "level1": "维修浸液",
+      "level2": "部件更换",
+      "detail": "更换品牌内存",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaType": "执行问题"
+    },
+    {
       "date": "2026-08-12",
       "code": "1216174130",
       "imgs": [],
@@ -2273,6 +2293,26 @@
       "classify": "客观问题",
       "problemType": "拆修问题",
       "qaType": "执行问题"
+    },
+    {
+      "date": "2026-08-31",
+      "code": "1219787525",
+      "imgs": [
+        "four_43_1.jpg"
+      ],
+      "cat": "笔记本",
+      "brand": "联想",
+      "model": "机械革命 蛟龙 16 Pro",
+      "inspector": "邱锦涛",
+      "resultAction": "拦截",
+      "isExecError": "执行问题",
+      "errorPerson": "邱锦涛",
+      "level1": "基础信息",
+      "level2": "基础信息",
+      "detail": "属性判定",
+      "classify": "客观问题",
+      "problemType": "基础问题",
+      "qaType": "执行问题"
     }
   ],
   "qaData": [
@@ -2391,9 +2431,9 @@
       "grp": "笔记本质检",
       "inspector": "邱锦涛",
       "samples": 119,
-      "errors": 1,
-      "totalErrors": 2,
-      "rate": 0.008403,
+      "errors": 2,
+      "totalErrors": 3,
+      "rate": 0.016807,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2446,9 +2486,9 @@
       "grp": "笔记本质检",
       "inspector": "熊国梁",
       "samples": 203,
-      "errors": 2,
-      "totalErrors": 6,
-      "rate": 0.009852,
+      "errors": 3,
+      "totalErrors": 7,
+      "rate": 0.014778,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2770,8 +2810,8 @@
         "category": "💻",
         "samples": 47,
         "objDiffs": 0,
-        "execDiffs": 0,
-        "execRate": 0.0
+        "execDiffs": 1,
+        "execRate": 0.021277
       }
     ],
     "weeklyRates": [
