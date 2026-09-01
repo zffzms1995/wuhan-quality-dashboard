@@ -151,6 +151,7 @@ tr:hover td{background:#f8fafc}
     <input class="search-box" placeholder="搜索质检人姓名..." oninput="filterPersonnelTable(this.value)">
     <div class="scroll-x"><table id="personnelTable"><thead><tr><th>品类</th><th>小组</th><th>质检人</th><th>抽检量</th><th>执行差异量</th><th>总差异</th><th>差异率</th><th>评级</th><th>组内排名</th><th>质检失误</th></tr></thead><tbody></tbody></table></div>
     <div style="font-size:11px;color:#9ca3af;margin-top:8px">差异量=飞书看板同口径的执行差异（客观问题+执行问题）；总差异=该人员所有差异记录。点击行在下方查看该人员的差异明细</div>
+    <div style="font-size:11px;color:#d97706;margin-top:6px;display:none" id="qaMonthHint">提示：人员达成表为整月汇总口径（源自飞书公式），日期筛选不影响该表</div>
   </div>
   <div class="card">
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
@@ -263,6 +264,10 @@ function bootApp() {
   activeFilters.dateTo = META.dateMax;
   document.getElementById('filterDateFrom').value = META.dateMin;
   document.getElementById('filterDateTo').value = META.dateMax;
+  document.getElementById('filterDateFrom').min = META.dateMin;
+  document.getElementById('filterDateFrom').max = META.dateMax;
+  document.getElementById('filterDateTo').min = META.dateMin;
+  document.getElementById('filterDateTo').max = META.dateMax;
   document.getElementById('headerSub').textContent = META.monthLabel + ' · 1+4品类质量数据 · 支持下钻与筛选';
   document.getElementById('footerText').textContent = '武汉中心仓质量数据看板 V2 · 数据来源: 飞书云表格「' + META.monthLabel + '武汉中心仓质量数据」 · 更新于 ' + META.updatedAt;
 
@@ -298,6 +303,53 @@ function openFeishuEdit() {
 
 // ====== 错题分析 ======
 var cuotiFilter = { kp: '' };
+var cuotiView = null;
+
+// 错题数据按全局日期筛选后重新聚合（KPI/TOP10/图表/明细共用）
+function computeCuotiView() {
+  if (!cuotiReady()) { cuotiView = null; return null; }
+  var records = CUOTI.records.filter(function(r){
+    return r.date >= activeFilters.dateFrom && r.date <= activeFilters.dateTo;
+  });
+  var kpMap = {}, personMap = {}, dailyMap = {}, catMap = {}, examMap = {};
+  records.forEach(function(r){
+    r.persons.forEach(function(p){ personMap[p] = (personMap[p] || 0) + 1; });
+    if (!kpMap[r.kp]) kpMap[r.kp] = {count:0, persons:{}, cats:{}, lastDate:''};
+    kpMap[r.kp].count++;
+    r.persons.forEach(function(p){ kpMap[r.kp].persons[p] = 1; });
+    if (r.cat) kpMap[r.kp].cats[r.cat] = 1;
+    if (r.date > kpMap[r.kp].lastDate) kpMap[r.kp].lastDate = r.date;
+    dailyMap[r.date] = (dailyMap[r.date] || 0) + 1;
+    if (r.cat) catMap[r.cat] = (catMap[r.cat] || 0) + 1;
+    if (r.examType) examMap[r.examType] = (examMap[r.examType] || 0) + 1;
+  });
+  var dates = records.map(function(r){ return r.date; }).sort();
+  cuotiView = {
+    records: records,
+    kpStats: Object.keys(kpMap).map(function(k){
+      var v = kpMap[k];
+      return {kp:k, count:v.count, persons:Object.keys(v.persons).length,
+        cats:Object.keys(v.cats).sort().join('/'), lastDate:v.lastDate};
+    }).sort(function(a,b){ return b.count - a.count || b.persons - a.persons || (a.kp < b.kp ? -1 : 1); }),
+    personStats: Object.keys(personMap).map(function(p){
+      return {person:p, count:personMap[p]};
+    }).sort(function(a,b){ return b.count - a.count || (a.person < b.person ? -1 : 1); }),
+    daily: Object.keys(dailyMap).sort().map(function(d){ return {date:d, count:dailyMap[d]}; }),
+    catStats: Object.keys(catMap).sort(function(a,b){ return catMap[b] - catMap[a]; })
+      .map(function(c){ return {cat:c, count:catMap[c]}; }),
+    examStats: Object.keys(examMap).sort(function(a,b){ return examMap[b] - examMap[a]; })
+      .map(function(e){ return {exam:e, count:examMap[e]}; }),
+    meta: {
+      count: records.length,
+      kpCount: Object.keys(kpMap).length,
+      personCount: Object.keys(personMap).length,
+      catCount: Object.keys(catMap).length,
+      dateMin: dates.length ? dates[0] : '',
+      dateMax: dates.length ? dates[dates.length-1] : ''
+    }
+  };
+  return cuotiView;
+}
 
 function cuotiReady() {
   return CUOTI && CUOTI.meta && CUOTI.meta.count > 0;
@@ -315,13 +367,14 @@ function buildCuoti() {
     document.getElementById('cuotiDetailList').innerHTML = '<div class="empty">暂无数据</div>';
     return;
   }
-  var m = CUOTI.meta;
+  var V = computeCuotiView();
+  var m = V.meta;
   var kpis = [
-    {val:m.count,label:'错题总数',sub:m.dateMin+' ~ '+m.dateMax},
+    {val:m.count,label:'错题总数',sub:m.count ? m.dateMin+' ~ '+m.dateMax : '所选日期范围内无错题'},
     {val:m.kpCount,label:'知识点数',sub:'涉及知识点'},
     {val:m.personCount,label:'错题人数',sub:'出现过错题的人员'},
-    {val:m.catCount,label:'品类数',sub:(CUOTI.catStats||[]).map(function(c){return c.cat+' '+c.count}).join(' · ')},
-    {val:(CUOTI.examStats||[]).length,label:'考试类型',sub:(CUOTI.examStats||[]).map(function(e){return e.exam+' '+e.count}).join(' · ')}
+    {val:m.catCount,label:'品类数',sub:(V.catStats||[]).map(function(c){return c.cat+' '+c.count}).join(' · ') || '-'},
+    {val:(V.examStats||[]).length,label:'考试类型',sub:(V.examStats||[]).map(function(e){return e.exam+' '+e.count}).join(' · ') || '-'}
   ];
   document.getElementById('cuotiKpi').innerHTML = kpis.map(function(c){
     return '<div class="kpi-card"><div class="kpi-val" style="color:#059669">'+c.val+'</div><div class="kpi-label">'+c.label+'</div><div class="kpi-sub">'+esc(c.sub)+'</div></div>';
@@ -329,21 +382,21 @@ function buildCuoti() {
 
   var sel = document.getElementById('cuotiPersonSel');
   var cur = sel.value;
-  sel.innerHTML = '<option value="">全部人员</option>' + CUOTI.personStats.map(function(p){
+  sel.innerHTML = '<option value="">全部人员</option>' + V.personStats.map(function(p){
     return '<option value="'+esc(p.person)+'">'+esc(p.person)+'（'+p.count+'）</option>';
   }).join('');
   sel.value = cur;
 
   var selc = document.getElementById('cuotiCatSel');
   var curc = selc.value;
-  selc.innerHTML = '<option value="">全部品类</option>' + CUOTI.catStats.map(function(c){
+  selc.innerHTML = '<option value="">全部品类</option>' + V.catStats.map(function(c){
     return '<option value="'+esc(c.cat)+'">'+esc(c.cat)+'（'+c.count+'）</option>';
   }).join('');
   selc.value = curc;
 
   var sele = document.getElementById('cuotiExamSel');
   var cure = sele.value;
-  sele.innerHTML = '<option value="">全部考试类型</option>' + (CUOTI.examStats||[]).map(function(e){
+  sele.innerHTML = '<option value="">全部考试类型</option>' + (V.examStats||[]).map(function(e){
     return '<option value="'+esc(e.exam)+'">'+esc(e.exam)+'（'+e.count+'）</option>';
   }).join('');
   sele.value = cure;
@@ -354,7 +407,7 @@ function buildCuoti() {
 
 function renderCuotiTop() {
   if (!cuotiReady()) return;
-  var top = CUOTI.kpStats.slice(0, 10);
+  var top = (computeCuotiView() || {kpStats:[]}).kpStats.slice(0, 10);
   document.getElementById('cuotiTopList').innerHTML = top.map(function(k, i){
     var active = cuotiFilter.kp === k.kp ? ' active' : '';
     return '<div class="cuoti-kp'+active+'" onclick="filterCuotiKp(\''+esc(k.kp).replace(/'/g, "\\'")+'\')">'
@@ -390,7 +443,7 @@ function renderCuotiDetail() {
   var cat = document.getElementById('cuotiCatSel').value;
   var exam = document.getElementById('cuotiExamSel').value;
   var kp = cuotiFilter.kp;
-  var rows = CUOTI.records.filter(function(r){
+  var rows = (computeCuotiView() || {records:[]}).records.filter(function(r){
     if (kp && r.kp !== kp) return false;
     if (person && r.persons.indexOf(person) < 0) return false;
     if (cat && r.cat !== cat) return false;
@@ -426,14 +479,15 @@ function renderCuotiDetail() {
 
 function buildCuotiCharts() {
   if (!cuotiReady()) return;
+  var V = computeCuotiView();
   destroyChart('cuotiDaily'); destroyChart('cuotiPerson'); destroyChart('cuotiCat'); destroyChart('cuotiExam');
   var ctx1 = document.getElementById('cuotiDailyChart');
   if (ctx1) chartInstances['cuotiDaily'] = new Chart(ctx1, {type:'bar',
-    data:{labels:CUOTI.daily.map(function(d){return d.date.slice(5)}),
-      datasets:[{label:'错题数',data:CUOTI.daily.map(function(d){return d.count}),backgroundColor:'#f59e0b',borderRadius:4}]},
+    data:{labels:V.daily.map(function(d){return d.date.slice(5)}),
+      datasets:[{label:'错题数',data:V.daily.map(function(d){return d.count}),backgroundColor:'#f59e0b',borderRadius:4}]},
     options:{responsive:true,plugins:{legend:{display:false}},
       scales:{y:{beginAtZero:true,ticks:{precision:0}},x:{grid:{display:false}}}}});
-  var ps = CUOTI.personStats.slice(0, 12).reverse();
+  var ps = V.personStats.slice(0, 12).reverse();
   var ctx2 = document.getElementById('cuotiPersonChart');
   if (ctx2) chartInstances['cuotiPerson'] = new Chart(ctx2, {type:'bar',
     data:{labels:ps.map(function(p){return p.person}),
@@ -442,14 +496,14 @@ function buildCuotiCharts() {
       scales:{x:{beginAtZero:true,ticks:{precision:0}}}}});
   var ctx3 = document.getElementById('cuotiCatChart');
   if (ctx3) chartInstances['cuotiCat'] = new Chart(ctx3, {type:'doughnut',
-    data:{labels:CUOTI.catStats.map(function(c){return c.cat}),
-      datasets:[{data:CUOTI.catStats.map(function(c){return c.count}),
+    data:{labels:V.catStats.map(function(c){return c.cat}),
+      datasets:[{data:V.catStats.map(function(c){return c.count}),
         backgroundColor:['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6']}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}}}});
   var ctx4 = document.getElementById('cuotiExamChart');
   if (ctx4) chartInstances['cuotiExam'] = new Chart(ctx4, {type:'doughnut',
-    data:{labels:(CUOTI.examStats||[]).map(function(e){return e.exam}),
-      datasets:[{data:(CUOTI.examStats||[]).map(function(e){return e.count}),
+    data:{labels:(V.examStats||[]).map(function(e){return e.exam}),
+      datasets:[{data:(V.examStats||[]).map(function(e){return e.count}),
         backgroundColor:['#8b5cf6','#0ea5e9','#f59e0b','#10b981']}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}}}}});
 }
@@ -462,10 +516,7 @@ function switchTab(tab, btn) {
   btn.classList.add('active');
   document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
   document.getElementById('tab-'+tab).classList.add('active');
-  if(tab==='overview') buildCharts();
-  if(tab==='motherboard') buildMBChart();
-  if(tab==='summary') buildPersonRankChart();
-  if(tab==='cuoti') buildCuotiCharts();
+  refreshAll();
 }
 
 // ====== FILTERS ======
@@ -512,11 +563,14 @@ function buildKPIs() {
   var filteredDiffs = DIFFS.filter(isInFilter);
   var filteredMB = MB.filter(isInFilter);
 
-  var totalDiffs = filteredDiffs.length + FOURCAT_DIFFS.filter(isInFilter).length;
-  var execErrors = filteredDiffs.filter(function(d){return d.qaJudgment==='执行问题'}).length;
-  var objErrors = filteredDiffs.filter(function(d){return d.qaJudgment!=='执行问题'}).length;
+  var filteredFour = FOURCAT_DIFFS.filter(isInFilter);
+  var totalDiffs = filteredDiffs.length + filteredFour.length;
+  var execErrors = filteredDiffs.filter(function(d){return d.qaJudgment==='执行问题'}).length
+    + filteredFour.filter(function(d){return d.isExecError}).length;
+  var objErrors = filteredDiffs.filter(function(d){return d.qaJudgment!=='执行问题'}).length
+    + filteredFour.filter(function(d){return !d.isExecError}).length;
   var mbPenalty = filteredMB.filter(function(d){return d.penalty==='是'}).length;
-  var problemTypes = new Set(filteredDiffs.map(function(d){return d.level1}).filter(Boolean)).size;
+  var problemTypes = new Set(filteredDiffs.concat(filteredFour).map(function(d){return d.level1}).filter(Boolean)).size;
 
   var cards = [
     {val:totalDiffs,label:'总差异记录',sub:'手机 + 四品类',cls:'',onclick:'switchTab("qa",document.querySelectorAll(".tab-btn")[1])'},
@@ -526,7 +580,8 @@ function buildKPIs() {
     {val:problemTypes,label:'问题类型数',sub:'一级分类',cls:'color:#7c3aed',onclick:'switchTab("summary",document.querySelectorAll(".tab-btn")[3])'}
   ];
   if(cuotiReady()){
-    cards.push({val:CUOTI.meta.count,label:'错题总数',sub:'培训错题集 · '+CUOTI.meta.kpCount+'个知识点',cls:'color:#059669',onclick:'switchTab("cuoti",document.querySelectorAll(".tab-btn")[4])'});
+    var cv = computeCuotiView();
+    cards.push({val:cv.meta.count,label:'错题总数',sub:'培训错题集 · '+cv.meta.kpCount+'个知识点',cls:'color:#059669',onclick:'switchTab("cuoti",document.querySelectorAll(".tab-btn")[4])'});
   }
 
   document.getElementById('kpiCards').innerHTML = cards.map(function(c,i){
@@ -558,8 +613,14 @@ function updateDiffBadge() {
 
 // ====== CHARTS (Overview Tab) ======
 function buildCharts() {
-  // Phone trend
-  var phoneTrend = TREND.phone || [];
+  var fDiffs = DIFFS.filter(isInFilter);
+  var fFour = FOURCAT_DIFFS.filter(isInFilter);
+  // Phone trend (trend dates are MM/DD)
+  var tf = activeFilters.dateFrom.slice(5).replace('-','/');
+  var tt = activeFilters.dateTo.slice(5).replace('-','/');
+  var phoneTrend = (TREND.phone || []).filter(function(d){
+    return d.date >= tf && d.date <= tt;
+  });
   var ctx1 = document.getElementById('phoneTrendChart');
   if(ctx1) {
     destroyChart('phoneTrend');
@@ -568,8 +629,8 @@ function buildCharts() {
 
   // Category rate
   var catMap = {};
-  DIFFS.forEach(function(d){var k='📱手机';if(!catMap[k])catMap[k]={samples:0,errors:0};catMap[k].samples++;if(d.qaJudgment==='执行问题')catMap[k].errors++});
-  FOURCAT_DIFFS.forEach(function(d){var k=d.cat;if(!catMap[k])catMap[k]={samples:0,errors:0};catMap[k].samples++;if(d.isExecError)catMap[k].errors++});
+  fDiffs.forEach(function(d){var k='📱手机';if(!catMap[k])catMap[k]={samples:0,errors:0};catMap[k].samples++;if(d.qaJudgment==='执行问题')catMap[k].errors++});
+  fFour.forEach(function(d){var k=d.cat;if(!catMap[k])catMap[k]={samples:0,errors:0};catMap[k].samples++;if(d.isExecError)catMap[k].errors++});
   var labels = Object.keys(catMap);
   var rates = labels.map(function(k){return catMap[k].samples>0?(catMap[k].errors/catMap[k].samples*100).toFixed(1):0});
   var bg = rates.map(function(r){return r>30?'#fca5a5':r>15?'#fde68a':'#86efac'});
@@ -614,6 +675,8 @@ function filterPersonnelTable(text) {
 }
 
 function buildPersonnelTable() {
+  var hint = document.getElementById('qaMonthHint');
+  if (hint) hint.style.display = (activeFilters.dateFrom !== META.dateMin || activeFilters.dateTo !== META.dateMax) ? '' : 'none';
   var data = qaData;
   if(qaCatFilter !== '全部') data = data.filter(function(d){return d.cat===qaCatFilter});
   if(qaSearchText) data = data.filter(function(d){return d.inspector.toLowerCase().indexOf(qaSearchText)>-1 || d.grp.toLowerCase().indexOf(qaSearchText)>-1});
