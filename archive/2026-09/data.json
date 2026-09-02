@@ -1,0 +1,1424 @@
+{
+  "dashboard": {
+    "meta": {
+      "monthLabel": "2026年9月",
+      "dateMin": "2026-09-01",
+      "dateMax": "2026-09-30",
+      "updatedAt": "2026-09-02",
+      "editUrl": "https://zhuanspirit.feishu.cn/sheets/Ju1AsGuTdhkcUutqO2fcuwJ7n3b",
+      "cuotiUrl": "https://zhuanspirit.feishu.cn/sheets/TWeosy6eKhAvUVtFi9LcropFnog"
+    },
+    "mb": [],
+    "diffs": [
+      {
+        "date": "2026-09-01",
+        "code": "1219598743",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 畅享 20 SE",
+        "level1": "外壳外观",
+        "level2": "2mm-10mm",
+        "classify": "客观问题",
+        "problemType": "外观问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "襄阳-陈明霞（已验机2.0）",
+        "errorPerson": "王彪",
+        "origInspector": "王彪",
+        "newInspector": "zhangyu34（张宇）"
+      },
+      {
+        "date": "2026-09-01",
+        "code": "1220586108",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo iQOO Z9 Turbo",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "武汉-李荣（已验机2.0）",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02（李文）"
+      }
+    ],
+    "fourcatDiffs": [],
+    "qaData": [
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "闵杰",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "张辰",
+        "samples": 26,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "钟仔琛",
+        "samples": 10,
+        "errors": 1,
+        "totalErrors": 1,
+        "rate": 0.1,
+        "ranking": "4",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "李波",
+        "samples": 28,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "沈正宇",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "王彪",
+        "samples": 26,
+        "errors": 1,
+        "totalErrors": 1,
+        "rate": 0.038462,
+        "ranking": "5",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "苏杰",
+        "samples": 28,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "黄宇",
+        "samples": 10,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "陈金伟",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "常凌云",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "邱锦涛",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "杨宇",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "熊帅",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "熊文星",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "熊国梁",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "刘秉义",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "闵杰",
+        "samples": 3,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "苏杰",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "李波",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "陈金伟",
+        "samples": 1,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "钟仔琛",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "张辰",
+        "samples": 1,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "王彪",
+        "samples": 1,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "黄宇",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      }
+    ],
+    "errorFollowup": {
+      "items": [
+        {
+          "person": "王彪",
+          "code": "988258787",
+          "item": "外壳外观-脱胶缝隙 ≥0.3mm",
+          "errorType": "【漏选】",
+          "time": "2026-02-04 11:27:46",
+          "reason": "无法定位根因，暂进行口头提醒"
+        },
+        {
+          "person": "闵杰",
+          "code": "986160927",
+          "item": "屏幕显示-坏点-直径 ≤0.5mm且数量＞6",
+          "errorType": "【误判】",
+          "time": "2026-02-03 15:20:48",
+          "reason": "特殊现象导致误判"
+        },
+        {
+          "person": "王彪",
+          "code": "988065596",
+          "item": "外屏-紫光灯照射边缘内屏异常",
+          "errorType": "【漏选】",
+          "time": "2026-02-01 17:45:20",
+          "reason": "跳步，已沟通稽核组进行为期一周的专项稽核，再复现该问题即抄写标准10遍"
+        },
+        {
+          "person": "黄宇",
+          "code": "987147939",
+          "item": "后壳-后盖与镜头保护罩连接处有胶水溢出",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 16:03:23",
+          "reason": "判定经验不足导致漏判"
+        },
+        {
+          "person": "李波",
+          "code": "988716395",
+          "item": "摄像头功能-拍照坏点",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 15:14:34",
+          "reason": "质检过快，暂进行口头提醒。"
+        },
+        {
+          "person": "陈金伟",
+          "code": "988398816",
+          "item": "外壳外观-脱胶缝隙 ≥0.3mm",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 15:32:41",
+          "reason": "无法定位根因，暂进行口头提醒"
+        },
+        {
+          "person": "黄宇",
+          "code": "986700786",
+          "item": "维修浸液-屏幕有胶水溢出",
+          "errorType": "【误判】",
+          "time": "2026-02-06 11:22:25",
+          "reason": "实际应判定中框溢胶，因为标准明确了Mate60系列屏幕溢胶应该判定为中框溢胶。"
+        },
+        {
+          "person": "黄宇",
+          "code": "988016744",
+          "item": "电池健康值不符",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 11:16:12",
+          "reason": "勾选顺序错误。当发现商户的电池健康值不符时不用去修改电池次数。"
+        }
+      ],
+      "highFreq": [
+        {
+          "rank": "Top1",
+          "name": "",
+          "count": 0
+        }
+      ]
+    },
+    "t1Data": {
+      "weekly": [
+        {
+          "range": "周期范围",
+          "topPersons": "人员维度",
+          "diffs": "",
+          "topItem": "质检项维度",
+          "note": "备注"
+        },
+        {
+          "range": "12月1日-12月7日",
+          "topPersons": "黄宇",
+          "diffs": "3",
+          "topItem": "/",
+          "note": "3（2例为粗心导致，1例标准理解差异）"
+        },
+        {
+          "range": "12月8日-12月14日",
+          "topPersons": "黄宇/苏杰",
+          "diffs": "2、2",
+          "topItem": "/",
+          "note": ""
+        },
+        {
+          "range": "12月15日-12月21日",
+          "topPersons": "黄宇/苏杰/刘航",
+          "diffs": "2、2",
+          "topItem": "/",
+          "note": "黄宇连续三周Top人\n苏杰连续两周Top人"
+        },
+        {
+          "range": "12月22日-12月28日",
+          "topPersons": "刘航",
+          "diffs": "3",
+          "topItem": "/",
+          "note": ""
+        },
+        {
+          "range": "12月29日-01月04日",
+          "topPersons": "无",
+          "diffs": "/",
+          "topItem": "/",
+          "note": "人维度没明确规律，三人各1例"
+        },
+        {
+          "range": "01月05日-01月11日",
+          "topPersons": "刘航",
+          "diffs": "4（5 减 1）",
+          "topItem": "/",
+          "note": "第五例与QA 核实为非执行（数据源待剔除）\n连续三周 Top 人"
+        },
+        {
+          "range": "01月12日-01月18日",
+          "topPersons": "无",
+          "diffs": "",
+          "topItem": "/",
+          "note": "后壳&镜框&闪光灯溢胶"
+        },
+        {
+          "range": "01月19日-01月25日",
+          "topPersons": "黄宇",
+          "diffs": "3",
+          "topItem": "无",
+          "note": "3\n外壳外观-脱胶缝隙 ≥0.3mm\n屏幕边缘脱胶\n外屏-APP黑边红线有缺失"
+        },
+        {
+          "range": "01月26日-02月01日",
+          "topPersons": "@王彪",
+          "diffs": "2",
+          "topItem": "无",
+          "note": "外屏-紫光灯照射边缘内屏异常「误判」\n外屏-APP黑边红线有缺失「漏判」"
+        },
+        {
+          "range": "02月02日-02月08日",
+          "topPersons": "@黄宇",
+          "diffs": "3",
+          "topItem": "外壳外观-脱胶/缝隙",
+          "note": "2例为溢胶问题（外屏-有胶水溢出/撬痕、后壳-后盖与镜头保护罩连接处有胶水溢出）"
+        },
+        {
+          "range": "02月09日-02月15日",
+          "topPersons": "",
+          "diffs": "",
+          "topItem": "",
+          "note": ""
+        },
+        {
+          "range": "02月16日-02月22日",
+          "topPersons": "",
+          "diffs": "",
+          "topItem": "",
+          "note": ""
+        }
+      ],
+      "monthly": [
+        {
+          "month": "月份",
+          "summary": "月度总达成情况",
+          "sec1Top": "一段人员维度",
+          "sec1Miss": "",
+          "sec1Rate": "",
+          "sec2Top": "二段人员维度",
+          "sec2Miss": "",
+          "sec2Rate": "",
+          "detail": "具体明细"
+        },
+        {
+          "month": "26年一月",
+          "summary": "",
+          "sec1Top": "@刘航",
+          "sec1Miss": "6",
+          "sec1Rate": "0.0078",
+          "sec2Top": "@黄宇",
+          "sec2Miss": "5",
+          "sec2Rate": "0.0076",
+          "detail": "刘航-二段差异占绝大半，目前一段较为稳定\n黄宇-易失误点：屏幕&外壳脱胶"
+        }
+      ]
+    },
+    "reviewData": {
+      "t1": [
+        {
+          "category": "📱",
+          "samples": 74,
+          "objDiffs": 2,
+          "execDiffs": 2,
+          "execRate": 0.027027
+        },
+        {
+          "category": "💻",
+          "samples": 0,
+          "objDiffs": 0,
+          "execDiffs": 0,
+          "execRate": 0
+        }
+      ],
+      "weeklyRates": [
+        {
+          "category": "📱手机",
+          "weeks": [
+            0.0047,
+            0.0067,
+            0.0089,
+            0.0087
+          ]
+        },
+        {
+          "category": "💻笔记本",
+          "weeks": [
+            0.0597,
+            0.0131,
+            0.0134,
+            0.0099
+          ]
+        }
+      ],
+      "archives": [
+        "📊11月武汉中心仓质量数据（封档）",
+        "📊12月武汉中心仓质量数据",
+        "📊26年1月武汉中心仓质量数据"
+      ]
+    },
+    "cuoti": {
+      "meta": {
+        "count": 9,
+        "kpCount": 6,
+        "personCount": 8,
+        "catCount": 2,
+        "dateMin": "2026-09-01",
+        "dateMax": "2026-09-01"
+      },
+      "records": [
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "平板",
+          "kp": "维修浸液-后摄更换",
+          "content": "【单选题】\n如图描述所示，此机器应判定【摄像头-后摄更换】。（2）\nA.正确\nB.错误",
+          "persons": [
+            "张辰",
+            "陈金伟"
+          ],
+          "answer": "答案：A",
+          "imgs": [
+            "cuoti_2_1.jpg",
+            "cuoti_2_2.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "平板",
+          "kp": "维修浸液-后摄更换",
+          "content": "【单选题】\n如图描述所示，此机器应判定【摄像头-后摄更换】。（1）\nA.正确\nB.错误",
+          "persons": [
+            "陈金伟"
+          ],
+          "answer": "答案：A",
+          "imgs": [
+            "cuoti_3_1.jpg",
+            "cuoti_3_2.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "平板",
+          "kp": "屏幕外观-内屏掉漆",
+          "content": "【单选题】\n（判断）内屏掉漆判定范围：屏幕面板范围内，包括显示区域。\nA.正确\nB.错误",
+          "persons": [
+            "陈金伟",
+            "王彪"
+          ],
+          "answer": "答案：B",
+          "imgs": [
+            "cuoti_4_1.jpg",
+            "cuoti_4_2.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "平板",
+          "kp": "屏幕外观-内屏掉漆",
+          "content": "9.【单选题】\n（判断）内屏掉漆判定范围：屏幕面板范围内，非显示区域。\nA.正确\nB.错误",
+          "persons": [
+            "陈金伟"
+          ],
+          "answer": "答案：A",
+          "imgs": [
+            "cuoti_5_1.jpg",
+            "cuoti_5_2.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "平板",
+          "kp": "其他外观-摄像头/闪光灯外观",
+          "content": "【单选题】\n判定【摄像头/闪光灯外观-碎裂直径≤2mm】条件之一：摄像头镜片脱胶分离/偏小/偏移。\nA.正确\nB.错误",
+          "persons": [
+            "苏杰",
+            "钟仔琛"
+          ],
+          "answer": "答案：A",
+          "imgs": [
+            "cuoti_6_1.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "笔记本",
+          "kp": "按键-键盘功能",
+          "content": "【多选题】\n关于“按键-键盘功能”，以下说法正确的是？\nA.点按按键时，回弹力度很弱，判定“弹性弱/不灵敏”。\nB.点按按键三次仅触发两次或需要单独用力点击才能触发该按键功能，判定“弹性弱/不灵敏”。\nC.点按按键出现失灵，或出现自动输入按键内容时，判定“键盘输入功能异常”。\nD.点按按键三次仅触发两次或需要单独用力点击才能触发该按键功能，判定“键盘输入功能异常”。",
+          "persons": [
+            "邱锦涛"
+          ],
+          "answer": "答案：A、B、C",
+          "imgs": [
+            "cuoti_7_1.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "笔记本",
+          "kp": "浸液痕迹-有浸液痕迹",
+          "content": "【单选题】\n（判断）如图所示，可判定“浸液痕迹-有浸液痕迹”。（5）\nA.正确\nB.错误",
+          "persons": [
+            "熊文星"
+          ],
+          "answer": "答案：B",
+          "imgs": [
+            "cuoti_8_1.jpg",
+            "cuoti_8_2.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "笔记本",
+          "kp": "按键-键盘功能",
+          "content": "多选题】\n关于“按键-键盘功能”，以下说法正确的是？\nA.点按按键时，回弹力度很弱，判定“弹性弱/不灵敏”。\nB.点按按键三次仅触发两次或需要单独用力点击才能触发该按键功能，判定“弹性弱/不灵敏”。\nC.点按按键出现失灵，或出现自动输入按键内容时，判定“键盘输入功能异常”。\nD.点按按键三次仅触发两次或需要单独用力点击才能触发该按键功能，判定“键盘输入功能异常”。",
+          "persons": [
+            "杨宇"
+          ],
+          "answer": "答案：A、B、C",
+          "imgs": [
+            "cuoti_9_1.jpg"
+          ]
+        },
+        {
+          "date": "2026-09-01",
+          "station": "武汉分站",
+          "examType": "日考",
+          "cat": "笔记本",
+          "kp": "其它外观-键盘外观",
+          "content": "【单选题】\n观察图片描述及标注，此机器应判定“键盘外观-（）”。(7)\nA.正常\nB.按键破损\nC.按键缺键/脱落\nD.键盘背板松动/脱落",
+          "persons": [
+            "杨宇"
+          ],
+          "answer": "答案：D",
+          "imgs": [
+            "cuoti_10_1.jpg",
+            "cuoti_10_2.jpg"
+          ]
+        }
+      ],
+      "kpStats": [
+        {
+          "kp": "屏幕外观-内屏掉漆",
+          "count": 2,
+          "persons": 2,
+          "cats": "平板",
+          "lastDate": "2026-09-01"
+        },
+        {
+          "kp": "按键-键盘功能",
+          "count": 2,
+          "persons": 2,
+          "cats": "笔记本",
+          "lastDate": "2026-09-01"
+        },
+        {
+          "kp": "维修浸液-后摄更换",
+          "count": 2,
+          "persons": 2,
+          "cats": "平板",
+          "lastDate": "2026-09-01"
+        },
+        {
+          "kp": "其他外观-摄像头/闪光灯外观",
+          "count": 1,
+          "persons": 2,
+          "cats": "平板",
+          "lastDate": "2026-09-01"
+        },
+        {
+          "kp": "其它外观-键盘外观",
+          "count": 1,
+          "persons": 1,
+          "cats": "笔记本",
+          "lastDate": "2026-09-01"
+        },
+        {
+          "kp": "浸液痕迹-有浸液痕迹",
+          "count": 1,
+          "persons": 1,
+          "cats": "笔记本",
+          "lastDate": "2026-09-01"
+        }
+      ],
+      "personStats": [
+        {
+          "person": "陈金伟",
+          "count": 4,
+          "kps": [
+            [
+              "屏幕外观-内屏掉漆",
+              2
+            ],
+            [
+              "维修浸液-后摄更换",
+              2
+            ]
+          ]
+        },
+        {
+          "person": "杨宇",
+          "count": 2,
+          "kps": [
+            [
+              "其它外观-键盘外观",
+              1
+            ],
+            [
+              "按键-键盘功能",
+              1
+            ]
+          ]
+        },
+        {
+          "person": "张辰",
+          "count": 1,
+          "kps": [
+            [
+              "维修浸液-后摄更换",
+              1
+            ]
+          ]
+        },
+        {
+          "person": "熊文星",
+          "count": 1,
+          "kps": [
+            [
+              "浸液痕迹-有浸液痕迹",
+              1
+            ]
+          ]
+        },
+        {
+          "person": "王彪",
+          "count": 1,
+          "kps": [
+            [
+              "屏幕外观-内屏掉漆",
+              1
+            ]
+          ]
+        },
+        {
+          "person": "苏杰",
+          "count": 1,
+          "kps": [
+            [
+              "其他外观-摄像头/闪光灯外观",
+              1
+            ]
+          ]
+        },
+        {
+          "person": "邱锦涛",
+          "count": 1,
+          "kps": [
+            [
+              "按键-键盘功能",
+              1
+            ]
+          ]
+        },
+        {
+          "person": "钟仔琛",
+          "count": 1,
+          "kps": [
+            [
+              "其他外观-摄像头/闪光灯外观",
+              1
+            ]
+          ]
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-09-01",
+          "count": 9
+        }
+      ],
+      "catStats": [
+        {
+          "cat": "平板",
+          "count": 5
+        },
+        {
+          "cat": "笔记本",
+          "count": 4
+        }
+      ],
+      "examStats": [
+        {
+          "exam": "日考",
+          "count": 9
+        }
+      ]
+    },
+    "training": {
+      "tuili": {
+        "records": [],
+        "daily": [],
+        "catStats": [],
+        "fails": []
+      },
+      "coach": {
+        "records": [],
+        "personStats": []
+      },
+      "meeting": {
+        "records": []
+      },
+      "exam": {
+        "records": [],
+        "fails": []
+      },
+      "scores": {
+        "records": [
+          {
+            "date": "2026-08-27",
+            "person": "张辰",
+            "examType": "月考",
+            "cat": "手机一段",
+            "score": 96
+          },
+          {
+            "date": "2026-08-27",
+            "person": "李波",
+            "examType": "月考",
+            "cat": "手机一段",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "闵杰",
+            "examType": "月考",
+            "cat": "手机一段",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "钟仔琛",
+            "examType": "月考",
+            "cat": "手机一段",
+            "score": 93
+          },
+          {
+            "date": "2026-08-27",
+            "person": "陈金伟",
+            "examType": "月考",
+            "cat": "手机二段",
+            "score": 73
+          },
+          {
+            "date": "2026-08-27",
+            "person": "王彪",
+            "examType": "月考",
+            "cat": "手机二段",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "苏杰",
+            "examType": "月考",
+            "cat": "手机二段",
+            "score": 93
+          },
+          {
+            "date": "2026-08-27",
+            "person": "黄宇",
+            "examType": "月考",
+            "cat": "手机二段",
+            "score": 93
+          },
+          {
+            "date": "2026-08-27",
+            "person": "张辰",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 96
+          },
+          {
+            "date": "2026-08-27",
+            "person": "黄宇",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "陈金伟",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 93
+          },
+          {
+            "date": "2026-08-27",
+            "person": "李波",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "王彪",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 93
+          },
+          {
+            "date": "2026-08-27",
+            "person": "闵杰",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "苏杰",
+            "examType": "月考",
+            "cat": "平板电脑",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "熊帅",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "邱锦涛",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 93
+          },
+          {
+            "date": "2026-08-27",
+            "person": "常凌云",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "杨宇",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "熊文星",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 100
+          },
+          {
+            "date": "2026-08-27",
+            "person": "刘秉义",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 96
+          },
+          {
+            "date": "2026-08-27",
+            "person": "熊国梁",
+            "examType": "月考",
+            "cat": "笔记本",
+            "score": 80
+          }
+        ],
+        "people": [
+          {
+            "person": "刘秉义",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 96
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 96
+              }
+            ],
+            "last": 96,
+            "first": 96,
+            "trend": 0.0
+          },
+          {
+            "person": "常凌云",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 100,
+            "trend": 0.0
+          },
+          {
+            "person": "张辰",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 96
+              },
+              {
+                "date": "2026-08-27",
+                "score": 96
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 96
+              },
+              {
+                "date": "2026-08-27",
+                "score": 96
+              }
+            ],
+            "last": 96,
+            "first": 96,
+            "trend": 0.0
+          },
+          {
+            "person": "李波",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 100,
+            "trend": 0.0
+          },
+          {
+            "person": "杨宇",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 100,
+            "trend": 0.0
+          },
+          {
+            "person": "熊国梁",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 80
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 80
+              }
+            ],
+            "last": 80,
+            "first": 80,
+            "trend": 0.0
+          },
+          {
+            "person": "熊帅",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 100,
+            "trend": 0.0
+          },
+          {
+            "person": "熊文星",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 100,
+            "trend": 0.0
+          },
+          {
+            "person": "王彪",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              },
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              },
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "last": 93,
+            "first": 100,
+            "trend": -7.0
+          },
+          {
+            "person": "苏杰",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 93,
+            "trend": 7.5
+          },
+          {
+            "person": "邱锦涛",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "last": 93,
+            "first": 93,
+            "trend": 0.0
+          },
+          {
+            "person": "钟仔琛",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "last": 93,
+            "first": 93,
+            "trend": 0.0
+          },
+          {
+            "person": "闵杰",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 100
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 100,
+            "trend": 0.0
+          },
+          {
+            "person": "陈金伟",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 73
+              },
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 73
+              },
+              {
+                "date": "2026-08-27",
+                "score": 93
+              }
+            ],
+            "last": 93,
+            "first": 73,
+            "trend": 27.4
+          },
+          {
+            "person": "黄宇",
+            "week": [],
+            "month": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "all": [
+              {
+                "date": "2026-08-27",
+                "score": 93
+              },
+              {
+                "date": "2026-08-27",
+                "score": 100
+              }
+            ],
+            "last": 100,
+            "first": 93,
+            "trend": 7.5
+          }
+        ]
+      },
+      "alerts": [
+        {
+          "person": "熊国梁",
+          "reasons": [
+            "最近分数80"
+          ],
+          "lastDate": "2026-08-27"
+        }
+      ]
+    }
+  },
+  "trend": {
+    "phone": [
+      {
+        "date": "09/01",
+        "samples": 74,
+        "diffs": 29,
+        "objDiff": 2
+      }
+    ],
+    "fourCat": {
+      "平板电脑": [
+        {
+          "date": "09/01",
+          "samples": 11,
+          "diffs": 1
+        }
+      ]
+    },
+    "fourCatAgg": [
+      {
+        "date": "09/01",
+        "samples": 11,
+        "diffs": 1
+      }
+    ]
+  }
+}
