@@ -28,8 +28,9 @@ BASE = "https://open.feishu.cn"
 FEISHU_DOC_BASE = "https://zhuanspirit.feishu.cn"
 REPO = os.path.dirname(os.path.abspath(__file__))
 CLAUDE_JSON = os.path.expanduser("~/.claude.json")
-DEFAULT_FILE_TOKEN = "CzCEs7FJ9hozKKtjRRJcC4ilnne"
-CUOTI_FILE_TOKEN = "XJn6sd0WFhY5SPtDYoLcZcXenyf"
+# 主表 token 换成新表：把新表链接发 Claude 解析（知识库 /wiki/ 链接需解析出实际 obj_token）
+DEFAULT_FILE_TOKEN = "Ju1AsGuTdhkcUutqO2fcuwJ7n3b"  # 26年9月（原8月表 CzCEs7FJ9hozKKtjRRJcC4ilnne）
+CUOTI_FILE_TOKEN = "XJn6sd0WFhY5SPtDYoLcZcXenyf"  # 8月提升动作留底表（用户要求继续沿用）
 ARCHIVE_DIR = os.path.join(REPO, "archive")
 
 

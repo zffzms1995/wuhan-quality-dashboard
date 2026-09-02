@@ -1,7 +1,12 @@
 [
   {
+    "month": "2026-09",
+    "label": "2026年9月",
+    "live": true
+  },
+  {
     "month": "2026-08",
     "label": "2026年8月",
-    "live": true
+    "live": false
   }
 ]
