@@ -5,13 +5,16 @@
 用法:
   python3 update_dashboard.py                     # 完整流程（导出+解析+提交）
   python3 update_dashboard.py --xlsx 文件.xlsx     # 只解析本地 xlsx（飞书导出失败时手动导出用）
-  python3 update_dashboard.py --token <文档token>  # 更换云表格文档
+  python3 update_dashboard.py --token <文档token>  # 更换主质量表文档
+  python3 update_dashboard.py --cuoti-token <文档token>  # 更换错题/培训留底表
   python3 update_dashboard.py --no-commit          # 只生成数据文件，不提交 git
 """
 import argparse
 import calendar
 import json
 import os
+import re
+import shutil
 import subprocess
 import time
 import urllib.error
@@ -22,10 +25,12 @@ from datetime import datetime, date, timedelta
 warnings.filterwarnings("ignore")
 
 BASE = "https://open.feishu.cn"
+FEISHU_DOC_BASE = "https://zhuanspirit.feishu.cn"
 REPO = os.path.dirname(os.path.abspath(__file__))
 CLAUDE_JSON = os.path.expanduser("~/.claude.json")
 DEFAULT_FILE_TOKEN = "CzCEs7FJ9hozKKtjRRJcC4ilnne"
 CUOTI_FILE_TOKEN = "XJn6sd0WFhY5SPtDYoLcZcXenyf"
+ARCHIVE_DIR = os.path.join(REPO, "archive")
 
 
 # ---------- 飞书 API ----------
@@ -1056,15 +1061,80 @@ def build_data(xlsx_bytes, images_dir):
     return dashboard, trend, mb_img
 
 
+def archive_current(images_dir, quality_token, cuoti_token):
+    """把当前 dashboard_data.json + trend_data.json + images/ 归档到 archive/YYYY-MM/。
+
+    必须在清空 images/ 之前调用（旧月份图片靠这一步留存）。
+    每次运行幂等：数据无变化时跳过，不会重复提交大文件。
+    """
+    dd_path = os.path.join(REPO, "dashboard_data.json")
+    td_path = os.path.join(REPO, "trend_data.json")
+    if not (os.path.exists(dd_path) and os.path.exists(td_path)):
+        return None
+    with open(dd_path, encoding="utf-8") as f:
+        dashboard = json.load(f)
+    with open(td_path, encoding="utf-8") as f:
+        trend = json.load(f)
+    m = re.match(r"(\d{4})年(\d{1,2})月", dashboard.get("meta", {}).get("monthLabel", ""))
+    if not m:
+        return None
+    month_key = f"{int(m.group(1)):04d}-{int(m.group(2)):02d}"
+    arch = os.path.join(ARCHIVE_DIR, month_key)
+    os.makedirs(os.path.join(arch, "images"), exist_ok=True)
+    # 归档数据里补上当时的飞书表格链接（首次归档时用当前运行的表 token 补齐）
+    meta = dashboard.setdefault("meta", {})
+    meta.setdefault("editUrl", f"{FEISHU_DOC_BASE}/sheets/{quality_token}")
+    meta.setdefault("cuotiUrl", f"{FEISHU_DOC_BASE}/sheets/{cuoti_token}")
+    data_str = json.dumps({"dashboard": dashboard, "trend": trend}, ensure_ascii=False, indent=2)
+    data_path = os.path.join(arch, "data.json")
+    if os.path.exists(data_path):
+        with open(data_path, encoding="utf-8") as f:
+            if f.read() == data_str:
+                print(f"① 归档 {month_key} 无变化，跳过")
+                return month_key
+    with open(data_path, "w", encoding="utf-8") as f:
+        f.write(data_str)
+    arch_img = os.path.join(arch, "images")
+    copied = 0
+    for fn in os.listdir(images_dir):
+        src = os.path.join(images_dir, fn)
+        if os.path.isfile(src) and fn.lower().endswith((".png", ".jpg", ".jpeg")):
+            shutil.copy2(src, os.path.join(arch_img, fn))
+            copied += 1
+    print(f"① 已归档: archive/{month_key}/（data.json + {copied} 张图片）")
+    return month_key
+
+
+def write_months_json(cur_month_key):
+    """生成 months.json：看板月份下拉的选项列表（当前月标记 live）。"""
+    months = {}
+    if os.path.isdir(ARCHIVE_DIR):
+        for name in os.listdir(ARCHIVE_DIR):
+            if re.match(r"^\d{4}-\d{2}$", name) and \
+                    os.path.exists(os.path.join(ARCHIVE_DIR, name, "data.json")):
+                y, m = int(name[:4]), int(name[5:7])
+                months[name] = {"month": name, "label": f"{y}年{m}月", "live": name == cur_month_key}
+    if cur_month_key not in months:
+        y, m = int(cur_month_key[:4]), int(cur_month_key[5:7])
+        months[cur_month_key] = {"month": cur_month_key, "label": f"{y}年{m}月", "live": True}
+    ordered = sorted(months.values(), key=lambda x: x["month"], reverse=True)
+    with open(os.path.join(REPO, "months.json"), "w", encoding="utf-8") as f:
+        json.dump(ordered, f, ensure_ascii=False, indent=2)
+    return ordered
+
+
 def main():
     ap = argparse.ArgumentParser(description="更新质量看板数据")
     ap.add_argument("--token", default=DEFAULT_FILE_TOKEN, help="飞书云表格文档 token")
+    ap.add_argument("--cuoti-token", default=CUOTI_FILE_TOKEN, help="错题/培训留底表 token")
     ap.add_argument("--xlsx", help="本地 xlsx 文件路径（跳过飞书导出）")
     ap.add_argument("--no-commit", action="store_true", help="只生成数据文件，不提交 git")
     args = ap.parse_args()
 
     images_dir = os.path.join(REPO, "images")
     os.makedirs(images_dir, exist_ok=True)
+    # 清图片之前先把当前数据归档，旧月份图片靠归档留存
+    archive_current(images_dir, args.token, args.cuoti_token)
     # 清理旧月份图片，避免残留
     for fn in os.listdir(images_dir):
         if fn.lower().endswith((".png", ".jpg", ".jpeg")):
@@ -1081,7 +1151,7 @@ def main():
 
     print("⑨ 获取错题集与培训留底 ...")
     try:
-        cuoti_bytes = fetch_xlsx(CUOTI_FILE_TOKEN)
+        cuoti_bytes = fetch_xlsx(args.cuoti_token)
         import io as _io
         import openpyxl as _xl
         wb_c = _xl.load_workbook(_io.BytesIO(cuoti_bytes), data_only=True)
@@ -1105,10 +1175,22 @@ def main():
         dashboard["cuoti"] = {}
         dashboard["training"] = {}
 
+    # 留底表月份与主表不一致时提醒（换月时容易忘记切换留底表）
+    cur_key = f"{dashboard['meta']['monthLabel'][:4]}-{int(dashboard['meta']['monthLabel'][5:-1]):02d}"
+    cm = dashboard["cuoti"].get("meta") if isinstance(dashboard.get("cuoti"), dict) else None
+    if cm and cm.get("dateMax") and cm["dateMax"][:7] != cur_key:
+        print(f"    ⚠ 注意: 留底表数据到 {cm['dateMax']}，与主表月份 {cur_key} 不一致，"
+              f"请确认是否该换新留底表（--cuoti-token）")
+
+    # 记录当前数据对应的飞书表格链接（看板「去飞书改」按月份跳对表格）
+    dashboard["meta"]["editUrl"] = f"{FEISHU_DOC_BASE}/sheets/{args.token}"
+    dashboard["meta"]["cuotiUrl"] = f"{FEISHU_DOC_BASE}/sheets/{args.cuoti_token}"
+
     with open(os.path.join(REPO, "dashboard_data.json"), "w", encoding="utf-8") as f:
         json.dump(dashboard, f, ensure_ascii=False, indent=2)
     with open(os.path.join(REPO, "trend_data.json"), "w", encoding="utf-8") as f:
         json.dump(trend, f, ensure_ascii=False, indent=2)
+    write_months_json(cur_key)
 
     print("\n========== 生成结果 ==========")
     print(f"主板审核: {len(dashboard['mb'])} 条（图片 {mb_img} 张）")

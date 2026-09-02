@@ -113,6 +113,10 @@ tr:hover td{background:#f8fafc}
       <div class="header-sub" id="headerSub">数据加载中…</div>
     </div>
     <div class="filters">
+      <label>月份</label>
+      <select id="monthSelect" onchange="onMonthChange()">
+        <option value="live">当前月份</option>
+      </select>
       <label>日期范围</label>
       <input type="date" id="filterDateFrom" value="" onchange="applyFilters()">
       <span style="opacity:.5">—</span>
@@ -282,15 +286,30 @@ var MB = [], DIFFS = [], FOURCAT_DIFFS = [], CUOTI = {}, TRAINING = {};
 var META = { monthLabel: '', dateMin: '', dateMax: '', updatedAt: '' };
 var TREND = { phone: [], fourCat: {}, fourCatAgg: [] };
 
-function loadData() {
+var IMG_PREFIX = 'images/';
+
+function loadData(monthKey) {
   var failMsg = '数据加载失败：请确认已运行 update_dashboard.py 生成 dashboard_data.json / trend_data.json，并通过 http 服务打开本页面。';
   if (location.protocol === 'file:') {
     failMsg = '当前以 file:// 方式打开，浏览器禁止读取本地 JSON。请在「仓内看板」目录运行: python3 -m http.server 8765，然后访问 http://localhost:8765/';
   }
-  Promise.all([
-    fetch('dashboard_data.json').then(function(r){ if(!r.ok) throw new Error('dashboard_data.json HTTP '+r.status); return r.json(); }),
-    fetch('trend_data.json').then(function(r){ if(!r.ok) throw new Error('trend_data.json HTTP '+r.status); return r.json(); })
-  ]).then(function(results){
+  document.getElementById('headerSub').textContent = '数据加载中…';
+  var p;
+  if (monthKey) {
+    p = fetch('archive/'+monthKey+'/data.json').then(function(r){
+      if(!r.ok) throw new Error('archive/'+monthKey+'/data.json HTTP '+r.status);
+      return r.json();
+    }).then(function(d){
+      return [d.dashboard || {}, d.trend || null];
+    });
+  } else {
+    p = Promise.all([
+      fetch('dashboard_data.json').then(function(r){ if(!r.ok) throw new Error('dashboard_data.json HTTP '+r.status); return r.json(); }),
+      fetch('trend_data.json').then(function(r){ if(!r.ok) throw new Error('trend_data.json HTTP '+r.status); return r.json(); })
+    ]);
+  }
+  p.then(function(results){
+    IMG_PREFIX = monthKey ? 'archive/'+monthKey+'/images/' : 'images/';
     var DATA = results[0];
     TREND = results[1] || TREND;
     META = DATA.meta || META;
@@ -300,11 +319,37 @@ function loadData() {
     qaData = DATA.qaData || [];
     CUOTI = DATA.cuoti || {};
     TRAINING = DATA.training || {};
+    if (monthKey) {
+      document.getElementById('monthSelect').value = monthKey;
+    } else {
+      populateMonthSelect();
+    }
     bootApp();
   }).catch(function(err){
     document.getElementById('kpiCards').innerHTML = '<div class="empty" style="grid-column:1/-1">'+failMsg+'<br>（'+err.message+'）</div>';
     document.getElementById('headerSub').textContent = '数据加载失败';
   });
+}
+
+function populateMonthSelect() {
+  fetch('months.json').then(function(r){
+    if (!r.ok) return;
+    return r.json();
+  }).then(function(months){
+    if (!months || !months.length) return;
+    var sel = document.getElementById('monthSelect');
+    sel.innerHTML = months.map(function(m){
+      var val = m.live ? 'live' : m.month;
+      var label = m.live ? m.label + '（当前）' : m.label;
+      return '<option value="'+val+'">'+label+'</option>';
+    }).join('');
+    sel.value = 'live';
+  }).catch(function(){});
+}
+
+function onMonthChange() {
+  var v = document.getElementById('monthSelect').value;
+  loadData(v === 'live' ? null : v);
 }
 // ====== GLOBAL STATE ======
 var activeFilters = { dateFrom: '', dateTo: '', person: '', errorOnly: false };
@@ -317,6 +362,12 @@ function destroyChart(key) {
 
 // ====== INIT ======
 function bootApp() {
+  // 月份切换时会重复调用：先清掉旧图表和筛选状态
+  Object.keys(chartInstances).forEach(function(k){ destroyChart(k); });
+  activeFilters = { dateFrom: '', dateTo: '', person: '', errorOnly: false };
+  cuotiFilter = { kp: '' };
+  var beo = document.getElementById('btnErrorOnly');
+  if (beo) beo.textContent = '仅显示执行问题';
   activeFilters.dateFrom = META.dateMin;
   activeFilters.dateTo = META.dateMax;
   document.getElementById('filterDateFrom').value = META.dateMin;
@@ -360,12 +411,7 @@ function bootApp() {
   });
 
   buildCatQuickFilter();
-  buildKPIs();
-  buildCharts();
-  buildPersonnelTable();
-  buildMBTable();
-  buildProblemSummary();
-  buildCuoti();
+  refreshAll();
 }
 
 // ====== 飞书修改入口 ======
@@ -374,7 +420,8 @@ var FEISHU_LINKS = {
   cuoti: 'https://zhuanspirit.feishu.cn/sheets/XJn6sd0WFhY5SPtDYoLcZcXenyf?sheet=76431e'
 };
 function openFeishuEdit() {
-  var url = (currentTab === 'cuoti' || currentTab === 'training') ? FEISHU_LINKS.cuoti : FEISHU_LINKS.quality;
+  var isCuotiTab = (currentTab === 'cuoti' || currentTab === 'training');
+  var url = isCuotiTab ? (META.cuotiUrl || FEISHU_LINKS.cuoti) : (META.editUrl || FEISHU_LINKS.quality);
   window.open(url, '_blank');
 }
 
@@ -560,7 +607,7 @@ function renderCuotiDetail() {
     var title = esc(r.kp).replace(/'/g, "\\'");
     var imgsHtml = (r.imgs && r.imgs.length)
       ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">' + r.imgs.map(function(f){
-          return '<img src="images/'+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+title+'\')">';
+          return '<img src="'+IMG_PREFIX+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+title+'\')">';
         }).join('') + '</div>'
       : '';
     return '<div class="cuoti-item">'
@@ -999,7 +1046,7 @@ function renderDiffList() {
     var detailTitle = esc(detail).replace(/'/g, "\\'");
     var imgsHtml = (d.imgs && d.imgs.length)
       ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">' + d.imgs.map(function(f){
-          return '<img src="images/'+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+detailTitle+'\')">';
+          return '<img src="'+IMG_PREFIX+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+detailTitle+'\')">';
         }).join('') + '</div>'
       : '';
     return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model
@@ -1017,13 +1064,13 @@ function renderDiffList() {
 function buildMBTable() {
   var data = MB.filter(isInFilter);
   document.querySelector('#mbTable tbody').innerHTML = data.map(function(d){
-    return '<tr class="clickable-row" onclick="viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+' - '+d.qaFinding+'\')"><td>'+(d.imageFile?'<img src="images/'+d.imageFile+'" class="img-thumb" loading="lazy" onclick="event.stopPropagation();viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+'\')">':'无图')+'</td><td><span class="badge '+(d.penalty==='是'?'bg-bad':'bg-good')+'">'+d.penalty+'</span></td><td style="font-family:monospace;font-size:11px">'+esc(d.code||'-')+'</td><td>'+d.date+'</td><td>'+d.brand+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.model+'">'+d.model+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.qaReviewer+'</td><td style="color:#dc2626">'+d.qaFinding+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.qaCheck+'">'+(d.qaCheck||'-')+'</td></tr>';
+    return '<tr class="clickable-row" onclick="viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+' - '+d.qaFinding+'\')"><td>'+(d.imageFile?'<img src="'+IMG_PREFIX+d.imageFile+'" class="img-thumb" loading="lazy" onclick="event.stopPropagation();viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+'\')">':'无图')+'</td><td><span class="badge '+(d.penalty==='是'?'bg-bad':'bg-good')+'">'+d.penalty+'</span></td><td style="font-family:monospace;font-size:11px">'+esc(d.code||'-')+'</td><td>'+d.date+'</td><td>'+d.brand+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.model+'">'+d.model+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.qaReviewer+'</td><td style="color:#dc2626">'+d.qaFinding+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.qaCheck+'">'+(d.qaCheck||'-')+'</td></tr>';
   }).join('');
 }
 
 function viewMBImage(imgFile, title) {
   if(!imgFile) return;
-  document.getElementById('lightboxImg').src = 'images/' + imgFile;
+  document.getElementById('lightboxImg').src = IMG_PREFIX + imgFile;
   document.getElementById('lightboxImg').alt = title || '';
   document.getElementById('lightbox').classList.add('show');
 }
