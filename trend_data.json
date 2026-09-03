@@ -5,6 +5,12 @@
       "samples": 74,
       "diffs": 29,
       "objDiff": 2
+    },
+    {
+      "date": "09/02",
+      "samples": 107,
+      "diffs": 25,
+      "objDiff": 3
     }
   ],
   "fourCat": {
@@ -13,6 +19,18 @@
         "date": "09/01",
         "samples": 11,
         "diffs": 1
+      },
+      {
+        "date": "09/02",
+        "samples": 9,
+        "diffs": 0
+      }
+    ],
+    "笔记本": [
+      {
+        "date": "09/02",
+        "samples": 48,
+        "diffs": 6
       }
     ]
   },
@@ -21,6 +39,11 @@
       "date": "09/01",
       "samples": 11,
       "diffs": 1
+    },
+    {
+      "date": "09/02",
+      "samples": 57,
+      "diffs": 6
     }
   ]
 }
