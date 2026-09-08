@@ -16,6 +16,7 @@ import os
 import re
 import shutil
 import subprocess
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -909,24 +910,50 @@ def parse_training(wb):
 # ---------- 飞书消息 ----------
 
 FEISHU_OPEN_ID = "ou_d80917787fd37a300ccf1ef12ef58c40"
+# 群播报目标群 chat_id（为空则只发单聊）。群需已添加机器人「质量数据助手」
+FEISHU_GROUP_CHAT_ID = "oc_7cf6ba533bd05961e6bd87292b4e436d"  # 武汉中心仓手机培训学习群
 
 
-def send_feishu_message(text):
-    """通过飞书 IM 给宗飞飞发送看板更新摘要（应用身份 + open_id）"""
+def _get_tenant_token():
     app_id, app_secret = get_app_credentials()
     r = _http_json(f"{BASE}/open-apis/auth/v3/tenant_access_token/internal", "POST",
                    body={"app_id": app_id, "app_secret": app_secret})
     if r.get("code") != 0:
         print(f"    警告: 获取 token 失败，跳过飞书消息（{r.get('msg')}）")
+        return None
+    return r["tenant_access_token"]
+
+
+def send_feishu_message(text):
+    """通过飞书 IM 给宗飞飞发送看板更新摘要（应用身份 + open_id）"""
+    token = _get_tenant_token()
+    if not token:
         return
     r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type=open_id", "POST",
-                   headers={"Authorization": f"Bearer {r['tenant_access_token']}"},
+                   headers={"Authorization": f"Bearer {token}"},
                    body={"receive_id": FEISHU_OPEN_ID, "msg_type": "text",
                          "content": json.dumps({"text": text})})
     if r.get("code") == 0:
         print("    已发送飞书消息 ✓")
     else:
         print(f"    警告: 飞书消息发送失败（{r.get('msg')}）")
+
+
+def send_group_broadcast(text):
+    """更新后把摘要播报到群（应用身份 + chat_id），失败不中断主流程"""
+    if not FEISHU_GROUP_CHAT_ID:
+        return
+    token = _get_tenant_token()
+    if not token:
+        return
+    r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type=chat_id", "POST",
+                   headers={"Authorization": f"Bearer {token}"},
+                   body={"receive_id": FEISHU_GROUP_CHAT_ID, "msg_type": "text",
+                         "content": json.dumps({"text": text})})
+    if r.get("code") == 0:
+        print("    已发送群播报 ✓")
+    else:
+        print(f"    警告: 群播报发送失败（{r.get('msg')}）")
 
 
 def build_summary_message(d):
@@ -953,6 +980,146 @@ def build_summary_message(d):
         lines.append(f"待辅导预警 {len(alerts)} 人: {shown}")
     lines.append("看板: https://zffzms1995.github.io/wuhan-quality-dashboard/")
     return "\n".join(lines)
+
+
+# ---------- 差异图拼图播报 ----------
+
+COLLAGE_COLS = 2          # 拼图列数
+COLLAGE_CELL_W = 600      # 每格宽度（像素）
+_FONT_PATHS = [
+    "/System/Library/Fonts/PingFang.ttc",
+    "/System/Library/Fonts/Hiragino Sans GB.ttc",
+    "/System/Library/Fonts/STHeiti Light.ttc",
+]
+
+
+def _load_cjk_font(size):
+    from PIL import ImageFont
+    for p in _FONT_PATHS:
+        try:
+            return ImageFont.truetype(p, size)
+        except Exception:
+            continue
+    return None
+
+
+def _collect_diff_images(d, images_dir):
+    """收集带图的差异记录 [(图片路径, 标注)]，顺序：手机 → 四品类 → 主板"""
+    entries = []
+    for r in d.get("diffs", []):
+        for img in r.get("imgs") or []:
+            p = os.path.join(images_dir, img)
+            if os.path.isfile(p):
+                cap = " · ".join(x for x in [r.get("date", "")[5:], r.get("cat") or "手机",
+                                             r.get("errorPerson"), r.get("qaJudgment")] if x)
+                entries.append((p, cap))
+    for r in d.get("fourcatDiffs", []):
+        for img in r.get("imgs") or []:
+            p = os.path.join(images_dir, img)
+            if os.path.isfile(p):
+                cap = " · ".join(x for x in [r.get("date", "")[5:], r.get("cat") or "四品类",
+                                             r.get("errorPerson"), r.get("isExecError")] if x)
+                entries.append((p, cap))
+    for r in d.get("mb", []):
+        img = r.get("imageFile")
+        if img:
+            p = os.path.join(images_dir, img)
+            if os.path.isfile(p):
+                cap = " · ".join(x for x in [r.get("date", "")[5:], "主板",
+                                             r.get("inspector"), (r.get("qaCheck") or "")[:14]] if x)
+                entries.append((p, cap))
+    return entries
+
+
+def build_diff_collage(d, images_dir, out_path):
+    """把差异图拼成 2 列长图，每张顶部加标注条。返回拼图路径，无图返回 None。"""
+    entries = _collect_diff_images(d, images_dir)
+    if not entries:
+        return None
+    from PIL import Image, ImageDraw
+    font = _load_cjk_font(24)
+    bar_h = 36 if font else 0
+    cell_w = COLLAGE_CELL_W
+    cols = COLLAGE_COLS
+    cells = []
+    for p, cap in entries:
+        im = Image.open(p).convert("RGB")
+        w, h = im.size
+        cells.append((im, cap, int(h * cell_w / w)))
+    rows = (len(cells) + cols - 1) // cols
+    row_hs = []
+    for ri in range(rows):
+        hs = [cells[i][2] for i in range(ri * cols, min((ri + 1) * cols, len(cells)))]
+        row_hs.append(max(hs) + bar_h)
+    canvas = Image.new("RGB", (cell_w * cols, sum(row_hs)), "white")
+    draw = ImageDraw.Draw(canvas)
+    y = 0
+    for ri in range(rows):
+        for ci in range(cols):
+            i = ri * cols + ci
+            if i >= len(cells):
+                continue
+            im, cap, _ = cells[i]
+            x = ci * cell_w
+            yy = y
+            if bar_h:
+                draw.rectangle([x, yy, x + cell_w, yy + bar_h], fill="#f2f3f5")
+                draw.text((x + 10, yy + (bar_h - 26) // 2), cap, fill="#4a4a4a", font=font)
+                yy += bar_h
+            canvas.paste(im, (x, yy))
+        y += row_hs[ri]
+    canvas.save(out_path, "JPEG", quality=82)
+    return out_path
+
+
+def upload_feishu_image(path, token):
+    """上传图片到飞书（im/v1/images），返回 image_key"""
+    boundary = f"----claude{int(time.time() * 1000)}"
+    with open(path, "rb") as f:
+        file_data = f.read()
+    body = b"".join([
+        (f"--{boundary}\r\n"
+         f'Content-Disposition: form-data; name="image_type"\r\n\r\nmessage\r\n').encode(),
+        (f"--{boundary}\r\n"
+         f'Content-Disposition: form-data; name="image"; filename="{os.path.basename(path)}"\r\n'
+         f"Content-Type: image/jpeg\r\n\r\n").encode(),
+        file_data,
+        f"\r\n--{boundary}--\r\n".encode(),
+    ])
+    req = urllib.request.Request(f"{BASE}/open-apis/im/v1/images?image_type=message", data=body,
+                                 method="POST")
+    req.add_header("Authorization", f"Bearer {token}")
+    req.add_header("Content-Type", f"multipart/form-data; boundary={boundary}")
+    with urllib.request.urlopen(req, timeout=180) as resp:
+        return json.loads(resp.read().decode())
+
+
+def send_group_diff_image(d, images_dir):
+    """把差异图拼成长图并播报到群（失败只警告，不中断主流程）"""
+    if not FEISHU_GROUP_CHAT_ID:
+        return
+    try:
+        tmp = os.path.join(tempfile.gettempdir(), "wuhan_diff_collage.jpg")
+        if not build_diff_collage(d, images_dir, tmp):
+            print("    本次无差异图片，跳过图片播报")
+            return
+        token = _get_tenant_token()
+        if not token:
+            return
+        up = upload_feishu_image(tmp, token)
+        if up.get("code") != 0:
+            print(f"    警告: 拼图上传失败（{up.get('msg')}）")
+            return
+        r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type=chat_id", "POST",
+                       headers={"Authorization": f"Bearer {token}"},
+                       body={"receive_id": FEISHU_GROUP_CHAT_ID, "msg_type": "image",
+                             "content": json.dumps({"image_key": up["data"]["image_key"]})})
+        if r.get("code") == 0:
+            print(f"    已发送差异图播报 ✓（{len(_collect_diff_images(d, images_dir))} 张）")
+        else:
+            print(f"    警告: 差异图播报发送失败（{r.get('msg')}）")
+    except Exception as e:
+        print(f"    警告: 差异图播报异常，跳过（{e}）")
 
 
 # ---------- 主流程 ----------
@@ -1240,6 +1407,8 @@ def main():
         print("已推送到 GitHub Pages ✓")
         print("发送飞书消息 ...")
         send_feishu_message(build_summary_message(dashboard))
+        send_group_broadcast(build_summary_message(dashboard))
+        send_group_diff_image(dashboard, images_dir)
     else:
         print("提示: 尚未配置远程仓库（origin），本地已提交。配置后执行 git push 即可发布。")
 
