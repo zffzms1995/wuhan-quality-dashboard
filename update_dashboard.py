@@ -653,6 +653,27 @@ def _parse_cuoti_wb(wb, images_dir):
           "cats": "/".join(sorted(v["cats"])), "lastDate": v["lastDate"]}
          for k, v in kp_map.items()),
         key=lambda x: (-x["count"], -x["persons"], x["kp"]))
+    # 按题目内容聚合（去空白+题号前缀规范化，合并同一题目的录入差异）
+    def _norm_content(s):
+        s = re.sub(r"\s+", "", s or "")
+        return re.sub(r"^[【\[]?(单选|多选|判断)题】?", "", s)
+    q_map = {}
+    for rec in records:
+        key = _norm_content(rec["content"])
+        if not key:
+            continue
+        q = q_map.setdefault(key, {"count": 0, "persons": set(),
+                                   "kps": {}, "lastDate": ""})
+        q["count"] += 1
+        q["persons"].update(rec["persons"])
+        q["kps"][rec["kp"]] = q["kps"].get(rec["kp"], 0) + 1
+        q["lastDate"] = max(q["lastDate"], rec["date"])
+    content_stats = sorted(
+        ({"content": key, "count": v["count"], "persons": len(v["persons"]),
+          "kp": max(v["kps"].items(), key=lambda t: t[1])[0],
+          "lastDate": v["lastDate"]}
+         for key, v in q_map.items()),
+        key=lambda x: (-x["persons"], -x["count"], x["content"]))
     person_stats = sorted(
         ({"person": k, "count": v["count"],
           "kps": sorted(v["kps"].items(), key=lambda t: (-t[1], t[0]))[:10]}
@@ -670,6 +691,7 @@ def _parse_cuoti_wb(wb, images_dir):
         },
         "records": records,
         "kpStats": kp_stats,
+        "contentStats": content_stats,
         "personStats": person_stats,
         "daily": [{"date": d, "count": daily_map[d]} for d in sorted(daily_map)],
         "catStats": [{"cat": k, "count": cat_map[k]}
@@ -974,6 +996,12 @@ def build_summary_message(d):
     if cm.get("count"):
         top_kp = (d.get("cuoti").get("kpStats") or [{}])[0]
         lines.append(f"错题 {cm['count']} 条 · 高频知识点: {top_kp.get('kp', '')} {top_kp.get('count', 0)}次")
+        top_q = d.get("cuoti").get("contentStats") or []
+        if top_q:
+            shown = "、".join(
+                f"「{q['content'][:18] + ('…' if len(q['content']) > 18 else '')}」{q['persons']}人"
+                for q in top_q[:3])
+            lines.append(f"错题人数TOP: {shown}")
     alerts = (d.get("training") or {}).get("alerts") or []
     if alerts:
         shown = "、".join(f"{a['person']}({a['lastDate'][5:]})" for a in alerts[:5])
