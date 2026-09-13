@@ -21,6 +21,7 @@ import time
 import urllib.error
 import urllib.request
 import warnings
+from collections import Counter
 from datetime import datetime, date, timedelta
 
 warnings.filterwarnings("ignore")
@@ -637,10 +638,12 @@ def _parse_cuoti_wb(wb, images_dir):
             person_map.setdefault(p, {"count": 0, "kps": {}})
             person_map[p]["count"] += 1
             person_map[p]["kps"][rec["kp"]] = person_map[p]["kps"].get(rec["kp"], 0) + 1
-        kp_map.setdefault(rec["kp"], {"count": 0, "persons": set(), "cats": set(), "lastDate": ""})
+        kp_map.setdefault(rec["kp"], {"count": 0, "persons": set(), "cats": set(),
+                                      "catCounts": {}, "lastDate": ""})
         kp_map[rec["kp"]]["count"] += 1
         kp_map[rec["kp"]]["persons"].update(rec["persons"])
         kp_map[rec["kp"]]["cats"].add(rec["cat"])
+        kp_map[rec["kp"]]["catCounts"][rec["cat"]] = kp_map[rec["kp"]]["catCounts"].get(rec["cat"], 0) + 1
         kp_map[rec["kp"]]["lastDate"] = max(kp_map[rec["kp"]]["lastDate"], rec["date"])
         daily_map[rec["date"]] = daily_map.get(rec["date"], 0) + 1
         if rec["cat"]:
@@ -650,12 +653,15 @@ def _parse_cuoti_wb(wb, images_dir):
 
     kp_stats = sorted(
         ({"kp": k, "count": v["count"], "persons": len(v["persons"]),
-          "cats": "/".join(sorted(v["cats"])), "lastDate": v["lastDate"]}
+          "cats": "/".join(sorted(v["cats"])),
+          "cat": max(v["catCounts"].items(), key=lambda t: t[1])[0],
+          "lastDate": v["lastDate"]}
          for k, v in kp_map.items()),
         key=lambda x: (-x["count"], -x["persons"], x["kp"]))
     # 按题目内容聚合（去空白+题号前缀规范化，合并同一题目的录入差异）
     def _norm_content(s):
         s = re.sub(r"\s+", "", s or "")
+        s = s.lstrip(".、，")
         return re.sub(r"^[【\[]?(单选|多选|判断)题】?", "", s)
     q_map = {}
     for rec in records:
@@ -663,14 +669,16 @@ def _parse_cuoti_wb(wb, images_dir):
         if not key:
             continue
         q = q_map.setdefault(key, {"count": 0, "persons": set(),
-                                   "kps": {}, "lastDate": ""})
+                                   "kps": {}, "cats": {}, "lastDate": ""})
         q["count"] += 1
         q["persons"].update(rec["persons"])
         q["kps"][rec["kp"]] = q["kps"].get(rec["kp"], 0) + 1
+        q["cats"][rec["cat"]] = q["cats"].get(rec["cat"], 0) + 1
         q["lastDate"] = max(q["lastDate"], rec["date"])
     content_stats = sorted(
         ({"content": key, "count": v["count"], "persons": len(v["persons"]),
           "kp": max(v["kps"].items(), key=lambda t: t[1])[0],
+          "cat": max(v["cats"].items(), key=lambda t: t[1])[0],
           "lastDate": v["lastDate"]}
          for key, v in q_map.items()),
         key=lambda x: (-x["persons"], -x["count"], x["content"]))
@@ -933,7 +941,14 @@ def parse_training(wb):
 
 FEISHU_OPEN_ID = "ou_d80917787fd37a300ccf1ef12ef58c40"
 # 群播报目标群 chat_id（为空则只发单聊）。群需已添加机器人「质量数据助手」
-FEISHU_GROUP_CHAT_ID = "oc_7cf6ba533bd05961e6bd87292b4e436d"  # 武汉中心仓手机培训学习群
+FEISHU_GROUP_CHAT_ID = "oc_7cf6ba533bd05961e6bd87292b4e436d"  # 武汉中心仓手机培训学习群（手机平板）
+NOTEBOOK_GROUP_CHAT_ID = "oc_2309d11cc5adef8572fd01977568b54b"  # 笔记本群
+CUOTI_PUSHED = os.path.join(REPO, "cuoti_pushed.json")  # 已推送错题记录（增量推送用）
+
+
+def _is_notebook(cat):
+    """品类是否属于笔记本（其余品类归手机平板群）"""
+    return (cat or "").strip() == "笔记本"
 
 
 def _get_tenant_token():
@@ -961,47 +976,76 @@ def send_feishu_message(text):
         print(f"    警告: 飞书消息发送失败（{r.get('msg')}）")
 
 
-def send_group_broadcast(text):
+def send_group_broadcast(text, chat_id=None, label="群"):
     """更新后把摘要播报到群（应用身份 + chat_id），失败不中断主流程"""
-    if not FEISHU_GROUP_CHAT_ID:
+    chat_id = chat_id or FEISHU_GROUP_CHAT_ID
+    if not chat_id:
         return
     token = _get_tenant_token()
     if not token:
         return
     r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type=chat_id", "POST",
                    headers={"Authorization": f"Bearer {token}"},
-                   body={"receive_id": FEISHU_GROUP_CHAT_ID, "msg_type": "text",
+                   body={"receive_id": chat_id, "msg_type": "text",
                          "content": json.dumps({"text": text})})
     if r.get("code") == 0:
-        print("    已发送群播报 ✓")
+        print(f"    已发送{label}播报 ✓")
     else:
-        print(f"    警告: 群播报发送失败（{r.get('msg')}）")
+        print(f"    警告: {label}播报发送失败（{r.get('msg')}）")
 
 
-def build_summary_message(d):
+def build_summary_message(d, group=None):
+    """生成看板更新摘要。group: None=单聊全量 / 'mobile'=手机平板群 / 'notebook'=笔记本群"""
+    def _q_text(q):
+        return f"「{q['content'][:18] + ('…' if len(q['content']) > 18 else '')}」{q['persons']}人"
+
+    def _cat_match(cat, is_nb):
+        return _is_notebook(cat) == is_nb
+
     m = d["meta"]
     lines = [f"【质量看板已更新】{m['monthLabel']}（数据至 {m['dateMax']}）"]
-    lines.append(f"手机差异 {len(d['diffs'])} 条 | 四品类 {len(d['fourcatDiffs'])} 条 | 主板 {len(d['mb'])} 条")
+
+    fourcat = d.get("fourcatDiffs") or []
+    if group == "notebook":
+        n = sum(1 for x in fourcat if _is_notebook(x.get("cat")))
+        lines.append(f"笔记本差异 {n} 条")
+    elif group == "mobile":
+        parts = [f"手机差异 {len(d['diffs'])} 条"]
+        parts += [f"{cat}差异 {cnt} 条" for cat, cnt in sorted(
+            Counter(x.get("cat") or "四品类" for x in fourcat
+                    if not _is_notebook(x.get("cat"))).items())]
+        parts.append(f"主板 {len(d['mb'])} 条")
+        lines.append(" | ".join(parts))
+    else:
+        lines.append(f"手机差异 {len(d['diffs'])} 条 | 四品类 {len(fourcat)} 条 | 主板 {len(d['mb'])} 条")
+
     exec_map = {}
-    for x in d["diffs"]:
-        if x.get("qaJudgment") == "执行问题" and x.get("errorPerson"):
-            exec_map[x["errorPerson"]] = exec_map.get(x["errorPerson"], 0) + 1
-    for x in d["fourcatDiffs"]:
+    if group != "notebook":  # 手机差异只属于手机平板侧
+        for x in d["diffs"]:
+            if x.get("qaJudgment") == "执行问题" and x.get("errorPerson"):
+                exec_map[x["errorPerson"]] = exec_map.get(x["errorPerson"], 0) + 1
+    for x in fourcat:
+        if group and _is_notebook(x.get("cat")) != (group == "notebook"):
+            continue
         if x.get("isExecError") and x.get("errorPerson"):
             exec_map[x["errorPerson"]] = exec_map.get(x["errorPerson"], 0) + 1
     top = sorted(exec_map.items(), key=lambda t: -t[1])[:3]
     if top:
         lines.append("执行问题TOP: " + "、".join(f"{p}{n}次" for p, n in top))
-    cm = (d.get("cuoti") or {}).get("meta") or {}
+
+    cuoti = d.get("cuoti") or {}
+    cm = cuoti.get("meta") or {}
     if cm.get("count"):
-        top_kp = (d.get("cuoti").get("kpStats") or [{}])[0]
-        lines.append(f"错题 {cm['count']} 条 · 高频知识点: {top_kp.get('kp', '')} {top_kp.get('count', 0)}次")
-        top_q = d.get("cuoti").get("contentStats") or []
-        if top_q:
-            shown = "、".join(
-                f"「{q['content'][:18] + ('…' if len(q['content']) > 18 else '')}」{q['persons']}人"
-                for q in top_q[:3])
-            lines.append(f"错题人数TOP: {shown}")
+        kp_list = [k for k in (cuoti.get("kpStats") or [])
+                   if not group or _cat_match(k.get("cat"), group == "notebook")]
+        q_list = [q for q in (cuoti.get("contentStats") or [])
+                  if not group or _cat_match(q.get("cat"), group == "notebook")]
+        if kp_list:
+            top_kp = kp_list[0]
+            lines.append(f"错题 {sum(k['count'] for k in kp_list)} 条 · "
+                         f"高频知识点: {top_kp.get('kp', '')} {top_kp.get('count', 0)}次")
+        if q_list:
+            lines.append("错题人数TOP: " + "、".join(_q_text(q) for q in q_list[:3]))
     alerts = (d.get("training") or {}).get("alerts") or []
     if alerts:
         shown = "、".join(f"{a['person']}({a['lastDate'][5:]})" for a in alerts[:5])
@@ -1031,37 +1075,43 @@ def _load_cjk_font(size):
     return None
 
 
-def _collect_diff_images(d, images_dir):
-    """收集带图的差异记录 [(图片路径, 标注)]，顺序：手机 → 四品类 → 主板"""
+def _collect_diff_images(d, images_dir, notebook_only=None):
+    """收集带图的差异记录 [(图片路径, 标注)]，顺序：手机 → 四品类 → 主板。
+    notebook_only: None=全部 / True=只笔记本 / False=只手机平板侧（手机+四品类非笔记本+主板）"""
     entries = []
-    for r in d.get("diffs", []):
-        for img in r.get("imgs") or []:
-            p = os.path.join(images_dir, img)
-            if os.path.isfile(p):
-                cap = " · ".join(x for x in [r.get("date", "")[5:], r.get("cat") or "手机",
-                                             r.get("errorPerson"), r.get("qaJudgment")] if x)
-                entries.append((p, cap))
+    if notebook_only is not True:
+        for r in d.get("diffs", []):
+            for img in r.get("imgs") or []:
+                p = os.path.join(images_dir, img)
+                if os.path.isfile(p):
+                    cap = " · ".join(x for x in [r.get("date", "")[5:], r.get("cat") or "手机",
+                                                 r.get("errorPerson"), r.get("qaJudgment")] if x)
+                    entries.append((p, cap))
     for r in d.get("fourcatDiffs", []):
+        is_nb = _is_notebook(r.get("cat"))
+        if notebook_only is not None and is_nb != notebook_only:
+            continue
         for img in r.get("imgs") or []:
             p = os.path.join(images_dir, img)
             if os.path.isfile(p):
                 cap = " · ".join(x for x in [r.get("date", "")[5:], r.get("cat") or "四品类",
                                              r.get("errorPerson"), r.get("isExecError")] if x)
                 entries.append((p, cap))
-    for r in d.get("mb", []):
-        img = r.get("imageFile")
-        if img:
-            p = os.path.join(images_dir, img)
-            if os.path.isfile(p):
-                cap = " · ".join(x for x in [r.get("date", "")[5:], "主板",
-                                             r.get("inspector"), (r.get("qaCheck") or "")[:14]] if x)
-                entries.append((p, cap))
+    if notebook_only is not True:
+        for r in d.get("mb", []):
+            img = r.get("imageFile")
+            if img:
+                p = os.path.join(images_dir, img)
+                if os.path.isfile(p):
+                    cap = " · ".join(x for x in [r.get("date", "")[5:], "主板",
+                                                 r.get("inspector"), (r.get("qaCheck") or "")[:14]] if x)
+                    entries.append((p, cap))
     return entries
 
 
-def build_diff_collage(d, images_dir, out_path):
+def build_diff_collage(d, images_dir, out_path, notebook_only=None):
     """把差异图拼成 2 列长图，每张顶部加标注条。返回拼图路径，无图返回 None。"""
-    entries = _collect_diff_images(d, images_dir)
+    entries = _collect_diff_images(d, images_dir, notebook_only)
     if not entries:
         return None
     from PIL import Image, ImageDraw
@@ -1122,14 +1172,19 @@ def upload_feishu_image(path, token):
         return json.loads(resp.read().decode())
 
 
-def send_group_diff_image(d, images_dir):
+def send_group_diff_image(d, images_dir, chat_id=None, label="群", notebook_only=None):
     """把差异图拼成长图并播报到群（失败只警告，不中断主流程）"""
-    if not FEISHU_GROUP_CHAT_ID:
+    chat_id = chat_id or FEISHU_GROUP_CHAT_ID
+    if not chat_id:
         return
     try:
-        tmp = os.path.join(tempfile.gettempdir(), "wuhan_diff_collage.jpg")
-        if not build_diff_collage(d, images_dir, tmp):
-            print("    本次无差异图片，跳过图片播报")
+        entries = _collect_diff_images(d, images_dir, notebook_only)
+        if not entries:
+            print(f"    本次无{label}差异图片，跳过图片播报")
+            return
+        tmp = os.path.join(tempfile.gettempdir(),
+                           f"wuhan_diff_collage_{'nb' if notebook_only else 'm'}.jpg")
+        if not build_diff_collage(d, images_dir, tmp, notebook_only):
             return
         token = _get_tenant_token()
         if not token:
@@ -1140,14 +1195,107 @@ def send_group_diff_image(d, images_dir):
             return
         r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type=chat_id", "POST",
                        headers={"Authorization": f"Bearer {token}"},
-                       body={"receive_id": FEISHU_GROUP_CHAT_ID, "msg_type": "image",
+                       body={"receive_id": chat_id, "msg_type": "image",
                              "content": json.dumps({"image_key": up["data"]["image_key"]})})
         if r.get("code") == 0:
-            print(f"    已发送差异图播报 ✓（{len(_collect_diff_images(d, images_dir))} 张）")
+            print(f"    已发送{label}差异图播报 ✓（{len(entries)} 张）")
         else:
-            print(f"    警告: 差异图播报发送失败（{r.get('msg')}）")
+            print(f"    警告: {label}差异图播报发送失败（{r.get('msg')}）")
     except Exception as e:
-        print(f"    警告: 差异图播报异常，跳过（{e}）")
+        print(f"    警告: {label}差异图播报异常，跳过（{e}）")
+
+
+# ---------- 错题增量推送 ----------
+
+def _cuoti_ident(r):
+    """错题记录身份标识：日期+知识点+题干+人员列表（用于增量对比）"""
+    return [r.get("date"), r.get("kp"), r.get("content"),
+            sorted(r.get("persons") or [])]
+
+
+def load_cuoti_state():
+    """读已推送错题标识列表；文件不存在返回 None（表示首次启用）"""
+    if not os.path.isfile(CUOTI_PUSHED):
+        return None
+    try:
+        with open(CUOTI_PUSHED, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def save_cuoti_state(records):
+    """把本次全部错题记录写入已推送状态（推送成功后调用）"""
+    idents = [_cuoti_ident(r) for r in records]
+    with open(CUOTI_PUSHED, "w", encoding="utf-8") as f:
+        json.dump(idents, f, ensure_ascii=False)
+
+
+def get_new_cuoti(records):
+    """本次新增（未推送过）的错题记录。返回 (new_records, is_first)"""
+    pushed = load_cuoti_state()
+    if pushed is None:
+        return [], True
+    pushed_set = {json.dumps(i, ensure_ascii=False) for i in pushed}
+    new = [r for r in records
+           if json.dumps(_cuoti_ident(r), ensure_ascii=False) not in pushed_set]
+    return new, False
+
+
+def _cuoti_text_block(r):
+    """单条错题的展示文本"""
+    parts = [f"📌 {r.get('kp') or ''} · {r.get('cat') or '未知品类'}（{r.get('date', '')[5:]}）"]
+    parts.append((r.get("content") or "").strip())
+    if r.get("answer"):
+        parts.append(f"✅ {r['answer']}")
+    if r.get("persons"):
+        parts.append(f"👥 {'、'.join(r['persons'])}")
+    return "\n".join(parts)
+
+
+def push_cuoti_batch(records, receive_id, receive_id_type, label=""):
+    """推送新增错题：一条汇总文字 + 每题截图。失败只警告，不中断主流程"""
+    if not records:
+        return
+    try:
+        token = _get_tenant_token()
+        if not token:
+            return
+        cats = Counter(r.get("cat") or "未知" for r in records)
+        head = ("📌 新增错题 " + "、".join(f"{c}{n}条" for c, n in sorted(cats.items()))
+                + "，详情如下：")
+        text = "\n\n".join([head] + [_cuoti_text_block(r) for r in records])
+        r = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type={receive_id_type}",
+                       "POST", headers={"Authorization": f"Bearer {token}"},
+                       body={"receive_id": receive_id, "msg_type": "text",
+                             "content": json.dumps({"text": text})})
+        if r.get("code") != 0:
+            print(f"    警告: 新增错题文字发送失败{label}（{r.get('msg')}）")
+        else:
+            print(f"    已发送新增错题文字{label} ✓（{len(records)} 条）")
+        # 截图按记录顺序发送
+        sent = 0
+        for rec in records:
+            for img in (rec.get("imgs") or []):
+                p = os.path.join(REPO, "images", img)
+                if not os.path.isfile(p):
+                    continue
+                up = upload_feishu_image(p, token)
+                if up.get("code") != 0:
+                    print(f"    警告: 错题截图上传失败（{up.get('msg')}）")
+                    continue
+                rr = _http_json(f"{BASE}/open-apis/im/v1/messages?receive_id_type={receive_id_type}",
+                                "POST", headers={"Authorization": f"Bearer {token}"},
+                                body={"receive_id": receive_id, "msg_type": "image",
+                                      "content": json.dumps({"image_key": up["data"]["image_key"]})})
+                if rr.get("code") == 0:
+                    sent += 1
+                else:
+                    print(f"    警告: 错题截图发送失败（{rr.get('msg')}）")
+        if sent:
+            print(f"    已发送错题截图{label} ✓（{sent} 张）")
+    except Exception as e:
+        print(f"    警告: 新增错题推送{label}异常，跳过（{e}）")
 
 
 # ---------- 主流程 ----------
@@ -1435,8 +1583,35 @@ def main():
         print("已推送到 GitHub Pages ✓")
         print("发送飞书消息 ...")
         send_feishu_message(build_summary_message(dashboard))
-        send_group_broadcast(build_summary_message(dashboard))
-        send_group_diff_image(dashboard, images_dir)
+
+        # 错题增量：只推本次新增的记录（按品类分发给对应群）
+        cuoti_recs = (dashboard.get("cuoti") or {}).get("records") or []
+        new_recs, is_first = get_new_cuoti(cuoti_recs)
+        if is_first:
+            save_cuoti_state(cuoti_recs)
+            print("    错题增量推送首次启用：已记录当前错题，下次更新起只推新增")
+            new_recs = []
+        nb_recs = [r for r in new_recs if _is_notebook(r.get("cat"))]
+        m_recs = [r for r in new_recs if not _is_notebook(r.get("cat"))]
+        if new_recs:
+            push_cuoti_batch(new_recs, FEISHU_OPEN_ID, "open_id", "（单聊）")
+
+        send_group_broadcast(build_summary_message(dashboard, "mobile"),
+                             FEISHU_GROUP_CHAT_ID, "手机平板群")
+        if m_recs:
+            push_cuoti_batch(m_recs, FEISHU_GROUP_CHAT_ID, "chat_id", "（手机平板群）")
+        send_group_diff_image(dashboard, images_dir, FEISHU_GROUP_CHAT_ID,
+                              "手机平板群", notebook_only=False)
+
+        send_group_broadcast(build_summary_message(dashboard, "notebook"),
+                             NOTEBOOK_GROUP_CHAT_ID, "笔记本群")
+        if nb_recs:
+            push_cuoti_batch(nb_recs, NOTEBOOK_GROUP_CHAT_ID, "chat_id", "（笔记本群）")
+        send_group_diff_image(dashboard, images_dir, NOTEBOOK_GROUP_CHAT_ID,
+                              "笔记本群", notebook_only=True)
+
+        if not is_first:
+            save_cuoti_state(cuoti_recs)
     else:
         print("提示: 尚未配置远程仓库（origin），本地已提交。配置后执行 git push 即可发布。")
 
