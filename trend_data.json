@@ -71,6 +71,12 @@
       "samples": 67,
       "diffs": 33,
       "objDiff": 5
+    },
+    {
+      "date": "09/13",
+      "samples": 76,
+      "diffs": 22,
+      "objDiff": 7
     }
   ],
   "fourCat": {
@@ -124,6 +130,11 @@
         "date": "09/11",
         "samples": 9,
         "diffs": 0
+      },
+      {
+        "date": "09/13",
+        "samples": 2,
+        "diffs": 1
       }
     ],
     "笔记本": [
@@ -176,6 +187,11 @@
         "date": "09/12",
         "samples": 46,
         "diffs": 0
+      },
+      {
+        "date": "09/13",
+        "samples": 51,
+        "diffs": 3
       }
     ]
   },
@@ -239,6 +255,11 @@
       "date": "09/12",
       "samples": 46,
       "diffs": 0
+    },
+    {
+      "date": "09/13",
+      "samples": 53,
+      "diffs": 4
     }
   ]
 }
