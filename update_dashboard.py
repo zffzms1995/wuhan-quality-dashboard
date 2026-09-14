@@ -490,8 +490,11 @@ def parse_qa(ws, phone_person_sum, phone_error_count, phone_diffs, mb_records, p
             total = fourcat_total.get((name, fc), 0)
             qa_miss = 0
         rate = round(errors / samples, 6) if samples else 0
+        # 扣款金额 = 30 元/单(台) × 扣款次数。当前纳入：手机QA差异(执行)、四品类QA差异(执行)、
+        # 主板图审核差异(qaMiss)；复测差异/视频稽核跳检漏检/拆损报损违规暂未记录，后续有数据再接入
+        deduction = 30 * (errors + qa_miss)
         out.append({**p, "samples": samples, "errors": errors, "totalErrors": total,
-                    "rate": rate, "ranking": "", "qaMiss": qa_miss})
+                    "rate": rate, "ranking": "", "qaMiss": qa_miss, "deduction": deduction})
 
     # 复现看板 RANK 公式（升序，差异率最低 = 第1名）
     for grp in ("【手机】后验一段", "【手机】后验二段"):

@@ -1706,7 +1706,8 @@
       "totalErrors": 7,
       "rate": 0.016129,
       "ranking": "3",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 150
     },
     {
       "cat": "📱",
@@ -1717,7 +1718,8 @@
       "totalErrors": 1,
       "rate": 0.00578,
       "ranking": "1",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 30
     },
     {
       "cat": "📱",
@@ -1728,7 +1730,8 @@
       "totalErrors": 5,
       "rate": 0.016667,
       "ranking": "4",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 120
     },
     {
       "cat": "📱",
@@ -1739,7 +1742,8 @@
       "totalErrors": 4,
       "rate": 0.009434,
       "ranking": "2",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 60
     },
     {
       "cat": "📱",
@@ -1750,7 +1754,8 @@
       "totalErrors": 0,
       "rate": 0,
       "ranking": "1",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1761,7 +1766,8 @@
       "totalErrors": 8,
       "rate": 0.016611,
       "ranking": "4",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 150
     },
     {
       "cat": "📱",
@@ -1772,7 +1778,8 @@
       "totalErrors": 12,
       "rate": 0.013333,
       "ranking": "3",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 180
     },
     {
       "cat": "📱",
@@ -1783,7 +1790,8 @@
       "totalErrors": 8,
       "rate": 0.023077,
       "ranking": "5",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 180
     },
     {
       "cat": "📱",
@@ -1794,7 +1802,8 @@
       "totalErrors": 6,
       "rate": 0.012195,
       "ranking": "2",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 120
     },
     {
       "cat": "💻",
@@ -1805,7 +1814,8 @@
       "totalErrors": 1,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "💻",
@@ -1816,7 +1826,8 @@
       "totalErrors": 1,
       "rate": 0.021277,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 30
     },
     {
       "cat": "💻",
@@ -1827,7 +1838,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "💻",
@@ -1838,7 +1850,8 @@
       "totalErrors": 6,
       "rate": 0.016667,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 30
     },
     {
       "cat": "💻",
@@ -1849,7 +1862,8 @@
       "totalErrors": 4,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "💻",
@@ -1860,7 +1874,8 @@
       "totalErrors": 2,
       "rate": 0.02381,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 30
     },
     {
       "cat": "💻",
@@ -1871,7 +1886,8 @@
       "totalErrors": 8,
       "rate": 0.089286,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 150
     },
     {
       "cat": "💻",
@@ -1882,7 +1898,8 @@
       "totalErrors": 6,
       "rate": 0.021739,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 60
     },
     {
       "cat": "📱",
@@ -1893,7 +1910,8 @@
       "totalErrors": 0,
       "rate": 0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1904,7 +1922,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1915,7 +1934,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1926,7 +1946,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1937,7 +1958,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1948,7 +1970,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1959,7 +1982,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1970,7 +1994,8 @@
       "totalErrors": 0,
       "rate": 0.0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     },
     {
       "cat": "📱",
@@ -1981,7 +2006,8 @@
       "totalErrors": 0,
       "rate": 0,
       "ranking": "",
-      "qaMiss": 0
+      "qaMiss": 0,
+      "deduction": 0
     }
   ],
   "errorFollowup": {
