@@ -54,6 +54,11 @@ def _http_json(url, method="GET", headers=None, body=None, timeout=120):
 
 
 def get_app_credentials():
+    # GitHub Actions 云端运行：凭证从环境变量读（仓库 secrets），不再依赖本机 ~/.claude.json
+    env_id = os.environ.get("FEISHU_APP_ID")
+    env_secret = os.environ.get("FEISHU_APP_SECRET")
+    if env_id and env_secret:
+        return env_id, env_secret
     try:
         with open(CLAUDE_JSON, encoding="utf-8") as f:
             cfg = json.load(f)
@@ -171,7 +176,7 @@ def find_sheet(wb, keyword, required=True):
 # ---------- 各工作表解析 ----------
 
 def _write_optimized_image(data, out_path):
-    """原图转 JPEG 并限制最长边 1600，加快国内访问 GitHub Pages 的速度；sips 失败时保留原图"""
+    """原图转 JPEG 并限制最长边 1600，加快国内访问 GitHub Pages 的速度；sips 失败时用 PIL，再失败保留原图"""
     tmp = out_path + ".tmp"
     with open(tmp, "wb") as f:
         f.write(data)
@@ -183,8 +188,20 @@ def _write_optimized_image(data, out_path):
         if r.returncode == 0:
             os.remove(tmp)
         else:
-            os.replace(tmp, out_path)
+            _pil_compress(tmp, out_path)
     except OSError:
+        _pil_compress(tmp, out_path)
+
+
+def _pil_compress(tmp, out_path):
+    """sips 不可用（Linux / GitHub Actions 云环境）时用 PIL 压缩"""
+    try:
+        from PIL import Image
+        im = Image.open(tmp)
+        im.thumbnail((1600, 1600))
+        im.convert("RGB").save(out_path, "JPEG", quality=80)
+        os.remove(tmp)
+    except Exception:
         os.replace(tmp, out_path)
 
 
@@ -490,11 +507,8 @@ def parse_qa(ws, phone_person_sum, phone_error_count, phone_diffs, mb_records, p
             total = fourcat_total.get((name, fc), 0)
             qa_miss = 0
         rate = round(errors / samples, 6) if samples else 0
-        # 扣款金额 = 30 元/单(台) × 扣款次数。当前纳入：手机QA差异(执行)、四品类QA差异(执行)、
-        # 主板图审核差异(qaMiss)；复测差异/视频稽核跳检漏检/拆损报损违规暂未记录，后续有数据再接入
-        deduction = 30 * (errors + qa_miss)
         out.append({**p, "samples": samples, "errors": errors, "totalErrors": total,
-                    "rate": rate, "ranking": "", "qaMiss": qa_miss, "deduction": deduction})
+                    "rate": rate, "ranking": "", "qaMiss": qa_miss})
 
     # 复现看板 RANK 公式（升序，差异率最低 = 第1名）
     for grp in ("【手机】后验一段", "【手机】后验二段"):
@@ -1065,6 +1079,10 @@ _FONT_PATHS = [
     "/System/Library/Fonts/PingFang.ttc",
     "/System/Library/Fonts/Hiragino Sans GB.ttc",
     "/System/Library/Fonts/STHeiti Light.ttc",
+    # Linux（GitHub Actions Ubuntu runner）中文字体
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+    "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
 ]
 
 

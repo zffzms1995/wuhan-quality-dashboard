@@ -170,8 +170,8 @@ tr:hover td{background:#f8fafc}
       <div style="display:flex;gap:4px;flex-wrap:wrap" id="catQuickFilter"></div>
     </div>
     <input class="search-box" placeholder="搜索质检人姓名..." oninput="filterPersonnelTable(this.value)">
-    <div class="scroll-x"><table id="personnelTable"><thead><tr><th>品类</th><th>小组</th><th>质检人</th><th>抽检量</th><th>执行差异量</th><th>总差异</th><th>差异率</th><th>评级</th><th>组内排名</th><th>质检失误</th><th>扣款金额</th></tr></thead><tbody></tbody></table></div>
-    <div style="font-size:11px;color:#9ca3af;margin-top:8px">差异量=飞书看板同口径的执行差异（客观问题+执行问题）；总差异=该人员所有差异记录。扣款金额=30元/单(台)×（执行差异+主板图审核差异）。点击行在下方查看该人员的差异明细</div>
+    <div class="scroll-x"><table id="personnelTable"><thead><tr><th>品类</th><th>小组</th><th>质检人</th><th>抽检量</th><th>执行差异量</th><th>总差异</th><th>差异率</th><th>评级</th><th>组内排名</th><th>质检失误</th></tr></thead><tbody></tbody></table></div>
+    <div style="font-size:11px;color:#9ca3af;margin-top:8px">差异量=飞书看板同口径的执行差异（客观问题+执行问题）；总差异=该人员所有差异记录。点击行在下方查看该人员的差异明细</div>
     <div style="font-size:11px;color:#d97706;margin-top:6px;display:none" id="qaMonthHint">提示：人员达成表为整月汇总口径（源自飞书公式），日期筛选不影响该表</div>
   </div>
   <div class="card">
@@ -1025,8 +1025,7 @@ function buildPersonnelTable() {
     var bc = pct===0?'bg-good':pct<1?'bg-good':pct<2?'bg-warn':'bg-bad';
     var errCell = d.errors>0 ? '<strong style="color:#dc2626">'+d.errors+'</strong>' : '0';
     var totalCell = d.totalErrors>0 ? d.totalErrors : '-';
-    var dedCell = d.deduction>0 ? '<strong style="color:#dc2626">'+d.deduction+' 元</strong>' : '0 元';
-    return '<tr class="clickable-row" onclick="showPersonDiffs(\''+d.inspector+'\')"><td>'+d.cat+'</td><td>'+d.grp+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.samples.toLocaleString()+'</td><td>'+errCell+'</td><td>'+totalCell+'</td><td>'+pct.toFixed(2)+'% <span class="rate-bar"><span class="rate-fill '+cls+'" style="width:'+Math.min(pct*25,100)+'%"></span></span></td><td><span class="badge '+bc+'">'+ (pct===0?'零差异':pct<1?'优秀':pct<2?'一般':'关注')+'</span></td><td>'+(d.ranking||'-')+'</td><td>'+(d.qaMiss||0)+'</td><td>'+dedCell+'</td></tr>';
+    return '<tr class="clickable-row" onclick="showPersonDiffs(\''+d.inspector+'\')"><td>'+d.cat+'</td><td>'+d.grp+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.samples.toLocaleString()+'</td><td>'+errCell+'</td><td>'+totalCell+'</td><td>'+pct.toFixed(2)+'% <span class="rate-bar"><span class="rate-fill '+cls+'" style="width:'+Math.min(pct*25,100)+'%"></span></span></td><td><span class="badge '+bc+'">'+ (pct===0?'零差异':pct<1?'优秀':pct<2?'一般':'关注')+'</span></td><td>'+(d.ranking||'-')+'</td><td>'+(d.qaMiss||0)+'</td></tr>';
   }).join('');
 }
 
