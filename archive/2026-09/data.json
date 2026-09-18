@@ -4,7 +4,7 @@
       "monthLabel": "2026年9月",
       "dateMin": "2026-09-01",
       "dateMax": "2026-09-30",
-      "updatedAt": "2026-09-16",
+      "updatedAt": "2026-09-17",
       "editUrl": "https://zhuanspirit.feishu.cn/sheets/Ju1AsGuTdhkcUutqO2fcuwJ7n3b",
       "cuotiUrl": "https://zhuanspirit.feishu.cn/sheets/TWeosy6eKhAvUVtFi9LcropFnog"
     },
@@ -31,83 +31,23 @@
       },
       {
         "penalty": "",
-        "date": "2026-09-10",
-        "code": "1221967961",
-        "brand": "苹果",
-        "model": "iPhone 14 Pro Max",
-        "grade": "B",
-        "merchant": "菏泽-赵豪（已验机2.0）",
-        "result": "不拦截",
-        "inspector": "苏杰",
-        "qaLevel1": "",
-        "qaLevel2": "",
-        "qaCheck": "",
-        "qaReviewer": "涂启超",
-        "hasDiff": "是",
-        "qaFinding": "屏幕-芯片有焊油/焊锡异常/封胶异常",
-        "notes": "",
-        "imageFile": "mb_5.jpg",
-        "id": 2
-      },
-      {
-        "penalty": "",
-        "date": "2026-09-10",
-        "code": "1221967976",
-        "brand": "苹果",
-        "model": "iPhone 14 Pro",
-        "grade": "B",
-        "merchant": "菏泽-赵豪（已验机2.0）",
-        "result": "不拦截",
-        "inspector": "苏杰",
-        "qaLevel1": "",
-        "qaLevel2": "",
-        "qaCheck": "",
-        "qaReviewer": "涂启超",
-        "hasDiff": "是",
-        "qaFinding": "标准变更豁免",
-        "notes": "",
-        "imageFile": "mb_4.jpg",
-        "id": 3
-      },
-      {
-        "penalty": "",
-        "date": "2026-09-11",
-        "code": "1221800069",
+        "date": "2026-09-15",
+        "code": "1223599771",
         "brand": "苹果",
         "model": "iPhone 13",
-        "grade": "B",
-        "merchant": "济南-刘化奇（采货侠）",
-        "result": "不拦截",
+        "grade": "D",
+        "merchant": "",
+        "result": "",
         "inspector": "黄宇",
-        "qaLevel1": "",
-        "qaLevel2": "",
-        "qaCheck": "",
+        "qaLevel1": "维修浸液",
+        "qaLevel2": "后摄维修情况",
+        "qaCheck": "后摄像头-有焊接/锡焊异常",
         "qaReviewer": "曾欣",
         "hasDiff": "是",
-        "qaFinding": "标准变更豁免",
-        "notes": "未拍全 没全部照射",
-        "imageFile": "mb_7.jpg",
-        "id": 4
-      },
-      {
-        "penalty": "",
-        "date": "2026-09-11",
-        "code": "1221955988",
-        "brand": "苹果",
-        "model": "iPhone 14 Pro",
-        "grade": "B",
-        "merchant": "济南-曾理（已验机2.0）",
-        "result": "不拦截",
-        "inspector": "黄宇",
-        "qaLevel1": "",
-        "qaLevel2": "",
-        "qaCheck": "",
-        "qaReviewer": "曾欣",
-        "hasDiff": "是",
-        "qaFinding": "标准变更豁免",
+        "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
         "notes": "",
-        "imageFile": "mb_6.jpg",
-        "id": 5
+        "imageFile": "mb_4.jpg",
+        "id": 2
       }
     ],
     "diffs": [
@@ -1455,11 +1395,11 @@
         "level2": "异常",
         "classify": "客观问题",
         "problemType": "功能问题",
-        "qaJudgment": "执行问题",
+        "qaJudgment": "隐性问题",
         "severity": "错判",
         "stage": "后验",
         "merchant": "武汉-李荣（已验机2.0）",
-        "errorPerson": "闵杰",
+        "errorPerson": "",
         "origInspector": "闵杰",
         "newInspector": "zhangyu34（张宇）"
       },
@@ -1523,6 +1463,109 @@
         "errorPerson": "钟仔琛",
         "origInspector": "钟仔琛",
         "newInspector": "liwen02（李文）"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1223640903",
+        "imgs": [
+          "phone_72_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "苹果",
+        "model": "iPhone 15",
+        "level1": "屏幕显示",
+        "level2": "压伤",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34（张宇）"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1223653579",
+        "imgs": [
+          "phone_74_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "realme",
+        "model": "realme GT Neo5 (150W)",
+        "level1": "外壳外观",
+        "level2": "2mm-10mm",
+        "classify": "客观问题",
+        "problemType": "外观问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "黄宇",
+        "origInspector": "黄宇",
+        "newInspector": "zhangyu34（张宇）"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1223743666",
+        "imgs": [
+          "phone_73_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo S50",
+        "level1": "维修浸液",
+        "level2": "后壳-后盖与镜头保护罩连接处有胶水溢出",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "错判",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "苏杰",
+        "origInspector": "苏杰",
+        "newInspector": "zhangyu34（张宇）"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1223758680",
+        "imgs": [
+          "phone_75_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "苹果",
+        "model": "iPhone 15 Pro Max",
+        "level1": "摄像头",
+        "level2": "有斑数量≤15且直径≤20mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34（张宇）"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1223758680",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "苹果",
+        "model": "iPhone 15 Pro Max",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34（张宇）"
       }
     ],
     "fourcatDiffs": [
@@ -2147,6 +2190,105 @@
         "classify": "客观问题",
         "problemType": "拆修问题",
         "qaType": "工艺问题"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1220546522",
+        "imgs": [
+          "four_36_1.jpg",
+          "four_36_2.jpg"
+        ],
+        "cat": "笔记本",
+        "brand": "机械革命",
+        "model": "机械革命 蛟龙 16K 2024",
+        "inspector": "熊文星",
+        "resultAction": "拦截",
+        "isExecError": "执行问题",
+        "errorPerson": "熊文星",
+        "level1": "其它状况",
+        "level2": "充电器",
+        "detail": "三方充电器-功能正常",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "执行问题"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1222266882",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "雷神",
+        "model": "雷神 911 MT 2021",
+        "inspector": "刘秉义",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "其它状况",
+        "level2": "系统情况",
+        "detail": "快捷键驱动失效",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "隐性问题"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1222421002",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "红米",
+        "model": "RedmiBook Pro 15 2022",
+        "inspector": "熊国梁",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "其它状况",
+        "level2": "系统情况",
+        "detail": "蓝屏",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "隐性问题"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1222421002",
+        "imgs": [
+          "four_39_1.jpg",
+          "four_39_2.jpg"
+        ],
+        "cat": "笔记本",
+        "brand": "红米",
+        "model": "RedmiBook Pro 15 2022",
+        "inspector": "熊国梁",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "维修浸液",
+        "level2": "部件更换",
+        "detail": "外壳有更换痕迹",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaType": "执行问题"
+      },
+      {
+        "date": "2026-09-16",
+        "code": "1223235973",
+        "imgs": [
+          "four_37_1.jpg",
+          "four_37_2.jpg"
+        ],
+        "cat": "笔记本",
+        "brand": "联想",
+        "model": "联想 扬天 V15",
+        "inspector": "熊国梁",
+        "resultAction": "拦截",
+        "isExecError": "执行问题",
+        "errorPerson": "熊国梁",
+        "level1": "其它状况",
+        "level2": "充电器",
+        "detail": "三方充电器-功能正常",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "执行问题"
       }
     ],
     "qaData": [
@@ -2154,49 +2296,45 @@
         "cat": "📱",
         "grp": "【手机】后验一段",
         "inspector": "闵杰",
-        "samples": 409,
-        "errors": 10,
+        "samples": 420,
+        "errors": 9,
         "totalErrors": 13,
-        "rate": 0.02445,
-        "ranking": "4",
-        "qaMiss": 0,
-        "deduction": 300
+        "rate": 0.021429,
+        "ranking": "3",
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验一段",
         "inspector": "张辰",
-        "samples": 270,
+        "samples": 286,
         "errors": 1,
         "totalErrors": 1,
-        "rate": 0.003704,
+        "rate": 0.003497,
         "ranking": "1",
-        "qaMiss": 0,
-        "deduction": 30
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验一段",
         "inspector": "钟仔琛",
-        "samples": 249,
-        "errors": 5,
-        "totalErrors": 6,
-        "rate": 0.02008,
-        "ranking": "3",
-        "qaMiss": 0,
-        "deduction": 150
+        "samples": 253,
+        "errors": 7,
+        "totalErrors": 9,
+        "rate": 0.027668,
+        "ranking": "4",
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验一段",
         "inspector": "李波",
-        "samples": 255,
+        "samples": 269,
         "errors": 3,
         "totalErrors": 5,
-        "rate": 0.011765,
+        "rate": 0.011152,
         "ranking": "2",
-        "qaMiss": 0,
-        "deduction": 90
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2207,80 +2345,73 @@
         "totalErrors": 0,
         "rate": 0,
         "ranking": "1",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验二段",
         "inspector": "王彪",
-        "samples": 399,
+        "samples": 415,
         "errors": 8,
         "totalErrors": 11,
-        "rate": 0.02005,
+        "rate": 0.019277,
         "ranking": "4",
-        "qaMiss": 0,
-        "deduction": 240
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验二段",
         "inspector": "苏杰",
-        "samples": 559,
-        "errors": 10,
-        "totalErrors": 18,
-        "rate": 0.017889,
+        "samples": 573,
+        "errors": 11,
+        "totalErrors": 19,
+        "rate": 0.019197,
         "ranking": "3",
-        "qaMiss": 0,
-        "deduction": 300
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验二段",
         "inspector": "黄宇",
-        "samples": 301,
-        "errors": 7,
-        "totalErrors": 9,
-        "rate": 0.023256,
+        "samples": 308,
+        "errors": 8,
+        "totalErrors": 10,
+        "rate": 0.025974,
         "ranking": "5",
-        "qaMiss": 0,
-        "deduction": 210
+        "qaMiss": 0
       },
       {
         "cat": "📱",
         "grp": "【手机】后验二段",
         "inspector": "陈金伟",
-        "samples": 328,
+        "samples": 336,
         "errors": 4,
         "totalErrors": 6,
-        "rate": 0.012195,
+        "rate": 0.011905,
         "ranking": "2",
-        "qaMiss": 0,
-        "deduction": 120
+        "qaMiss": 0
       },
       {
         "cat": "💻",
         "grp": "笔记本质检",
         "inspector": "常凌云",
-        "samples": 66,
+        "samples": 75,
         "errors": 0,
         "totalErrors": 1,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "💻",
         "grp": "笔记本质检",
         "inspector": "邱锦涛",
-        "samples": 62,
+        "samples": 68,
         "errors": 1,
         "totalErrors": 1,
-        "rate": 0.016129,
+        "rate": 0.014706,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 30
+        "qaMiss": 0
       },
       {
         "cat": "💻",
@@ -2291,8 +2422,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "💻",
@@ -2303,56 +2433,51 @@
         "totalErrors": 6,
         "rate": 0.012821,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 30
+        "qaMiss": 0
       },
       {
         "cat": "💻",
         "grp": "笔记本质检",
         "inspector": "熊帅",
-        "samples": 80,
+        "samples": 92,
         "errors": 0,
         "totalErrors": 4,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "💻",
         "grp": "笔记本质检",
         "inspector": "熊文星",
-        "samples": 64,
-        "errors": 2,
-        "totalErrors": 3,
-        "rate": 0.03125,
+        "samples": 72,
+        "errors": 3,
+        "totalErrors": 4,
+        "rate": 0.041667,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 60
+        "qaMiss": 0
       },
       {
         "cat": "💻",
         "grp": "笔记本质检",
         "inspector": "熊国梁",
-        "samples": 70,
-        "errors": 6,
-        "totalErrors": 10,
-        "rate": 0.085714,
+        "samples": 78,
+        "errors": 7,
+        "totalErrors": 13,
+        "rate": 0.089744,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 180
+        "qaMiss": 0
       },
       {
         "cat": "💻",
         "grp": "笔记本质检",
         "inspector": "刘秉义",
-        "samples": 114,
+        "samples": 121,
         "errors": 2,
-        "totalErrors": 7,
-        "rate": 0.017544,
+        "totalErrors": 8,
+        "rate": 0.016529,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 60
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2363,8 +2488,7 @@
         "totalErrors": 0,
         "rate": 0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2375,8 +2499,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2387,8 +2510,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2399,8 +2521,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2411,8 +2532,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2423,8 +2543,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2435,8 +2554,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2447,8 +2565,7 @@
         "totalErrors": 0,
         "rate": 0.0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       },
       {
         "cat": "📱",
@@ -2459,8 +2576,7 @@
         "totalErrors": 0,
         "rate": 0,
         "ranking": "",
-        "qaMiss": 0,
-        "deduction": 0
+        "qaMiss": 0
       }
     ],
     "errorFollowup": {
@@ -2661,17 +2777,17 @@
       "t1": [
         {
           "category": "📱",
-          "samples": 99,
-          "objDiffs": 5,
+          "samples": 45,
+          "objDiffs": 4,
           "execDiffs": 5,
-          "execRate": 0.050505
+          "execRate": 0.111111
         },
         {
           "category": "💻",
-          "samples": 52,
+          "samples": 50,
           "objDiffs": 0,
-          "execDiffs": 0,
-          "execRate": 0.0
+          "execDiffs": 3,
+          "execRate": 0.06
         }
       ],
       "weeklyRates": [
@@ -8786,6 +8902,12 @@
         "samples": 99,
         "diffs": 30,
         "objDiff": 5
+      },
+      {
+        "date": "09/16",
+        "samples": 45,
+        "diffs": 19,
+        "objDiff": 4
       }
     ],
     "fourCat": {
@@ -8921,6 +9043,11 @@
           "date": "09/15",
           "samples": 52,
           "diffs": 4
+        },
+        {
+          "date": "09/16",
+          "samples": 50,
+          "diffs": 3
         }
       ]
     },
@@ -8999,6 +9126,11 @@
         "date": "09/15",
         "samples": 63,
         "diffs": 4
+      },
+      {
+        "date": "09/16",
+        "samples": 50,
+        "diffs": 3
       }
     ]
   }
