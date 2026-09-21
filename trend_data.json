@@ -101,6 +101,24 @@
       "samples": 66,
       "diffs": 20,
       "objDiff": 2
+    },
+    {
+      "date": "09/18",
+      "samples": 153,
+      "diffs": 42,
+      "objDiff": 6
+    },
+    {
+      "date": "09/19",
+      "samples": 143,
+      "diffs": 50,
+      "objDiff": 7
+    },
+    {
+      "date": "09/20",
+      "samples": 86,
+      "diffs": 21,
+      "objDiff": 2
     }
   ],
   "fourCat": {
@@ -169,6 +187,16 @@
         "date": "09/15",
         "samples": 11,
         "diffs": 0
+      },
+      {
+        "date": "09/18",
+        "samples": 6,
+        "diffs": 0
+      },
+      {
+        "date": "09/19",
+        "samples": 12,
+        "diffs": 2
       }
     ],
     "笔记本": [
@@ -240,6 +268,16 @@
       {
         "date": "09/16",
         "samples": 50,
+        "diffs": 3
+      },
+      {
+        "date": "09/18",
+        "samples": 42,
+        "diffs": 1
+      },
+      {
+        "date": "09/19",
+        "samples": 49,
         "diffs": 3
       }
     ]
@@ -324,6 +362,16 @@
       "date": "09/16",
       "samples": 50,
       "diffs": 3
+    },
+    {
+      "date": "09/18",
+      "samples": 48,
+      "diffs": 1
+    },
+    {
+      "date": "09/19",
+      "samples": 61,
+      "diffs": 5
     }
   ]
 }

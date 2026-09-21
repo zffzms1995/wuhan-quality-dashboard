@@ -3,7 +3,7 @@
     "monthLabel": "2026年9月",
     "dateMin": "2026-09-01",
     "dateMax": "2026-09-30",
-    "updatedAt": "2026-09-18",
+    "updatedAt": "2026-09-21",
     "editUrl": "https://zhuanspirit.feishu.cn/sheets/Ju1AsGuTdhkcUutqO2fcuwJ7n3b",
     "cuotiUrl": "https://zhuanspirit.feishu.cn/sheets/TWeosy6eKhAvUVtFi9LcropFnog"
   },
@@ -67,6 +67,26 @@
       "notes": "",
       "imageFile": "mb_5.jpg",
       "id": 3
+    },
+    {
+      "penalty": "",
+      "date": "2026-09-18",
+      "code": "1222724047",
+      "brand": "苹果",
+      "model": "iPhone Xs Max",
+      "grade": "B",
+      "merchant": "济南-刘化奇（采货侠）",
+      "result": "不拦截",
+      "inspector": "王彪",
+      "qaLevel1": "",
+      "qaLevel2": "",
+      "qaCheck": "",
+      "qaReviewer": "刘翔",
+      "hasDiff": "是",
+      "qaFinding": "部分零件维修更换",
+      "notes": "",
+      "imageFile": "mb_6.jpg",
+      "id": 4
     }
   ],
   "diffs": [
@@ -1627,6 +1647,431 @@
       "errorPerson": "黄宇",
       "origInspector": "黄宇",
       "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222695926",
+      "imgs": [
+        "phone_83_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "OPPO",
+      "model": "OPPO Reno11",
+      "level1": "维修浸液",
+      "level2": "部分零件维修更换",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "孝感-李珍清",
+      "errorPerson": "陈金伟",
+      "origInspector": "陈金伟",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222724045",
+      "imgs": [
+        "phone_84_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 8 Plus",
+      "level1": "摄像头",
+      "level2": "有斑数量≤15且直径≤20mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "济南-刘化奇（采货侠）",
+      "errorPerson": "张辰",
+      "origInspector": "张辰",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222724045",
+      "imgs": [
+        "phone_85_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 8 Plus",
+      "level1": "屏幕显示",
+      "level2": "明显（可拍）",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "济南-刘化奇（采货侠）",
+      "errorPerson": "",
+      "origInspector": "张辰",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222856546",
+      "imgs": [
+        "phone_86_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "红米",
+      "model": "红米 Turbo 4 Pro",
+      "level1": "屏幕显示",
+      "level2": "状态栏以外透图直径＞30mm或数量＞10",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "济南-曾理（已验机2.0）",
+      "errorPerson": "钟仔琛",
+      "origInspector": "钟仔琛",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222966340",
+      "imgs": [
+        "phone_79_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "vivo",
+      "model": "vivo S18",
+      "level1": "维修浸液",
+      "level2": "后壳-后盖与镜头保护罩连接处有胶水溢出",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "王彪",
+      "origInspector": "王彪",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1223192653",
+      "imgs": [
+        "phone_80_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "vivo",
+      "model": "vivo S18",
+      "level1": "维修浸液",
+      "level2": "部分零件维修更换",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "黄宇",
+      "origInspector": "黄宇",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1223192653",
+      "imgs": [
+        "phone_81_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "vivo",
+      "model": "vivo S18",
+      "level1": "维修浸液",
+      "level2": "后壳-与中框有溢胶/撬痕",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "",
+      "origInspector": "黄宇",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1223192653",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "vivo",
+      "model": "vivo S18",
+      "level1": "维修浸液",
+      "level2": "外屏-有胶水溢出/撬痕",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "",
+      "origInspector": "黄宇",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1224155762",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 16 Pro",
+      "level1": "摄像头",
+      "level2": "有斑数量≤3且直径≤5mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "李波",
+      "origInspector": "李波",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1224155762",
+      "imgs": [
+        "phone_88_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 16 Pro",
+      "level1": "摄像头",
+      "level2": "有斑数量≤15且直径≤20mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "",
+      "origInspector": "李波",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1219763472",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "红米",
+      "model": "红米 K40 增强版",
+      "level1": "其它状况",
+      "level2": "耗电快",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "隐性问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-兆富仓（采货侠）",
+      "errorPerson": "",
+      "origInspector": "李波",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1222603253",
+      "imgs": [
+        "phone_91_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "红米",
+      "model": "红米 K60",
+      "level1": "摄像头",
+      "level2": "坏点数量＞1或直径＞0.5mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "李波",
+      "origInspector": "李波",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1223008828",
+      "imgs": [
+        "phone_89_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "三星",
+      "model": "三星 Galaxy Z Fold6",
+      "level1": "其它状况",
+      "level2": "无以下情况",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-纪希望（已验机2.0）",
+      "errorPerson": "王彪",
+      "origInspector": "王彪",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1223195550",
+      "imgs": [
+        "phone_93_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "红米",
+      "model": "红米 K50 至尊版",
+      "level1": "屏幕显示",
+      "level2": "状态栏以外透图（可拍）",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "武汉-兆富仓（采货侠）",
+      "errorPerson": "李波",
+      "origInspector": "李波",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1223195550",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "红米",
+      "model": "红米 K50 至尊版",
+      "level1": "屏幕显示",
+      "level2": "显示异常/无法正常显示",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "武汉-兆富仓（采货侠）",
+      "errorPerson": "",
+      "origInspector": "李波",
+      "newInspector": "liwen02（李文）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1223439195",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "OPPO",
+      "model": "OPPO A5 活力版（2025）",
+      "level1": "外壳外观",
+      "level2": "无",
+      "classify": "客观问题",
+      "problemType": "外观问题",
+      "qaJudgment": "隐性问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "",
+      "origInspector": "苏杰",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1223768079",
+      "imgs": [
+        "phone_95_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "OPPO",
+      "model": "OPPO Reno14",
+      "level1": "摄像头",
+      "level2": "坏点数量＞1或直径＞0.5mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "后验",
+      "merchant": "武汉-李荣（已验机2.0）",
+      "errorPerson": "钟仔琛",
+      "origInspector": "钟仔琛",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1224010094",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "realme",
+      "model": "realme GT Neo2",
+      "level1": "维修浸液",
+      "level2": "后壳-后盖与镜头保护罩连接处有胶水溢出",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "工艺问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "武汉-黄先生（已验机2.0）",
+      "errorPerson": "",
+      "origInspector": "苏杰",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-20",
+      "code": "1224434997",
+      "imgs": [
+        "phone_98_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 14 Pro",
+      "level1": "摄像头",
+      "level2": "有斑数量≤3且直径≤5mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "钟仔琛",
+      "origInspector": "钟仔琛",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-20",
+      "code": "1224434997",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 14 Pro",
+      "level1": "摄像头",
+      "level2": "有斑数量≤15且直径≤20mm",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "",
+      "origInspector": "钟仔琛",
+      "newInspector": "zhangyu34（张宇）"
+    },
+    {
+      "date": "2026-09-20",
+      "code": "1224626447",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "荣耀",
+      "model": "荣耀 X40 GT",
+      "level1": "无线",
+      "level2": "蓝牙异常",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "隐性问题",
+      "severity": "错判",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "",
+      "origInspector": "闵杰",
+      "newInspector": "zhangyu34（张宇）"
     }
   ],
   "fourcatDiffs": [
@@ -2350,6 +2795,106 @@
       "classify": "客观问题",
       "problemType": "功能问题",
       "qaType": "执行问题"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222261947",
+      "imgs": [
+        "four_43_1.jpg"
+      ],
+      "cat": "笔记本",
+      "brand": "华为",
+      "model": "华为 MateBook D 15 2022",
+      "inspector": "常凌云",
+      "resultAction": "拦截",
+      "isExecError": "执行问题",
+      "errorPerson": "常凌云",
+      "level1": "按键",
+      "level2": "其他按键功能",
+      "detail": "按键指示灯功能异常",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaType": "执行问题"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222722658",
+      "imgs": [
+        "four_41_1.jpg"
+      ],
+      "cat": "笔记本",
+      "brand": "华为",
+      "model": "华为 Matebook E Go 2022",
+      "inspector": "邱锦涛",
+      "resultAction": "拦截",
+      "isExecError": "执行问题",
+      "errorPerson": "邱锦涛",
+      "level1": "其它外观",
+      "level2": "机身",
+      "detail": "",
+      "classify": "客观问题",
+      "problemType": "外观问题",
+      "qaType": "执行问题"
+    },
+    {
+      "date": "2026-09-18",
+      "code": "1222722658",
+      "imgs": [
+        "four_42_1.jpg"
+      ],
+      "cat": "笔记本",
+      "brand": "华为",
+      "model": "华为 Matebook E Go 2022",
+      "inspector": "邱锦涛",
+      "resultAction": "拦截",
+      "isExecError": "",
+      "errorPerson": "",
+      "level1": "维修浸液",
+      "level2": "部件维修",
+      "detail": "屏幕维修痕迹",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaType": "执行问题"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1222835498",
+      "imgs": [
+        "four_45_1.jpg"
+      ],
+      "cat": "平板电脑",
+      "brand": "华硕",
+      "model": "华硕 ROG 幻 X",
+      "inspector": "刘秉义",
+      "resultAction": "入仓",
+      "isExecError": "执行问题",
+      "errorPerson": "刘秉义",
+      "level1": "其它外观",
+      "level2": "机身",
+      "detail": "背部透明壳进灰",
+      "classify": "客观问题",
+      "problemType": "外观问题",
+      "qaType": "执行问题"
+    },
+    {
+      "date": "2026-09-19",
+      "code": "1223954999",
+      "imgs": [
+        "four_44_1.jpg"
+      ],
+      "cat": "笔记本",
+      "brand": "联想",
+      "model": "联想 拯救者 Y7000 2019",
+      "inspector": "常凌云",
+      "resultAction": "不拦截",
+      "isExecError": "执行问题",
+      "errorPerson": "常凌云",
+      "level1": "其它状况",
+      "level2": "充电器",
+      "detail": "充电器损坏",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaType": "执行问题"
     }
   ],
   "qaData": [
@@ -2357,10 +2902,10 @@
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "闵杰",
-      "samples": 443,
+      "samples": 499,
       "errors": 9,
-      "totalErrors": 13,
-      "rate": 0.020316,
+      "totalErrors": 14,
+      "rate": 0.018036,
       "ranking": "3",
       "qaMiss": 0
     },
@@ -2368,10 +2913,10 @@
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "张辰",
-      "samples": 295,
-      "errors": 1,
-      "totalErrors": 1,
-      "rate": 0.00339,
+      "samples": 420,
+      "errors": 2,
+      "totalErrors": 3,
+      "rate": 0.004762,
       "ranking": "1",
       "qaMiss": 0
     },
@@ -2379,10 +2924,10 @@
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "钟仔琛",
-      "samples": 264,
-      "errors": 7,
-      "totalErrors": 9,
-      "rate": 0.026515,
+      "samples": 353,
+      "errors": 10,
+      "totalErrors": 13,
+      "rate": 0.028329,
       "ranking": "4",
       "qaMiss": 0
     },
@@ -2390,10 +2935,10 @@
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "李波",
-      "samples": 292,
-      "errors": 3,
-      "totalErrors": 5,
-      "rate": 0.010274,
+      "samples": 405,
+      "errors": 6,
+      "totalErrors": 11,
+      "rate": 0.014815,
       "ranking": "2",
       "qaMiss": 0
     },
@@ -2412,32 +2957,32 @@
       "cat": "📱",
       "grp": "【手机】后验二段",
       "inspector": "王彪",
-      "samples": 434,
-      "errors": 8,
-      "totalErrors": 11,
-      "rate": 0.018433,
-      "ranking": "3",
-      "qaMiss": 0
-    },
-    {
-      "cat": "📱",
-      "grp": "【手机】后验二段",
-      "inspector": "苏杰",
-      "samples": 594,
-      "errors": 12,
-      "totalErrors": 20,
-      "rate": 0.020202,
+      "samples": 526,
+      "errors": 10,
+      "totalErrors": 13,
+      "rate": 0.019011,
       "ranking": "4",
       "qaMiss": 0
     },
     {
       "cat": "📱",
       "grp": "【手机】后验二段",
+      "inspector": "苏杰",
+      "samples": 690,
+      "errors": 12,
+      "totalErrors": 22,
+      "rate": 0.017391,
+      "ranking": "3",
+      "qaMiss": 0
+    },
+    {
+      "cat": "📱",
+      "grp": "【手机】后验二段",
       "inspector": "黄宇",
-      "samples": 322,
-      "errors": 9,
-      "totalErrors": 11,
-      "rate": 0.02795,
+      "samples": 410,
+      "errors": 10,
+      "totalErrors": 14,
+      "rate": 0.02439,
       "ranking": "5",
       "qaMiss": 0
     },
@@ -2445,10 +2990,10 @@
       "cat": "📱",
       "grp": "【手机】后验二段",
       "inspector": "陈金伟",
-      "samples": 348,
-      "errors": 4,
-      "totalErrors": 6,
-      "rate": 0.011494,
+      "samples": 454,
+      "errors": 5,
+      "totalErrors": 7,
+      "rate": 0.011013,
       "ranking": "2",
       "qaMiss": 0
     },
@@ -2456,10 +3001,10 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "常凌云",
-      "samples": 75,
-      "errors": 0,
-      "totalErrors": 1,
-      "rate": 0.0,
+      "samples": 87,
+      "errors": 2,
+      "totalErrors": 3,
+      "rate": 0.022989,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2467,10 +3012,10 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "邱锦涛",
-      "samples": 68,
-      "errors": 1,
-      "totalErrors": 1,
-      "rate": 0.014706,
+      "samples": 79,
+      "errors": 2,
+      "totalErrors": 3,
+      "rate": 0.025316,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2489,10 +3034,10 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "杨宇",
-      "samples": 78,
+      "samples": 96,
       "errors": 1,
       "totalErrors": 6,
-      "rate": 0.012821,
+      "rate": 0.010417,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2500,7 +3045,7 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "熊帅",
-      "samples": 92,
+      "samples": 103,
       "errors": 0,
       "totalErrors": 4,
       "rate": 0.0,
@@ -2511,10 +3056,10 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "熊文星",
-      "samples": 72,
+      "samples": 90,
       "errors": 3,
       "totalErrors": 4,
-      "rate": 0.041667,
+      "rate": 0.033333,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2533,10 +3078,10 @@
       "cat": "💻",
       "grp": "笔记本质检",
       "inspector": "刘秉义",
-      "samples": 121,
+      "samples": 142,
       "errors": 2,
       "totalErrors": 8,
-      "rate": 0.016529,
+      "rate": 0.014085,
       "ranking": "",
       "qaMiss": 0
     },
@@ -2555,7 +3100,7 @@
       "cat": "📱",
       "grp": "平板电脑",
       "inspector": "闵杰",
-      "samples": 39,
+      "samples": 41,
       "errors": 0,
       "totalErrors": 0,
       "rate": 0.0,
@@ -2577,7 +3122,7 @@
       "cat": "📱",
       "grp": "平板电脑",
       "inspector": "李波",
-      "samples": 28,
+      "samples": 36,
       "errors": 0,
       "totalErrors": 0,
       "rate": 0.0,
@@ -2610,7 +3155,7 @@
       "cat": "📱",
       "grp": "平板电脑",
       "inspector": "张辰",
-      "samples": 21,
+      "samples": 25,
       "errors": 0,
       "totalErrors": 0,
       "rate": 0.0,
@@ -2838,10 +3383,10 @@
     "t1": [
       {
         "category": "📱",
-        "samples": 66,
+        "samples": 86,
         "objDiffs": 2,
         "execDiffs": 2,
-        "execRate": 0.030303
+        "execRate": 0.023256
       },
       {
         "category": "💻",
@@ -2879,12 +3424,12 @@
   },
   "cuoti": {
     "meta": {
-      "count": 139,
-      "kpCount": 91,
+      "count": 163,
+      "kpCount": 102,
       "personCount": 15,
       "catCount": 3,
       "dateMin": "2026-09-01",
-      "dateMax": "2026-09-16"
+      "dateMax": "2026-09-20"
     },
     "records": [
       {
@@ -5051,7 +5596,7 @@
         "date": "2026-09-16",
         "station": "武汉分站",
         "examType": "日考",
-        "cat": "",
+        "cat": "平板",
         "kp": "摄像头-后摄更换",
         "content": "单选题】\n如图描述所示，此机器应判定“摄像头-（）”。（3）\nA.前摄缺失\nB.后摄缺失\nC.前摄更换\nD.后摄更换",
         "persons": [
@@ -5064,29 +5609,422 @@
         ]
       },
       {
-        "date": "2026-09-16",
+        "date": "2026-09-18",
         "station": "武汉分站",
-        "examType": "日考",
-        "cat": "",
-        "kp": "",
-        "content": "",
-        "persons": [],
-        "answer": "",
-        "imgs": []
+        "examType": "周考",
+        "cat": "手机二段",
+        "kp": "屏幕维修情况-关于本机/辅助工具显示“显示屏-正品Apple部件",
+        "content": "多选题】\n以下能判定屏幕维修情况-关于本机/辅助工具显示“显示屏-正品Apple部件”的情况是？\nA.关于本机中显示部件和服务历史记录“显示屏-正品Apple部件”。\nB.爱思助手/沙漏验机屏幕项显示“正品Apple部件”。\nC.华为设备系统弹窗或通知栏提示“正品部件屏幕”。\nD.苹果11系列及以上机型，系统版本 iOS 15.2及以后，关于本机中显示部件和服务历史记录：“显示屏-未知部件”。",
+        "persons": [
+          "陈金伟"
+        ],
+        "answer": "答案：A、B",
+        "imgs": [
+          "cuoti_140_1.jpg"
+        ]
       },
       {
-        "date": "2026-09-16",
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "手机二段",
+        "kp": "主板维修情况-主板-辅助工具提示异常",
+        "content": "【单选题】\n如图标注内容所示，此时无其它异常情况，应判定“主板维修情况-（）”。（23）\nA.主板-⼯具查询型号与本机不符\nB.主板-扩容/硬盘维修\nC.主板故障\nD.主板-辅助工具提示异常",
+        "persons": [
+          "陈金伟"
+        ],
+        "answer": "答案：D",
+        "imgs": [
+          "cuoti_141_1.jpg",
+          "cuoti_141_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "手机二段",
+        "kp": "屏幕维修情况-外屏-盖板二维码样式与示例不符",
+        "content": "【多选题】\n以下能判定“屏幕维修情况-外屏-盖板二维码样式与示例不符”的情况是？\nA.苹果5、5C、5S、SE、6、6P屏幕右下角的黑色贴纸缺失。\nB.苹果6S、6SP 、7、8、 SE2、SE3屏幕盖板上的二维码/苹果LOGO有缺失，或二维码样式与原厂不一致。\nC.苹果7P、 8P屏幕盖板上的二维码、苹果LOGO/编码有缺失，或二维码样式与原厂不一致。\nD.iPhone X及以上机型，屏幕前摄孔海绵垫完全缺失。",
+        "persons": [
+          "陈金伟"
+        ],
+        "answer": "答案：A、B、C",
+        "imgs": [
+          "cuoti_142_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "基本信息-颜色",
+        "content": ".【单选题】\n（判断）在联想小新 潮7000-14这款笔记本中，官方显示灰色、实物灰色，按灰色勾选。\nA.错误\nB.正确",
+        "persons": [
+          "熊帅"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_143_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "数据端口",
+        "content": "【单选题】\n如图所示，此数据端口在标准中归类为（）。（3）\nA.数据接口\nB.网线接口\nC.内置光驱\nD.视频接口",
+        "persons": [
+          "刘秉义"
+        ],
+        "answer": "答案：A",
+        "imgs": [
+          "cuoti_144_1.jpg",
+          "cuoti_144_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "ABCD面外观-划痕/磨损/掉漆",
+        "content": "【多选题】\n关于“笔记本外观”，以下说法正确的是？(1)\nA.非外置键盘按键有划痕，属于中框键盘面外观（C面）-划痕。\nB.非外置键盘按键有掉漆，属于中框键盘面外观（C面）-磨损/掉漆。\nC.触摸板有划痕属于中框键盘面外观（C面）-划痕。\nD.屏幕有划痕，属于屏幕背面和正面边框（设备AB面）外观-划痕。",
+        "persons": [
+          "熊文星"
+        ],
+        "answer": "答案：A、B、C",
+        "imgs": [
+          "cuoti_145_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "部件更换-更换非原装电池",
+        "content": "【单选题】\n如图标注位置所示，应判定（）。（16）\nA.部件更换-无部件更换\nB.部件更换-更非原装电池\nC.部件更换-更换原装电池",
+        "persons": [
+          "邱锦涛"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_146_1.jpg",
+          "cuoti_146_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "其它状况-充电器-功能正常",
+        "content": "【多选题】\n判定“充电器-功能正常”的条件有（）。（2）\nA.苹果笔记本原本插头，改用延长线。\nB.Win笔记本配置平台认可充电器（允许最大电压或电流仅其中一项存在±0.5差异。）。\nC.通用合规充电器带有笔记本品牌LOGO，功率一致\nD.官网不可查品牌后壳有全配置功率时，认可充电器品牌匹配上其一",
+        "persons": [
+          "邱锦涛"
+        ],
+        "answer": "答案：B、C、D",
+        "imgs": [
+          "cuoti_147_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "基本信息-颜色",
+        "content": "【单选题】\n（判断）在联想小新 潮7000-14这款笔记本中，官方显示铂金灰色、实物银色，按银色勾选。\nA.错误\nB.正确",
+        "persons": [
+          "杨宇"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_148_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "笔记本",
+        "kp": "其它状况-充电器-功能正常",
+        "content": ".【多选题】\n判定“充电器-功能正常”的条件有（）。（2）\nA.官网不可查品牌后壳有全配置功率时，认可充电器品牌匹配上其一\n\nB.苹果笔记本原本插头，改用延长线。\nC.通用合规充电器带有笔记本品牌LOGO，功率一致\nD.Win笔记本配置平台认可充电器（允许最大电压或电流仅其中一项存在±0.5差异。",
+        "persons": [
+          "杨宇"
+        ],
+        "answer": "答案：A、C、D",
+        "imgs": [
+          "cuoti_149_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "平板",
+        "kp": "基础信息-来源",
+        "content": "单选题】\n（判断）iPad型号为“P”开头，来源录入为“二手优品”。\n（分值：1）\n\n预览\nA.错误\n\nB.正确",
+        "persons": [
+          "苏杰",
+          "陈金伟"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_150_1.jpg",
+          "cuoti_150_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "平板",
+        "kp": "后置摄像头-拍照坏点",
+        "content": "【单选题】\n测试到摄像头功能“拍照坏点”现象，坏点数量为（）且直径＜（）时豁免。\nA.1，1mm\nB.1，0.5mm\nC.1，3mm\nD.1，2mm",
+        "persons": [
+          "闵杰"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_151_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "平板",
+        "kp": "主板-主板维修",
+        "content": "【多选题】\n请选择出“主板-主板维修”的标准定义。（2）\nA.验机助手读出硬盘更换。\nB.屏蔽罩变形或缺失。\nC.苹果机型使用验机助手读出主板信息（含销售地区/销售型号/WiFi地址/蓝牙地址/蜂窝地址/主板序列号）有其一异常（非扩容机或换壳）。\nD.主板飞线。",
+        "persons": [
+          "张辰"
+        ],
+        "answer": "答案：B、C、D",
+        "imgs": [
+          "cuoti_152_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "周考",
+        "cat": "平板",
+        "kp": "其他状况-越狱",
+        "content": "单选题】\n如图描述及标注所示，此类现象应判定“其他状况-其他情况-（）”。（7）\nA.有运营商锁\nB.越狱\nC.监管机\nD.工程机",
+        "persons": [
+          "李波"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_153_1.jpg",
+          "cuoti_153_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
         "station": "武汉分站",
         "examType": "日考",
-        "cat": "",
-        "kp": "",
-        "content": "",
-        "persons": [],
-        "answer": "",
-        "imgs": []
+        "cat": "笔记本",
+        "kp": "基本信息-品牌",
+        "content": "【单选题】\n(品牌认知)请选择出“中柏”品牌笔记本。\nA.机器1\nB.机器2\nC.机器3\nD.机器4",
+        "persons": [
+          "熊文星"
+        ],
+        "answer": "答案：D",
+        "imgs": [
+          "cuoti_154_1.jpg",
+          "cuoti_154_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "考点分类：基础信息-保修",
+        "content": "单选题】\n序列号在苹果官网查询如图所示，此iPad保修情况应判定（）。（1）\nA.过保或小于30天\nB.更换序列号\nC.未激活\nD.购买日期未验证",
+        "persons": [
+          "张辰",
+          "陈金伟"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_155_1.jpg",
+          "cuoti_155_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "组件-后摄镜片更换",
+        "content": "【多选题】\n请选择出“组件-后摄镜片更换”的标准定义。\nA.摄像头镜片边缘有明显缝隙。\nB.摄像头镜片边缘有溢胶。\nC.摄像头镜片明显反紫光、蓝光。\nD.摄像头镜片装饰图案与原厂不符",
+        "persons": [
+          "钟仔琛"
+        ],
+        "answer": "答案：A、B",
+        "imgs": [
+          "cuoti_156_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "组件-零件维修/更换",
+        "content": "【多选题】\n以下能判定“组件-零件维修/更换”的情况是？\nA.苹果机型爱思验机工具读出报告显示指纹项为异常。\nB.扬声器上有第三方标识（标签）。\nC.按键排线断裂，排线有飞线现象。\nD.关于本机提示指纹功能部件维修。",
+        "persons": [
+          "王彪"
+        ],
+        "answer": "答案：A、B、C、D",
+        "imgs": [
+          "cuoti_157_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-19",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "主板-主板故障",
+        "content": "单选题】\n（判断）平板机身弯曲测量如图所示，需判定“主板-主板故障”。\nA.正确\nB.错误",
+        "persons": [
+          "钟仔琛"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_158_1.jpg",
+          "cuoti_158_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-19",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "屏幕维修-更换屏幕外玻璃",
+        "content": "【单选题】\niPad的屏幕盖板内部如图所示，应判定“屏幕维修-（）”。\nA.屏幕更换原厂屏\nB.屏幕更换非原厂屏\nC.更换屏幕外玻璃\nD.其他维修",
+        "persons": [
+          "张辰",
+          "陈金伟"
+        ],
+        "answer": "答案：C",
+        "imgs": [
+          "cuoti_159_1.jpg",
+          "cuoti_159_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-19",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "基础信息-保修",
+        "content": "【单选题】\n序列号在苹果官网查询如图所示，此iPad保修情况应判定（）。（3）\nA.过保或小于30天\nB.更换序列号\nC.未激活\nD.在保",
+        "persons": [
+          "张辰"
+        ],
+        "answer": "答案：A",
+        "imgs": [
+          "cuoti_160_1.jpg",
+          "cuoti_160_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-19",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "浸液痕迹-发霉或生锈",
+        "content": "【单选题】\n如图描述所示，此机器应判定“浸液痕迹-（）”。（3）\nA.防水标变红\nB.防水标缺失\nC.发霉或生锈\nD.内屏浸液",
+        "persons": [
+          "张辰"
+        ],
+        "answer": "答案：C",
+        "imgs": [
+          "cuoti_161_1.jpg",
+          "cuoti_161_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-20",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "基本信息-型号",
+        "content": "【多选题】\n关于“基本信息-型号”的录入规则，以下说法正确的是？（1）\nA.官方可查，按查询结果录入。\nB.官方不可查/D壳有标，按D壳标签录入（注意CPU+显卡没勾选值需反馈，不添加的走其他机型）。\nC.官方不可查/D壳无标/靓机助手有型号，按靓机助手录入。\nD.可以通过核对“型号对照表”找到正确型号。",
+        "persons": [
+          "熊国梁"
+        ],
+        "answer": "答案：A、B、C、D",
+        "imgs": [
+          "cuoti_162_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-20",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "基本信息-品牌",
+        "content": "多选题】\n我们通常可以通过（）来识别笔记本品牌。\nA.机身品牌logo\nB.底壳标签\nC.主板型号\nD.（windows）我电脑-属性-关于",
+        "persons": [
+          "杨宇"
+        ],
+        "answer": "答案：A、B、C",
+        "imgs": [
+          "cuoti_163_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-20",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "维修浸液-零部件认知",
+        "content": "【单选题】\n（零部件认知）如图所示，该零部件是（）。（2）\nA.内存条\nB.固态硬盘\nC.机械硬盘\nD.无线网卡",
+        "persons": [
+          "杨宇"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_164_1.jpg",
+          "cuoti_164_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-20",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "数据端口",
+        "content": "【单选题】\n如图所示，此数据端口在标准中归类为（）。（9）\nA.数据接口\nB.网线接口\nC.视频接口\nD.内置光驱",
+        "persons": [
+          "熊国梁",
+          "刘秉义"
+        ],
+        "answer": "答案：C",
+        "imgs": [
+          "cuoti_165_1.jpg",
+          "cuoti_165_2.jpg"
+        ]
       }
     ],
     "kpStats": [
+      {
+        "kp": "数据端口",
+        "count": 8,
+        "persons": 5,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
+      },
       {
         "kp": "部件更换-品牌硬盘",
         "count": 6,
@@ -5096,12 +6034,12 @@
         "lastDate": "2026-09-11"
       },
       {
-        "kp": "数据端口",
-        "count": 6,
-        "persons": 4,
-        "cats": "笔记本",
-        "cat": "笔记本",
-        "lastDate": "2026-09-16"
+        "kp": "主板-主板维修",
+        "count": 5,
+        "persons": 3,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
       },
       {
         "kp": "部件更换-品牌内存",
@@ -5120,20 +6058,28 @@
         "lastDate": "2026-09-14"
       },
       {
-        "kp": "主板-主板维修",
+        "kp": "基本信息-品牌",
         "count": 4,
-        "persons": 3,
-        "cats": "平板",
-        "cat": "平板",
-        "lastDate": "2026-09-14"
+        "persons": 4,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
       },
       {
         "kp": "基础信息-来源",
+        "count": 4,
+        "persons": 4,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "kp": "主板-主板故障",
         "count": 3,
         "persons": 3,
         "cats": "平板",
         "cat": "平板",
-        "lastDate": "2026-09-11"
+        "lastDate": "2026-09-19"
       },
       {
         "kp": "外壳外观-刻字/图",
@@ -5160,6 +6106,14 @@
         "lastDate": "2026-09-16"
       },
       {
+        "kp": "其他状况-越狱",
+        "count": 3,
+        "persons": 1,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
         "kp": "后置摄像头-拍照有斑",
         "count": 2,
         "persons": 5,
@@ -5176,12 +6130,12 @@
         "lastDate": "2026-09-02"
       },
       {
-        "kp": "主板-主板故障",
+        "kp": "ABCD面外观-划痕/磨损/掉漆",
         "count": 2,
         "persons": 3,
-        "cats": "平板",
-        "cat": "平板",
-        "lastDate": "2026-09-15"
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
       },
       {
         "kp": "基本信息-保修情况",
@@ -5192,12 +6146,12 @@
         "lastDate": "2026-09-02"
       },
       {
-        "kp": "基本信息-品牌",
+        "kp": "屏幕维修-更换屏幕外玻璃",
         "count": 2,
         "persons": 3,
-        "cats": "笔记本",
-        "cat": "笔记本",
-        "lastDate": "2026-09-16"
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
       },
       {
         "kp": "电池维修情况-更换第三方电池",
@@ -5240,6 +6194,30 @@
         "lastDate": "2026-09-11"
       },
       {
+        "kp": "其它状况-充电器-功能正常",
+        "count": 2,
+        "persons": 2,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "kp": "基本信息-颜色",
+        "count": 2,
+        "persons": 2,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "kp": "基础信息-保修",
+        "count": 2,
+        "persons": 2,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
+      },
+      {
         "kp": "按键-键盘功能",
         "count": 2,
         "persons": 2,
@@ -5254,6 +6232,14 @@
         "cats": "平板",
         "cat": "平板",
         "lastDate": "2026-09-04"
+      },
+      {
+        "kp": "浸液痕迹-发霉或生锈",
+        "count": 2,
+        "persons": 2,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
       },
       {
         "kp": "浸液痕迹-有浸液痕迹",
@@ -5280,14 +6266,6 @@
         "lastDate": "2026-09-15"
       },
       {
-        "kp": "其他状况-越狱",
-        "count": 2,
-        "persons": 1,
-        "cats": "平板",
-        "cat": "平板",
-        "lastDate": "2026-09-12"
-      },
-      {
         "kp": "基本信息-IMEI",
         "count": 2,
         "persons": 1,
@@ -5312,14 +6290,6 @@
         "lastDate": "2026-09-14"
       },
       {
-        "kp": "",
-        "count": 2,
-        "persons": 0,
-        "cats": "",
-        "cat": "",
-        "lastDate": "2026-09-16"
-      },
-      {
         "kp": "机身-后壳更换",
         "count": 1,
         "persons": 6,
@@ -5342,14 +6312,6 @@
         "cats": "笔记本",
         "cat": "笔记本",
         "lastDate": "2026-09-04"
-      },
-      {
-        "kp": "ABCD面外观-划痕/磨损/掉漆",
-        "count": 1,
-        "persons": 3,
-        "cats": "笔记本",
-        "cat": "笔记本",
-        "lastDate": "2026-09-07"
       },
       {
         "kp": "它外观-机身-Logo/电源灯/机身灯异常",
@@ -5440,12 +6402,12 @@
         "lastDate": "2026-09-14"
       },
       {
-        "kp": "浸液痕迹-发霉或生锈",
+        "kp": "考点分类：基础信息-保修",
         "count": 1,
         "persons": 2,
         "cats": "平板",
         "cat": "平板",
-        "lastDate": "2026-09-10"
+        "lastDate": "2026-09-18"
       },
       {
         "kp": "ABCD面外观-划痕",
@@ -5478,6 +6440,14 @@
         "cats": "平板",
         "cat": "平板",
         "lastDate": "2026-09-08"
+      },
+      {
+        "kp": "主板维修情况-主板-辅助工具提示异常",
+        "count": 1,
+        "persons": 1,
+        "cats": "手机二段",
+        "cat": "手机二段",
+        "lastDate": "2026-09-18"
       },
       {
         "kp": "其他状况-监管机",
@@ -5560,6 +6530,14 @@
         "lastDate": "2026-09-09"
       },
       {
+        "kp": "后置摄像头-拍照坏点",
+        "count": 1,
+        "persons": 1,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
         "kp": "后置摄像头-画面异常",
         "count": 1,
         "persons": 1,
@@ -5576,19 +6554,19 @@
         "lastDate": "2026-09-04"
       },
       {
+        "kp": "基本信息-型号",
+        "count": 1,
+        "persons": 1,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
+      },
+      {
         "kp": "基本信息-硬盘容量/固态硬盘",
         "count": 1,
         "persons": 1,
         "cats": "笔记本",
         "cat": "笔记本",
-        "lastDate": "2026-09-04"
-      },
-      {
-        "kp": "基础信息-保修",
-        "count": 1,
-        "persons": 1,
-        "cats": "平板",
-        "cat": "平板",
         "lastDate": "2026-09-04"
       },
       {
@@ -5704,12 +6682,20 @@
         "lastDate": "2026-09-11"
       },
       {
-        "kp": "屏幕维修-更换屏幕外玻璃",
+        "kp": "屏幕维修情况-关于本机/辅助工具显示“显示屏-正品Apple部件",
         "count": 1,
         "persons": 1,
-        "cats": "平板",
-        "cat": "平板",
-        "lastDate": "2026-09-08"
+        "cats": "手机二段",
+        "cat": "手机二段",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "kp": "屏幕维修情况-外屏-盖板二维码样式与示例不符",
+        "count": 1,
+        "persons": 1,
+        "cats": "手机二段",
+        "cat": "手机二段",
+        "lastDate": "2026-09-18"
       },
       {
         "kp": "屏幕维修情况-工具-屏幕偏光检测异常",
@@ -5731,8 +6717,8 @@
         "kp": "摄像头-后摄更换",
         "count": 1,
         "persons": 1,
-        "cats": "",
-        "cat": "",
+        "cats": "平板",
+        "cat": "平板",
         "lastDate": "2026-09-16"
       },
       {
@@ -5758,6 +6744,30 @@
         "cats": "手机二段",
         "cat": "手机二段",
         "lastDate": "2026-09-14"
+      },
+      {
+        "kp": "组件-后摄镜片更换",
+        "count": 1,
+        "persons": 1,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "kp": "组件-零件维修/更换",
+        "count": 1,
+        "persons": 1,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "kp": "维修浸液-零部件认知",
+        "count": 1,
+        "persons": 1,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
       },
       {
         "kp": "设备维修痕迹-无法拆机",
@@ -5790,6 +6800,14 @@
         "cats": "笔记本",
         "cat": "笔记本",
         "lastDate": "2026-09-14"
+      },
+      {
+        "kp": "部件更换-更换非原装电池",
+        "count": 1,
+        "persons": 1,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
       },
       {
         "kp": "部件维修-缺少内部配件",
@@ -5856,6 +6874,14 @@
         "kp": "其他外观-摄像头/闪光灯外观",
         "cat": "平板",
         "lastDate": "2026-09-10"
+      },
+      {
+        "content": "如图所示，此数据端口在标准中归类为（）。（9）A.数据接口B.网线接口C.视频接口D.内置光驱",
+        "count": 2,
+        "persons": 3,
+        "kp": "数据端口",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
       },
       {
         "content": "以下可以判定“部件维修-屏幕维修痕迹”的是？A.屏幕四周边框和缝隙有溢胶痕迹。B.屏内有异物（①屏幕进灰颗粒＞1mm且＞5颗）。C.笔记本屏幕边缘内部包裹材料或排线裸露＞1mm。D.直视屏幕，四边边缘其中一边黑边不对称，单边上下或左右有1mm以上差异。",
@@ -5952,6 +6978,14 @@
         "kp": "无线功能-WiFi异常",
         "cat": "平板",
         "lastDate": "2026-09-11"
+      },
+      {
+        "content": "iPad的屏幕盖板内部如图所示，应判定“屏幕维修-（）”。A.屏幕更换原厂屏B.屏幕更换非原厂屏C.更换屏幕外玻璃D.其他维修",
+        "count": 1,
+        "persons": 2,
+        "kp": "屏幕维修-更换屏幕外玻璃",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
       },
       {
         "content": "【B2C业务】观察该iPhone卡槽内的小型号信息，发现有小型号字体有重叠刻印，需判定【后壳-小型号字体模糊/偏移/有重叠】。（分值：3）A.正确B.错误",
@@ -6058,6 +7092,14 @@
         "lastDate": "2026-09-13"
       },
       {
+        "content": "序列号在苹果官网查询如图所示，此iPad保修情况应判定（）。（1）A.过保或小于30天B.更换序列号C.未激活D.购买日期未验证",
+        "count": 1,
+        "persons": 2,
+        "kp": "考点分类：基础信息-保修",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "观察图片描述及标注，此机器应判定“键盘外观-（）”。(7)A.正常B.键盘背板松动/脱落C.按键缺键/脱落D.按键破损",
         "count": 1,
         "persons": 2,
@@ -6096,6 +7138,14 @@
         "kp": "浸液痕迹-发霉或生锈",
         "cat": "平板",
         "lastDate": "2026-09-10"
+      },
+      {
+        "content": "（判断）iPad型号为“P”开头，来源录入为“二手优品”。（分值：1）预览A.错误B.正确",
+        "count": 1,
+        "persons": 2,
+        "kp": "基础信息-来源",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
       },
       {
         "content": "（判断）三星后盖刻有7D/S/R/Я/M字符，不需要勾选“刻字/图”。A.正确B.错误",
@@ -6147,11 +7197,19 @@
       },
       {
         "content": "如图描述及标注所示，此类现象应判定“其他状况-其他情况-（）”。（7）A.有运营商锁B.越狱C.监管机D.工程机",
-        "count": 2,
+        "count": 3,
         "persons": 1,
         "kp": "其他状况-越狱",
         "cat": "平板",
-        "lastDate": "2026-09-12"
+        "lastDate": "2026-09-18"
+      },
+      {
+        "content": "(品牌认知)请选择出“中柏”品牌笔记本。A.机器1B.机器2C.机器3D.机器4",
+        "count": 1,
+        "persons": 1,
+        "kp": "基本信息-品牌",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
       },
       {
         "content": "(品牌认知)请选择出“微星”品牌笔记本。A.机器1B.机器3C.机器4D.机器2",
@@ -6322,6 +7380,14 @@
         "lastDate": "2026-09-08"
       },
       {
+        "content": "以下能判定“屏幕维修情况-外屏-盖板二维码样式与示例不符”的情况是？A.苹果5、5C、5S、SE、6、6P屏幕右下角的黑色贴纸缺失。B.苹果6S、6SP、7、8、SE2、SE3屏幕盖板上的二维码/苹果LOGO有缺失，或二维码样式与原厂不一致。C.苹果7P、8P屏幕盖板上的二维码、苹果LOGO/编码有缺失，或二维码样式与原厂不一致。D.iPhoneX及以上机型，屏幕前摄孔海绵垫完全缺失。",
+        "count": 1,
+        "persons": 1,
+        "kp": "屏幕维修情况-外屏-盖板二维码样式与示例不符",
+        "cat": "手机二段",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "以下能判定“浸液痕迹-有浸液痕迹”的情况是？A.机身灯带有浸液痕。B.防水标变红。C.屏内有水渍光斑。D.零部件上有发霉/生锈，未干的水/油渍等。",
         "count": 1,
         "persons": 1,
@@ -6330,12 +7396,28 @@
         "lastDate": "2026-09-15"
       },
       {
+        "content": "以下能判定“组件-零件维修/更换”的情况是？A.苹果机型爱思验机工具读出报告显示指纹项为异常。B.扬声器上有第三方标识（标签）。C.按键排线断裂，排线有飞线现象。D.关于本机提示指纹功能部件维修。",
+        "count": 1,
+        "persons": 1,
+        "kp": "组件-零件维修/更换",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "以下能判定“部件更换-更换AB面外壳”的情况是？（1）A.AB面有维修盖章或标签。B.AB面外观与出厂不一致。C.AB面颜色与出厂不一致（同色系色差不算）。D.AB面材质与出厂不一致",
         "count": 1,
         "persons": 1,
         "kp": "部件更换-更换AB面外壳",
         "cat": "笔记本",
         "lastDate": "2026-09-14"
+      },
+      {
+        "content": "以下能判定屏幕维修情况-关于本机/辅助工具显示“显示屏-正品Apple部件”的情况是？A.关于本机中显示部件和服务历史记录“显示屏-正品Apple部件”。B.爱思助手/沙漏验机屏幕项显示“正品Apple部件”。C.华为设备系统弹窗或通知栏提示“正品部件屏幕”。D.苹果11系列及以上机型，系统版本iOS15.2及以后，关于本机中显示部件和服务历史记录：“显示屏-未知部件”。",
+        "count": 1,
+        "persons": 1,
+        "kp": "屏幕维修情况-关于本机/辅助工具显示“显示屏-正品Apple部件",
+        "cat": "手机二段",
+        "lastDate": "2026-09-18"
       },
       {
         "content": "关于“其它外观-机身-弯曲变形”，以下说法正确的是？A.整机水平放置桌面不平整，2mm＜弯曲弧度≤4mm，判定“弯曲变形轻微”。B.整机水平放置桌面不平整，弯曲弧度＞4mm，判定“弯曲变形轻微”。C.整机水平放置桌面不平整，2mm＜弯曲弧度≤4mm，判定“弯曲变形明显”。D.整机水平放置桌面不平整，弯曲弧度＞4mm，判定“弯曲变形明显”。",
@@ -6370,12 +7452,28 @@
         "lastDate": "2026-09-04"
       },
       {
+        "content": "关于“基本信息-型号”的录入规则，以下说法正确的是？（1）A.官方可查，按查询结果录入。B.官方不可查/D壳有标，按D壳标签录入（注意CPU+显卡没勾选值需反馈，不添加的走其他机型）。C.官方不可查/D壳无标/靓机助手有型号，按靓机助手录入。D.可以通过核对“型号对照表”找到正确型号。",
+        "count": 1,
+        "persons": 1,
+        "kp": "基本信息-型号",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
+      },
+      {
         "content": "关于“按键-其它按键功能”，以下说法正确的是？A.在确认驱动正确安装的前提下，键盘灯无法正常开启,判定“键盘背光灯功能异常”。B.笔记本侧面摄像头电控开关失效，判定“物理快捷键异常”。C.电源按键缺失、无法按下/回弹，判定“电源按键功能异常”。D.二合一平板笔记本音量键缺失、无法按下/回弹或无法触发，判定“音量键功能异常”。",
         "count": 1,
         "persons": 1,
         "kp": "按键-其它按键功能",
         "cat": "笔记本",
         "lastDate": "2026-09-03"
+      },
+      {
+        "content": "关于“笔记本外观”，以下说法正确的是？(1)A.非外置键盘按键有划痕，属于中框键盘面外观（C面）-划痕。B.非外置键盘按键有掉漆，属于中框键盘面外观（C面）-磨损/掉漆。C.触摸板有划痕属于中框键盘面外观（C面）-划痕。D.屏幕有划痕，属于屏幕背面和正面边框（设备AB面）外观-划痕。",
+        "count": 1,
+        "persons": 1,
+        "kp": "ABCD面外观-划痕/磨损/掉漆",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
       },
       {
         "content": "关于“系统情况-不开机”，以下说法正确的是？A.将充电器拔下，电脑立刻关机，此类情况归类为不开机。B.验机过程中出现2次及以上卡死现象，长时间等待无响应，此类情况归类为不开机。C.将功能正常的充电器连接笔记本，持续充电10分钟以上仍然无法开机，此类情况归类为不开机（设备有多个充电口，需更换充电口尝试。）。D.将功能正常的充电器连接笔记本，持续充电2分钟，仍然无法开机，此类情况归类为不开机。",
@@ -6426,6 +7524,22 @@
         "lastDate": "2026-09-11"
       },
       {
+        "content": "判定“充电器-功能正常”的条件有（）。（2）A.官网不可查品牌后壳有全配置功率时，认可充电器品牌匹配上其一B.苹果笔记本原本插头，改用延长线。C.通用合规充电器带有笔记本品牌LOGO，功率一致D.Win笔记本配置平台认可充电器（允许最大电压或电流仅其中一项存在±0.5差异。",
+        "count": 1,
+        "persons": 1,
+        "kp": "其它状况-充电器-功能正常",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "content": "判定“充电器-功能正常”的条件有（）。（2）A.苹果笔记本原本插头，改用延长线。B.Win笔记本配置平台认可充电器（允许最大电压或电流仅其中一项存在±0.5差异。）。C.通用合规充电器带有笔记本品牌LOGO，功率一致D.官网不可查品牌后壳有全配置功率时，认可充电器品牌匹配上其一",
+        "count": 1,
+        "persons": 1,
+        "kp": "其它状况-充电器-功能正常",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "华硕天选笔记本内存信息不可在官方查询（助手无法读取品牌信息），拆机后发现内存条如图所示，应判定“部件更换-（）”。A.更换品牌内存B.更换第三方内存C.加装第三方内存D.内存扩容/加装",
         "count": 1,
         "persons": 1,
@@ -6474,12 +7588,12 @@
         "lastDate": "2026-09-07"
       },
       {
-        "content": "如图所示，此数据端口在标准中归类为（）。（9）A.数据接口B.网线接口C.视频接口D.内置光驱",
+        "content": "如图所示，此数据端口在标准中归类为（）。（3）A.数据接口B.网线接口C.内置光驱D.视频接口",
         "count": 1,
         "persons": 1,
         "kp": "数据端口",
         "cat": "笔记本",
-        "lastDate": "2026-09-10"
+        "lastDate": "2026-09-18"
       },
       {
         "content": "如图所示，观察华为Mate40镜圈中间后盖字体，是否判定【部分零件维修更换】。A.判定B.不判定",
@@ -6542,8 +7656,16 @@
         "count": 1,
         "persons": 1,
         "kp": "摄像头-后摄更换",
-        "cat": "",
+        "cat": "平板",
         "lastDate": "2026-09-16"
+      },
+      {
+        "content": "如图描述所示，此机器应判定“浸液痕迹-（）”。（3）A.防水标变红B.防水标缺失C.发霉或生锈D.内屏浸液",
+        "count": 1,
+        "persons": 1,
+        "kp": "浸液痕迹-发霉或生锈",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
       },
       {
         "content": "如图描述所示，此机器应判定【摄像头-后摄更换】。（1）A.正确B.错误",
@@ -6562,6 +7684,22 @@
         "lastDate": "2026-09-16"
       },
       {
+        "content": "如图标注位置所示，应判定（）。（16）A.部件更换-无部件更换B.部件更换-更非原装电池C.部件更换-更换原装电池",
+        "count": 1,
+        "persons": 1,
+        "kp": "部件更换-更换非原装电池",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "content": "如图标注内容所示，此时无其它异常情况，应判定“主板维修情况-（）”。（23）A.主板-⼯具查询型号与本机不符B.主板-扩容/硬盘维修C.主板故障D.主板-辅助工具提示异常",
+        "count": 1,
+        "persons": 1,
+        "kp": "主板维修情况-主板-辅助工具提示异常",
+        "cat": "手机二段",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "如图标注内容所示，此时无其它异常情况，应判定“零件维修情况-（）”。（29）A.无以上情况B.部分零件存在第三方标识C.指纹组件维修/更换D.部分零件维修更换",
         "count": 1,
         "persons": 1,
@@ -6578,6 +7716,14 @@
         "lastDate": "2026-09-04"
       },
       {
+        "content": "序列号在苹果官网查询如图所示，此iPad保修情况应判定（）。（3）A.过保或小于30天B.更换序列号C.未激活D.在保",
+        "count": 1,
+        "persons": 1,
+        "kp": "基础信息-保修",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
+      },
+      {
         "content": "当关于本机购买渠道信息和爬虫查询结果不一致时，以（）为准。A.关于本机B.爬虫",
         "count": 1,
         "persons": 1,
@@ -6592,6 +7738,14 @@
         "kp": "数据端口",
         "cat": "笔记本",
         "lastDate": "2026-09-14"
+      },
+      {
+        "content": "我们通常可以通过（）来识别笔记本品牌。A.机身品牌logoB.底壳标签C.主板型号D.（windows）我电脑-属性-关于",
+        "count": 1,
+        "persons": 1,
+        "kp": "基本信息-品牌",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
       },
       {
         "content": "扬声器/听筒不能出声，应判定“扬声器/听筒-（）”。A.正常B.无声C.明显杂音D.音量小",
@@ -6632,6 +7786,14 @@
         "kp": "屏幕显示-亮/坏点",
         "cat": "笔记本",
         "lastDate": "2026-09-11"
+      },
+      {
+        "content": "测试到摄像头功能“拍照坏点”现象，坏点数量为（）且直径＜（）时豁免。A.1，1mmB.1，0.5mmC.1，3mmD.1，2mm",
+        "count": 1,
+        "persons": 1,
+        "kp": "后置摄像头-拍照坏点",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
       },
       {
         "content": "测试屏幕显示-显示不均匀现象时，应在（）页面进行。A.红色B.黑色C.绿色D.白色",
@@ -6690,6 +7852,14 @@
         "lastDate": "2026-09-09"
       },
       {
+        "content": "请选择出“主板-主板维修”的标准定义。（2）A.验机助手读出硬盘更换。B.屏蔽罩变形或缺失。C.苹果机型使用验机助手读出主板信息（含销售地区/销售型号/WiFi地址/蓝牙地址/蜂窝地址/主板序列号）有其一异常（非扩容机或换壳）。D.主板飞线。",
+        "count": 1,
+        "persons": 1,
+        "kp": "主板-主板维修",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "请选择出“主板-硬盘更换”的标准定义A.公众号/爬虫查询硬盘容量与本机不符。B.验机助手读出报告与原厂不符。C.石墨纸异常（大面积破损、缺失、后贴）。D.主板飞线。",
         "count": 1,
         "persons": 1,
@@ -6704,6 +7874,14 @@
         "kp": "后置摄像头-画面异常",
         "cat": "平板",
         "lastDate": "2026-09-11"
+      },
+      {
+        "content": "请选择出“组件-后摄镜片更换”的标准定义。A.摄像头镜片边缘有明显缝隙。B.摄像头镜片边缘有溢胶。C.摄像头镜片明显反紫光、蓝光。D.摄像头镜片装饰图案与原厂不符",
+        "count": 1,
+        "persons": 1,
+        "kp": "组件-后摄镜片更换",
+        "cat": "平板",
+        "lastDate": "2026-09-18"
       },
       {
         "content": "请选择出“设备拆修痕迹-无法拆机”的标准定义。A.可拆平板因为以下原因无法拆机：尾部螺丝打滑。B.可拆平板因为以下原因无法拆机：支架卡死。C.可拆平板因为以下原因无法拆机：内部强力胶封死D.需要从后壳拆机的平板，后壳处有明显溢胶痕迹。",
@@ -6754,6 +7932,22 @@
         "lastDate": "2026-09-08"
       },
       {
+        "content": "（判断）在联想小新潮7000-14这款笔记本中，官方显示灰色、实物灰色，按灰色勾选。A.错误B.正确",
+        "count": 1,
+        "persons": 1,
+        "kp": "基本信息-颜色",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
+        "content": "（判断）在联想小新潮7000-14这款笔记本中，官方显示铂金灰色、实物银色，按银色勾选。A.错误B.正确",
+        "count": 1,
+        "persons": 1,
+        "kp": "基本信息-颜色",
+        "cat": "笔记本",
+        "lastDate": "2026-09-18"
+      },
+      {
         "content": "（判断）如图所示，MacOS系统报告中电池状态显示维修，判定“苹果电池显示维修”。A.正确B.错误",
         "count": 1,
         "persons": 1,
@@ -6784,6 +7978,14 @@
         "kp": "外壳外观-刻字/图",
         "cat": "平板",
         "lastDate": "2026-09-05"
+      },
+      {
+        "content": "（判断）平板机身弯曲测量如图所示，需判定“主板-主板故障”。A.正确B.错误",
+        "count": 1,
+        "persons": 1,
+        "kp": "主板-主板故障",
+        "cat": "平板",
+        "lastDate": "2026-09-19"
       },
       {
         "content": "（判断）此华为笔记本硬盘如图所示，应判定“部件更换-更换第三方硬盘”。A.正确B.错误",
@@ -6872,12 +8074,20 @@
         "kp": "屏幕显示-图像残影",
         "cat": "平板",
         "lastDate": "2026-09-04"
+      },
+      {
+        "content": "（零部件认知）如图所示，该零部件是（）。（2）A.内存条B.固态硬盘C.机械硬盘D.无线网卡",
+        "count": 1,
+        "persons": 1,
+        "kp": "维修浸液-零部件认知",
+        "cat": "笔记本",
+        "lastDate": "2026-09-20"
       }
     ],
     "personStats": [
       {
         "person": "熊文星",
-        "count": 28,
+        "count": 30,
         "kps": [
           [
             "部件更换-品牌内存",
@@ -6888,6 +8098,10 @@
             3
           ],
           [
+            "ABCD面外观-划痕/磨损/掉漆",
+            2
+          ],
+          [
             "基本信息-IMEI",
             2
           ],
@@ -6896,12 +8110,12 @@
             2
           ],
           [
-            "数据端口",
+            "基本信息-品牌",
             2
           ],
           [
-            "ABCD面外观-划痕/磨损/掉漆",
-            1
+            "数据端口",
+            2
           ],
           [
             "其它状况-充电器-通用合规充电器",
@@ -6914,16 +8128,58 @@
           [
             "其它状况-电池充电异常/电池供电异常",
             1
+          ]
+        ]
+      },
+      {
+        "person": "杨宇",
+        "count": 27,
+        "kps": [
+          [
+            "数据端口",
+            3
           ],
           [
-            "其它状况-系统情况-苹果电池显示维修",
+            "其它外观-键盘外观",
+            2
+          ],
+          [
+            "部件更换-品牌硬盘",
+            2
+          ],
+          [
+            "部件维修-主板异常情况",
+            2
+          ],
+          [
+            "ABCD面外观-划痕",
+            1
+          ],
+          [
+            "ABCD面外观-划痕/磨损/掉漆",
+            1
+          ],
+          [
+            "ABCD面外观-磕碰",
+            1
+          ],
+          [
+            "其它外观-机身-弯曲变形",
+            1
+          ],
+          [
+            "其它外观-机身-网口盖板松动",
+            1
+          ],
+          [
+            "其它状况-充电器-功能正常",
             1
           ]
         ]
       },
       {
         "person": "熊国梁",
-        "count": 25,
+        "count": 27,
         "kps": [
           [
             "部件更换-品牌硬盘",
@@ -6968,58 +8224,16 @@
         ]
       },
       {
-        "person": "杨宇",
-        "count": 23,
-        "kps": [
-          [
-            "数据端口",
-            3
-          ],
-          [
-            "其它外观-键盘外观",
-            2
-          ],
-          [
-            "部件更换-品牌硬盘",
-            2
-          ],
-          [
-            "部件维修-主板异常情况",
-            2
-          ],
-          [
-            "ABCD面外观-划痕",
-            1
-          ],
-          [
-            "ABCD面外观-划痕/磨损/掉漆",
-            1
-          ],
-          [
-            "ABCD面外观-磕碰",
-            1
-          ],
-          [
-            "其它外观-机身-弯曲变形",
-            1
-          ],
-          [
-            "其它外观-机身-网口盖板松动",
-            1
-          ],
-          [
-            "其它状况-内存/硬盘存在异常/内存/硬盘存在异常",
-            1
-          ]
-        ]
-      },
-      {
         "person": "陈金伟",
-        "count": 20,
+        "count": 26,
         "kps": [
           [
             "外壳外观-刻字/图",
             3
+          ],
+          [
+            "基础信息-来源",
+            2
           ],
           [
             "屏幕外观-内屏掉漆",
@@ -7034,11 +8248,11 @@
             2
           ],
           [
-            "其他外观-摄像头/闪光灯外观",
+            "主板维修情况-主板-辅助工具提示异常",
             1
           ],
           [
-            "基础信息-来源",
+            "其他外观-摄像头/闪光灯外观",
             1
           ],
           [
@@ -7046,23 +8260,23 @@
             1
           ],
           [
-            "屏幕维修情况-工具-屏幕偏光检测异常",
+            "屏幕维修-更换屏幕外玻璃",
             1
           ],
           [
-            "机身-后壳更换",
-            1
-          ],
-          [
-            "机身-按键更换",
+            "屏幕维修情况-关于本机/辅助工具显示“显示屏-正品Apple部件",
             1
           ]
         ]
       },
       {
         "person": "钟仔琛",
-        "count": 19,
+        "count": 21,
         "kps": [
+          [
+            "主板-主板故障",
+            2
+          ],
           [
             "其他外观-摄像头/闪光灯外观",
             2
@@ -7070,10 +8284,6 @@
           [
             "后置摄像头-拍照有斑",
             2
-          ],
-          [
-            "主板-主板故障",
-            1
           ],
           [
             "主板-主板有第三方标识",
@@ -7107,10 +8317,14 @@
       },
       {
         "person": "张辰",
-        "count": 13,
+        "count": 18,
         "kps": [
           [
             "主板-主板维修",
+            3
+          ],
+          [
+            "浸液痕迹-发霉或生锈",
             2
           ],
           [
@@ -7123,6 +8337,10 @@
           ],
           [
             "后置摄像头-无法打开",
+            1
+          ],
+          [
+            "基础信息-保修",
             1
           ],
           [
@@ -7140,24 +8358,16 @@
           [
             "屏幕外观-内屏掉漆",
             1
-          ],
-          [
-            "按键-静音键",
-            1
-          ],
-          [
-            "机身-后壳更换",
-            1
           ]
         ]
       },
       {
         "person": "李波",
-        "count": 13,
+        "count": 14,
         "kps": [
           [
             "其他状况-越狱",
-            2
+            3
           ],
           [
             "主板-主板故障",
@@ -7199,7 +8409,7 @@
       },
       {
         "person": "苏杰",
-        "count": 10,
+        "count": 11,
         "kps": [
           [
             "其他外观-摄像头/闪光灯外观",
@@ -7215,6 +8425,10 @@
           ],
           [
             "后置摄像头-拍照有斑",
+            1
+          ],
+          [
+            "基础信息-来源",
             1
           ],
           [
@@ -7240,8 +8454,38 @@
         ]
       },
       {
+        "person": "刘秉义",
+        "count": 10,
+        "kps": [
+          [
+            "数据端口",
+            4
+          ],
+          [
+            "部件更换-品牌硬盘",
+            2
+          ],
+          [
+            "基本信息-保修情况",
+            1
+          ],
+          [
+            "屏幕显示-亮斑",
+            1
+          ],
+          [
+            "部件更换-更换/加装品牌硬盘",
+            1
+          ],
+          [
+            "：基本信息-品牌",
+            1
+          ]
+        ]
+      },
+      {
         "person": "熊帅",
-        "count": 9,
+        "count": 10,
         "kps": [
           [
             "其它外观-键盘外观",
@@ -7253,6 +8497,10 @@
           ],
           [
             "基本信息-保修情况",
+            1
+          ],
+          [
+            "基本信息-颜色",
             1
           ],
           [
@@ -7282,38 +8530,8 @@
         ]
       },
       {
-        "person": "刘秉义",
-        "count": 8,
-        "kps": [
-          [
-            "数据端口",
-            2
-          ],
-          [
-            "部件更换-品牌硬盘",
-            2
-          ],
-          [
-            "基本信息-保修情况",
-            1
-          ],
-          [
-            "屏幕显示-亮斑",
-            1
-          ],
-          [
-            "部件更换-更换/加装品牌硬盘",
-            1
-          ],
-          [
-            "：基本信息-品牌",
-            1
-          ]
-        ]
-      },
-      {
         "person": "王彪",
-        "count": 8,
+        "count": 9,
         "kps": [
           [
             "其他状况-工程机",
@@ -7340,6 +8558,10 @@
             1
           ],
           [
+            "组件-零件维修/更换",
+            1
+          ],
+          [
             "设备维修痕迹-无法拆机",
             1
           ],
@@ -7351,10 +8573,14 @@
       },
       {
         "person": "闵杰",
-        "count": 7,
+        "count": 8,
         "kps": [
           [
             "其他外观-按键外观-碎裂",
+            1
+          ],
+          [
+            "后置摄像头-拍照坏点",
             1
           ],
           [
@@ -7385,8 +8611,12 @@
       },
       {
         "person": "邱锦涛",
-        "count": 5,
+        "count": 7,
         "kps": [
+          [
+            "其它状况-充电器-功能正常",
+            1
+          ],
           [
             "屏幕显示-亮斑",
             1
@@ -7401,6 +8631,10 @@
           ],
           [
             "部件更换-品牌硬盘",
+            1
+          ],
+          [
+            "部件更换-更换非原装电池",
             1
           ],
           [
@@ -7513,31 +8747,43 @@
       },
       {
         "date": "2026-09-16",
-        "count": 9
+        "count": 7
+      },
+      {
+        "date": "2026-09-18",
+        "count": 18
+      },
+      {
+        "date": "2026-09-19",
+        "count": 4
+      },
+      {
+        "date": "2026-09-20",
+        "count": 4
       }
     ],
     "catStats": [
       {
         "cat": "笔记本",
-        "count": 69
+        "count": 81
       },
       {
         "cat": "平板",
-        "count": 57
+        "count": 69
       },
       {
         "cat": "手机二段",
-        "count": 10
+        "count": 13
       }
     ],
     "examStats": [
       {
         "exam": "日考",
-        "count": 105
+        "count": 115
       },
       {
         "exam": "周考",
-        "count": 34
+        "count": 48
       }
     ]
   },
@@ -8059,6 +9305,80 @@
           "rePush": 0,
           "banned": 0,
           "freqKp": ""
+        },
+        {
+          "date": "2026-09-18",
+          "cat": "平板",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 8,
+          "failNames": [],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-09-18",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 7,
+          "passed": 7,
+          "failNames": [],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-09-19",
+          "cat": "平板",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 8,
+          "failNames": [
+            "张辰"
+          ],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-09-20",
+          "cat": "平板",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 8,
+          "passed": 8,
+          "failNames": [],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-09-19",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 7,
+          "passed": 7,
+          "failNames": [],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        },
+        {
+          "date": "2026-09-20",
+          "cat": "笔记本",
+          "stage": "日考",
+          "passLine": 90,
+          "total": 7,
+          "passed": 7,
+          "failNames": [],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
         }
       ],
       "daily": [
@@ -8146,19 +9466,34 @@
           "date": "2026-09-17",
           "total": 15,
           "passed": 15
+        },
+        {
+          "date": "2026-09-18",
+          "total": 15,
+          "passed": 15
+        },
+        {
+          "date": "2026-09-19",
+          "total": 15,
+          "passed": 15
+        },
+        {
+          "date": "2026-09-20",
+          "total": 15,
+          "passed": 15
         }
       ],
       "catStats": [
         {
           "cat": "平板",
-          "total": 142,
-          "passed": 119,
-          "fails": 23
+          "total": 166,
+          "passed": 143,
+          "fails": 24
         },
         {
           "cat": "笔记本",
-          "total": 119,
-          "passed": 95,
+          "total": 140,
+          "passed": 116,
           "fails": 23
         },
         {
@@ -8196,6 +9531,18 @@
           ]
         },
         {
+          "person": "张辰",
+          "count": 6,
+          "dates": [
+            "2026-09-04",
+            "2026-09-09",
+            "2026-09-10",
+            "2026-09-14",
+            "2026-09-15",
+            "2026-09-19"
+          ]
+        },
+        {
           "person": "熊国梁",
           "count": 6,
           "dates": [
@@ -8205,17 +9552,6 @@
             "2026-09-08",
             "2026-09-10",
             "2026-09-11"
-          ]
-        },
-        {
-          "person": "张辰",
-          "count": 5,
-          "dates": [
-            "2026-09-04",
-            "2026-09-09",
-            "2026-09-10",
-            "2026-09-14",
-            "2026-09-15"
           ]
         },
         {
@@ -8656,6 +9992,111 @@
           "examType": "周考",
           "cat": "手机二段",
           "score": 80
+        },
+        {
+          "date": "2026-09-18",
+          "person": "熊帅",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 96
+        },
+        {
+          "date": "2026-09-18",
+          "person": "刘秉义",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 100
+        },
+        {
+          "date": "2026-09-18",
+          "person": "常凌云",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 100
+        },
+        {
+          "date": "2026-09-18",
+          "person": "熊文星",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 93
+        },
+        {
+          "date": "2026-09-18",
+          "person": "杨宇",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 93
+        },
+        {
+          "date": "2026-09-18",
+          "person": "邱锦涛",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 90
+        },
+        {
+          "date": "2026-09-18",
+          "person": "熊国梁",
+          "examType": "周考",
+          "cat": "笔记本",
+          "score": 0
+        },
+        {
+          "date": "2026-09-18",
+          "person": "陈金伟",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 93
+        },
+        {
+          "date": "2026-09-18",
+          "person": "闵杰",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 96
+        },
+        {
+          "date": "2026-09-18",
+          "person": "苏杰",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 93
+        },
+        {
+          "date": "2026-09-18",
+          "person": "张辰",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 93
+        },
+        {
+          "date": "2026-09-18",
+          "person": "李波",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 93
+        },
+        {
+          "date": "2026-09-18",
+          "person": "王彪",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 100
+        },
+        {
+          "date": "2026-09-18",
+          "person": "黄宇",
+          "examType": "周考",
+          "cat": "平板电脑",
+          "score": 100
+        },
+        {
+          "date": "2026-09-18",
+          "person": "陈金伟",
+          "examType": "周考",
+          "cat": "手机二段",
+          "score": 86
         }
       ],
       "people": [
@@ -8669,6 +10110,10 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 100
             }
           ],
           "month": [],
@@ -8679,6 +10124,10 @@
             },
             {
               "date": "2026-09-11",
+              "score": 100
+            },
+            {
+              "date": "2026-09-18",
               "score": 100
             }
           ],
@@ -8696,6 +10145,10 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 100
             }
           ],
           "month": [],
@@ -8706,6 +10159,10 @@
             },
             {
               "date": "2026-09-11",
+              "score": 100
+            },
+            {
+              "date": "2026-09-18",
               "score": 100
             }
           ],
@@ -8723,6 +10180,10 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
           "month": [],
@@ -8733,6 +10194,10 @@
             },
             {
               "date": "2026-09-11",
+              "score": 93
+            },
+            {
+              "date": "2026-09-18",
               "score": 93
             }
           ],
@@ -8750,6 +10215,10 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
           "month": [],
@@ -8761,11 +10230,15 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
-          "last": 100,
+          "last": 93,
           "first": 90,
-          "trend": 11.1
+          "trend": 3.3
         },
         {
           "person": "杨宇",
@@ -8777,6 +10250,10 @@
             {
               "date": "2026-09-11",
               "score": 90
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
           "month": [],
@@ -8788,11 +10265,15 @@
             {
               "date": "2026-09-11",
               "score": 90
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
-          "last": 90,
+          "last": 93,
           "first": 96,
-          "trend": -6.2
+          "trend": -3.1
         },
         {
           "person": "熊国梁",
@@ -8804,6 +10285,10 @@
             {
               "date": "2026-09-11",
               "score": 86
+            },
+            {
+              "date": "2026-09-18",
+              "score": 0
             }
           ],
           "month": [],
@@ -8815,11 +10300,15 @@
             {
               "date": "2026-09-11",
               "score": 86
+            },
+            {
+              "date": "2026-09-18",
+              "score": 0
             }
           ],
-          "last": 86,
+          "last": 0,
           "first": 80,
-          "trend": 7.5
+          "trend": -100.0
         },
         {
           "person": "熊帅",
@@ -8831,6 +10320,10 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 96
             }
           ],
           "month": [],
@@ -8842,11 +10335,15 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 96
             }
           ],
-          "last": 93,
+          "last": 96,
           "first": 100,
-          "trend": -7.0
+          "trend": -4.0
         },
         {
           "person": "熊文星",
@@ -8858,6 +10355,10 @@
             {
               "date": "2026-09-11",
               "score": 86
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
           "month": [],
@@ -8869,11 +10370,15 @@
             {
               "date": "2026-09-11",
               "score": 86
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
-          "last": 86,
+          "last": 93,
           "first": 90,
-          "trend": -4.4
+          "trend": 3.3
         },
         {
           "person": "王彪",
@@ -8885,6 +10390,10 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 100
             }
           ],
           "month": [],
@@ -8895,6 +10404,10 @@
             },
             {
               "date": "2026-09-11",
+              "score": 100
+            },
+            {
+              "date": "2026-09-18",
               "score": 100
             }
           ],
@@ -8912,6 +10425,10 @@
             {
               "date": "2026-09-11",
               "score": 86
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
           "month": [],
@@ -8923,11 +10440,15 @@
             {
               "date": "2026-09-11",
               "score": 86
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
             }
           ],
-          "last": 86,
+          "last": 93,
           "first": 100,
-          "trend": -14.0
+          "trend": -7.0
         },
         {
           "person": "邱锦涛",
@@ -8939,6 +10460,10 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 90
             }
           ],
           "month": [],
@@ -8950,11 +10475,15 @@
             {
               "date": "2026-09-11",
               "score": 100
+            },
+            {
+              "date": "2026-09-18",
+              "score": 90
             }
           ],
-          "last": 100,
+          "last": 90,
           "first": 93,
-          "trend": 7.5
+          "trend": -3.2
         },
         {
           "person": "闵杰",
@@ -8966,6 +10495,10 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 96
             }
           ],
           "month": [],
@@ -8977,11 +10510,15 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 96
             }
           ],
-          "last": 93,
+          "last": 96,
           "first": 93,
-          "trend": 0.0
+          "trend": 3.2
         },
         {
           "person": "陈金伟",
@@ -9001,6 +10538,14 @@
             {
               "date": "2026-09-11",
               "score": 80
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 86
             }
           ],
           "month": [],
@@ -9020,11 +10565,19 @@
             {
               "date": "2026-09-11",
               "score": 80
+            },
+            {
+              "date": "2026-09-18",
+              "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 86
             }
           ],
-          "last": 80,
+          "last": 86,
           "first": 100,
-          "trend": -20.0
+          "trend": -14.0
         },
         {
           "person": "黄宇",
@@ -9036,6 +10589,10 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 100
             }
           ],
           "month": [],
@@ -9047,11 +10604,15 @@
             {
               "date": "2026-09-11",
               "score": 93
+            },
+            {
+              "date": "2026-09-18",
+              "score": 100
             }
           ],
-          "last": 93,
+          "last": 100,
           "first": 93,
-          "trend": 0.0
+          "trend": 7.5
         }
       ]
     },
@@ -9059,10 +10620,28 @@
       {
         "person": "张辰",
         "reasons": [
-          "推题未达标5次",
+          "推题未达标6次",
           "模拟考不合格1次"
         ],
-        "lastDate": "2026-09-15"
+        "lastDate": "2026-09-19"
+      },
+      {
+        "person": "熊国梁",
+        "reasons": [
+          "推题未达标6次",
+          "模拟考不合格2次",
+          "最近分数0"
+        ],
+        "lastDate": "2026-09-18"
+      },
+      {
+        "person": "陈金伟",
+        "reasons": [
+          "推题未达标4次",
+          "模拟考不合格2次",
+          "最近分数86"
+        ],
+        "lastDate": "2026-09-18"
       },
       {
         "person": "李波",
@@ -9087,20 +10666,10 @@
         "lastDate": "2026-09-15"
       },
       {
-        "person": "熊国梁",
-        "reasons": [
-          "推题未达标6次",
-          "模拟考不合格2次",
-          "最近分数86"
-        ],
-        "lastDate": "2026-09-14"
-      },
-      {
         "person": "苏杰",
         "reasons": [
           "推题未达标1次",
-          "模拟考不合格1次",
-          "最近分数86"
+          "模拟考不合格1次"
         ],
         "lastDate": "2026-09-14"
       },
@@ -9109,15 +10678,6 @@
         "reasons": [
           "推题未达标2次",
           "模拟考不合格1次"
-        ],
-        "lastDate": "2026-09-14"
-      },
-      {
-        "person": "陈金伟",
-        "reasons": [
-          "推题未达标4次",
-          "模拟考不合格2次",
-          "最近分数80"
         ],
         "lastDate": "2026-09-14"
       },
@@ -9133,8 +10693,7 @@
         "person": "熊文星",
         "reasons": [
           "推题未达标8次",
-          "模拟考不合格1次",
-          "最近分数86"
+          "模拟考不合格1次"
         ],
         "lastDate": "2026-09-12"
       },
