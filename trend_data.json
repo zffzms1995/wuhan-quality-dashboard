@@ -1,408 +1,123 @@
 {
   "phone": [
     {
-      "date": "09/01",
-      "samples": 74,
-      "diffs": 29,
-      "objDiff": 2
+      "date": "10/01",
+      "samples": 71,
+      "diffs": 10,
+      "objDiff": 1
     },
     {
-      "date": "09/02",
-      "samples": 107,
-      "diffs": 25,
-      "objDiff": 3
-    },
-    {
-      "date": "09/03",
-      "samples": 130,
-      "diffs": 24,
-      "objDiff": 2
-    },
-    {
-      "date": "09/04",
-      "samples": 135,
-      "diffs": 22,
-      "objDiff": 2
-    },
-    {
-      "date": "09/05",
-      "samples": 74,
-      "diffs": 23,
-      "objDiff": 5
-    },
-    {
-      "date": "09/06",
-      "samples": 78,
-      "diffs": 27,
-      "objDiff": 2
-    },
-    {
-      "date": "09/07",
-      "samples": 137,
-      "diffs": 24,
-      "objDiff": 3
-    },
-    {
-      "date": "09/08",
-      "samples": 88,
-      "diffs": 27,
-      "objDiff": 6
-    },
-    {
-      "date": "09/09",
-      "samples": 150,
-      "diffs": 56,
-      "objDiff": 7
-    },
-    {
-      "date": "09/10",
-      "samples": 142,
-      "diffs": 56,
-      "objDiff": 4
-    },
-    {
-      "date": "09/11",
-      "samples": 158,
-      "diffs": 84,
-      "objDiff": 4
-    },
-    {
-      "date": "09/12",
-      "samples": 67,
-      "diffs": 33,
-      "objDiff": 5
-    },
-    {
-      "date": "09/13",
-      "samples": 76,
-      "diffs": 22,
-      "objDiff": 7
-    },
-    {
-      "date": "09/14",
-      "samples": 172,
-      "diffs": 41,
-      "objDiff": 10
-    },
-    {
-      "date": "09/15",
-      "samples": 99,
-      "diffs": 30,
-      "objDiff": 5
-    },
-    {
-      "date": "09/16",
-      "samples": 45,
+      "date": "10/02",
+      "samples": 70,
       "diffs": 19,
-      "objDiff": 4
+      "objDiff": 1
     },
     {
-      "date": "09/17",
-      "samples": 66,
-      "diffs": 20,
+      "date": "10/03",
+      "samples": 70,
+      "diffs": 7,
       "objDiff": 2
     },
     {
-      "date": "09/18",
-      "samples": 153,
-      "diffs": 42,
+      "date": "10/04",
+      "samples": 52,
+      "diffs": 27,
+      "objDiff": 0
+    },
+    {
+      "date": "10/05",
+      "samples": 120,
+      "diffs": 21,
       "objDiff": 6
     },
     {
-      "date": "09/19",
-      "samples": 143,
-      "diffs": 50,
-      "objDiff": 7
-    },
-    {
-      "date": "09/20",
-      "samples": 86,
-      "diffs": 21,
-      "objDiff": 2
-    },
-    {
-      "date": "09/21",
-      "samples": 104,
-      "diffs": 39,
-      "objDiff": 11
+      "date": "10/06",
+      "samples": 120,
+      "diffs": 35,
+      "objDiff": 3
     }
   ],
   "fourCat": {
     "平板电脑": [
       {
-        "date": "09/01",
-        "samples": 11,
-        "diffs": 1
-      },
-      {
-        "date": "09/02",
-        "samples": 9,
+        "date": "10/01",
+        "samples": 3,
         "diffs": 0
       },
       {
-        "date": "09/03",
-        "samples": 10,
-        "diffs": 0
-      },
-      {
-        "date": "09/04",
-        "samples": 9,
-        "diffs": 0
-      },
-      {
-        "date": "09/06",
-        "samples": 10,
-        "diffs": 1
-      },
-      {
-        "date": "09/07",
-        "samples": 10,
-        "diffs": 1
-      },
-      {
-        "date": "09/08",
-        "samples": 6,
-        "diffs": 0
-      },
-      {
-        "date": "09/09",
-        "samples": 9,
-        "diffs": 1
-      },
-      {
-        "date": "09/10",
-        "samples": 10,
-        "diffs": 0
-      },
-      {
-        "date": "09/11",
-        "samples": 9,
-        "diffs": 0
-      },
-      {
-        "date": "09/13",
+        "date": "10/02",
         "samples": 2,
-        "diffs": 1
-      },
-      {
-        "date": "09/14",
-        "samples": 9,
-        "diffs": 1
-      },
-      {
-        "date": "09/15",
-        "samples": 11,
         "diffs": 0
       },
       {
-        "date": "09/18",
-        "samples": 6,
+        "date": "10/03",
+        "samples": 1,
         "diffs": 0
       },
       {
-        "date": "09/19",
-        "samples": 12,
-        "diffs": 2
+        "date": "10/05",
+        "samples": 5,
+        "diffs": 0
       },
       {
-        "date": "09/21",
-        "samples": 4,
+        "date": "10/06",
+        "samples": 2,
         "diffs": 0
       }
     ],
     "笔记本": [
       {
-        "date": "09/02",
-        "samples": 48,
-        "diffs": 6
-      },
-      {
-        "date": "09/03",
-        "samples": 36,
+        "date": "10/01",
+        "samples": 49,
         "diffs": 0
       },
       {
-        "date": "09/04",
-        "samples": 48,
-        "diffs": 1
+        "date": "10/02",
+        "samples": 16,
+        "diffs": 6
       },
       {
-        "date": "09/05",
+        "date": "10/03",
         "samples": 47,
-        "diffs": 2
+        "diffs": 3
       },
       {
-        "date": "09/06",
-        "samples": 44,
-        "diffs": 6
-      },
-      {
-        "date": "09/07",
-        "samples": 49,
-        "diffs": 1
-      },
-      {
-        "date": "09/08",
-        "samples": 43,
+        "date": "10/05",
+        "samples": 92,
         "diffs": 0
       },
       {
-        "date": "09/09",
-        "samples": 48,
-        "diffs": 2
-      },
-      {
-        "date": "09/10",
-        "samples": 44,
+        "date": "10/06",
+        "samples": 111,
         "diffs": 0
-      },
-      {
-        "date": "09/12",
-        "samples": 46,
-        "diffs": 0
-      },
-      {
-        "date": "09/13",
-        "samples": 51,
-        "diffs": 3
-      },
-      {
-        "date": "09/14",
-        "samples": 48,
-        "diffs": 3
-      },
-      {
-        "date": "09/15",
-        "samples": 52,
-        "diffs": 4
-      },
-      {
-        "date": "09/16",
-        "samples": 50,
-        "diffs": 3
-      },
-      {
-        "date": "09/18",
-        "samples": 42,
-        "diffs": 1
-      },
-      {
-        "date": "09/19",
-        "samples": 49,
-        "diffs": 3
-      },
-      {
-        "date": "09/20",
-        "samples": 71,
-        "diffs": 3
-      },
-      {
-        "date": "09/21",
-        "samples": 76,
-        "diffs": 1
       }
     ]
   },
   "fourCatAgg": [
     {
-      "date": "09/01",
-      "samples": 11,
-      "diffs": 1
+      "date": "10/01",
+      "samples": 52,
+      "diffs": 0
     },
     {
-      "date": "09/02",
-      "samples": 57,
+      "date": "10/02",
+      "samples": 18,
       "diffs": 6
     },
     {
-      "date": "09/03",
-      "samples": 46,
-      "diffs": 0
-    },
-    {
-      "date": "09/04",
-      "samples": 57,
-      "diffs": 1
-    },
-    {
-      "date": "09/05",
-      "samples": 47,
-      "diffs": 2
-    },
-    {
-      "date": "09/06",
-      "samples": 54,
-      "diffs": 7
-    },
-    {
-      "date": "09/07",
-      "samples": 59,
-      "diffs": 2
-    },
-    {
-      "date": "09/08",
-      "samples": 49,
-      "diffs": 0
-    },
-    {
-      "date": "09/09",
-      "samples": 57,
-      "diffs": 3
-    },
-    {
-      "date": "09/10",
-      "samples": 54,
-      "diffs": 0
-    },
-    {
-      "date": "09/11",
-      "samples": 9,
-      "diffs": 0
-    },
-    {
-      "date": "09/12",
-      "samples": 46,
-      "diffs": 0
-    },
-    {
-      "date": "09/13",
-      "samples": 53,
-      "diffs": 4
-    },
-    {
-      "date": "09/14",
-      "samples": 57,
-      "diffs": 4
-    },
-    {
-      "date": "09/15",
-      "samples": 63,
-      "diffs": 4
-    },
-    {
-      "date": "09/16",
-      "samples": 50,
-      "diffs": 3
-    },
-    {
-      "date": "09/18",
+      "date": "10/03",
       "samples": 48,
-      "diffs": 1
-    },
-    {
-      "date": "09/19",
-      "samples": 61,
-      "diffs": 5
-    },
-    {
-      "date": "09/20",
-      "samples": 71,
       "diffs": 3
     },
     {
-      "date": "09/21",
-      "samples": 80,
-      "diffs": 1
+      "date": "10/05",
+      "samples": 97,
+      "diffs": 0
+    },
+    {
+      "date": "10/06",
+      "samples": 113,
+      "diffs": 0
     }
   ]
 }
