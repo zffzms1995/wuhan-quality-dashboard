@@ -296,6 +296,8 @@ var META = { monthLabel: '', dateMin: '', dateMax: '', updatedAt: '' };
 var TREND = { phone: [], fourCat: {}, fourCatAgg: [] };
 
 var IMG_PREFIX = 'images/';
+var DATA_VERSION = '90310ca36c'; // 数据版本号：update_dashboard.py 每次数据变化时自动更新，用于刷新浏览器缓存
+function imgUrl(f){ return IMG_PREFIX + f + (IMG_PREFIX === 'images/' ? '?v=' + DATA_VERSION : ''); }
 
 function loadData(monthKey) {
   var failMsg = '数据加载失败：请确认已运行 update_dashboard.py 生成 dashboard_data.json / trend_data.json，并通过 http 服务打开本页面。';
@@ -313,8 +315,8 @@ function loadData(monthKey) {
     });
   } else {
     p = Promise.all([
-      fetch('dashboard_data.json').then(function(r){ if(!r.ok) throw new Error('dashboard_data.json HTTP '+r.status); return r.json(); }),
-      fetch('trend_data.json').then(function(r){ if(!r.ok) throw new Error('trend_data.json HTTP '+r.status); return r.json(); })
+      fetch('dashboard_data.json?v='+DATA_VERSION).then(function(r){ if(!r.ok) throw new Error('dashboard_data.json HTTP '+r.status); return r.json(); }),
+      fetch('trend_data.json?v='+DATA_VERSION).then(function(r){ if(!r.ok) throw new Error('trend_data.json HTTP '+r.status); return r.json(); })
     ]);
   }
   p.then(function(results){
@@ -341,7 +343,7 @@ function loadData(monthKey) {
 }
 
 function populateMonthSelect() {
-  fetch('months.json').then(function(r){
+  fetch('months.json?v='+DATA_VERSION).then(function(r){
     if (!r.ok) return;
     return r.json();
   }).then(function(months){
@@ -616,7 +618,7 @@ function renderCuotiDetail() {
     var title = esc(r.kp).replace(/'/g, "\\'");
     var imgsHtml = (r.imgs && r.imgs.length)
       ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">' + r.imgs.map(function(f){
-          return '<img src="'+IMG_PREFIX+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+title+'\')">';
+          return '<img src="'+imgUrl(f)+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+title+'\')">';
         }).join('') + '</div>'
       : '';
     return '<div class="cuoti-item">'
@@ -1055,7 +1057,7 @@ function renderDiffList() {
     var detailTitle = esc(detail).replace(/'/g, "\\'");
     var imgsHtml = (d.imgs && d.imgs.length)
       ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">' + d.imgs.map(function(f){
-          return '<img src="'+IMG_PREFIX+f+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+detailTitle+'\')">';
+          return '<img src="'+imgUrl(f)+'" class="cuoti-img" loading="lazy" onclick="viewMBImage(\''+f+'\',\''+detailTitle+'\')">';
         }).join('') + '</div>'
       : '';
     return '<div class="diff-item '+cls+'"><div class="row"><strong>'+d.date+'</strong> | '+cat+' | '+d.brand+' '+d.model
@@ -1073,13 +1075,13 @@ function renderDiffList() {
 function buildMBTable() {
   var data = MB.filter(isInFilter);
   document.querySelector('#mbTable tbody').innerHTML = data.map(function(d){
-    return '<tr class="clickable-row" onclick="viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+' - '+d.qaFinding+'\')"><td>'+(d.imageFile?'<img src="'+IMG_PREFIX+d.imageFile+'" class="img-thumb" loading="lazy" onclick="event.stopPropagation();viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+'\')">':'无图')+'</td><td><span class="badge '+(d.penalty==='是'?'bg-bad':'bg-good')+'">'+d.penalty+'</span></td><td style="font-family:monospace;font-size:11px">'+esc(d.code||'-')+'</td><td>'+d.date+'</td><td>'+d.brand+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.model+'">'+d.model+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.qaReviewer+'</td><td style="color:#dc2626">'+d.qaFinding+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.qaCheck+'">'+(d.qaCheck||'-')+'</td></tr>';
+    return '<tr class="clickable-row" onclick="viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+' - '+d.qaFinding+'\')"><td>'+(d.imageFile?'<img src="'+imgUrl(d.imageFile)+'" class="img-thumb" loading="lazy" onclick="event.stopPropagation();viewMBImage(\''+d.imageFile+'\',\''+d.brand+' '+d.model+'\')">':'无图')+'</td><td><span class="badge '+(d.penalty==='是'?'bg-bad':'bg-good')+'">'+d.penalty+'</span></td><td style="font-family:monospace;font-size:11px">'+esc(d.code||'-')+'</td><td>'+d.date+'</td><td>'+d.brand+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.model+'">'+d.model+'</td><td><strong>'+d.inspector+'</strong></td><td>'+d.qaReviewer+'</td><td style="color:#dc2626">'+d.qaFinding+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+d.qaCheck+'">'+(d.qaCheck||'-')+'</td></tr>';
   }).join('');
 }
 
 function viewMBImage(imgFile, title) {
   if(!imgFile) return;
-  document.getElementById('lightboxImg').src = IMG_PREFIX + imgFile;
+  document.getElementById('lightboxImg').src = imgUrl(imgFile);
   document.getElementById('lightboxImg').alt = title || '';
   document.getElementById('lightbox').classList.add('show');
 }

@@ -11,6 +11,7 @@
 """
 import argparse
 import calendar
+import hashlib
 import json
 import os
 import re
@@ -1556,6 +1557,18 @@ def main():
     with open(os.path.join(REPO, "trend_data.json"), "w", encoding="utf-8") as f:
         json.dump(trend, f, ensure_ascii=False, indent=2)
     write_months_json(cur_key)
+
+    # 数据变化时更新 index.html 里的 DATA_VERSION（数据+图片 URL 带 ?v= 版本号，浏览器缓存自动刷新）
+    h = hashlib.sha1(open(os.path.join(REPO, "dashboard_data.json"), "rb").read()
+                     + open(os.path.join(REPO, "trend_data.json"), "rb").read()).hexdigest()[:10]
+    html_path = os.path.join(REPO, "index.html")
+    with open(html_path, encoding="utf-8") as f:
+        html = f.read()
+    new_html = re.sub(r"var DATA_VERSION = '[^']*'", f"var DATA_VERSION = '{h}'", html)
+    if new_html != html:
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(new_html)
+        print(f"DATA_VERSION → {h}")
 
     print("\n========== 生成结果 ==========")
     print(f"主板审核: {len(dashboard['mb'])} 条（图片 {mb_img} 张）")
