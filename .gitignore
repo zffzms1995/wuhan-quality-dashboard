@@ -2,3 +2,6 @@
 *.xlsx
 full_data.json
 images.json
+
+# 错题自动抓取（含登录态，仅本机）
+zzdx/
