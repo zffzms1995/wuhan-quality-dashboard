@@ -89,6 +89,24 @@
       "samples": 47,
       "diffs": 20,
       "objDiff": 3
+    },
+    {
+      "date": "10/16",
+      "samples": 51,
+      "diffs": 24,
+      "objDiff": 5
+    },
+    {
+      "date": "10/17",
+      "samples": 116,
+      "diffs": 39,
+      "objDiff": 11
+    },
+    {
+      "date": "10/18",
+      "samples": 121,
+      "diffs": 33,
+      "objDiff": 2
     }
   ],
   "fourCat": {
@@ -174,6 +192,16 @@
         "date": "10/10",
         "samples": 64,
         "diffs": 2
+      },
+      {
+        "date": "10/17",
+        "samples": 40,
+        "diffs": 0
+      },
+      {
+        "date": "10/18",
+        "samples": 51,
+        "diffs": 2
       }
     ]
   },
@@ -222,6 +250,16 @@
       "date": "10/10",
       "samples": 66,
       "diffs": 3
+    },
+    {
+      "date": "10/17",
+      "samples": 40,
+      "diffs": 0
+    },
+    {
+      "date": "10/18",
+      "samples": 51,
+      "diffs": 2
     }
   ]
 }

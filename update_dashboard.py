@@ -962,6 +962,7 @@ FEISHU_OPEN_ID = "ou_d80917787fd37a300ccf1ef12ef58c40"
 FEISHU_GROUP_CHAT_ID = "oc_7cf6ba533bd05961e6bd87292b4e436d"  # 武汉中心仓手机培训学习群（手机平板）
 NOTEBOOK_GROUP_CHAT_ID = "oc_2309d11cc5adef8572fd01977568b54b"  # 笔记本群
 CUOTI_PUSHED = os.path.join(REPO, "cuoti_pushed.json")  # 已推送错题记录（增量推送用）
+CUOTI_PUSH_IMAGES = False  # 错题播报只发文字（2026-10-16 用户调整），改 True 恢复截图推送
 
 
 def _is_notebook(cat):
@@ -1276,7 +1277,7 @@ def _cuoti_text_block(r):
 
 
 def push_cuoti_batch(records, receive_id, receive_id_type, label=""):
-    """推送新增错题：一条汇总文字 + 每题截图。失败只警告，不中断主流程"""
+    """推送新增错题：一条汇总文字（CUOTI_PUSH_IMAGES 为 True 时附带每题截图）。失败只警告，不中断主流程"""
     if not records:
         return
     try:
@@ -1295,6 +1296,8 @@ def push_cuoti_batch(records, receive_id, receive_id_type, label=""):
             print(f"    警告: 新增错题文字发送失败{label}（{r.get('msg')}）")
         else:
             print(f"    已发送新增错题文字{label} ✓（{len(records)} 条）")
+        if not CUOTI_PUSH_IMAGES:
+            return
         # 截图按记录顺序发送
         sent = 0
         for rec in records:
