@@ -113,6 +113,24 @@
       "samples": 63,
       "diffs": 7,
       "objDiff": 0
+    },
+    {
+      "date": "10/20",
+      "samples": 103,
+      "diffs": 38,
+      "objDiff": 10
+    },
+    {
+      "date": "10/21",
+      "samples": 104,
+      "diffs": 31,
+      "objDiff": 7
+    },
+    {
+      "date": "10/22",
+      "samples": 91,
+      "diffs": 33,
+      "objDiff": 10
     }
   ],
   "fourCat": {
@@ -213,6 +231,21 @@
         "date": "10/19",
         "samples": 44,
         "diffs": 3
+      },
+      {
+        "date": "10/20",
+        "samples": 52,
+        "diffs": 0
+      },
+      {
+        "date": "10/21",
+        "samples": 44,
+        "diffs": 0
+      },
+      {
+        "date": "10/22",
+        "samples": 43,
+        "diffs": 0
       }
     ]
   },
@@ -276,6 +309,21 @@
       "date": "10/19",
       "samples": 44,
       "diffs": 3
+    },
+    {
+      "date": "10/20",
+      "samples": 52,
+      "diffs": 0
+    },
+    {
+      "date": "10/21",
+      "samples": 44,
+      "diffs": 0
+    },
+    {
+      "date": "10/22",
+      "samples": 43,
+      "diffs": 0
     }
   ]
 }
