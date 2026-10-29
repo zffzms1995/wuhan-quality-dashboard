@@ -161,6 +161,12 @@
       "samples": 101,
       "diffs": 34,
       "objDiff": 7
+    },
+    {
+      "date": "10/28",
+      "samples": 101,
+      "diffs": 30,
+      "objDiff": 3
     }
   ],
   "fourCat": {
@@ -296,6 +302,11 @@
         "date": "10/27",
         "samples": 39,
         "diffs": 0
+      },
+      {
+        "date": "10/28",
+        "samples": 32,
+        "diffs": 0
       }
     ]
   },
@@ -393,6 +404,11 @@
     {
       "date": "10/27",
       "samples": 39,
+      "diffs": 0
+    },
+    {
+      "date": "10/28",
+      "samples": 32,
       "diffs": 0
     }
   ]
