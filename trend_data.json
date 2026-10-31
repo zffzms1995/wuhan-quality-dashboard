@@ -167,6 +167,18 @@
       "samples": 101,
       "diffs": 30,
       "objDiff": 3
+    },
+    {
+      "date": "10/29",
+      "samples": 114,
+      "diffs": 27,
+      "objDiff": 5
+    },
+    {
+      "date": "10/30",
+      "samples": 113,
+      "diffs": 40,
+      "objDiff": 4
     }
   ],
   "fourCat": {
@@ -307,6 +319,16 @@
         "date": "10/28",
         "samples": 32,
         "diffs": 0
+      },
+      {
+        "date": "10/29",
+        "samples": 44,
+        "diffs": 0
+      },
+      {
+        "date": "10/30",
+        "samples": 43,
+        "diffs": 0
       }
     ]
   },
@@ -409,6 +431,16 @@
     {
       "date": "10/28",
       "samples": 32,
+      "diffs": 0
+    },
+    {
+      "date": "10/29",
+      "samples": 44,
+      "diffs": 0
+    },
+    {
+      "date": "10/30",
+      "samples": 43,
       "diffs": 0
     }
   ]
