@@ -32,8 +32,8 @@ FEISHU_DOC_BASE = "https://zhuanspirit.feishu.cn"
 REPO = os.path.dirname(os.path.abspath(__file__))
 CLAUDE_JSON = os.path.expanduser("~/.claude.json")
 # 主表 token 换成新表：把新表链接发 Claude 解析（知识库 /wiki/ 链接需解析出实际 obj_token）
-DEFAULT_FILE_TOKEN = "ErZhsa46Zh3RhttbDcQch2ARnBg"  # 26年10月（原9月表 Ju1AsGuTdhkcUutqO2fcuwJ7n3b）
-CUOTI_FILE_TOKEN = "RxdFsrcDGhbxbWtIsS1cOsBin9b"  # 10月提升动作留底表（原9月表 TWeosy6eKhAvUVtFi9LcropFnog）
+DEFAULT_FILE_TOKEN = "S01rsjwNMh4M4vtyEzZcmVoBntf"  # 26年11月（原10月表 ErZhsa46Zh3RhttbDcQch2ARnBg）
+CUOTI_FILE_TOKEN = "AL5BsfG4hhP0yetcZsQcbM4ZnRd"  # 11月提升动作留底表（原10月表 RxdFsrcDGhbxbWtIsS1cOsBin9b）
 ARCHIVE_DIR = os.path.join(REPO, "archive")
 
 
@@ -156,6 +156,15 @@ def col_of_after(ws, hdr_row, name, after_col):
     raise SystemExit(f"在工作表「{ws.title}」第{hdr_row}行未找到列「{name}」")
 
 
+def col_of_any(ws, hdr_row, names):
+    """按候选列名列表找列（旧表/新表表头差异兼容），找不到返回 0"""
+    for n in names:
+        for c in range(1, ws.max_column + 1):
+            if str(ws.cell(row=hdr_row, column=c).value or '').strip() == n:
+                return c
+    return 0
+
+
 def find_header_row(ws, anchors, max_rows=5):
     for r in range(1, max_rows + 1):
         vals = {str(ws.cell(row=r, column=c).value).strip()
@@ -207,36 +216,59 @@ def _pil_compress(tmp, out_path):
 
 
 def parse_mb(ws, images_dir):
-    hdr = find_header_row(ws, ["是否触发罚款", "质检码", "审核人"])
+    # 2026-11 起新表表头调整：拆机时间→质检完成时间、商户站点名称→商户名称、后验结果→后验拦截结果、
+    # 拆机命中埋点操作人→实际拆机人姓名、检出项X级名称→检出X级项名称、型号名称→机型名称；
+    # 「是否触发罚款」列被删，经用户确认改用「是否拆损」（拆损报损即罚款）
+    hdr = find_header_row(ws, ["质检码", "审核人", "是否有差异"])
     if hdr is None:
         raise SystemExit(f"「{ws.title}」表头未识别，请检查工作表结构")
-    cols = {n: col_of(ws, hdr, n) for n in [
-        "是否触发罚款", "拆机时间", "质检码", "品牌名称", "型号名称", "功能等级",
-        "商户站点名称", "后验结果", "拆机命中埋点操作人", "检出项一级名称",
-        "检出项二级名称", "检出项三级名称", "审核人", "是否有差异", "差异检出值", "备注"]}
+    cols = {key: col_of_any(ws, hdr, names) for key, names in {
+        "penalty": ["是否触发罚款", "是否拆损"],
+        "date": ["拆机时间", "质检完成时间"],
+        "code": ["质检码"],
+        "brand": ["品牌名称"],
+        "model": ["型号名称", "机型名称"],
+        "grade": ["功能等级"],
+        "merchant": ["商户站点名称", "商户名称"],
+        "result": ["后验结果", "后验拦截结果"],
+        "inspector": ["拆机命中埋点操作人", "实际拆机人姓名"],
+        "qaLevel1": ["检出项一级名称", "检出一级项名称"],
+        "qaLevel2": ["检出项二级名称", "检出二级项名称"],
+        "qaCheck": ["检出项三级名称", "检出三级项名称"],
+        "qaReviewer": ["审核人"],
+        "hasDiff": ["是否有差异"],
+        "qaFinding": ["差异检出值"],
+        "notes": ["备注"],
+    }.items()}
+
+    def v(r, key):
+        c = cols[key]
+        return sval(ws.cell(row=r, column=c).value) if c else ""
+
     rows = []
     for r in range(hdr + 1, ws.max_row + 1):
-        date_v = sval(ws.cell(row=r, column=cols["拆机时间"]).value)
+        date_v = v(r, "date")
         if not date_v:
             continue
+        penalty = v(r, "penalty")
         rows.append({
             "_row": r,
-            "penalty": sval(ws.cell(row=r, column=cols["是否触发罚款"]).value),
+            "penalty": "是" if penalty in ("是", "1") else "",
             "date": date_v,
-            "code": sval(ws.cell(row=r, column=cols["质检码"]).value),
-            "brand": sval(ws.cell(row=r, column=cols["品牌名称"]).value),
-            "model": sval(ws.cell(row=r, column=cols["型号名称"]).value),
-            "grade": sval(ws.cell(row=r, column=cols["功能等级"]).value),
-            "merchant": sval(ws.cell(row=r, column=cols["商户站点名称"]).value),
-            "result": sval(ws.cell(row=r, column=cols["后验结果"]).value),
-            "inspector": sval(ws.cell(row=r, column=cols["拆机命中埋点操作人"]).value),
-            "qaLevel1": sval(ws.cell(row=r, column=cols["检出项一级名称"]).value),
-            "qaLevel2": sval(ws.cell(row=r, column=cols["检出项二级名称"]).value),
-            "qaCheck": sval(ws.cell(row=r, column=cols["检出项三级名称"]).value),
-            "qaReviewer": sval(ws.cell(row=r, column=cols["审核人"]).value),
-            "hasDiff": sval(ws.cell(row=r, column=cols["是否有差异"]).value),
-            "qaFinding": sval(ws.cell(row=r, column=cols["差异检出值"]).value),
-            "notes": sval(ws.cell(row=r, column=cols["备注"]).value),
+            "code": v(r, "code"),
+            "brand": v(r, "brand"),
+            "model": v(r, "model"),
+            "grade": v(r, "grade"),
+            "merchant": v(r, "merchant"),
+            "result": v(r, "result"),
+            "inspector": v(r, "inspector"),
+            "qaLevel1": v(r, "qaLevel1"),
+            "qaLevel2": v(r, "qaLevel2"),
+            "qaCheck": v(r, "qaCheck"),
+            "qaReviewer": v(r, "qaReviewer"),
+            "hasDiff": v(r, "hasDiff"),
+            "qaFinding": v(r, "qaFinding"),
+            "notes": v(r, "notes"),
         })
     # 内嵌图片按锚点行号对应记录
     img_by_row = {}

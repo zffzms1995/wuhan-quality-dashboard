@@ -1,0 +1,1614 @@
+{
+  "dashboard": {
+    "meta": {
+      "monthLabel": "2026年11月",
+      "dateMin": "2026-11-01",
+      "dateMax": "2026-11-30",
+      "updatedAt": "2026-11-07",
+      "editUrl": "https://zhuanspirit.feishu.cn/sheets/S01rsjwNMh4M4vtyEzZcmVoBntf",
+      "cuotiUrl": "https://zhuanspirit.feishu.cn/sheets/AL5BsfG4hhP0yetcZsQcbM4ZnRd"
+    },
+    "mb": [
+      {
+        "penalty": "",
+        "date": "2026-11-03",
+        "code": "1232258609",
+        "brand": "华为",
+        "model": "华为 nova 12 活力版",
+        "grade": "",
+        "merchant": "湖北-咸宁-马志坤",
+        "result": "拦截",
+        "inspector": "黄宇",
+        "qaLevel1": "维修浸液",
+        "qaLevel2": "机身",
+        "qaCheck": "后壳-与中框有溢胶/撬痕",
+        "qaReviewer": "曾欣",
+        "hasDiff": "是",
+        "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
+        "notes": "",
+        "imageFile": "mb_5.jpg",
+        "id": 1
+      },
+      {
+        "penalty": "",
+        "date": "2026-11-03",
+        "code": "1233338184",
+        "brand": "苹果",
+        "model": "iPhone 15",
+        "grade": "",
+        "merchant": "湖北-孝感-孙锐",
+        "result": "",
+        "inspector": "王彪",
+        "qaLevel1": "维修浸液",
+        "qaLevel2": "前摄维修情况",
+        "qaCheck": "原深感摄像头-正品Apple部件",
+        "qaReviewer": "周湘辉",
+        "hasDiff": "是",
+        "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
+        "notes": "",
+        "imageFile": "mb_4.jpg",
+        "id": 2
+      },
+      {
+        "penalty": "",
+        "date": "2026-11-03",
+        "code": "1233348057",
+        "brand": "苹果",
+        "model": "iPhone 15 Pro Max",
+        "grade": "",
+        "merchant": "湖北-孝感-孙锐",
+        "result": "",
+        "inspector": "黄宇",
+        "qaLevel1": "维修浸液",
+        "qaLevel2": "屏幕",
+        "qaCheck": "外屏-APP黑边红线有缺失",
+        "qaReviewer": "周湘辉",
+        "hasDiff": "是",
+        "qaFinding": "部分零件维修更换",
+        "notes": "",
+        "imageFile": "mb_3.jpg",
+        "id": 3
+      }
+    ],
+    "diffs": [
+      {
+        "date": "2026-11-01",
+        "code": "1229614040",
+        "imgs": [
+          "phone_4_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 nova 6 (5G)",
+        "level1": "维修浸液",
+        "level2": "屏幕-屏幕材质不符",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "重庆-苡柠通讯（采货侠）",
+        "errorPerson": "陈金伟",
+        "origInspector": "陈金伟",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-01",
+        "code": "1231469735",
+        "imgs": [
+          "phone_3_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo iQOO Neo 9 Pro",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "武汉-李荣（已验机2.0）",
+        "errorPerson": "李波",
+        "origInspector": "李波",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1230690095",
+        "imgs": [
+          "phone_7_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo iQOO Z8x",
+        "level1": "摄像头",
+        "level2": "前摄拍照有坏点",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "重庆-苡柠通讯（采货侠）",
+        "errorPerson": "李波",
+        "origInspector": "李波",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1230759574",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo Y50 5G",
+        "level1": "屏幕显示",
+        "level2": "泛红/泛黄：明显（可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "武汉-李荣（已验机2.0）",
+        "errorPerson": "李波",
+        "origInspector": "李波",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1231123855",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo X100",
+        "level1": "维修浸液",
+        "level2": "部分零件维修更换",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "工艺问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "武汉-李荣（已验机2.0）",
+        "errorPerson": "",
+        "origInspector": "苏杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232965159",
+        "imgs": [
+          "phone_10_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 nova 15 Ultra",
+        "level1": "摄像头",
+        "level2": "坏点数量＞1或直径＞0.5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "闵杰",
+        "origInspector": "闵杰",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232965163",
+        "imgs": [
+          "phone_8_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 nova 13",
+        "level1": "外壳外观",
+        "level2": "翘起高度≥0.5mm-1mm",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "陈金伟",
+        "origInspector": "陈金伟",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232965190",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 14",
+        "level1": "其它状况",
+        "level2": "查询提示预激活",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "系统问题",
+        "severity": "错判",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "",
+        "origInspector": "苏杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232965194",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 Pura 80 Pro",
+        "level1": "摄像头",
+        "level2": "有斑数量≤15且直径≤20mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "薛李雄",
+        "origInspector": "薛李雄",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1212803183",
+        "imgs": [
+          "phone_16_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo X100s Pro",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "闵杰",
+        "origInspector": "闵杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1227872601",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 P50 Pro (麒麟版)",
+        "level1": "维修浸液",
+        "level2": "部分零件维修更换",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "工艺问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "重庆-阳帆（采货侠）",
+        "errorPerson": "",
+        "origInspector": "王彪",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1227872601",
+        "imgs": [
+          "phone_14_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 P50 Pro (麒麟版)",
+        "level1": "摄像头",
+        "level2": "有斑数量≤15且直径≤20mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "重庆-阳帆（采货侠）",
+        "errorPerson": "",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1227872601",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 P50 Pro (麒麟版)",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "重庆-阳帆（采货侠）",
+        "errorPerson": "",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1230421236",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 11",
+        "level1": "屏幕显示",
+        "level2": "状态栏以外透图（不可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "刘尊帅",
+        "origInspector": "刘尊帅",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1230421243",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "红米",
+        "model": "红米 K70 Pro",
+        "level1": "屏幕显示",
+        "level2": "直径 ≤0.5mm且数量 4-6",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "闵杰",
+        "origInspector": "闵杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1230847267",
+        "imgs": [
+          "phone_19_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "红米",
+        "model": "红米 K60",
+        "level1": "摄像头",
+        "level2": "有斑数量≤15且直径≤20mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1230847267",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "红米",
+        "model": "红米 K60",
+        "level1": "屏幕显示",
+        "level2": "直径 ≤0.5mm且数量 4-6",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1232487723",
+        "imgs": [
+          "phone_17_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo S30",
+        "level1": "屏幕显示",
+        "level2": "状态栏以外透图（可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "咸宁-马志坤（已验机2.0）",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1225128626",
+        "imgs": [
+          "phone_32_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 13 Ultra",
+        "level1": "摄像头",
+        "level2": "坏点数量＞1或直径＞0.5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "闵杰",
+        "origInspector": "闵杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1225128626",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 13 Ultra",
+        "level1": "屏幕显示",
+        "level2": "状态栏以外透图（不可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "",
+        "origInspector": "闵杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1228923526",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "一加",
+        "model": "一加 Ace 3V",
+        "level1": "摄像头",
+        "level2": "画面异常",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "隐性问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "",
+        "origInspector": "刘尊帅",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1230254708",
+        "imgs": [
+          "phone_30_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo iQOO Neo 10 Pro",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "武汉-李荣（已验机2.0）",
+        "errorPerson": "闵杰",
+        "origInspector": "闵杰",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1230847250",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo S15e",
+        "level1": "屏幕显示",
+        "level2": "泛红/泛黄：明显（可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "刘尊帅",
+        "origInspector": "刘尊帅",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1230847250",
+        "imgs": [
+          "phone_22_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo S15e",
+        "level1": "屏幕显示",
+        "level2": "状态栏以外透图（可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "",
+        "origInspector": "刘尊帅",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1230848796",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 14 Pro",
+        "level1": "屏幕显示",
+        "level2": "直径 ≤0.5mm且数量 4-6",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1230977442",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 13",
+        "level1": "维修浸液",
+        "level2": "外屏-有胶水溢出/撬痕",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "王彪",
+        "origInspector": "王彪",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1230977492",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo S20",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "刘尊帅",
+        "origInspector": "刘尊帅",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1231301794",
+        "imgs": [
+          "phone_25_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "荣耀",
+        "model": "荣耀 Magic 7 Pro",
+        "level1": "摄像头",
+        "level2": "坏点数量＞1或直径＞0.5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "李波",
+        "origInspector": "李波",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1231539271",
+        "imgs": [
+          "phone_26_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 13 Ultra",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1231539271",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 13 Ultra",
+        "level1": "屏幕显示",
+        "level2": "直径≤0.5mm且数量≤3",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1231809536",
+        "imgs": [
+          "phone_28_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "华为",
+        "model": "华为 Mate 50 Pro",
+        "level1": "维修浸液",
+        "level2": "外屏-感应孔样式与示例不符",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "武汉-兆富仓（采货侠）",
+        "errorPerson": "黄宇",
+        "origInspector": "黄宇",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1233429871",
+        "imgs": [
+          "phone_37_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "苹果",
+        "model": "iPhone 15 Pro",
+        "level1": "摄像头",
+        "level2": "有斑数量≤3且直径≤5mm",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "liwen02"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1233432535",
+        "imgs": [
+          "phone_34_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "苹果",
+        "model": "iPhone 15 Pro Max",
+        "level1": "维修浸液",
+        "level2": "后壳-与中框有溢胶/撬痕",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "错判",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "黄宇",
+        "origInspector": "黄宇",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1233443977",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "realme",
+        "model": "realme 13 Pro+",
+        "level1": "摄像头",
+        "level2": "无法打开",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "隐性问题",
+        "severity": "错判",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "",
+        "origInspector": "闵杰",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-04",
+        "code": "1233443997",
+        "imgs": [
+          "phone_36_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 15",
+        "level1": "外壳外观",
+        "level2": "翘起高度≥0.5mm-1mm",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "陈金伟",
+        "origInspector": "陈金伟",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-05",
+        "code": "1229904687",
+        "imgs": [],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 12X",
+        "level1": "其它状况",
+        "level2": "耗电快",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "隐性问题",
+        "severity": "错判",
+        "stage": "后验",
+        "merchant": "石家庄-赵柳薇（采货侠）",
+        "errorPerson": "",
+        "origInspector": "王彪",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-05",
+        "code": "1233570732",
+        "imgs": [
+          "phone_38_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "OPPO",
+        "model": "OPPO Find X8s+",
+        "level1": "屏幕显示",
+        "level2": "状态栏以外透图（可拍）",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "钟仔琛",
+        "origInspector": "钟仔琛",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-06",
+        "code": "1233266530",
+        "imgs": [
+          "phone_40_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "vivo",
+        "model": "vivo Y500 Pro",
+        "level1": "外壳外观",
+        "level2": "翘起高度≥0.5mm-1mm",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "后验",
+        "merchant": "咸宁-马志坤（已验机2.0）",
+        "errorPerson": "黄宇",
+        "origInspector": "黄宇",
+        "newInspector": "zhangyu34"
+      },
+      {
+        "date": "2026-11-06",
+        "code": "1233809608",
+        "imgs": [
+          "phone_41_1.jpg"
+        ],
+        "cat": "手机",
+        "brand": "小米",
+        "model": "小米 15 Pro",
+        "level1": "外壳外观",
+        "level2": "2mm-10mm",
+        "classify": "客观问题",
+        "problemType": "外观问题",
+        "qaJudgment": "执行问题",
+        "severity": "-",
+        "stage": "入仓",
+        "merchant": "null",
+        "errorPerson": "王彪",
+        "origInspector": "王彪",
+        "newInspector": "zhangyu34"
+      }
+    ],
+    "fourcatDiffs": [
+      {
+        "date": "2026-11-01",
+        "code": "1225680744",
+        "imgs": [
+          "four_3_1.jpg"
+        ],
+        "cat": "笔记本",
+        "brand": "戴尔",
+        "model": "戴尔 Inspiron 灵越 14 Plus 7420",
+        "inspector": "熊文星",
+        "resultAction": "",
+        "isExecError": "执行问题",
+        "errorPerson": "熊文星",
+        "level1": "其它外观",
+        "level2": "机身",
+        "detail": "脚垫缺失",
+        "classify": "客观问题",
+        "problemType": "外观问题",
+        "qaType": "执行问题"
+      },
+      {
+        "date": "2026-11-01",
+        "code": "1232286583",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "联想",
+        "model": "联想 拯救者 Y7000P 2018",
+        "inspector": "刘秉义",
+        "resultAction": "",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "其它状况",
+        "level2": "充电器",
+        "detail": "充电器损坏",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "其他问题"
+      },
+      {
+        "date": "2026-11-01",
+        "code": "1232286583",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "联想",
+        "model": "联想 拯救者 Y7000P 2018",
+        "inspector": "刘秉义",
+        "resultAction": "",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "按键",
+        "level2": "触控板",
+        "detail": "触控板功能异常",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "隐性问题"
+      },
+      {
+        "date": "2026-11-01",
+        "code": "1232420623",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "神舟",
+        "model": "神舟 战神 S7",
+        "inspector": "常凌云",
+        "resultAction": "",
+        "isExecError": "执行问题",
+        "errorPerson": "常凌云",
+        "level1": "屏幕外观",
+        "level2": "其它",
+        "detail": "",
+        "classify": "客观问题",
+        "problemType": "功能问题",
+        "qaType": "执行问题"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1228161895",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "ThinkPad",
+        "model": "ThinkPad T14 G2",
+        "inspector": "熊帅",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "维修浸液",
+        "level2": "部件更换",
+        "detail": "零件更换",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaType": "工艺问题"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1230428615",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "联想",
+        "model": "联想 拯救者 R7000 2020",
+        "inspector": "邱锦涛",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "屏幕显示",
+        "level2": "其它",
+        "detail": "闪屏/花屏",
+        "classify": "客观问题",
+        "problemType": "显示问题",
+        "qaType": "隐性问题"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232179045",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "联想",
+        "model": "联想 拯救者 Y7000 2020",
+        "inspector": "邱锦涛",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "其它状况",
+        "level2": "系统情况",
+        "detail": "系统未激活",
+        "classify": "客观问题",
+        "problemType": "其他状况",
+        "qaType": "系统问题"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232384378",
+        "imgs": [
+          "four_7_1.jpg"
+        ],
+        "cat": "笔记本",
+        "brand": "红米",
+        "model": "Redmi G Pro 游戏本",
+        "inspector": "刘秉义",
+        "resultAction": "拦截",
+        "isExecError": "执行问题",
+        "errorPerson": "刘秉义",
+        "level1": "其它外观",
+        "level2": "机身",
+        "detail": "脚垫缺失",
+        "classify": "客观问题",
+        "problemType": "外观问题",
+        "qaType": "执行问题"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232470634",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "华硕",
+        "model": "华硕 VivoBook15 S",
+        "inspector": "常凌云",
+        "resultAction": "拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "其它外观",
+        "level2": "机身",
+        "detail": "脚垫缺失",
+        "classify": "客观问题",
+        "problemType": "外观问题",
+        "qaType": "隐性问题"
+      },
+      {
+        "date": "2026-11-02",
+        "code": "1232912872",
+        "imgs": [],
+        "cat": "笔记本",
+        "brand": "神舟",
+        "model": "神舟 战神 Z8 2021",
+        "inspector": "刘秉义",
+        "resultAction": "不拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "维修浸液",
+        "level2": "部件更换",
+        "detail": "外壳有更换痕迹",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaType": "工艺问题"
+      },
+      {
+        "date": "2026-11-03",
+        "code": "1231855400",
+        "imgs": [
+          "four_13_1.jpg"
+        ],
+        "cat": "笔记本",
+        "brand": "惠普",
+        "model": "惠普 14s-fq0000",
+        "inspector": "熊帅",
+        "resultAction": "不拦截",
+        "isExecError": "",
+        "errorPerson": "",
+        "level1": "维修浸液",
+        "level2": "部件更换",
+        "detail": "零件更换",
+        "classify": "客观问题",
+        "problemType": "拆修问题",
+        "qaType": "工艺问题"
+      }
+    ],
+    "qaData": [
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "闵杰",
+        "samples": 115,
+        "errors": 5,
+        "totalErrors": 7,
+        "rate": 0.043478,
+        "ranking": "3",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "薛李雄",
+        "samples": 35,
+        "errors": 1,
+        "totalErrors": 1,
+        "rate": 0.028571,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "钟仔琛",
+        "samples": 138,
+        "errors": 6,
+        "totalErrors": 10,
+        "rate": 0.043478,
+        "ranking": "3",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验一段",
+        "inspector": "李波",
+        "samples": 93,
+        "errors": 4,
+        "totalErrors": 4,
+        "rate": 0.043011,
+        "ranking": "2",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "刘尊帅",
+        "samples": 0,
+        "errors": 3,
+        "totalErrors": 5,
+        "rate": 0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "王彪",
+        "samples": 96,
+        "errors": 2,
+        "totalErrors": 4,
+        "rate": 0.020833,
+        "ranking": "3",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "苏杰",
+        "samples": 54,
+        "errors": 0,
+        "totalErrors": 2,
+        "rate": 0.0,
+        "ranking": "1",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "黄宇",
+        "samples": 129,
+        "errors": 3,
+        "totalErrors": 3,
+        "rate": 0.023256,
+        "ranking": "4",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "【手机】后验二段",
+        "inspector": "陈金伟",
+        "samples": 120,
+        "errors": 3,
+        "totalErrors": 3,
+        "rate": 0.025,
+        "ranking": "5",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "常凌云",
+        "samples": 26,
+        "errors": 1,
+        "totalErrors": 2,
+        "rate": 0.038462,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "邱锦涛",
+        "samples": 23,
+        "errors": 0,
+        "totalErrors": 2,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "杨宇",
+        "samples": 11,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "熊帅",
+        "samples": 7,
+        "errors": 0,
+        "totalErrors": 2,
+        "rate": 0.0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "熊文星",
+        "samples": 14,
+        "errors": 1,
+        "totalErrors": 1,
+        "rate": 0.071429,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "💻",
+        "grp": "笔记本质检",
+        "inspector": "刘秉义",
+        "samples": 28,
+        "errors": 1,
+        "totalErrors": 4,
+        "rate": 0.035714,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "闵杰",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "苏杰",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "李波",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      },
+      {
+        "cat": "📱",
+        "grp": "平板电脑",
+        "inspector": "钟仔琛",
+        "samples": 0,
+        "errors": 0,
+        "totalErrors": 0,
+        "rate": 0,
+        "ranking": "",
+        "qaMiss": 0
+      }
+    ],
+    "errorFollowup": {
+      "items": [
+        {
+          "person": "王彪",
+          "code": "988258787",
+          "item": "外壳外观-脱胶缝隙 ≥0.3mm",
+          "errorType": "【漏选】",
+          "time": "2026-02-04 11:27:46",
+          "reason": "无法定位根因，暂进行口头提醒"
+        },
+        {
+          "person": "闵杰",
+          "code": "986160927",
+          "item": "屏幕显示-坏点-直径 ≤0.5mm且数量＞6",
+          "errorType": "【误判】",
+          "time": "2026-02-03 15:20:48",
+          "reason": "特殊现象导致误判"
+        },
+        {
+          "person": "王彪",
+          "code": "988065596",
+          "item": "外屏-紫光灯照射边缘内屏异常",
+          "errorType": "【漏选】",
+          "time": "2026-02-01 17:45:20",
+          "reason": "跳步，已沟通稽核组进行为期一周的专项稽核，再复现该问题即抄写标准10遍"
+        },
+        {
+          "person": "黄宇",
+          "code": "987147939",
+          "item": "后壳-后盖与镜头保护罩连接处有胶水溢出",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 16:03:23",
+          "reason": "判定经验不足导致漏判"
+        },
+        {
+          "person": "李波",
+          "code": "988716395",
+          "item": "摄像头功能-拍照坏点",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 15:14:34",
+          "reason": "质检过快，暂进行口头提醒。"
+        },
+        {
+          "person": "陈金伟",
+          "code": "988398816",
+          "item": "外壳外观-脱胶缝隙 ≥0.3mm",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 15:32:41",
+          "reason": "无法定位根因，暂进行口头提醒"
+        },
+        {
+          "person": "黄宇",
+          "code": "986700786",
+          "item": "维修浸液-屏幕有胶水溢出",
+          "errorType": "【误判】",
+          "time": "2026-02-06 11:22:25",
+          "reason": "实际应判定中框溢胶，因为标准明确了Mate60系列屏幕溢胶应该判定为中框溢胶。"
+        },
+        {
+          "person": "黄宇",
+          "code": "988016744",
+          "item": "电池健康值不符",
+          "errorType": "【漏选】",
+          "time": "2026-02-05 11:16:12",
+          "reason": "勾选顺序错误。当发现商户的电池健康值不符时不用去修改电池次数。"
+        }
+      ],
+      "highFreq": [
+        {
+          "rank": "Top1",
+          "name": "",
+          "count": 0
+        }
+      ]
+    },
+    "t1Data": {
+      "weekly": [
+        {
+          "range": "周期范围",
+          "topPersons": "人员维度",
+          "diffs": "",
+          "topItem": "质检项维度",
+          "note": "备注"
+        },
+        {
+          "range": "12月1日-12月7日",
+          "topPersons": "黄宇",
+          "diffs": "3",
+          "topItem": "/",
+          "note": "3（2例为粗心导致，1例标准理解差异）"
+        },
+        {
+          "range": "12月8日-12月14日",
+          "topPersons": "黄宇/苏杰",
+          "diffs": "2、2",
+          "topItem": "/",
+          "note": ""
+        },
+        {
+          "range": "12月15日-12月21日",
+          "topPersons": "黄宇/苏杰/刘航",
+          "diffs": "2、2",
+          "topItem": "/",
+          "note": "黄宇连续三周Top人\n苏杰连续两周Top人"
+        },
+        {
+          "range": "12月22日-12月28日",
+          "topPersons": "刘航",
+          "diffs": "3",
+          "topItem": "/",
+          "note": ""
+        },
+        {
+          "range": "12月29日-01月04日",
+          "topPersons": "无",
+          "diffs": "/",
+          "topItem": "/",
+          "note": "人维度没明确规律，三人各1例"
+        },
+        {
+          "range": "01月05日-01月11日",
+          "topPersons": "刘航",
+          "diffs": "4（5 减 1）",
+          "topItem": "/",
+          "note": "第五例与QA 核实为非执行（数据源待剔除）\n连续三周 Top 人"
+        },
+        {
+          "range": "01月12日-01月18日",
+          "topPersons": "无",
+          "diffs": "",
+          "topItem": "/",
+          "note": "后壳&镜框&闪光灯溢胶"
+        },
+        {
+          "range": "01月19日-01月25日",
+          "topPersons": "黄宇",
+          "diffs": "3",
+          "topItem": "无",
+          "note": "3\n外壳外观-脱胶缝隙 ≥0.3mm\n屏幕边缘脱胶\n外屏-APP黑边红线有缺失"
+        },
+        {
+          "range": "01月26日-02月01日",
+          "topPersons": "@王彪",
+          "diffs": "2",
+          "topItem": "无",
+          "note": "外屏-紫光灯照射边缘内屏异常「误判」\n外屏-APP黑边红线有缺失「漏判」"
+        },
+        {
+          "range": "02月02日-02月08日",
+          "topPersons": "@黄宇",
+          "diffs": "3",
+          "topItem": "外壳外观-脱胶/缝隙",
+          "note": "2例为溢胶问题（外屏-有胶水溢出/撬痕、后壳-后盖与镜头保护罩连接处有胶水溢出）"
+        },
+        {
+          "range": "02月09日-02月15日",
+          "topPersons": "",
+          "diffs": "",
+          "topItem": "",
+          "note": ""
+        },
+        {
+          "range": "02月16日-02月22日",
+          "topPersons": "",
+          "diffs": "",
+          "topItem": "",
+          "note": ""
+        }
+      ],
+      "monthly": [
+        {
+          "month": "月份",
+          "summary": "月度总达成情况",
+          "sec1Top": "一段人员维度",
+          "sec1Miss": "",
+          "sec1Rate": "",
+          "sec2Top": "二段人员维度",
+          "sec2Miss": "",
+          "sec2Rate": "",
+          "detail": "具体明细"
+        },
+        {
+          "month": "26年一月",
+          "summary": "",
+          "sec1Top": "@刘航",
+          "sec1Miss": "6",
+          "sec1Rate": "0.0078",
+          "sec2Top": "@黄宇",
+          "sec2Miss": "5",
+          "sec2Rate": "0.0076",
+          "detail": "刘航-二段差异占绝大半，目前一段较为稳定\n黄宇-易失误点：屏幕&外壳脱胶"
+        }
+      ]
+    },
+    "reviewData": {
+      "t1": [
+        {
+          "category": "📱",
+          "samples": 49,
+          "objDiffs": 2,
+          "execDiffs": 2,
+          "execRate": 0.040816
+        },
+        {
+          "category": "💻",
+          "samples": 0,
+          "objDiffs": 0,
+          "execDiffs": 0,
+          "execRate": 0
+        }
+      ],
+      "weeklyRates": [
+        {
+          "category": "📱手机",
+          "weeks": [
+            0.0047,
+            0.0067,
+            0.0089,
+            0.0087
+          ]
+        },
+        {
+          "category": "💻笔记本",
+          "weeks": [
+            0.0597,
+            0.0131,
+            0.0134,
+            0.0099
+          ]
+        }
+      ],
+      "archives": [
+        "📊11月武汉中心仓质量数据（封档）",
+        "📊12月武汉中心仓质量数据",
+        "📊26年1月武汉中心仓质量数据"
+      ]
+    },
+    "cuoti": {},
+    "training": {
+      "tuili": {
+        "records": [],
+        "daily": [],
+        "catStats": [],
+        "fails": []
+      },
+      "coach": {
+        "records": [],
+        "personStats": []
+      },
+      "meeting": {
+        "records": []
+      },
+      "exam": {
+        "records": [],
+        "fails": []
+      },
+      "scores": {
+        "records": [],
+        "people": []
+      },
+      "alerts": []
+    }
+  },
+  "trend": {
+    "phone": [
+      {
+        "date": "11/01",
+        "samples": 49,
+        "diffs": 32,
+        "objDiff": 2
+      },
+      {
+        "date": "11/02",
+        "samples": 91,
+        "diffs": 61,
+        "objDiff": 7
+      },
+      {
+        "date": "11/03",
+        "samples": 96,
+        "diffs": 56,
+        "objDiff": 6
+      },
+      {
+        "date": "11/04",
+        "samples": 93,
+        "diffs": 59,
+        "objDiff": 14
+      },
+      {
+        "date": "11/05",
+        "samples": 62,
+        "diffs": 42,
+        "objDiff": 2
+      },
+      {
+        "date": "11/06",
+        "samples": 49,
+        "diffs": 39,
+        "objDiff": 2
+      }
+    ],
+    "fourCat": {
+      "笔记本": [
+        {
+          "date": "11/01",
+          "samples": 44,
+          "diffs": 0
+        },
+        {
+          "date": "11/02",
+          "samples": 55,
+          "diffs": 0
+        },
+        {
+          "date": "11/03",
+          "samples": 10,
+          "diffs": 0
+        }
+      ]
+    },
+    "fourCatAgg": [
+      {
+        "date": "11/01",
+        "samples": 44,
+        "diffs": 0
+      },
+      {
+        "date": "11/02",
+        "samples": 55,
+        "diffs": 0
+      },
+      {
+        "date": "11/03",
+        "samples": 10,
+        "diffs": 0
+      }
+    ]
+  }
+}
