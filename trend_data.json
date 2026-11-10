@@ -35,6 +35,24 @@
       "samples": 49,
       "diffs": 39,
       "objDiff": 2
+    },
+    {
+      "date": "11/07",
+      "samples": 61,
+      "diffs": 28,
+      "objDiff": 0
+    },
+    {
+      "date": "11/08",
+      "samples": 60,
+      "diffs": 32,
+      "objDiff": 3
+    },
+    {
+      "date": "11/09",
+      "samples": 101,
+      "diffs": 58,
+      "objDiff": 5
     }
   ],
   "fourCat": {
