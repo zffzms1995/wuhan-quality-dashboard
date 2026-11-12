@@ -3,7 +3,7 @@
     "monthLabel": "2026年11月",
     "dateMin": "2026-11-01",
     "dateMax": "2026-11-30",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-12",
     "editUrl": "https://zhuanspirit.feishu.cn/sheets/S01rsjwNMh4M4vtyEzZcmVoBntf",
     "cuotiUrl": "https://zhuanspirit.feishu.cn/sheets/AL5BsfG4hhP0yetcZsQcbM4ZnRd"
   },
@@ -25,7 +25,7 @@
       "hasDiff": "是",
       "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
       "notes": "",
-      "imageFile": "",
+      "imageFile": "mb_5.jpg",
       "id": 1
     },
     {
@@ -45,7 +45,7 @@
       "hasDiff": "是",
       "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
       "notes": "",
-      "imageFile": "",
+      "imageFile": "mb_4.jpg",
       "id": 2
     },
     {
@@ -65,7 +65,7 @@
       "hasDiff": "是",
       "qaFinding": "部分零件维修更换",
       "notes": "",
-      "imageFile": "",
+      "imageFile": "mb_3.jpg",
       "id": 3
     },
     {
@@ -85,7 +85,7 @@
       "hasDiff": "是",
       "qaFinding": "内部固定螺丝/固定盖板等小零件缺失",
       "notes": "",
-      "imageFile": "",
+      "imageFile": "mb_6.jpg",
       "id": 4
     }
   ],
@@ -93,7 +93,9 @@
     {
       "date": "2026-11-01",
       "code": "1229614040",
-      "imgs": [],
+      "imgs": [
+        "phone_4_1.jpg"
+      ],
       "cat": "手机",
       "brand": "华为",
       "model": "华为 nova 6 (5G)",
@@ -112,7 +114,9 @@
     {
       "date": "2026-11-01",
       "code": "1231469735",
-      "imgs": [],
+      "imgs": [
+        "phone_3_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo iQOO Neo 9 Pro",
@@ -131,7 +135,9 @@
     {
       "date": "2026-11-02",
       "code": "1230690095",
-      "imgs": [],
+      "imgs": [
+        "phone_7_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo iQOO Z8x",
@@ -188,7 +194,9 @@
     {
       "date": "2026-11-02",
       "code": "1232965159",
-      "imgs": [],
+      "imgs": [
+        "phone_10_1.jpg"
+      ],
       "cat": "手机",
       "brand": "华为",
       "model": "华为 nova 15 Ultra",
@@ -207,7 +215,9 @@
     {
       "date": "2026-11-02",
       "code": "1232965163",
-      "imgs": [],
+      "imgs": [
+        "phone_8_1.jpg"
+      ],
       "cat": "手机",
       "brand": "华为",
       "model": "华为 nova 13",
@@ -264,7 +274,9 @@
     {
       "date": "2026-11-03",
       "code": "1212803183",
-      "imgs": [],
+      "imgs": [
+        "phone_16_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo X100s Pro",
@@ -302,7 +314,9 @@
     {
       "date": "2026-11-03",
       "code": "1227872601",
-      "imgs": [],
+      "imgs": [
+        "phone_14_1.jpg"
+      ],
       "cat": "手机",
       "brand": "华为",
       "model": "华为 P50 Pro (麒麟版)",
@@ -378,7 +392,9 @@
     {
       "date": "2026-11-03",
       "code": "1230847267",
-      "imgs": [],
+      "imgs": [
+        "phone_19_1.jpg"
+      ],
       "cat": "手机",
       "brand": "红米",
       "model": "红米 K60",
@@ -416,7 +432,9 @@
     {
       "date": "2026-11-03",
       "code": "1232487723",
-      "imgs": [],
+      "imgs": [
+        "phone_17_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo S30",
@@ -435,7 +453,9 @@
     {
       "date": "2026-11-04",
       "code": "1225128626",
-      "imgs": [],
+      "imgs": [
+        "phone_32_1.jpg"
+      ],
       "cat": "手机",
       "brand": "小米",
       "model": "小米 13 Ultra",
@@ -492,7 +512,9 @@
     {
       "date": "2026-11-04",
       "code": "1230254708",
-      "imgs": [],
+      "imgs": [
+        "phone_30_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo iQOO Neo 10 Pro",
@@ -530,7 +552,9 @@
     {
       "date": "2026-11-04",
       "code": "1230847250",
-      "imgs": [],
+      "imgs": [
+        "phone_22_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo S15e",
@@ -606,7 +630,9 @@
     {
       "date": "2026-11-04",
       "code": "1231301794",
-      "imgs": [],
+      "imgs": [
+        "phone_25_1.jpg"
+      ],
       "cat": "手机",
       "brand": "荣耀",
       "model": "荣耀 Magic 7 Pro",
@@ -625,7 +651,9 @@
     {
       "date": "2026-11-04",
       "code": "1231539271",
-      "imgs": [],
+      "imgs": [
+        "phone_26_1.jpg"
+      ],
       "cat": "手机",
       "brand": "小米",
       "model": "小米 13 Ultra",
@@ -663,7 +691,9 @@
     {
       "date": "2026-11-04",
       "code": "1231809536",
-      "imgs": [],
+      "imgs": [
+        "phone_28_1.jpg"
+      ],
       "cat": "手机",
       "brand": "华为",
       "model": "华为 Mate 50 Pro",
@@ -682,7 +712,9 @@
     {
       "date": "2026-11-04",
       "code": "1233429871",
-      "imgs": [],
+      "imgs": [
+        "phone_37_1.jpg"
+      ],
       "cat": "手机",
       "brand": "苹果",
       "model": "iPhone 15 Pro",
@@ -701,7 +733,9 @@
     {
       "date": "2026-11-04",
       "code": "1233432535",
-      "imgs": [],
+      "imgs": [
+        "phone_34_1.jpg"
+      ],
       "cat": "手机",
       "brand": "苹果",
       "model": "iPhone 15 Pro Max",
@@ -739,7 +773,9 @@
     {
       "date": "2026-11-04",
       "code": "1233443997",
-      "imgs": [],
+      "imgs": [
+        "phone_36_1.jpg"
+      ],
       "cat": "手机",
       "brand": "小米",
       "model": "小米 15",
@@ -777,7 +813,9 @@
     {
       "date": "2026-11-05",
       "code": "1233570732",
-      "imgs": [],
+      "imgs": [
+        "phone_38_1.jpg"
+      ],
       "cat": "手机",
       "brand": "OPPO",
       "model": "OPPO Find X8s+",
@@ -796,7 +834,9 @@
     {
       "date": "2026-11-06",
       "code": "1233266530",
-      "imgs": [],
+      "imgs": [
+        "phone_40_1.jpg"
+      ],
       "cat": "手机",
       "brand": "vivo",
       "model": "vivo Y500 Pro",
@@ -815,7 +855,9 @@
     {
       "date": "2026-11-06",
       "code": "1233809608",
-      "imgs": [],
+      "imgs": [
+        "phone_41_1.jpg"
+      ],
       "cat": "手机",
       "brand": "小米",
       "model": "小米 15 Pro",
@@ -834,7 +876,9 @@
     {
       "date": "2026-11-08",
       "code": "1231156352",
-      "imgs": [],
+      "imgs": [
+        "phone_43_1.jpg"
+      ],
       "cat": "手机",
       "brand": "OPPO",
       "model": "OPPO A3 活力版",
@@ -853,7 +897,9 @@
     {
       "date": "2026-11-08",
       "code": "1231717272",
-      "imgs": [],
+      "imgs": [
+        "phone_44_1.jpg"
+      ],
       "cat": "手机",
       "brand": "荣耀",
       "model": "荣耀 X50",
@@ -872,7 +918,9 @@
     {
       "date": "2026-11-08",
       "code": "1234220178",
-      "imgs": [],
+      "imgs": [
+        "phone_42_1.jpg"
+      ],
       "cat": "手机",
       "brand": "OPPO",
       "model": "OPPO Reno11",
@@ -986,7 +1034,9 @@
     {
       "date": "2026-11-09",
       "code": "1232957072",
-      "imgs": [],
+      "imgs": [
+        "phone_50_1.jpg"
+      ],
       "cat": "手机",
       "brand": "荣耀",
       "model": "荣耀 X80i",
@@ -1005,7 +1055,9 @@
     {
       "date": "2026-11-09",
       "code": "1234334165",
-      "imgs": [],
+      "imgs": [
+        "phone_51_1.jpg"
+      ],
       "cat": "手机",
       "brand": "苹果",
       "model": "iPhone 15 Pro",
@@ -1039,13 +1091,93 @@
       "errorPerson": "",
       "origInspector": "闵杰",
       "newInspector": "zhangyu34"
+    },
+    {
+      "date": "2026-11-10",
+      "code": "1234523505",
+      "imgs": [
+        "phone_53_1.jpg"
+      ],
+      "cat": "手机",
+      "brand": "realme",
+      "model": "realme GT7",
+      "level1": "摄像头",
+      "level2": "画面异常",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "李波",
+      "origInspector": "李波",
+      "newInspector": "liwen02"
+    },
+    {
+      "date": "2026-11-10",
+      "code": "1234549529",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 15 Pro Max",
+      "level1": "传感器",
+      "level2": "异常",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "隐性问题",
+      "severity": "错判",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "",
+      "origInspector": "刘尊帅",
+      "newInspector": "zhangyu34"
+    },
+    {
+      "date": "2026-11-10",
+      "code": "1234630218",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "苹果",
+      "model": "iPhone 14 Pro Max",
+      "level1": "维修浸液",
+      "level2": "电池-品牌电池-xray",
+      "classify": "客观问题",
+      "problemType": "拆修问题",
+      "qaJudgment": "执行问题",
+      "severity": "-",
+      "stage": "入仓",
+      "merchant": "null",
+      "errorPerson": "苏杰",
+      "origInspector": "苏杰",
+      "newInspector": "liwen02"
+    },
+    {
+      "date": "2026-11-11",
+      "code": "1233438347",
+      "imgs": [],
+      "cat": "手机",
+      "brand": "红米",
+      "model": "红米 K40",
+      "level1": "按键",
+      "level2": "失灵",
+      "classify": "客观问题",
+      "problemType": "功能问题",
+      "qaJudgment": "执行问题",
+      "severity": "错判",
+      "stage": "后验",
+      "merchant": "咸宁-马志坤（已验机2.0）",
+      "errorPerson": "闵杰",
+      "origInspector": "闵杰",
+      "newInspector": "zhangyu34"
     }
   ],
   "fourcatDiffs": [
     {
       "date": "2026-11-01",
       "code": "1225680744",
-      "imgs": [],
+      "imgs": [
+        "four_3_1.jpg"
+      ],
       "cat": "笔记本",
       "brand": "戴尔",
       "model": "戴尔 Inspiron 灵越 14 Plus 7420",
@@ -1171,7 +1303,9 @@
     {
       "date": "2026-11-02",
       "code": "1232384378",
-      "imgs": [],
+      "imgs": [
+        "four_7_1.jpg"
+      ],
       "cat": "笔记本",
       "brand": "红米",
       "model": "Redmi G Pro 游戏本",
@@ -1225,7 +1359,9 @@
     {
       "date": "2026-11-03",
       "code": "1231855400",
-      "imgs": [],
+      "imgs": [
+        "four_13_1.jpg"
+      ],
       "cat": "笔记本",
       "brand": "惠普",
       "model": "惠普 14s-fq0000",
@@ -1246,21 +1382,21 @@
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "闵杰",
-      "samples": 200,
-      "errors": 6,
-      "totalErrors": 9,
-      "rate": 0.03,
-      "ranking": "2",
+      "samples": 238,
+      "errors": 7,
+      "totalErrors": 10,
+      "rate": 0.029412,
+      "ranking": "4",
       "qaMiss": 0
     },
     {
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "薛李雄",
-      "samples": 93,
+      "samples": 141,
       "errors": 1,
       "totalErrors": 1,
-      "rate": 0.010753,
+      "rate": 0.007092,
       "ranking": "1",
       "qaMiss": 0
     },
@@ -1268,22 +1404,22 @@
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "钟仔琛",
-      "samples": 165,
+      "samples": 221,
       "errors": 6,
       "totalErrors": 10,
-      "rate": 0.036364,
-      "ranking": "4",
+      "rate": 0.027149,
+      "ranking": "3",
       "qaMiss": 0
     },
     {
       "cat": "📱",
       "grp": "【手机】后验一段",
       "inspector": "李波",
-      "samples": 133,
-      "errors": 4,
-      "totalErrors": 5,
-      "rate": 0.030075,
-      "ranking": "3",
+      "samples": 186,
+      "errors": 5,
+      "totalErrors": 6,
+      "rate": 0.026882,
+      "ranking": "2",
       "qaMiss": 0
     },
     {
@@ -1292,7 +1428,7 @@
       "inspector": "刘尊帅",
       "samples": 0,
       "errors": 3,
-      "totalErrors": 5,
+      "totalErrors": 6,
       "rate": 0,
       "ranking": "1",
       "qaMiss": 0
@@ -1301,10 +1437,10 @@
       "cat": "📱",
       "grp": "【手机】后验二段",
       "inspector": "王彪",
-      "samples": 157,
+      "samples": 178,
       "errors": 3,
       "totalErrors": 5,
-      "rate": 0.019108,
+      "rate": 0.016854,
       "ranking": "3",
       "qaMiss": 0
     },
@@ -1312,10 +1448,10 @@
       "cat": "📱",
       "grp": "【手机】后验二段",
       "inspector": "苏杰",
-      "samples": 127,
-      "errors": 1,
-      "totalErrors": 6,
-      "rate": 0.007874,
+      "samples": 202,
+      "errors": 2,
+      "totalErrors": 7,
+      "rate": 0.009901,
       "ranking": "2",
       "qaMiss": 0
     },
@@ -1323,10 +1459,10 @@
       "cat": "📱",
       "grp": "【手机】后验二段",
       "inspector": "黄宇",
-      "samples": 176,
+      "samples": 213,
       "errors": 4,
       "totalErrors": 4,
-      "rate": 0.022727,
+      "rate": 0.018779,
       "ranking": "4",
       "qaMiss": 0
     },
@@ -1334,10 +1470,10 @@
       "cat": "📱",
       "grp": "【手机】后验二段",
       "inspector": "陈金伟",
-      "samples": 150,
+      "samples": 200,
       "errors": 4,
       "totalErrors": 4,
-      "rate": 0.026667,
+      "rate": 0.02,
       "ranking": "5",
       "qaMiss": 0
     },
@@ -1650,10 +1786,10 @@
     "t1": [
       {
         "category": "📱",
-        "samples": 101,
-        "objDiffs": 5,
-        "execDiffs": 3,
-        "execRate": 0.029703
+        "samples": 110,
+        "objDiffs": 1,
+        "execDiffs": 1,
+        "execRate": 0.009091
       },
       {
         "category": "💻",
@@ -1691,12 +1827,12 @@
   },
   "cuoti": {
     "meta": {
-      "count": 23,
-      "kpCount": 18,
-      "personCount": 8,
+      "count": 30,
+      "kpCount": 23,
+      "personCount": 12,
       "catCount": 2,
       "dateMin": "2026-11-07",
-      "dateMax": "2026-11-10"
+      "dateMax": "2026-11-12"
     },
     "records": [
       {
@@ -1710,7 +1846,10 @@
           "闵杰"
         ],
         "answer": "答案：C",
-        "imgs": []
+        "imgs": [
+          "cuoti_2_1.jpg",
+          "cuoti_2_2.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1724,7 +1863,10 @@
           "钟仔琛"
         ],
         "answer": "答案：C",
-        "imgs": []
+        "imgs": [
+          "cuoti_3_1.jpg",
+          "cuoti_3_2.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1737,7 +1879,10 @@
           "钟仔琛"
         ],
         "answer": "答案：C",
-        "imgs": []
+        "imgs": [
+          "cuoti_4_1.jpg",
+          "cuoti_4_2.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1750,7 +1895,9 @@
           "钟仔琛"
         ],
         "answer": "答案：D",
-        "imgs": []
+        "imgs": [
+          "cuoti_5_1.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1763,7 +1910,9 @@
           "蔡浩"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_6_1.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1776,7 +1925,10 @@
           "蔡浩"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_7_1.jpg",
+          "cuoti_7_2.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1789,7 +1941,10 @@
           "蔡浩"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_8_1.jpg",
+          "cuoti_8_2.jpg"
+        ]
       },
       {
         "date": "2026-11-07",
@@ -1803,7 +1958,10 @@
           "杨宇"
         ],
         "answer": "答案：C",
-        "imgs": []
+        "imgs": [
+          "cuoti_9_1.jpg",
+          "cuoti_9_2.jpg"
+        ]
       },
       {
         "date": "2026-11-08",
@@ -1817,7 +1975,9 @@
           "钟仔琛"
         ],
         "answer": "答案：A、B、C、D",
-        "imgs": []
+        "imgs": [
+          "cuoti_10_1.jpg"
+        ]
       },
       {
         "date": "2026-11-08",
@@ -1830,7 +1990,11 @@
           "邱锦涛"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_11_1.jpg",
+          "cuoti_11_2.jpg",
+          "cuoti_11_3.jpg"
+        ]
       },
       {
         "date": "2026-11-08",
@@ -1843,7 +2007,9 @@
           "熊帅"
         ],
         "answer": "答案：A、B、C、D",
-        "imgs": []
+        "imgs": [
+          "cuoti_12_1.jpg"
+        ]
       },
       {
         "date": "2026-11-08",
@@ -1856,7 +2022,10 @@
           "熊帅"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_13_1.jpg",
+          "cuoti_13_2.jpg"
+        ]
       },
       {
         "date": "2026-11-08",
@@ -1869,7 +2038,10 @@
           "熊文星"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_14_1.jpg",
+          "cuoti_14_2.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1882,7 +2054,9 @@
           "闵杰"
         ],
         "answer": "答案：A、B、C、D",
-        "imgs": []
+        "imgs": [
+          "cuoti_15_1.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1895,7 +2069,10 @@
           "钟仔琛"
         ],
         "answer": "答案：B",
-        "imgs": []
+        "imgs": [
+          "cuoti_16_1.jpg",
+          "cuoti_16_2.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1908,7 +2085,9 @@
           "钟仔琛"
         ],
         "answer": "答案：A、C、D",
-        "imgs": []
+        "imgs": [
+          "cuoti_17_1.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1921,7 +2100,9 @@
           "蔡浩"
         ],
         "answer": "答案：B、C、D",
-        "imgs": []
+        "imgs": [
+          "cuoti_18_1.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1934,7 +2115,10 @@
           "蔡浩"
         ],
         "answer": "答案：B",
-        "imgs": []
+        "imgs": [
+          "cuoti_19_1.jpg",
+          "cuoti_19_2.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1947,7 +2131,9 @@
           "蔡浩"
         ],
         "answer": "答案：A、B",
-        "imgs": []
+        "imgs": [
+          "cuoti_20_1.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1960,7 +2146,9 @@
           "杨宇"
         ],
         "answer": "答案：B、C、D",
-        "imgs": []
+        "imgs": [
+          "cuoti_21_1.jpg"
+        ]
       },
       {
         "date": "2026-11-09",
@@ -1973,7 +2161,9 @@
           "杨宇"
         ],
         "answer": "答案：A、B、C",
-        "imgs": []
+        "imgs": [
+          "cuoti_22_1.jpg"
+        ]
       },
       {
         "date": "2026-11-10",
@@ -1986,7 +2176,10 @@
           "李波"
         ],
         "answer": "答案：D",
-        "imgs": []
+        "imgs": [
+          "cuoti_23_1.jpg",
+          "cuoti_23_2.jpg"
+        ]
       },
       {
         "date": "2026-11-10",
@@ -1999,10 +2192,142 @@
           "蔡浩"
         ],
         "answer": "答案：A",
-        "imgs": []
+        "imgs": [
+          "cuoti_24_1.jpg",
+          "cuoti_24_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "平板",
+        "kp": "外壳外观-褶皱",
+        "content": "【单选题】\n（现象认知）如图标注描述所示，此类外壳外观现象应归类为？（24）\nA.外壳外观-掉漆/磨损\nB.外壳外观-碎裂\nC.外壳外观-褶皱\nD.外壳外观-刻字/图",
+        "persons": [
+          "闵杰"
+        ],
+        "answer": "答案：C",
+        "imgs": [
+          "cuoti_25_1.jpg",
+          "cuoti_25_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "ABCD面外观-碎裂",
+        "content": "【单选题】\n（判断）外观有碎裂多处碎裂瑕疵，碎裂瑕疵按总和判定。\nA.正确\nB.错误",
+        "persons": [
+          "蔡浩",
+          "杨宇"
+        ],
+        "answer": "答案：A",
+        "imgs": [
+          "cuoti_26_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "屏幕外观-气泡",
+        "content": "【单选题】\n（现象认知）如图标注描述所示，此类外观现象应归类为？（28）\nA.屏幕外观-气泡\nB.屏幕外观-划痕\nC.屏幕外观-进灰\nD.屏幕外观-印记",
+        "persons": [
+          "蔡浩",
+          "李歆"
+        ],
+        "answer": "答案：A",
+        "imgs": [
+          "cuoti_27_1.jpg",
+          "cuoti_27_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "ABCD面外观-碎裂",
+        "content": "【单选题】\n（判断）中框键盘面上的电源键有上下左右移动空间位移，按外观细微碎裂判定（原位松动为正常现象）。\nA.正确\nB.错误",
+        "persons": [
+          "杨宇"
+        ],
+        "answer": "答案：A",
+        "imgs": [
+          "cuoti_28_1.jpg",
+          "cuoti_28_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "其它状况-来源-官翻机",
+        "content": "【单选题】\n华硕笔记本D壳刻有“RFB”刻字，此机器来源属于“（）”。\nA.正常\nB.官翻机\nC.展示机\nD.BS机",
+        "persons": [
+          "杨宇"
+        ],
+        "answer": "答案：B",
+        "imgs": [
+          "cuoti_29_1.jpg",
+          "cuoti_29_2.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "屏幕显示-亮斑",
+        "content": "【多选题】\n根据图片描述及标注内容，请选择出包含“屏幕显示-亮斑”现象的机器。\nA.机器1\nB.机器2\nC.机器3\nD.机器4",
+        "persons": [
+          "申云鹏"
+        ],
+        "answer": "答案：B、D",
+        "imgs": [
+          "cuoti_30_1.jpg"
+        ]
+      },
+      {
+        "date": "2026-11-12",
+        "station": "武汉分站",
+        "examType": "日考",
+        "cat": "笔记本",
+        "kp": "数据端口",
+        "content": "【单选题】\n如图所示，此数据端口在标准中归类为（）。（9）\nA.数据接口\nB.网线接口\nC.视频接口\nD.内置光驱",
+        "persons": [
+          "常凌云",
+          "张明康"
+        ],
+        "answer": "答案：C",
+        "imgs": [
+          "cuoti_31_1.jpg",
+          "cuoti_31_2.jpg"
+        ]
       }
     ],
     "kpStats": [
+      {
+        "kp": "数据端口",
+        "count": 2,
+        "persons": 3,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-11-12"
+      },
+      {
+        "kp": "ABCD面外观-碎裂",
+        "count": 2,
+        "persons": 2,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
+      },
       {
         "kp": "其他状况-监管机",
         "count": 2,
@@ -2052,6 +2377,14 @@
         "lastDate": "2026-11-08"
       },
       {
+        "kp": "屏幕外观-气泡",
+        "count": 1,
+        "persons": 2,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
+      },
+      {
         "kp": "屏幕显示-闪屏/花屏",
         "count": 1,
         "persons": 2,
@@ -2068,6 +2401,14 @@
         "lastDate": "2026-11-09"
       },
       {
+        "kp": "其它状况-来源-官翻机",
+        "count": 1,
+        "persons": 1,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
+      },
+      {
         "kp": "基础信息-保修-与官网查询信息不符",
         "count": 1,
         "persons": 1,
@@ -2076,12 +2417,28 @@
         "lastDate": "2026-11-09"
       },
       {
+        "kp": "外壳外观-褶皱",
+        "count": 1,
+        "persons": 1,
+        "cats": "平板",
+        "cat": "平板",
+        "lastDate": "2026-11-11"
+      },
+      {
         "kp": "屏幕外观-其他-屏幕边框缝隙",
         "count": 1,
         "persons": 1,
         "cats": "笔记本",
         "cat": "笔记本",
         "lastDate": "2026-11-08"
+      },
+      {
+        "kp": "屏幕显示-亮斑",
+        "count": 1,
+        "persons": 1,
+        "cats": "笔记本",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
       },
       {
         "kp": "屏幕显示-图像残影",
@@ -2114,14 +2471,6 @@
         "cats": "平板",
         "cat": "平板",
         "lastDate": "2026-11-07"
-      },
-      {
-        "kp": "数据端口",
-        "count": 1,
-        "persons": 1,
-        "cats": "笔记本",
-        "cat": "笔记本",
-        "lastDate": "2026-11-09"
       },
       {
         "kp": "组件-零件维修/更换",
@@ -2150,6 +2499,14 @@
     ],
     "contentStats": [
       {
+        "content": "如图所示，此数据端口在标准中归类为（）。（9）A.数据接口B.网线接口C.视频接口D.内置光驱",
+        "count": 1,
+        "persons": 2,
+        "kp": "数据端口",
+        "cat": "笔记本",
+        "lastDate": "2026-11-12"
+      },
+      {
         "content": "如图描述及标注所示，此类现象应判定“其他状况-其他情况-（）”。（12）A.有运营商锁B.越狱C.监管机D.工程机",
         "count": 1,
         "persons": 2,
@@ -2164,6 +2521,22 @@
         "kp": "后置摄像头-无法打开",
         "cat": "平板",
         "lastDate": "2026-11-08"
+      },
+      {
+        "content": "（判断）外观有碎裂多处碎裂瑕疵，碎裂瑕疵按总和判定。A.正确B.错误",
+        "count": 1,
+        "persons": 2,
+        "kp": "ABCD面外观-碎裂",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
+      },
+      {
+        "content": "（现象认知）如图标注描述所示，此类外观现象应归类为？（28）A.屏幕外观-气泡B.屏幕外观-划痕C.屏幕外观-进灰D.屏幕外观-印记",
+        "count": 1,
+        "persons": 2,
+        "kp": "屏幕外观-气泡",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
       },
       {
         "content": "（现象认知）如图标注描述所示，此类显示故障现象应归类为？（18）A.屏生线B.漏液C.闪屏/花屏D.图像残影",
@@ -2204,6 +2577,14 @@
         "kp": "其它外观-键盘外观",
         "cat": "笔记本",
         "lastDate": "2026-11-09"
+      },
+      {
+        "content": "华硕笔记本D壳刻有“RFB”刻字，此机器来源属于“（）”。A.正常B.官翻机C.展示机D.BS机",
+        "count": 1,
+        "persons": 1,
+        "kp": "其它状况-来源-官翻机",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
       },
       {
         "content": "如图描述及标注所示，此类现象应判定“其他状况-其他情况-（）”。（11）A.有运营商锁B.越狱C.监管机D.工程机",
@@ -2254,6 +2635,14 @@
         "lastDate": "2026-11-09"
       },
       {
+        "content": "根据图片描述及标注内容，请选择出包含“屏幕显示-亮斑”现象的机器。A.机器1B.机器2C.机器3D.机器4",
+        "count": 1,
+        "persons": 1,
+        "kp": "屏幕显示-亮斑",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
+      },
+      {
         "content": "测试屏幕显示-显示不均匀现象时，应在（）页面进行。A.红色B.黑色C.绿色D.白色",
         "count": 1,
         "persons": 1,
@@ -2276,6 +2665,14 @@
         "kp": "部件更换-更换/加装品牌硬盘",
         "cat": "笔记本",
         "lastDate": "2026-11-08"
+      },
+      {
+        "content": "（判断）中框键盘面上的电源键有上下左右移动空间位移，按外观细微碎裂判定（原位松动为正常现象）。A.正确B.错误",
+        "count": 1,
+        "persons": 1,
+        "kp": "ABCD面外观-碎裂",
+        "cat": "笔记本",
+        "lastDate": "2026-11-11"
       },
       {
         "content": "（判断）屏幕为玻璃面板类型，当四周边框/屏幕胶垫与屏幕有大于等于1mm的缝隙，判定【屏幕边框缝隙】。A.正确B.错误",
@@ -2310,6 +2707,14 @@
         "lastDate": "2026-11-07"
       },
       {
+        "content": "（现象认知）如图标注描述所示，此类外壳外观现象应归类为？（24）A.外壳外观-掉漆/磨损B.外壳外观-碎裂C.外壳外观-褶皱D.外壳外观-刻字/图",
+        "count": 1,
+        "persons": 1,
+        "kp": "外壳外观-褶皱",
+        "cat": "平板",
+        "lastDate": "2026-11-11"
+      },
+      {
         "content": "（现象认知）如图标注描述所示，此类显示故障现象应归类为？（16）A.图像残影B.漏光C.老化D.亮斑",
         "count": 1,
         "persons": 1,
@@ -2337,8 +2742,16 @@
     "personStats": [
       {
         "person": "蔡浩",
-        "count": 7,
+        "count": 9,
         "kps": [
+          [
+            "ABCD面外观-碎裂",
+            1
+          ],
+          [
+            "屏幕外观-气泡",
+            1
+          ],
           [
             "屏幕显示-图像残影",
             1
@@ -2370,6 +2783,32 @@
         ]
       },
       {
+        "person": "杨宇",
+        "count": 6,
+        "kps": [
+          [
+            "ABCD面外观-碎裂",
+            2
+          ],
+          [
+            "其它外观-键盘外观",
+            1
+          ],
+          [
+            "其它状况-来源-官翻机",
+            1
+          ],
+          [
+            "屏幕显示-闪屏/花屏",
+            1
+          ],
+          [
+            "部件更换-品牌硬盘",
+            1
+          ]
+        ]
+      },
+      {
         "person": "钟仔琛",
         "count": 6,
         "kps": [
@@ -2396,29 +2835,15 @@
         ]
       },
       {
-        "person": "杨宇",
-        "count": 3,
-        "kps": [
-          [
-            "其它外观-键盘外观",
-            1
-          ],
-          [
-            "屏幕显示-闪屏/花屏",
-            1
-          ],
-          [
-            "部件更换-品牌硬盘",
-            1
-          ]
-        ]
-      },
-      {
         "person": "闵杰",
-        "count": 3,
+        "count": 4,
         "kps": [
           [
             "后置摄像头-无法打开",
+            1
+          ],
+          [
+            "外壳外观-褶皱",
             1
           ],
           [
@@ -2474,11 +2899,51 @@
         ]
       },
       {
+        "person": "常凌云",
+        "count": 1,
+        "kps": [
+          [
+            "数据端口",
+            1
+          ]
+        ]
+      },
+      {
+        "person": "张明康",
+        "count": 1,
+        "kps": [
+          [
+            "数据端口",
+            1
+          ]
+        ]
+      },
+      {
+        "person": "李歆",
+        "count": 1,
+        "kps": [
+          [
+            "屏幕外观-气泡",
+            1
+          ]
+        ]
+      },
+      {
         "person": "熊文星",
         "count": 1,
         "kps": [
           [
             "部件维修-屏幕维修痕迹",
+            1
+          ]
+        ]
+      },
+      {
+        "person": "申云鹏",
+        "count": 1,
+        "kps": [
+          [
+            "屏幕显示-亮斑",
             1
           ]
         ]
@@ -2500,30 +2965,64 @@
       {
         "date": "2026-11-10",
         "count": 2
+      },
+      {
+        "date": "2026-11-11",
+        "count": 6
+      },
+      {
+        "date": "2026-11-12",
+        "count": 1
       }
     ],
     "catStats": [
       {
         "cat": "笔记本",
-        "count": 14
+        "count": 20
       },
       {
         "cat": "平板",
-        "count": 9
+        "count": 10
       }
     ],
     "examStats": [
       {
         "exam": "日考",
-        "count": 23
+        "count": 30
       }
     ]
   },
   "training": {
     "tuili": {
-      "records": [],
-      "daily": [],
-      "catStats": [],
+      "records": [
+        {
+          "date": "2026-11-01",
+          "cat": "",
+          "stage": "",
+          "passLine": 0,
+          "total": 0,
+          "passed": 0,
+          "failNames": [],
+          "rePush": 0,
+          "banned": 0,
+          "freqKp": ""
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-11-01",
+          "total": 0,
+          "passed": 0
+        }
+      ],
+      "catStats": [
+        {
+          "cat": "",
+          "total": 0,
+          "passed": 0,
+          "fails": 0
+        }
+      ],
       "fails": []
     },
     "coach": {
