@@ -83,6 +83,12 @@
       "samples": 111,
       "diffs": 71,
       "objDiff": 8
+    },
+    {
+      "date": "11/15",
+      "samples": 110,
+      "diffs": 51,
+      "objDiff": 3
     }
   ],
   "fourCat": {
