@@ -8,7 +8,7 @@
   2. 拉取最近 3 天武汉平板/笔记本日考提升培训的答题明细
   3. 按（日期+品类+知识点+题干）聚合错题，人员逗号连接
   4. 与留底表现有数据去重后，追加写入飞书留底表「错题集」
-  5. 有新增时运行 update_dashboard.py，完成看板更新与群推送
+  5. 有新增时运行 update_dashboard.py，完成看板更新与精准群播报（默认开启，--no-push 关闭）
 """
 import json
 import os
@@ -460,7 +460,7 @@ def update_person_cells(updates):
 def main():
     import argparse
     ap = argparse.ArgumentParser()
-    ap.add_argument("--push", action="store_true", help="写完留底表后运行看板更新与群播报（默认关闭）")
+    ap.add_argument("--no-push", action="store_true", help="只写留底表不播报（月度换表首跑防刷屏时用）")
     args = ap.parse_args()
 
     if not os.path.isfile(COOKIE_FILE) or not session_ok():
@@ -546,11 +546,11 @@ def main():
         append_rows(new, last_data + 1)
     if img_targets:
         embed_images(img_targets)
-    if args.push:
-        print("运行看板更新与群播报 ...")
+    if not args.no_push:
+        print("运行看板更新与群播报（精准播报：笔记本错题→笔记本群，其余→手机平板群）...")
         subprocess.run([sys.executable, os.path.join(REPO, "update_dashboard.py")], cwd=REPO)
     else:
-        print("已跳过看板更新与群播报（需要推送时加 --push，或自行运行 update_dashboard.py）")
+        print("已跳过看板更新与群播报（--no-push）")
 
 
 if __name__ == "__main__":
